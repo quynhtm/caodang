@@ -68,7 +68,7 @@ return array(
         'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'laostyle',
+			'database'  => 'caodang',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
