@@ -2,6 +2,7 @@
 class SiteHomeController extends BaseSiteController{
     public function __construct(){
         parent::__construct();
+        FunctionLib::site_js('lib/swfObject/swfObject.js', CGlobal::$POS_HEAD);
     }
 
 	//Trang chu
@@ -24,6 +25,7 @@ class SiteHomeController extends BaseSiteController{
     	}
     	FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
     	
+    	$this->header();
         $this->layout->content = View::make('site.SiteLayouts.Home');
         $this->footer();
     }

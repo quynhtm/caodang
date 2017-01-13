@@ -15,7 +15,7 @@ class BaseSiteController extends BaseController{
     	FunctionLib::site_css('lib/jAlert/jquery.alerts.css', CGlobal::$POS_HEAD);
     	FunctionLib::site_js('lib/jAlert/jquery.alerts.js', CGlobal::$POS_END);	
     }
-    public function header($banner_page = 0, $category_id = 0, $province_id = 0, $keyword = ''){
+    public function header(){
 		
     	$this->layout->header = View::make("site.BaseLayouts.header");
     }
