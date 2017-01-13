@@ -45,13 +45,13 @@ class BaseAdminController extends BaseController
             'icon'=>'fa fa-cogs',
             'arr_link_sub'=>array('admin.info','admin.trash','admin.contract'),
             'sub'=>array(
-                array('name'=>'Liên hệ quản trị', 'RouteName'=>'admin.contract', 'icon'=>'fa fa-envelope-o icon-4x', 'showcontent'=>1, 'permission'=>'contract_view'),
+                //array('name'=>'Liên hệ quản trị', 'RouteName'=>'admin.contract', 'icon'=>'fa fa-envelope-o icon-4x', 'showcontent'=>1, 'permission'=>'contract_view'),
                 array('name'=>'Thông tin chung', 'RouteName'=>'admin.info', 'icon'=>'fa fa-cogs icon-4x', 'showcontent'=>1, 'permission'=>'abc'),
                 array('name'=>'Thùng rác', 'RouteName'=>'admin.trash', 'icon'=>'fa fa-trash icon-4x', 'showcontent'=>1, 'permission'=>'abc', 'clear'=>1),
             ),
         );
 
-        $menu[] = array(
+        /*$menu[] = array(
             'name'=>'Đơn vị hành chính',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-code-fork',
@@ -59,9 +59,9 @@ class BaseAdminController extends BaseController
             'sub'=>array(
                 array('name'=>'Tỉnh/Thành', 'RouteName'=>'admin.province', 'icon'=>'fa fa-map-marker icon-4x', 'showcontent'=>1, 'permission'=>'province_full'),
             ),
-        );
+        );*/
 
-        $menu[] = array(
+        /*$menu[] = array(
             'name'=>'QL đăng tin',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-gift',
@@ -71,7 +71,7 @@ class BaseAdminController extends BaseController
                 array('name'=>'Danh mục tin', 'RouteName'=>'admin.category_list', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1, 'permission'=>'category_full'),
                 array('name'=>'Danh sách tin đăng', 'RouteName'=>'admin.itemsView', 'icon'=>'fa fa-file-text-o icon-4x', 'showcontent'=>1, 'permission'=>'items_full', 'clear'=>1),
             ),
-        );
+        );*/
 
         $menu[] = array(
             'name'=>'QL nội dung',
@@ -81,7 +81,7 @@ class BaseAdminController extends BaseController
             'sub'=>array(
                 array('name'=>'Tin tức', 'RouteName'=>'admin.newsView', 'icon'=>'fa fa-book icon-4x', 'showcontent'=>1, 'permission'=>'news_full'),
                 array('name'=>'Banner quảng cáo', 'RouteName'=>'admin.bannerView', 'icon'=>'fa fa-globe icon-4x', 'showcontent'=>1, 'permission'=>'banner_full'),
-                array('name'=>'Lượt Share', 'RouteName'=>'admin.viewClickShare', 'icon'=>'fa fa-thumbs-o-up icon-4x', 'showcontent'=>1, 'permission'=>'toolsCommon_full'),
+                //array('name'=>'Lượt Share', 'RouteName'=>'admin.viewClickShare', 'icon'=>'fa fa-thumbs-o-up icon-4x', 'showcontent'=>1, 'permission'=>'toolsCommon_full'),
             ),
         );
         return $menu;
