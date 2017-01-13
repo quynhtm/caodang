@@ -4,10 +4,9 @@
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="login-container">
                     <div class="center">
-                        <h1>
-                            <i class="ace-icon fa fa-leaf green"></i>
+                        <h1 class="text-italic">
                             <span class="red">CMS</span>
-                            <span class="white" id="id-text2">Application</span>
+                            <span class="white" id="id-text2">Control Panel</span>
                         </h1>
                         <h4 class="blue" id="id-company-text">&copy;{{CGlobal::web_name}}</h4>
                     </div>
@@ -18,9 +17,9 @@
                         <div id="login-box" class="login-box visible widget-box no-border">
                             <div class="widget-body">
                                 <div class="widget-main">
-                                    <h4 class="header blue lighter bigger">
+                                    <h4 class="header blue lighter bigger line-title-form ">
                                         <i class="ace-icon fa fa-coffee green"></i>
-                                        Please Enter Your Information
+                                        Vui lòng nhập thông tin
                                     </h4>
 
                                     <div class="space-6"></div>
@@ -31,19 +30,17 @@
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" name="user_name" placeholder="User"  @if(isset($username)) value="{{$username}}" @endif/>
+															<input type="text" class="form-control" name="user_name" placeholder="Tên đăng nhập"  @if(isset($username)) value="{{$username}}" @endif/>
 															<i class="ace-icon fa fa-user"></i>
 														</span>
                                             </label>
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" name="user_password" placeholder="Password" />
+															<input type="password" class="form-control" name="user_password" placeholder="Mật khẩu" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
                                             </label>
-
-                                            <div class="space"></div>
 
                                             <div class="clearfix">
                                                 {{--<label class="inline">--}}

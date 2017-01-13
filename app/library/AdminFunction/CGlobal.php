@@ -14,16 +14,13 @@ class CGlobal{
     public static $extraFooterJS = '';
     public static $extraMeta = '';
     public static $pageAdminTitle = 'Dashboard Admin';
-    public static $pageShopTitle = 'Cao đẳng Admin';
+    public static $pageShopTitle = 'CĐSPTW Admin';
 
-    const code_shop_share = 'Cao đẳng trung ương';
-    const web_name = 'Cao đẳng trung ương';
-    const web_keywords= 'Cao đẳng trung ương';
-    const web_description= 'Cao đẳng trung ương';
-    public static $pageTitle = 'Cao đẳng trung ương';
-
-    const phoneSupport = '';
-
+    const web_name = 'cdsptw.edu.vn';
+    const web_keywords= 'Cao đẳng Trung ương';
+    const web_description= 'Cao đẳng Trung ương';
+    public static $pageTitle = 'Cao đẳng Trung ương';
+    
     const num_scroll_page = 2;
     const number_limit_show = 30;
     const number_show_30 = 30;
@@ -187,9 +184,7 @@ class CGlobal{
 
     const LINK_NOFOLLOW = 0;
     const LINK_FOLLOW = 1;
-    
-    const banner_slider_default_shop = 'uploads/default/default-banner-shop.jpg';
-	
+   
     //Duy bo sung
     const emailAdmin = 'nguyenduypt86@gmail.com';
     

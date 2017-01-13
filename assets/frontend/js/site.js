@@ -1,17 +1,10 @@
 jQuery(document).ready(function($){
-	SITE.menuFixed();
 	SITE.backTop();
 	SITE.contact();
 	SITE.captchaCheckAjax();
 });
 
 SITE={
-	menuFixed:function(){
-		//Head
-		$(".line-head").sticky({topSpacing: 0, className:"line-head-fixed"});
-		//Left
-		$(".list-item-panel-icon").sticky({ topSpacing: 47, bottomSpacing: 200, className:"menu-left-fixed"});
-	},
 	backTop:function(){
 		jQuery(window).scroll(function() {
 		    if(jQuery(window).scrollTop() > 0) {
@@ -25,6 +18,7 @@ SITE={
 			return false;
 		});
 	},
+	
 	//Upload
 	insertImageContentItem: function() {
 		var item_id = document.getElementById('id_hiden').value;
