@@ -7,6 +7,23 @@ class SiteHomeController extends BaseSiteController{
 	//Trang chu
     public function index(){
 		
+    	//Meta title
+    	$meta_title='';
+    	$meta_keywords='';
+    	$meta_description='';
+    	$meta_img='';
+    	$arrMeta = Info::getItemByKeyword('SITE_SEO_HOME');
+    	if(!empty($arrMeta)){
+    		$meta_title = $arrMeta->meta_title;
+    		$meta_keywords = $arrMeta->meta_keywords;
+    		$meta_description = $arrMeta->meta_description;
+    		$meta_img = $arrMeta->info_img;
+    		if($meta_img != ''){
+    			$meta_img = ThumbImg::thumbBaseNormal(CGlobal::FOLDER_INFO, $arrMeta->info_id, $arrMeta->info_img, 550, 0, '', true, true);
+    		}
+    	}
+    	FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+    	
         $this->layout->content = View::make('site.SiteLayouts.Home');
         $this->footer();
     }

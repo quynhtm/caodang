@@ -16,7 +16,7 @@ class CGlobal{
     public static $pageAdminTitle = 'Dashboard Admin';
     public static $pageShopTitle = 'CĐSPTW Admin';
 
-    const web_name = 'cdsptw.edu.vn';
+    const web_name = 'Cdsptw.edu.vn';
     const web_keywords= 'Cao đẳng Trung ương';
     const web_description= 'Cao đẳng Trung ương';
     public static $pageTitle = 'Cao đẳng Trung ương';

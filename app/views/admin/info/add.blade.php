@@ -147,17 +147,23 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="col-sm-12">
-                    <!--hien thi anh-->
-                    <div id="block_img_upload">
-                        @if(isset($data['info_img']) && $data['info_img']!= '')
-                            <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_INFORSEO, $data['info_id'], $data['info_img'], CGlobal::sizeImage_300, '', true, CGlobal::type_thumb_image_banner, false)}}">
-                            <div class="clearfix"></div>
-                            <a href="javascript: void(0);" onclick="Common.removeImageItem({{$data['info_id']}},'{{$data['info_img']}}',4);">Xóa ảnh</a>
-                        @endif
+                 <div class="col-sm-2">
+                    <div class="form-group">
+                       &nbsp;
                     </div>
                 </div>
-
+				<div class="col-sm-8">
+                    <div class="form-group">
+                    	 <!--hien thi anh-->
+	                    <div id="block_img_upload">
+	                        @if(isset($data['info_img']) && $data['info_img']!= '')
+	                            <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_INFORSEO, $data['info_id'], $data['info_img'], CGlobal::sizeImage_300, '', true, CGlobal::type_thumb_image_banner, false)}}">
+	                            <div class="clearfix"></div>
+	                            <a href="javascript: void(0);" onclick="Common.removeImageItem({{$data['info_id']}},'{{$data['info_img']}}',4);">Xóa ảnh</a>
+	                        @endif
+	                    </div>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
                 <div class="form-group col-sm-2 text-left"></div>
                 <div class="form-group col-sm-10 text-left">
