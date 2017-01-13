@@ -90,7 +90,7 @@ class CGlobal{
     
     const status_show = 1;
     const status_hide = 0;
-    const status_block = -2;
+    const status_block = -1;
 	
     //is_login Customer
     const not_login = 0;
