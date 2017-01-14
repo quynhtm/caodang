@@ -292,6 +292,79 @@ h1, h2, h3, h4, h5, h6{
     float: right;
     padding-left: 5px;
 }
+._sliders img {
+    width: 100%;
+}
+/*Content*/
+.top-title {
+    background: url("../img/bg-title-left.png") no-repeat scroll 0 0 transparent;
+    height: 35px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0 0 0 5px;
+    text-transform: uppercase;
+    width: 200px;
+    color: #fff;
+}
+.top-title span {
+    background: url("../img/bg-title-right.png") repeat-x scroll right top transparent;
+    float: left;
+    height: 35px;
+    line-height: 20px;
+    padding: 0 35px 0 10px;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+}
+.item-main {
+    margin: 0px 0px;
+    width: 100%;
+}
+.title-main {
+    font-size: 13px;
+	font-weight: bold;
+	color: #34277c;
+}
+.intro-main{
+	color: #000;
+	font-size: 10.0pt;
+	margin-top: 10px;
+	text-decoration: none;
+	text-align: justify;
+	line-height: 150%;
+}
+.intro-main img {
+    padding: 1px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+.list-main {
+    padding: 0px 0px;
+    margin-top: 10px;
+}
+.list-main ul li {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: #999;
+	background: url("../img/icon-sq.jpg") no-repeat scroll left 14px rgba(0, 0, 0, 0);
+}
+.list-main ul li a{
+	color: #34277c;
+	text-decoration: none;
+}
+.list-main ul li a:hover{
+	text-decoration: underline;
+}
+.box-item{
+	padding-bottom:10px;
+	margin-bottom:20px;
+	display:inline-block;
+	width:100%;
+}
+.box-item-ext{
+	border-bottom:1px dotted #ddd;
+}
+/*Footer*/
 .wraps-footer{
 	background: #e1e1e1 url(../img/bg-footer.png) repeat-x left top;
 	width: 1000px;

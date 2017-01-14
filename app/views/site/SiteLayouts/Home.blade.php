@@ -1,7 +1,7 @@
 <div class="content-top">
 	<div class="container">
 		<div class="wraps">
-			<div class="line">
+			<div class="line _sliders">
 				<img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/banner.png">
 			</div>
 			<div class="line">
@@ -93,7 +93,83 @@
 					</div>
 				</div>
 				<div class="col-middle">
-				
+					<div class="box-item box-item-ext">
+						<div class="top-title">
+							<span>Thông báo</span>
+						</div>
+						<div class="item-main">
+							<a href="" class="title-main">Chương trình tập huấn kiến thức và kỹ năng lái xe an toàn cho Đoàn viên thanh niên trường Đại học Điện lực (06/01/2017)</a>
+						</div>
+						<div class="intro-main">
+							<img src="{{URL::route('site.home')}}/assets/frontend/img/LaiXeAnToan_anhnho.JPG" alt="LaiXeAnToan_anhnho.JPG" height="133" width="200" border="0" align="left">
+							<span>
+								Ngày05/01/2017, tại trường Đại học Điện lực đã diễn ra chương trình tập huấn kiến
+								thức và kỹ năng lái xe an toàn cho Đoàn viên thanh niên trường Đại học Điện
+								lực. Chương trình do Ban chấp hành Đoàn trường Đại học Điện lực phối hợp với
+								Công ty Honda Việt nam tổ chức. Chương trình nhằm nâng cao ý thức tham gia giao
+								thông và tuyên truyền kiến thức an toàn giao thông cho sinh viên trường Đại học
+								Điện lực.
+							</span>
+						</div>
+						<div class="list-main">
+							<ul>
+								<li><a href="">Thông báo về việc thu lệ phí thi tốt nghiệp và thi lại tốt nghiệp của Sinh viên (12/12/2016)</a></li>
+								<li><a href="">Trường Đại học Điện lực tổ chức Lễ kỷ niệm 50 năm truyền thống Nhà trường (19/11/2016)</a></li>
+								<li><a href="">Thư cảm ơn của Hiệu trưởng trường Đại học Điện lực nhân dịp Lễ kỷ niệm 50 năm truyền thống trường Đại học Điện lực (18/11/2016)</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="box-item box-item-ext">
+						<div class="top-title">
+							<span>Ngành giáo dục</span>
+						</div>
+						<div class="item-main">
+							<a href="" class="title-main">Ưu tiên triển khai các dự án kết nối năng lượng Việt-Lào (10/10/2016)</a>
+						</div>
+						<div class="intro-main">
+							<img src="{{URL::route('site.home')}}/assets/frontend/img/anhtruong.jpg" alt="LaiXeAnToan_anhnho.JPG" height="133" width="200" border="0" align="left">
+							<span>
+								Ngày05/01/2017, tại trường Đại học Điện lực đã diễn ra chương trình tập huấn kiến
+								thức và kỹ năng lái xe an toàn cho Đoàn viên thanh niên trường Đại học Điện
+								lực. Chương trình do Ban chấp hành Đoàn trường Đại học Điện lực phối hợp với
+								Công ty Honda Việt nam tổ chức. Chương trình nhằm nâng cao ý thức tham gia giao
+								thông và tuyên truyền kiến thức an toàn giao thông cho sinh viên trường Đại học
+								Điện lực.
+							</span>
+						</div>
+						<div class="list-main">
+							<ul>
+								<li><a href="">Thông báo về việc thu lệ phí thi tốt nghiệp và thi lại tốt nghiệp của Sinh viên (12/12/2016)</a></li>
+								<li><a href="">Trường Đại học Điện lực tổ chức Lễ kỷ niệm 50 năm truyền thống Nhà trường (19/11/2016)</a></li>
+								<li><a href="">Thư cảm ơn của Hiệu trưởng trường Đại học Điện lực nhân dịp Lễ kỷ niệm 50 năm truyền thống trường Đại học Điện lực (18/11/2016)</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="box-item">
+						<div class="top-title">
+							<span>Khoa học-Công nghệ</span>
+						</div>
+						<div class="item-main">
+							<a href="" class="title-main">Phương pháp mới chuyển nhiệt năng sang điện năng ít gây ô nhiễm (28/11/2016)</a>
+						</div>
+						<div class="intro-main">
+							<span>
+								Ngày05/01/2017, tại trường Đại học Điện lực đã diễn ra chương trình tập huấn kiến
+								thức và kỹ năng lái xe an toàn cho Đoàn viên thanh niên trường Đại học Điện
+								lực. Chương trình do Ban chấp hành Đoàn trường Đại học Điện lực phối hợp với
+								Công ty Honda Việt nam tổ chức. Chương trình nhằm nâng cao ý thức tham gia giao
+								thông và tuyên truyền kiến thức an toàn giao thông cho sinh viên trường Đại học
+								Điện lực.
+							</span>
+						</div>
+						<div class="list-main">
+							<ul>
+								<li><a href="">Thông báo về việc thu lệ phí thi tốt nghiệp và thi lại tốt nghiệp của Sinh viên (12/12/2016)</a></li>
+								<li><a href="">Trường Đại học Điện lực tổ chức Lễ kỷ niệm 50 năm truyền thống Nhà trường (19/11/2016)</a></li>
+								<li><a href="">Thư cảm ơn của Hiệu trưởng trường Đại học Điện lực nhân dịp Lễ kỷ niệm 50 năm truyền thống trường Đại học Điện lực (18/11/2016)</a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="col-right">
 					<div class="item-box">
