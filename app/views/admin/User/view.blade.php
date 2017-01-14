@@ -48,7 +48,7 @@
                     </div>
                     <div class="panel-footer text-right">
                         <span class="">
-                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.user_create')}}">
+                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.user_edit')}}">
                                 <i class="ace-icon fa fa-plus-circle"></i>
                                 Thêm mới
                             </a>
@@ -65,42 +65,53 @@
                     <table class="table table-bordered">
                         <thead class="thin-border-bottom">
                         <tr class="">
-                            <th width="15%" class="text-center">STT</th>
-                            <th width="40%">Thông tin</th>
-                            <th width="15%" class="text-center">Ngày tạo</th>
-                            <th width="20%" class="text-center">Thao tác</th>
+                            <th width="5%" class="text-center">STT</th>
+                            <th width="30%">Thông tin đăng nhập</th>
+                            <th width="30%">Thông nhân viên</th>
+                            <th width="10%" class="text-center">Trạng thái</th>
+                            <th width="10%" class="text-center">Ngày tạo</th>
+                            <th width="15%" class="text-center">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($data as $key => $item)
                             <tr @if($item['user_status'] == -1)class="red bg-danger" @endif>
-                                <td class="text-center">{{ $start+$key+1 }}</td>
+                                <td class="text-center text-middle">{{ $start+$key+1 }}</td>
                                 <td>
-                                    <div class="green"><b>Tài khoản : </b>{{ $item['user_name'] }}</div>
-                                    <div><b>Tên nhân viên : </b>{{ $item['user_full_name'] }}</div>
-                                    <div><b>Số điện thoại : </b>{{ $item['user_phone'] }}</div>
+                                    Tài khoản :<b class="green"> {{ $item['user_name'] }}</b>
+                                    @if($item['user_last_login'] > 0)<br/> Online gần nhất: {{date('d-m-Y H:i',$item['user_last_login'])}} @endif
+                                </td>
+                                <td>
+                                    <div><b>Họ tên : </b>{{ $item['user_full_name'] }}</div>
+                                    <div><b>Chức vụ : </b>{{ $item['user_service'] }}</div>
+                                    <div><b>Phone : </b>{{ $item['user_phone'] }}</div>
                                     <div><b>Email : </b>{{ $item['user_email'] }}</div>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center text-middle">
+                                    @if($item->user_status == CGlobal::status_show)
+                                        <i class="fa fa-check fa-2x green" title="Hoạt động"></i>
+                                    @endif
+                                    @if($item->user_status == CGlobal::status_block)
+                                        <i class="fa fa-lock fa-2x red" title="Bị khóa"></i>
+                                    @endif
+                                </td>
+                                <td class="text-center text-middle">
                                     @if($item['user_created'])
                                         {{ date("d-m-Y",$item['user_created']) }}
                                     @endif
                                 </td>
-                                <td class="text-center" align="center">
-                                    <br/>
+                                <td class="text-center text-middle" >
                                     @if($is_root || $permission_edit)
-                                        <a href="{{URL::route('admin.user_edit',array('id' => $item['user_id']))}}" class="btn btn-xs btn-primary" data-content="Sửa thông tin tài khoản" data-placement="bottom" data-trigger="hover" data-rel="popover">
-                                            <i class="ace-icon fa fa-edit bigger-120"></i>
-                                        </a>
+                                        <a href="{{URL::route('admin.user_edit',array('id' => $item['user_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root || $permission_change_pass)
-                                        <a href="{{URL::route('admin.user_change',array('id' => base64_encode($item['user_id'])))}}" class="btn btn-xs btn-success" data-content="Đổi mật khẩu" data-placement="bottom" data-trigger="hover" data-rel="popover">
-                                            <i class="ace-icon fa fa-unlock bigger-120"></i>
-                                        </a>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="{{URL::route('admin.user_change',array('id' => base64_encode($item['user_id'])))}}" title="Đổi mật khẩu"><i class="fa fa-refresh fa-2x"></i></a>
                                     @endif
                                     @if($is_root || $permission_remove)
-                                        <a href="javascript:void(0)" class="btn btn-xs btn-danger sys_delete_user" data-content="Xóa tài khoản" data-placement="bottom" data-trigger="hover" data-rel="popover" data-id="{{$item['user_id']}}">
-                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="javascript:void(0)" class="sys_delete_user" data-content="Xóa tài khoản" data-placement="bottom" data-trigger="hover" data-rel="popover" data-id="{{$item['user_id']}}">
+                                            <i class="fa fa-trash fa-2x"></i>
                                         </a>
                                     @endif
                                 </td>

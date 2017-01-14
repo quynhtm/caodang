@@ -11,14 +11,6 @@
     </div>
 
     <div class="page-content">
-        {{--<div class="page-header">--}}
-        {{--<h1>--}}
-        {{--<small>--}}
-        {{--Danh sách khách hàng--}}
-        {{--</small>--}}
-        {{--</h1>--}}
-        {{--</div><!-- /.page-header -->--}}
-
         <div class="row">
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
@@ -30,7 +22,7 @@
                         @endforeach
                     </div>
                 @endif
-                @if(!$permission_change_pass)
+                @if(!$is_root || !$permission_change_pass)
                     <div class="col-sm-2">
                         <div class="form-group">
                             <i>Mật khẩu hiện tại</i>
@@ -68,7 +60,7 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="form-group col-sm-12 text-right">
+                <div class="form-group col-sm-6 text-right">
                     <button  class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Đổi mật khẩu</button>
                 </div>
                 {{ Form::close() }}
