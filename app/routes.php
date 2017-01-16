@@ -94,6 +94,13 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::get('groupUser/edit/{id}',array('as' => 'admin.groupUser_edit','uses' => 'GroupUserController@editInfo'))->where('id', '[0-9]+');
     Route::post('groupUser/edit/{id}',array('as' => 'admin.groupUser_edit','uses' => 'GroupUserController@edit'))->where('id', '[0-9]+');
 
+    /*Quản lý Department*/
+    Route::get('department/view',array('as' => 'admin.department_list','uses' => 'DepartmentController@view'));
+    Route::get('department/getDepartment/{id?}', array('as' => 'admin.department_edit','uses' => 'DepartmentController@getDepartment'))->where('id', '[0-9]+');
+    Route::post('department/postDepartment/{id?}', array('as' => 'admin.department_edit_post','uses' => 'DepartmentController@postDepartment'))->where('id', '[0-9]+');
+    Route::post('department/deleteDepartment', array('as' => 'admin.deltete_department_post','uses' => 'DepartmentController@deleteDepartment'));//ajax
+    Route::post('department/updateStatusDepartment', array('as' => 'admin.status_department_post','uses' => 'CategoryController@updateStatusDepartment'));//ajax
+
     /*Quản lý danh mục SP*/
     Route::get('category/view',array('as' => 'admin.category_list','uses' => 'CategoryController@view'));
     Route::get('category/getCategroy/{id?}', array('as' => 'admin.category_edit','uses' => 'CategoryController@getCategroy'))->where('id', '[0-9]+');

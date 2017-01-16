@@ -61,17 +61,16 @@ class BaseAdminController extends BaseController
             ),
         );*/
 
-        /*$menu[] = array(
-            'name'=>'QL đăng tin',
+        $menu[] = array(
+            'name'=>'QL khoa nghành',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-gift',
-            'arr_link_sub'=>array('admin.customerView','admin.itemsView','admin.category_list',),
+            'arr_link_sub'=>array('admin.department_list','admin.itemsView','admin.category_list',),
             'sub'=>array(
-                array('name'=>'Khách đăng tin', 'RouteName'=>'admin.customerView', 'icon'=>'fa fa-users icon-4x', 'showcontent'=>1, 'permission'=>'user_customer_full'),
-                array('name'=>'Danh mục tin', 'RouteName'=>'admin.category_list', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1, 'permission'=>'category_full'),
-                array('name'=>'Danh sách tin đăng', 'RouteName'=>'admin.itemsView', 'icon'=>'fa fa-file-text-o icon-4x', 'showcontent'=>1, 'permission'=>'items_full', 'clear'=>1),
+                array('name'=>'Khoa - Trung tâm', 'RouteName'=>'admin.department_list', 'icon'=>'fa fa-users icon-4x', 'showcontent'=>1, 'permission'=>'department_full'),
+                array('name'=>'Chuyên nghành', 'RouteName'=>'admin.category_list', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1, 'permission'=>'category_full'),
             ),
-        );*/
+        );
 
         $menu[] = array(
             'name'=>'QL nội dung',

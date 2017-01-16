@@ -11,7 +11,7 @@ var Admin = {
             if(type == 1){ //xoa tin tức
                 url_ajax = 'deleteNews';
             }else if(type == 2){
-                url_ajax = 'deleteCustomer';
+                url_ajax = 'deleteDepartment';
             }else if(type == 3){
                 url_ajax = 'deleteBanner';
             }else if(type == 4){
@@ -132,9 +132,9 @@ var Admin = {
             $('#img_loading_'+id).show();
             if(type == 1){ //cap nhat danh muc
                var url_ajax = WEB_ROOT + '/admin/category/updateStatusCategory';
-            }/*else if(type == 2){//user shop
-                var url_ajax = WEB_ROOT + '/admin/userShop/updateStatusUserShop';
-            }*/
+            }else if(type == 2){//user shop
+                var url_ajax = WEB_ROOT + '/admin/department/updateStatusDepartment';
+            }
 
             $.ajax({
                 type: "post",

@@ -33,6 +33,18 @@ class ArrayPermission{
         'category_create' => array('name_permit'=>'Tạo danh mục','group_permit'=>'Quyền danh mục'),
         'category_edit' => array('name_permit'=>'Sửa danh mục','group_permit'=>'Quyền danh mục'),
 
+        'department_full' => array('name_permit'=>'Full Khoa','group_permit'=>'Quyền Khoa'),
+        'department_view' => array('name_permit'=>'Xem Khoa','group_permit'=>'Quyền Khoa'),
+        'department_delete' => array('name_permit'=>'Xóa Khoa','group_permit'=>'Quyền Khoa'),
+        'department_create' => array('name_permit'=>'Tạo Khoa','group_permit'=>'Quyền Khoa'),
+        'department_edit' => array('name_permit'=>'Sửa Khoa','group_permit'=>'Quyền Khoa'),
+
+        'category_depart_full' => array('name_permit'=>'Full danh mục Khoa','group_permit'=>'Quyền danh mục Khoa'),
+        'category_depart_view' => array('name_permit'=>'Xem danh mục Khoa','group_permit'=>'Quyền danh mục Khoa'),
+        'category_depart_delete' => array('name_permit'=>'Xóa danh mục Khoa','group_permit'=>'Quyền danh mục Khoa'),
+        'category_depart_create' => array('name_permit'=>'Tạo danh mục Khoa','group_permit'=>'Quyền danh mục Khoa'),
+        'category_depart_edit' => array('name_permit'=>'Sửa danh mục Khoa','group_permit'=>'Quyền danh mục Khoa'),
+
         'items_full' => array('name_permit'=>'Full tin rao','group_permit'=>'Quyền tin rao'),
         'items_view' => array('name_permit'=>'Xem tin rao','group_permit'=>'Quyền tin rao'),
         'items_delete' => array('name_permit'=>'Xóa tin rao','group_permit'=>'Quyền tin rao'),

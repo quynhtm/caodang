@@ -6,11 +6,11 @@
  */
 class CategoryDepartController extends BaseAdminController
 {
-    private $permission_view = 'category_view';
-    private $permission_full = 'category_full';
-    private $permission_delete = 'category_delete';
-    private $permission_create = 'category_create';
-    private $permission_edit = 'category_edit';
+    private $permission_full = 'category_depart_full';
+    private $permission_view = 'category_depart_view';
+    private $permission_delete = 'category_depart_delete';
+    private $permission_create = 'category_depart_create';
+    private $permission_edit = 'category_depart_edit';
     private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
     private $arrShowHome = array(-1 => 'Chọn hiển thị', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
     

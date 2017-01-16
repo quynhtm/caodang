@@ -6,8 +6,8 @@
  */
 class CategoryController extends BaseAdminController
 {
-    private $permission_view = 'category_view';
     private $permission_full = 'category_full';
+    private $permission_view = 'category_view';
     private $permission_delete = 'category_delete';
     private $permission_create = 'category_create';
     private $permission_edit = 'category_edit';
@@ -252,7 +252,5 @@ class CategoryController extends BaseAdminController
         }
         return Response::json($result);
     }
-
-
 
 }
