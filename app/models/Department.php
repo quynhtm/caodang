@@ -23,6 +23,24 @@ class Department extends Eloquent
         return $category;
     }
 
+    public static function getDepart(){
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_DEPARTMENT) : array();
+        if (sizeof($data) == 0) {
+            $department = Department::where('department_id', '>', 0)
+                ->where('department_status',CGlobal::status_show)
+                ->orderBy('department_order','asc')->get();
+            if($department){
+                foreach($department as $itm) {
+                    $data[$itm['department_id']] = $itm['department_name'];
+                }
+            }
+            if($data && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_ALL_DEPARTMENT, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $data;
+    }
+
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{
             $query = Department::where('department_id','>',0);
@@ -33,6 +51,7 @@ class Department extends Eloquent
                 $query->where('department_status', $dataSearch['department_status']);
             }
             $query->orderBy('department_id', 'desc');
+            $total = $query->count();
 
             //get field can lay du lieu
             $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
@@ -132,5 +151,6 @@ class Department extends Eloquent
         if($id > 0){
             Cache::forget(Memcache::CACHE_DEPARTMENT_ID.$id);
         }
+        Cache::forget(Memcache::CACHE_ALL_DEPARTMENT);
     }
 }

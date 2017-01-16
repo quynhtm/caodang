@@ -5,112 +5,40 @@
  */
 class CategoryDepart extends Eloquent
 {
-    protected $table = 'web_category';
-    protected $primaryKey = 'category_id';
+    protected $table = 'web_category_depart';
+    protected $primaryKey = 'category_depart_id';
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('category_id','category_name', 'category_parent_id',
-        'category_content_front', 'category_content_front_order', 'category_status',
-        'category_image_background', 'category_icons', 'category_order');
+    protected $fillable = array('category_depart_id','category_depart_name',
+        'department_id','department_name',
+        'category_depart_status', 'category_depart_order');
 
     public static function getByID($id) {
-        $category = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_CATEGORY_ID.$id) : array();
+        $category = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id) : array();
         if (sizeof($category) == 0) {
-            $category = Category::where('category_id','=', $id)->first();
+            $category = CategoryDepart::where('category_depart_id','=', $id)->first();
             if($category && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_CATEGORY_ID.$id, $category, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+                Cache::put(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id, $category, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
             }
         }
         return $category;
     }
 
-    public static function getCategoryByArrayId($arrCate = array()) {
-        $data = array();
-        if(!empty($arrCate)){
-            $category = Category::whereIn('category_id',$arrCate)->orderBy('category_id','asc')->get();
-            foreach($category as $itm) {
-                $data[$itm['category_id']] = $itm['category_name'];
-            }
-            return $data;
-        }
-        return $data;
-    }
-
-    public static function getAllParentCategoryId() {
-        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_PARENT_CATEGORY) : array();
-        if (sizeof($data) == 0) {
-            $category = Category::where('category_id', '>', 0)
-                ->where('category_parent_id',0)
-                ->where('category_status',CGlobal::status_show)
-                ->orderBy('category_order','asc')->get();
-            if($category){
-                foreach($category as $itm) {
-                    $data[$itm['category_id']] = $itm['category_name'];
-                }
-            }
-            if($data && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_ALL_PARENT_CATEGORY, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
-            }
-        }
-        return $data;
-    }
-
-    public static function getCategoryShowFrontSite() {
-        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_SHOW_CATEGORY_FRONT) : array();
-        if (sizeof($data) == 0) {
-            $category = Category::where('category_id', '>', 0)
-                ->where('category_parent_id',0)
-                ->where('category_status',CGlobal::status_show)
-                ->where('category_content_front',CGlobal::status_show)
-                ->orderBy('category_content_front_order','asc')->get();
-            if($category){
-                foreach($category as $itm) {
-                    $data[$itm['category_id']] = array(
-                        'category_name'=>$itm['category_name'],
-                        'category_icons'=>$itm['category_icons']);
-                }
-            }
-            if($data && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_ALL_SHOW_CATEGORY_FRONT, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
-            }
-        }
-        return $data;
-    }
-
-    public static function getAllChildCategoryIdByParentId($parentId = 0) {
-        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_CHILD_CATEGORY_BY_PARENT_ID.$parentId) : array();
-        if (sizeof($data) == 0 && $parentId > 0) {
-            $category = Category::where('category_id' ,'>', 0)
-                ->where('category_parent_id','=',$parentId)
-                ->where('category_status',CGlobal::status_show)
-                ->orderBy('category_order','asc')->get();
-            if($category){
-                foreach($category as $itm) {
-                    $data[$itm['category_id']] = $itm['category_name'];
-                }
-            }
-            if($data && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_ALL_CHILD_CATEGORY_BY_PARENT_ID.$parentId, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
-            }
-        }
-        return $data;
-    }
-
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{
-            $query = Category::where('category_id','>',0);
-            if (isset($dataSearch['category_name']) && $dataSearch['category_name'] != '') {
-                $query->where('category_name','LIKE', '%' . $dataSearch['category_name'] . '%');
+            $query = CategoryDepart::where('category_depart_id','>',0);
+            if (isset($dataSearch['category_depart_name']) && $dataSearch['category_depart_name'] != '') {
+                $query->where('category_depart_name','LIKE', '%' . $dataSearch['category_depart_name'] . '%');
             }
-            if (isset($dataSearch['category_status']) && $dataSearch['category_status'] != -1) {
-                $query->where('category_status', $dataSearch['category_status']);
+            if (isset($dataSearch['category_depart_status']) && $dataSearch['category_depart_status'] != -1) {
+                $query->where('category_depart_status', $dataSearch['category_depart_status']);
             }
-            if (isset($dataSearch['category_content_front']) && $dataSearch['category_content_front'] != -1) {
-            	$query->where('category_content_front', $dataSearch['category_content_front']);
+            if (isset($dataSearch['department_id']) && $dataSearch['department_id'] > 0) {
+                $query->where('department_id', $dataSearch['department_id']);
             }
+            $query->orderBy('category_depart_id', 'desc');
             $total = $query->count();
-            $query->orderBy('category_id', 'desc');
 
             //get field can lay du lieu
             $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
@@ -136,7 +64,7 @@ class CategoryDepart extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $data = new Category();
+            $data = new CategoryDepart();
             if (is_array($dataInput) && count($dataInput) > 0) {
                 foreach ($dataInput as $k => $v) {
                     $data->$k = $v;
@@ -144,10 +72,10 @@ class CategoryDepart extends Eloquent
             }
             if ($data->save()) {
                 DB::connection()->getPdo()->commit();
-                if(isset($data->category_id) && $data->category_id > 0){
-                    self::removeCache($data->category_id);
+                if(isset($data->category_depart_id) && $data->category_depart_id > 0){
+                    self::removeCache($data->category_depart_id);
                 }
-                return $data->category_id;
+                return $data->category_depart_id;
             }
             DB::connection()->getPdo()->commit();
             return false;
@@ -168,11 +96,11 @@ class CategoryDepart extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = Category::find($id);
+            $dataSave = CategoryDepart::find($id);
             if (!empty($dataInput)){
                 $dataSave->update($dataInput);
-                if(isset($dataSave->category_id) && $dataSave->category_id > 0){
-                    self::removeCache($dataSave->category_id);
+                if(isset($dataSave->category_depart_id) && $dataSave->category_depart_id > 0){
+                    self::removeCache($dataSave->category_depart_id);
                 }
             }
             DB::connection()->getPdo()->commit();
@@ -193,10 +121,10 @@ class CategoryDepart extends Eloquent
     public static function deleteData($id){
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = Category::find($id);
+            $dataSave = CategoryDepart::find($id);
             $dataSave->delete();
-            if(isset($dataSave->category_id) && $dataSave->category_id > 0){
-                self::removeCache($dataSave->category_id);
+            if(isset($dataSave->category_depart_id) && $dataSave->category_depart_id > 0){
+                self::removeCache($dataSave->category_depart_id);
             }
             DB::connection()->getPdo()->commit();
             return true;
@@ -208,93 +136,7 @@ class CategoryDepart extends Eloquent
 
     public static function removeCache($id = 0){
         if($id > 0){
-            Cache::forget(Memcache::CACHE_CATEGORY_ID.$id);
-            Cache::forget(Memcache::CACHE_ALL_CHILD_CATEGORY_BY_PARENT_ID.$id);
-        }
-        Cache::forget(Memcache::CACHE_ALL_CATEGORY);
-        Cache::forget(Memcache::CACHE_ALL_PARENT_CATEGORY);
-        Cache::forget(Memcache::CACHE_ALL_SHOW_CATEGORY_FRONT);
-    }
-
-    public static function getCategoriessAll(){
-        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_CATEGORY) : array();
-        if (sizeof($data) == 0) {
-            $categories = Category::where('category_id', '>', 0)->where('category_status', '=', CGlobal::status_show)->orderBy('category_content_front_order', 'asc')->get();
-            if($categories){
-                foreach($categories as $itm) {
-                    $data[$itm->category_id] = array('category_id'=>$itm->category_id,
-                        'category_name'=>$itm->category_name,
-                        'category_parent_id'=>$itm->category_parent_id,
-                        'category_content_front'=>$itm->category_content_front,
-                        'category_content_front_order'=>$itm->category_content_front_order,
-                        'category_status'=>$itm->category_status,
-                        'category_image_background'=>$itm->category_image_background,
-                        'category_icons'=>$itm->category_icons,
-                        'category_order'=>$itm->category_order);
-                }
-                if(!empty($data) && Memcache::CACHE_ON){
-                    Cache::put(Memcache::CACHE_ALL_CATEGORY, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
-                }
-            }
-        }
-        return $data;
-    }
-
-    public static function buildTreeCategory(){
-        $categories = Category::where('category_id', '>', 0)->where('category_status', '=', CGlobal::status_show)->get();
-        return $treeCategroy = self::getTreeCategory($categories);
-    }
-    /**
-     * build c�y danh m?c
-     * @param $data
-     * @return array
-     */
-    public static function getTreeCategory($data){
-        $max = 0;
-        $aryCategoryProduct = $arrCategory = array();
-        if(!empty($data)){
-            foreach ($data as $k=>$value){
-                $max = ($max < $value->category_parent_id)? $value->category_parent_id : $max;
-                $arrCategory[$value->category_id] = array(
-                    'category_id'=>$value->category_id,
-                    'category_parent_id'=>$value->category_parent_id,
-                    'category_content_front'=>$value->category_content_front,
-                    'category_content_front_order'=>$value->category_content_front_order,
-                    'category_order'=>$value->category_order,
-                    'category_status'=>$value->category_status,
-                    'category_name'=>$value->category_name);
-            }
-        }
-
-        if($max > 0){
-            $aryCategoryProduct = self::showCategory($max, $arrCategory);
-        }
-        return $aryCategoryProduct;
-    }
-    public static function showCategory($max, $aryDataInput) {
-        $aryData = array();
-        if(is_array($aryDataInput) && count($aryDataInput) > 0) {
-            foreach ($aryDataInput as $k => $val) {
-                if((int)$val['category_parent_id'] == 0) {
-                    $val['padding_left'] = '';
-                    $val['category_parent_name'] = '';
-                    $aryData[] = $val;
-                    self::showSubCategory($val['category_id'],$val['category_name'], $max, $aryDataInput, $aryData);
-                }
-            }
-        }
-        return $aryData;
-    }
-    public static function showSubCategory($cat_id,$cat_name, $max, $aryDataInput, &$aryData) {
-        if($cat_id <= $max) {
-            foreach ($aryDataInput as $chk => $chval) {
-                if($chval['category_parent_id'] == $cat_id) {
-                    $chval['padding_left'] = '---------- ';
-                    $chval['category_parent_name'] = $cat_name;
-                    $aryData[] = $chval;
-                    self::showSubCategory($chval['category_id'],$chval['category_name'], $max, $aryDataInput, $aryData);
-                }
-            }
+            Cache::forget(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id);
         }
     }
 

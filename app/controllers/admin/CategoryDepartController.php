@@ -12,25 +12,12 @@ class CategoryDepartController extends BaseAdminController
     private $permission_create = 'category_depart_create';
     private $permission_edit = 'category_depart_edit';
     private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-    private $arrShowHome = array(-1 => 'Chọn hiển thị', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-    
-    private $arrCategoryParent = array(-1 => 'Danh mục cha');
+    private $arrDepart = array();
 
     public function __construct()
     {
         parent::__construct();
-
-        //Include style.
-        FunctionLib::link_css(array(
-            'lib/cssUpload.css',
-        ));
-
-        //Include javascript.
-        FunctionLib::link_js(array(
-            'lib/jquery.uploadfile.js',
-        ));
-        
-        $this->arrCategoryParent = $this->arrCategoryParent + Category::getAllParentCategoryId();
+        $this->arrDepart = Department::getDepart();
     }
 
     public function view() {
@@ -44,176 +31,92 @@ class CategoryDepartController extends BaseAdminController
         $search = $data = $treeCategroy = array();
         $total = 0;
 
-        $search['category_id'] = addslashes(Request::get('category_id',''));
-        $search['category_name'] = addslashes(Request::get('category_name',''));
-        $search['category_status'] = (int)Request::get('category_status',-1);
-        $search['category_content_front'] = (int)Request::get('category_content_front',-1);
-        
-        $dataSearch = Category::searchByCondition($search, 500, $offset,$total);
+        $search['department_id'] = addslashes(Request::get('department_id',''));
+        $search['category_depart_name'] = addslashes(Request::get('category_depart_name',''));
+        $search['category_depart_status'] = (int)Request::get('category_depart_status',-1);
+
+        $dataSearch = CategoryDepart::searchByCondition($search, $limit, $offset,$total);
         $paging = '';
-		/*
-        if(!empty($dataSearch)){
-            $treeCategroy = self::getTreeCategory($dataSearch);
-        }
-        */
-        //FunctionLib::debug($treeCategroy);
-        $optionStatus = FunctionLib::getOption($this->arrStatus, $search['category_status']);
-        $optionShowHome = FunctionLib::getOption($this->arrShowHome, $search['category_content_front']);
-        $this->layout->content = View::make('admin.Category.view')
+
+        $optionStatus = FunctionLib::getOption($this->arrStatus, $search['category_depart_status']);
+        $optionDepart = FunctionLib::getOption(array(-1=>'----Chọn thuộc khoa - trung tâm----')+$this->arrDepart, $search['department_id']);
+        $this->layout->content = View::make('admin.CategoryDepartment.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
             ->with('total', $total)
             ->with('data', $dataSearch)
             ->with('search', $search)
             ->with('optionStatus', $optionStatus)
-            ->with('arrStatus', $this->arrStatus)
-            ->with('optionShowHome', $optionShowHome)
-            ->with('arrShowHome', $this->arrShowHome)
-            
-            
+            ->with('optionDepart', $optionDepart)
+
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0);//dùng common
     }
-    public function getTreeCategory($data){
-        $max = 0;
-        $aryCategoryProduct = $arrCategory = array();
-        if(!empty($data)){
-            foreach ($data as $k=>$value){
-                $max = ($max < $value->category_parent_id)? $value->category_parent_id : $max;
-                $arrCategory[$value->category_id] = array(
-                    'category_id'=>$value->category_id,
-                    'category_parent_id'=>$value->category_parent_id,
-                	'category_icons'=>$value->category_icons,
-                	'category_content_front'=>$value->category_content_front,
-                    'category_content_front_order'=>$value->category_content_front_order,
-                    'category_order'=>$value->category_order,
-                    'category_status'=>$value->category_status,
-                    'category_name'=>$value->category_name);
-            }
-        }
 
-        if($max > 0){
-            $aryCategoryProduct = self::showCategory($max, $arrCategory);
-        }
-        return $aryCategoryProduct;
-    }
-    public function showCategory($max, $aryDataInput) {
-        $aryData = array();
-        if(is_array($aryDataInput) && count($aryDataInput) > 0) {
-            foreach ($aryDataInput as $k => $val) {
-                if((int)$val['category_parent_id'] == 0) {
-                    $val['padding_left'] = '';
-                    $val['category_parent_name'] = '';
-                    $aryData[] = $val;
-                    self::showSubCategory($val['category_id'],$val['category_name'], $max, $aryDataInput, $aryData);
-                }
-            }
-        }
-        return $aryData;
-    }
-    public static function showSubCategory($cat_id,$cat_name, $max, $aryDataInput, &$aryData) {
-        if($cat_id <= $max) {
-            foreach ($aryDataInput as $chk => $chval) {
-                if($chval['category_parent_id'] == $cat_id) {
-                    $chval['padding_left'] = '---------- ';
-                    $chval['category_parent_name'] = $cat_name;
-                    $aryData[] = $chval;
-                    self::showSubCategory($chval['category_id'],$chval['category_name'], $max, $aryDataInput, $aryData);
-                }
-            }
-        }
-    }
-
-
-    public function getCategroy($id=0) {
+    public function getCategoryDepart($id=0) {
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
             return Redirect::route('admin.dashboard',array('error'=>1));
         }
         $data = array();
         if($id > 0) {
-            $data = Category::find($id);
-            if(isset($data['category_image_background']) && $data['category_image_background'] != ''){
-                $url_thumb = ThumbImg::getImageThumb(CGlobal::FOLDER_CATEGORY, $id, $data['category_image_background'], CGlobal::sizeImage_80, '', true, CGlobal::type_thumb_image_banner, false);
-                $data['url_src_icon'] = $url_thumb;
-            }
+            $data = CategoryDepart::find($id);
         }
-
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['category_status'])? $data['category_status'] : -1);
-        $optionCategoryParent = FunctionLib::getOption($this->arrCategoryParent, isset($data['category_parent_id'])? $data['category_parent_id'] : -1);
-        $optionShowHome = FunctionLib::getOption($this->arrShowHome, isset($data['category_content_front'])? $data['category_content_front'] : -1);
-        
-        $this->layout->content = View::make('admin.Category.add')
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['category_depart_status'])? $data['category_depart_status'] : -1);
+        $optionDepart = FunctionLib::getOption(array(-1=>'----Chọn thuộc khoa - trung tâm----')+$this->arrDepart, isset($data['department_id'])? $data['department_id'] : -1);
+        $this->layout->content = View::make('admin.CategoryDepartment.add')
             ->with('id', $id)
             ->with('data', $data)
-            ->with('optionStatus', $optionStatus)
-            ->with('arrStatus', $this->arrStatus)
-            ->with('optionShowHome', $optionShowHome)
-            ->with('arrShowHome', $this->arrShowHome)
-        	->with('optionCategoryParent', $optionCategoryParent);
+            ->with('optionDepart', $optionDepart)
+            ->with('optionStatus', $optionStatus);
     }
 
-    public function postCategory($id=0) {
+    public function postCategoryDepart($id=0) {
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
             return Redirect::route('admin.dashboard',array('error'=>1));
         }
 
-        $dataSave['category_name'] = addslashes(Request::get('category_name'));
-        $dataSave['category_icons'] = addslashes(Request::get('category_icons'));
-        $dataSave['category_status'] = (int)Request::get('category_status', 0);
-        $dataSave['category_parent_id'] = (int)Request::get('category_parent_id', 0);
-        $dataSave['category_content_front'] = (int)Request::get('category_content_front', 0);
-        $dataSave['category_content_front_order'] = (int)Request::get('category_content_front_order', 0);
-        $dataSave['category_order'] = (int)Request::get('category_order', 0);
-        $dataSave['category_parent_id'] = (int)Request::get('category_parent_id', 0);
-
-        $file = Input::file('image');
-        if($file){
-            $filename = $file->getClientOriginalName();
-            $destinationPath = Config::get('config.DIR_ROOT').'/uploads/'.CGlobal::FOLDER_CATEGORY.'/'. $id;
-            $upload  = Input::file('image')->move($destinationPath, $filename);
-            $dataSave['category_image_background'] = $filename;
-        }else{
-            $dataSave['category_image_background'] = Request::get('category_image_background', '');
-        }
+        $dataSave['category_depart_name'] = addslashes(Request::get('category_depart_name'));
+        $dataSave['category_depart_status'] = (int)Request::get('category_depart_status', 0);
+        $dataSave['department_id'] = (int)Request::get('department_id', -1);
+        $dataSave['category_depart_order'] = (int)Request::get('category_depart_order', 1);
 
         if($this->valid($dataSave) && empty($this->error)) {
+            $dataSave['department_name'] = isset($this->arrDepart[$dataSave['department_id']]) ?$this->arrDepart[$dataSave['department_id']] :'';
             if($id > 0) {
                 //cap nhat
-                if(Category::updateData($id, $dataSave)) {
-                    return Redirect::route('admin.category_list');
+                if(CategoryDepart::updateData($id, $dataSave)) {
+                    return Redirect::route('admin.categoryDepart_list');
                 }
             } else {
                 //them moi
-                if(Category::addData($dataSave)) {
-                    return Redirect::route('admin.category_list');
+                if(CategoryDepart::addData($dataSave)) {
+                    return Redirect::route('admin.categoryDepart_list');
                 }
             }
         }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
-        $optionCategoryParent = FunctionLib::getOption($this->arrCategoryParent, isset($dataSave['category_parent_id'])? $dataSave['category_parent_id'] : -1);
-        $optionShowHome = FunctionLib::getOption($this->arrShowHome, isset($dataSave['category_content_front'])? $dataSave['category_content_front'] : -1);
-        
-        $this->layout->content =  View::make('admin.Category.add')
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_depart_status'])? $dataSave['category_depart_status'] : -1);
+        $optionDepart = FunctionLib::getOption(array(-1=>'----Chọn thuộc khoa - trung tâm----')+$this->arrDepart, isset($dataSave['department_id'])? $dataSave['department_id'] : -1);
+        $this->layout->content =  View::make('admin.CategoryDepartment.add')
             ->with('id', $id)
             ->with('data', $dataSave)
+            ->with('optionDepart', $optionDepart)
             ->with('optionStatus', $optionStatus)
-            ->with('error', $this->error)
-            ->with('arrStatus', $this->arrStatus)
-            ->with('optionShowHome', $optionShowHome)
-            ->with('arrShowHome', $this->arrShowHome)
-        	->with('optionCategoryParent', $optionCategoryParent);
+            ->with('error', $this->error);
     }
 
     private function valid($data=array()) {
         if(!empty($data)) {
-            if(isset($data['category_name']) && $data['category_name'] == '') {
-                $this->error[] = 'Tên danh mục không được trống';
+            if(isset($data['category_depart_name']) && $data['category_depart_name'] == '') {
+                $this->error[] = 'Tên chuyên nghành không được bỏ trống';
             }
-            if(isset($data['category_status']) && $data['category_status'] == -1) {
-                $this->error[] = 'Bạn chưa chọn trạng thái cho danh mục';
+            if(isset($data['category_depart_status']) && $data['category_depart_status'] == -1) {
+                $this->error[] = 'Bạn chưa chọn trạng thái';
+            }
+            if(isset($data['department_id']) && $data['department_id'] < 0) {
+                $this->error[] = 'Bạn chưa chọn thuộc Khoa - Trung tâm nào';
             }
             return true;
         }
@@ -221,21 +124,21 @@ class CategoryDepartController extends BaseAdminController
     }
 
     //ajax
-    public function deleteCategory()
+    public function deleteCategoryDepart()
     {
         $result = array('isIntOk' => 0);
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
             return Response::json($result);
         }
         $id = (int)Request::get('id', 0);
-        if ($id > 0 && Category::deleteData($id)) {
+        if ($id > 0 && CategoryDepart::deleteData($id)) {
             $result['isIntOk'] = 1;
         }
         return Response::json($result);
     }
 
     //ajax
-    public function updateStatusCategory()
+    public function updateStatusCategoryDepart()
     {
         $id = (int)Request::get('id', 0);
         $category_status = (int)Request::get('status', CGlobal::status_hide);
@@ -245,14 +148,12 @@ class CategoryDepartController extends BaseAdminController
         }
 
         if ($id > 0) {
-            $dataSave['category_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
-            if(Category::updateData($id, $dataSave)) {
+            $dataSave['category_depart_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
+            if(CategoryDepart::updateData($id, $dataSave)) {
                 $result['isIntOk'] = 1;
             }
         }
         return Response::json($result);
     }
-
-
 
 }

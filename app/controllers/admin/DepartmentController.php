@@ -12,9 +12,6 @@ class DepartmentController extends BaseAdminController
     private $permission_create = 'department_create';
     private $permission_edit = 'category_edit';
     private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-    private $arrShowHome = array(-1 => 'Chọn hiển thị', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-    
-    private $arrCategoryParent = array(-1 => 'Danh mục cha');
 
     public function __construct()
     {
@@ -151,7 +148,7 @@ class DepartmentController extends BaseAdminController
         }
 
         if ($id > 0) {
-            $dataSave['category_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
+            $dataSave['department_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
             if(Department::updateData($id, $dataSave)) {
                 $result['isIntOk'] = 1;
             }

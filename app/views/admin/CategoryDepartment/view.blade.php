@@ -5,7 +5,7 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li class="active">Danh mục sản phẩm</li>
+            <li class="active">Danh sách chuyên nghành</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -17,12 +17,18 @@
                     {{ Form::open(array('method' => 'GET', 'role'=>'form')) }}
                     <div class="panel-body">
                         <div class="form-group col-lg-3">
-                            <label for="department_name">Tên khoa - trung tâm</label>
-                            <input type="text" class="form-control input-sm" id="department_name" name="department_name" placeholder="Tên khoa - trung tâm" @if(isset($search['department_name']) && $search['department_name'] != '')value="{{$search['department_name']}}"@endif>
+                            <label for="department_name">Tên chuyên nghành</label>
+                            <input type="text" class="form-control input-sm" id="category_depart_name" name="category_depart_name" placeholder="Tên khoa - trung tâm" @if(isset($search['category_depart_name']) && $search['category_depart_name'] != '')value="{{$search['category_depart_name']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
-                            <label for="department_status">Trạng thái</label>
-                            <select name="department_status" id="department_status" class="form-control input-sm">
+                            <label for="department_id">Thuộc khoa - Trung tâm</label>
+                            <select name="department_id" id="department_id" class="form-control input-sm">
+                                {{$optionDepart}}
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label for="category_depart_status">Trạng thái</label>
+                            <select name="category_depart_status" id="category_depart_status" class="form-control input-sm">
                                 {{$optionStatus}}
                             </select>
                         </div>
@@ -44,14 +50,15 @@
                     {{ Form::close() }}
                 </div>
                 @if(sizeof($data) > 0)
-                    <div class="span clearfix"> @if($total >0) Có tổng số <b>{{$total}}</b> khoa - trung tâm @endif </div>
+                    <div class="span clearfix"> @if($total >0) Có tổng số <b>{{$total}}</b> chuyên nghành @endif </div>
                     <br>
                     <table class="table table-bordered table-hover">
                         <thead class="thin-border-bottom">
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="25%" class="td_list">Tên khoa - trung tâm</th>
+                            <th width="50%" class="td_list">Tên chuyên ngành</th>
+                            <th width="20%" class="td_list">Thuộc khoa - trung tâm</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
@@ -60,27 +67,30 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['department_id']}}"></td>
+                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['category_depart_id']}}"></td>
                                 <td>
-                                    [<b>{{ $item['department_id'] }}</b>] {{ $item['department_name'] }}
+                                    [<b>{{ $item['category_depart_id'] }}</b>] {{ $item['category_depart_name'] }}
+                                </td>
+                                <td>
+                                    {{ $item['department_name'] }}
                                 </td>
 
                                 <td class="text-center">
-                                    @if($item['department_status'] == 1)
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['department_id']}},{{$item['department_status']}},2)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
+                                    @if($item['category_depart_status'] == 1)
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['category_depart_id']}},{{$item['category_depart_status']}},3)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
                                     @else
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['department_id']}},{{$item['department_status']}},2)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['category_depart_id']}},{{$item['category_depart_status']}},3)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
                                     @endif
-                                    <span class="img_loading" id="img_loading_{{$item['department_id']}}"></span>
+                                    <span class="img_loading" id="img_loading_{{$item['category_depart_id']}}"></span>
                                 </td>
 
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-                                        <a href="{{URL::route('admin.department_edit',array('id' => $item['department_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{URL::route('admin.categoryDepart_edit',array('id' => $item['category_depart_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root)
                                        &nbsp;&nbsp;&nbsp;
-                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['department_id']}},10)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
+                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['category_depart_id']}},4)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>
                             </tr>

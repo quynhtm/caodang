@@ -101,6 +101,13 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('department/deleteDepartment', array('as' => 'admin.deltete_department_post','uses' => 'DepartmentController@deleteDepartment'));//ajax
     Route::post('department/updateStatusDepartment', array('as' => 'admin.status_department_post','uses' => 'CategoryController@updateStatusDepartment'));//ajax
 
+    /*Quản lý Category Department*/
+    Route::get('categoryDepart/view',array('as' => 'admin.categoryDepart_list','uses' => 'CategoryDepartController@view'));
+    Route::get('categoryDepart/getCategoryDepart/{id?}', array('as' => 'admin.categoryDepart_edit','uses' => 'CategoryDepartController@getCategoryDepart'))->where('id', '[0-9]+');
+    Route::post('categoryDepart/postCategoryDepart/{id?}', array('as' => 'admin.categoryDepart_edit_post','uses' => 'CategoryDepartController@postCategoryDepart'))->where('id', '[0-9]+');
+    Route::post('categoryDepart/deleteCategoryDepart', array('as' => 'admin.deltete_categoryDepart_post','uses' => 'CategoryDepartController@deleteCategoryDepart'));//ajax
+    Route::post('categoryDepart/updateStatusCategoryDepart', array('as' => 'admin.status_categoryDepart_post','uses' => 'CategoryDepartController@updateStatusCategoryDepart'));//ajax
+
     /*Quản lý danh mục SP*/
     Route::get('category/view',array('as' => 'admin.category_list','uses' => 'CategoryController@view'));
     Route::get('category/getCategroy/{id?}', array('as' => 'admin.category_edit','uses' => 'CategoryController@getCategroy'))->where('id', '[0-9]+');

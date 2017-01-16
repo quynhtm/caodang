@@ -15,7 +15,7 @@ var Admin = {
             }else if(type == 3){
                 url_ajax = 'deleteBanner';
             }else if(type == 4){
-                url_ajax = 'deleteProvince';
+                url_ajax = 'deleteCategoryDepart';
             }else if(type == 9){
                 url_ajax = 'deletePermission';
             }else if(type == 10){
@@ -132,8 +132,10 @@ var Admin = {
             $('#img_loading_'+id).show();
             if(type == 1){ //cap nhat danh muc
                var url_ajax = WEB_ROOT + '/admin/category/updateStatusCategory';
-            }else if(type == 2){//user shop
+            }else if(type == 2){
                 var url_ajax = WEB_ROOT + '/admin/department/updateStatusDepartment';
+            }else if(type == 3){
+                var url_ajax = WEB_ROOT + '/admin/categoryDepart/updateStatusCategoryDepart';
             }
 
             $.ajax({
