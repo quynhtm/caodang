@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-01-12 16:26:47
+Date: 2017-01-16 14:58:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -119,6 +119,10 @@ CREATE TABLE `user` (
   `user_full_name` varchar(255) NOT NULL,
   `user_email` varchar(255) DEFAULT NULL,
   `user_phone` varchar(11) DEFAULT NULL,
+  `user_service` varchar(255) DEFAULT NULL COMMENT 'Chức vụ',
+  `user_time_work_start` int(11) DEFAULT '0' COMMENT 'Thời gian bắt đầu làm việc',
+  `user_time_work_end` int(11) DEFAULT NULL COMMENT 'Thời gian nghỉ',
+  `user_group_depart` varchar(200) DEFAULT NULL COMMENT 'Thuộc nhóm khoa: 1,2,3..',
   `user_status` int(2) NOT NULL DEFAULT '1' COMMENT '-1: xÃ³a , 1: active',
   `user_group` varchar(255) DEFAULT NULL,
   `user_last_login` int(11) DEFAULT NULL,
@@ -135,9 +139,9 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '', null, '1', '1', '1483432816', '::1', null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('19', 'tech_code', '7eb3b9aba1960c22aa9bc8d1f27ebfb9', 'Tech code 3555', '', '', '1', '2', '1481772767', '::1', null, null, '2', 'admin', null, '1481772561');
-INSERT INTO `user` VALUES ('20', 'svquynhtm', 'a1f54bbcea29cf49935e0a5ead5a3dfa', 'Trương Mạnh Quỳnh', 'manhquynh1984@gmail.com', '0938413368', '1', '2', '1482826054', '::1', '2', 'admin', '2', 'admin', '1482823830', '1482824272');
+INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '', null, null, '0', null, null, '1', '1', '1484551580', '::1', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('19', 'tech_code', '7eb3b9aba1960c22aa9bc8d1f27ebfb9', 'Tech code 3555', '', '', '', '0', '0', null, '1', '2', '1481772767', '::1', null, null, '2', 'admin', null, '1481772561');
+INSERT INTO `user` VALUES ('20', 'svquynhtm', 'fa268d7af7410dbf1b860075e9074889', 'Trương Mạnh Quỳnh', 'manhquynh1984@gmail.com', '0938413368', 'Cộng tác viên', '1483203600', '1484240400', null, '1', '2', '1482826054', '::1', '2', 'admin', '2', 'admin', '1482823830', '1482824272');
 
 -- ----------------------------
 -- Table structure for web_banner
@@ -183,29 +187,18 @@ DROP TABLE IF EXISTS `web_category_depart`;
 CREATE TABLE `web_category_depart` (
   `category_depart_id` int(10) NOT NULL AUTO_INCREMENT,
   `category_depart_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `category_depart_parent_id` int(11) unsigned DEFAULT '0' COMMENT 'Id khoa',
+  `department_id` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `department_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_depart_status` tinyint(1) DEFAULT '0',
   `category_depart_order` tinyint(5) DEFAULT '0',
   PRIMARY KEY (`category_depart_id`),
   KEY `status` (`category_depart_status`) USING BTREE,
-  KEY `id_parrent` (`category_depart_parent_id`,`category_depart_status`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+  KEY `id_parrent` (`department_id`,`category_depart_status`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of web_category_depart
 -- ----------------------------
-INSERT INTO `web_category_depart` VALUES ('253', 'Mua bán nhà đất', '0', '1', '1');
-INSERT INTO `web_category_depart` VALUES ('254', 'Thuê nhà đất', '0', '1', '2');
-INSERT INTO `web_category_depart` VALUES ('255', 'Ôtô', '0', '1', '3');
-INSERT INTO `web_category_depart` VALUES ('256', 'Xe máy - Xe đạp', '0', '1', '4');
-INSERT INTO `web_category_depart` VALUES ('257', 'Tuyển sinh - Tuyển dụng', '0', '1', '5');
-INSERT INTO `web_category_depart` VALUES ('258', 'Điện thoại - Sim', '0', '1', '6');
-INSERT INTO `web_category_depart` VALUES ('259', 'PC - Laptop', '0', '1', '7');
-INSERT INTO `web_category_depart` VALUES ('260', 'Điện tử - Kỹ thuật số', '0', '1', '8');
-INSERT INTO `web_category_depart` VALUES ('261', 'Thời trang - Làm đẹp', '0', '1', '9');
-INSERT INTO `web_category_depart` VALUES ('262', 'Ẩm thực - Du lịch', '0', '1', '10');
-INSERT INTO `web_category_depart` VALUES ('263', 'Dịch vụ', '0', '1', '11');
-INSERT INTO `web_category_depart` VALUES ('264', 'Khác', '0', '1', '12');
 
 -- ----------------------------
 -- Table structure for web_category_new
@@ -214,8 +207,8 @@ DROP TABLE IF EXISTS `web_category_new`;
 CREATE TABLE `web_category_new` (
   `category_new_id` int(10) NOT NULL AUTO_INCREMENT,
   `category_new_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `category_new_parent_id` int(11) unsigned DEFAULT '0',
   `category_new_depart_id` int(11) DEFAULT NULL COMMENT 'thuộc danh mục của khoa nào ',
+  `category_new_parent_id` int(11) unsigned DEFAULT '0',
   `category_new_show_top` tinyint(2) DEFAULT '0',
   `category_new_show_left` tinyint(2) DEFAULT '1',
   `category_new_show_right` tinyint(2) DEFAULT NULL,
@@ -230,18 +223,18 @@ CREATE TABLE `web_category_new` (
 -- ----------------------------
 -- Records of web_category_new
 -- ----------------------------
-INSERT INTO `web_category_new` VALUES ('253', 'Mua bán nhà đất', '0', null, '1', '1', null, '1', '1', '1');
-INSERT INTO `web_category_new` VALUES ('254', 'Thuê nhà đất', '0', null, '1', '1', null, '2', '1', '2');
-INSERT INTO `web_category_new` VALUES ('255', 'Ôtô', '0', null, '1', '1', null, '3', '1', '3');
-INSERT INTO `web_category_new` VALUES ('256', 'Xe máy - Xe đạp', '0', null, '1', '1', null, '4', '1', '4');
-INSERT INTO `web_category_new` VALUES ('257', 'Tuyển sinh - Tuyển dụng', '0', null, '0', '1', null, '5', '1', '5');
-INSERT INTO `web_category_new` VALUES ('258', 'Điện thoại - Sim', '0', null, '1', '1', null, '6', '1', '6');
-INSERT INTO `web_category_new` VALUES ('259', 'PC - Laptop', '0', null, '1', '1', null, '7', '1', '7');
-INSERT INTO `web_category_new` VALUES ('260', 'Điện tử - Kỹ thuật số', '0', null, '1', '1', null, '8', '1', '8');
-INSERT INTO `web_category_new` VALUES ('261', 'Thời trang - Làm đẹp', '0', null, '1', '1', null, '9', '1', '9');
-INSERT INTO `web_category_new` VALUES ('262', 'Ẩm thực - Du lịch', '0', null, '0', '1', null, '10', '1', '10');
-INSERT INTO `web_category_new` VALUES ('263', 'Dịch vụ', '0', null, '0', '1', null, '11', '1', '11');
-INSERT INTO `web_category_new` VALUES ('264', 'Khác', '0', null, '1', '1', null, '12', '1', '12');
+INSERT INTO `web_category_new` VALUES ('253', 'Mua bán nhà đất', null, '0', '1', '1', null, '1', '1', '1');
+INSERT INTO `web_category_new` VALUES ('254', 'Thuê nhà đất', null, '0', '1', '1', null, '2', '1', '2');
+INSERT INTO `web_category_new` VALUES ('255', 'Ôtô', null, '0', '1', '1', null, '3', '1', '3');
+INSERT INTO `web_category_new` VALUES ('256', 'Xe máy - Xe đạp', null, '0', '1', '1', null, '4', '1', '4');
+INSERT INTO `web_category_new` VALUES ('257', 'Tuyển sinh - Tuyển dụng', null, '0', '0', '1', null, '5', '1', '5');
+INSERT INTO `web_category_new` VALUES ('258', 'Điện thoại - Sim', null, '0', '1', '1', null, '6', '1', '6');
+INSERT INTO `web_category_new` VALUES ('259', 'PC - Laptop', null, '0', '1', '1', null, '7', '1', '7');
+INSERT INTO `web_category_new` VALUES ('260', 'Điện tử - Kỹ thuật số', null, '0', '1', '1', null, '8', '1', '8');
+INSERT INTO `web_category_new` VALUES ('261', 'Thời trang - Làm đẹp', null, '0', '1', '1', null, '9', '1', '9');
+INSERT INTO `web_category_new` VALUES ('262', 'Ẩm thực - Du lịch', null, '0', '0', '1', null, '10', '1', '10');
+INSERT INTO `web_category_new` VALUES ('263', 'Dịch vụ', null, '0', '0', '1', null, '11', '1', '11');
+INSERT INTO `web_category_new` VALUES ('264', 'Khác', null, '0', '1', '1', null, '12', '1', '12');
 
 -- ----------------------------
 -- Table structure for web_department
@@ -250,33 +243,16 @@ DROP TABLE IF EXISTS `web_department`;
 CREATE TABLE `web_department` (
   `department_id` int(10) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `department_parent_id` smallint(5) unsigned DEFAULT '0',
-  `department_content_front` tinyint(2) DEFAULT '0',
-  `department_content_front_order` tinyint(5) DEFAULT '0' COMMENT 'vị trí hiển thị ngoài trang chủ',
   `department_status` tinyint(1) DEFAULT '0',
-  `department_image_background` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `department_icons` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `department_order` tinyint(5) DEFAULT '0',
   PRIMARY KEY (`department_id`),
   KEY `status` (`department_status`) USING BTREE,
-  KEY `id_parrent` (`department_parent_id`,`department_status`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+  KEY `id_parrent` (`department_status`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of web_department
 -- ----------------------------
-INSERT INTO `web_department` VALUES ('253', 'Mua bán nhà đất', '0', '1', '1', '1', null, 'fa fa-building', '1');
-INSERT INTO `web_department` VALUES ('254', 'Thuê nhà đất', '0', '1', '2', '1', null, 'fa fa-building-o', '2');
-INSERT INTO `web_department` VALUES ('255', 'Ôtô', '0', '1', '3', '1', null, 'fa fa-car', '3');
-INSERT INTO `web_department` VALUES ('256', 'Xe máy - Xe đạp', '0', '1', '4', '1', null, 'fa fa-bicycle', '4');
-INSERT INTO `web_department` VALUES ('257', 'Tuyển sinh - Tuyển dụng', '0', '0', '5', '1', null, 'fa fa-mortar-board', '5');
-INSERT INTO `web_department` VALUES ('258', 'Điện thoại - Sim', '0', '1', '6', '1', null, 'fa fa-mobile-phone', '6');
-INSERT INTO `web_department` VALUES ('259', 'PC - Laptop', '0', '1', '7', '1', null, 'fa fa-laptop', '7');
-INSERT INTO `web_department` VALUES ('260', 'Điện tử - Kỹ thuật số', '0', '1', '8', '1', '576568_579794885409422_1412382588_n.jpg', 'fa fa-desktop', '8');
-INSERT INTO `web_department` VALUES ('261', 'Thời trang - Làm đẹp', '0', '1', '9', '1', null, 'fa fa-child', '9');
-INSERT INTO `web_department` VALUES ('262', 'Ẩm thực - Du lịch', '0', '0', '10', '1', null, 'fa fa-cutlery', '10');
-INSERT INTO `web_department` VALUES ('263', 'Dịch vụ', '0', '0', '11', '1', null, 'fa fa-dropbox', '11');
-INSERT INTO `web_department` VALUES ('264', 'Khác', '0', '1', '12', '1', '573cb4258e810763aa000001.jpg', 'fa fa-asterisk', '12');
 
 -- ----------------------------
 -- Table structure for web_info
