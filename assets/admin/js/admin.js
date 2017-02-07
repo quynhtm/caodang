@@ -137,7 +137,6 @@ var Admin = {
             }else if(type == 3){
                 var url_ajax = WEB_ROOT + '/admin/categoryDepart/updateStatusCategoryDepart';
             }
-
             $.ajax({
                 type: "post",
                 url: url_ajax,

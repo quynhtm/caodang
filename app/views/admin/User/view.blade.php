@@ -83,6 +83,7 @@
                                 </td>
                                 <td>
                                     <div><b>Họ tên : </b>{{ $item['user_full_name'] }}</div>
+                                    <div><b>Giới tính : </b>@if(isset($arrSex[$item['user_sex']])) {{$arrSex[$item['user_sex']]}} @endif</div>
                                     <div><b>Chức vụ : </b>{{ $item['user_service'] }}</div>
                                     <div><b>Phone : </b>{{ $item['user_phone'] }}</div>
                                     <div><b>Email : </b>{{ $item['user_email'] }}</div>

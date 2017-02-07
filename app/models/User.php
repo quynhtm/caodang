@@ -10,10 +10,8 @@ class User extends Eloquent {
 
     protected $fillable = array('user_name', 'user_password', 'user_full_name', 'user_email', 'user_phone',
         'user_status', 'user_group','user_last_login','user_last_ip','user_create_id','user_create_name',
-        'user_service','user_time_work_start','user_time_work_end','user_group_depart',
+        'user_sex','user_service','user_time_work_start','user_time_work_end','user_group_depart',
         'user_edit_id','user_edit_name','user_created','user_updated');
-
-
     /**
      * @param $name
      * @return mixed

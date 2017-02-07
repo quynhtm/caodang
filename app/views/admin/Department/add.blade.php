@@ -27,9 +27,17 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="name" class="control-label">Tên Khoa - Trung tâm<span class="red"> (*) </span></label>
-                            <input type="text" placeholder="Tài khoản đăng nhập" id="department_name" name="department_name"  class="form-control input-sm" value="@if(isset($data['department_name'])){{$data['department_name']}}@endif">
+                            <input type="text" placeholder="Tên khoa - trung tâm" id="department_name" name="department_name"  class="form-control input-sm" value="@if(isset($data['department_name'])){{$data['department_name']}}@endif">
                         </div>
                     </div>
+                    @if($id > 0)
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Tên rút gọn</label>
+                            <input type="text" disabled id="department_alias" name="department_alias"  class="form-control input-sm" value="@if(isset($data['department_alias'])){{$data['department_alias']}}@endif">
+                        </div>
+                    </div>
+                    @endif
 
                     <div class="clearfix"></div>
                     <div class="col-sm-10">

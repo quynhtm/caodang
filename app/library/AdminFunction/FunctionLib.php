@@ -288,7 +288,7 @@ class FunctionLib {
     }
 
     //cackysapxepgannhau
-    static function stringtitle($text) {
+    static function stringTitle($text) {
         $text = FunctionLib::post_db_parse_html($text);
         $text = FunctionLib::stripUnicode($text);
         $text = self::_name_cleaner($text, "-");

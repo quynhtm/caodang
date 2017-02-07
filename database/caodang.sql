@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-01-16 14:58:37
+Date: 2017-02-07 12:06:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -117,6 +117,7 @@ CREATE TABLE `user` (
   `user_name` varchar(255) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `user_full_name` varchar(255) NOT NULL,
+  `user_sex` tinyint(5) DEFAULT '0' COMMENT '0: nữ: 1 nam',
   `user_email` varchar(255) DEFAULT NULL,
   `user_phone` varchar(11) DEFAULT NULL,
   `user_service` varchar(255) DEFAULT NULL COMMENT 'Chức vụ',
@@ -139,9 +140,9 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '', null, null, '0', null, null, '1', '1', '1484551580', '::1', null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('19', 'tech_code', '7eb3b9aba1960c22aa9bc8d1f27ebfb9', 'Tech code 3555', '', '', '', '0', '0', null, '1', '2', '1481772767', '::1', null, null, '2', 'admin', null, '1481772561');
-INSERT INTO `user` VALUES ('20', 'svquynhtm', 'fa268d7af7410dbf1b860075e9074889', 'Trương Mạnh Quỳnh', 'manhquynh1984@gmail.com', '0938413368', 'Cộng tác viên', '1483203600', '1484240400', null, '1', '2', '1482826054', '::1', '2', 'admin', '2', 'admin', '1482823830', '1482824272');
+INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '0', '', null, null, '0', null, null, '1', '1', '1486434699', '::1', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('19', 'tech_code', '7eb3b9aba1960c22aa9bc8d1f27ebfb9', 'Tech code 3555', '0', '', '', '', '0', '0', null, '1', '2', '1481772767', '::1', null, null, '2', 'admin', null, '1481772561');
+INSERT INTO `user` VALUES ('20', 'svquynhtm', 'fa268d7af7410dbf1b860075e9074889', '', '1', 'manhquynh1984@gmail.com', '0938413368', 'Cộng tác viên', '1483203600', '1484240400', '3,4,5', '1', '2', '1482826054', '::1', '2', 'admin', '2', 'admin', '1482823830', '1482824272');
 
 -- ----------------------------
 -- Table structure for web_banner
@@ -243,16 +244,26 @@ DROP TABLE IF EXISTS `web_department`;
 CREATE TABLE `web_department` (
   `department_id` int(10) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `department_alias` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `department_status` tinyint(1) DEFAULT '0',
   `department_order` tinyint(5) DEFAULT '0',
   PRIMARY KEY (`department_id`),
   KEY `status` (`department_status`) USING BTREE,
   KEY `id_parrent` (`department_status`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of web_department
 -- ----------------------------
+INSERT INTO `web_department` VALUES ('1', 'Khoa âm nhạc', null, '1', '1');
+INSERT INTO `web_department` VALUES ('2', 'Khoa tiếng anh', null, '1', '2');
+INSERT INTO `web_department` VALUES ('3', 'Khoa cơ bản', null, '1', '3');
+INSERT INTO `web_department` VALUES ('4', 'Khoa Giáo dục đặc biệt', null, '1', '4');
+INSERT INTO `web_department` VALUES ('5', 'Khoa Giáo dục mầm non', null, '1', '5');
+INSERT INTO `web_department` VALUES ('6', 'Khoa Mỹ thuật', null, '1', '6');
+INSERT INTO `web_department` VALUES ('7', 'Khoa Công Nghệ Thông Tin', null, '1', '7');
+INSERT INTO `web_department` VALUES ('8', 'Khoa Quản lý - Văn thư', null, '1', '8');
+INSERT INTO `web_department` VALUES ('9', 'Khoa Xã hội - Nhân văn', 'khoaxahoinhanvan', '1', '9');
 
 -- ----------------------------
 -- Table structure for web_info

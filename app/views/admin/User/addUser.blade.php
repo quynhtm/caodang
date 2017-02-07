@@ -71,11 +71,19 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-5">
                         <div class="form-group">
                             <label for="name" class="control-label">Trạng thái</label>
                             <select name="user_status" id="user_status" class="form-control input-sm">
                                 {{$optionStatus}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Giới tinh</label>
+                            <select name="user_sex" id="user_sex" class="form-control input-sm">
+                                {{$optionSex}}
                             </select>
                         </div>
                     </div>
@@ -92,37 +100,23 @@
                         <div class="form-group">
                             <label for="textDescrip" class="control-label col-lg-12 font2">Thuộc khoa, ngành</label>
                         </div>
-                        @if(isset($listDistrict) && !empty($listDistrict))
-                            <table class="table-hover table table-bordered success font_14">
-                                <thead>
-                                <tr>
-                                    <th width="5%">Stt</th>
-                                    <th width="70%">Quận / Huyện</th>
-                                    <th width="10%" class="text-center">Vị trí</th>
-                                    <th width="15%" class="text-center">Trạng thái</th>
-                                    <th width="10%" class="text-center"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($listDistrict as $k=>$district)
-                                    <tr>
-                                        <td>{{$k+1}}</td>
-                                        <td>{{$district->district_name}}</td>
-                                        <td class="text-center">{{$district->district_position}}</td>
-                                        <td class="text-center">
-                                            @if($district->district_status == 1)
-                                                <a href="javascript:void(0);" title="Hiện"><i class="fa fa-check fa-2x"></i></a>
-                                            @else
-                                                <a href="javascript:void(0);" style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="javascript:void(0);" class="btn btn-info btn-xs" onclick="Admin.getInforDistrictOfProvince({{$id}},{{$district->district_id}})" title="sửa"><i class="fa fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                        @if(isset($arrDepart) && !empty($arrDepart))
+                            <div style="float: left; width: 100%; height: 400px;overflow: hidden; overflow-x: hidden;overflow-y: scroll">
+                                <table class="table table-bordered table-hover">
+                                    @foreach ($arrDepart as $depart_id => $depart_name)
+                                        <tr>
+                                            <td class="text-center text-middle">
+                                                    <input type="checkbox" class="checkItem" name="checkGroupDepart[]"
+                                                           @if(in_array($depart_id,$arrUserGroupDepart)) checked="checked" @endif
+                                                           value="{{(int)$depart_id}}" />
+                                            </td>
+                                            <td class="text-left text-middle">
+                                                    <b>{{$depart_name}}</b>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
                         @endif
                     </div>
                 </div>

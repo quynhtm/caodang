@@ -73,7 +73,7 @@ class DepartmentController extends BaseAdminController
             $data = Department::find($id);
         }
 
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['department_status'])? $data['department_status'] : -1);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['department_status'])? $data['department_status'] : CGlobal::status_show);
         $this->layout->content = View::make('admin.Department.add')
             ->with('id', $id)
             ->with('data', $data)
@@ -86,10 +86,11 @@ class DepartmentController extends BaseAdminController
         }
 
         $dataSave['department_name'] = addslashes(Request::get('department_name'));
-        $dataSave['department_status'] = (int)Request::get('department_status', 0);
+        $dataSave['department_status'] = (int)Request::get('department_status', CGlobal::status_show);
         $dataSave['department_order'] = (int)Request::get('department_order', 1);
 
         if($this->valid($dataSave) && empty($this->error)) {
+            $dataSave['department_alias'] = strtolower(FunctionLib::stringTitle($dataSave['department_name']));
             if($id > 0) {
                 //cap nhat
                 if(Department::updateData($id, $dataSave)) {
@@ -102,7 +103,7 @@ class DepartmentController extends BaseAdminController
                 }
             }
         }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['department_status'])? $dataSave['department_status'] : -1);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['department_status'])? $dataSave['department_status'] : CGlobal::status_show);
         $this->layout->content =  View::make('admin.Department.add')
             ->with('id', $id)
             ->with('data', $dataSave)

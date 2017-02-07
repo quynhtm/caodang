@@ -13,6 +13,7 @@ class UserController extends BaseAdminController
     private $permission_change_pass = 'user_change_pass';
     private $permission_remove = 'user_remove';
     private $arrStatus = array(0 => 'Tất cả', CGlobal::status_show => 'Hoạt động', CGlobal::status_block => "Khóa");
+    private $arrSex = array(-1 => 'Chọn giới tính', CGlobal::status_show => 'Nam', CGlobal::status_hide => "Nữ");
     private $error = array();
 
     public function __construct()
@@ -43,6 +44,7 @@ class UserController extends BaseAdminController
         $paging = $total > 0 ? Pagging::getNewPager(3,$page_no,$total,$limit,$dataSearch) : '';
         $this->layout->content = View::make('admin.User.view')
             ->with('arrStatus', $this->arrStatus)
+            ->with('arrSex', $this->arrSex)
             ->with('arrGroupUser', $arrGroupUser)
             ->with('data', $data)
             ->with('dataSearch', $dataSearch)
@@ -66,14 +68,23 @@ class UserController extends BaseAdminController
             $data = User::getUserById($id);
             $data['user_group'] = explode(',', $data['user_group']);
         }
+        //khoa cần phân quyền
+        $arrDepart = Department::getDepart();
+        $arrUserGroupDepart = isset($data['user_group_depart'])? explode(',',$data['user_group_depart']): array();
+
+        //nhóm quyền
         $arrGroupUser = GroupUser::getListGroupUser();
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['user_status'])? $data['user_status'] : 1);
+        $optionSex = FunctionLib::getOption($this->arrSex, isset($data['user_sex'])? $data['user_sex'] : 0);
         $this->layout->content = View::make('admin.User.addUser')
             ->with('id', $id)
             ->with('arrGroupUser', $arrGroupUser)
             ->with('is_root', $this->is_root)
             ->with('error', $this->error)
             ->with('optionStatus', $optionStatus)
+            ->with('optionSex', $optionSex)
+            ->with('arrDepart', $arrDepart)
+            ->with('arrUserGroupDepart', $arrUserGroupDepart)
             ->with('data', $data);
     }
     public function postUser($id=0) {
@@ -81,12 +92,23 @@ class UserController extends BaseAdminController
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
             return Redirect::route('admin.dashboard',array('error'=>1));
         }
-        $dataSave['user_name'] = htmlspecialchars(trim(Request::get('user_name', '')));
+        if($id == 0){
+            $dataSave['user_name'] = htmlspecialchars(trim(Request::get('user_name', '')));
+        }
         $dataSave['user_full_name'] = htmlspecialchars(trim(Request::get('user_full_name', '')));
         $dataSave['user_email'] = htmlspecialchars(trim(Request::get('user_email', '')));
         $dataSave['user_phone'] = htmlspecialchars(trim(Request::get('user_phone', '')));
         $dataSave['user_service'] = htmlspecialchars(trim(Request::get('user_service', '')));
         $dataSave['user_status'] = trim(Request::get('user_status', 1));
+        $dataSave['user_sex'] = (int)(Request::get('user_sex', 0));
+
+        //khoa cần phân quyền
+
+        $arrGroupDepart = Request::get('checkGroupDepart',array());
+        $dataSave['user_group_depart'] = !empty($arrGroupDepart)? join(',',$arrGroupDepart): '';
+
+        $arrDepart = Department::getDepart();
+        $arrUserGroupDepart = isset($dataSave['user_group_depart'])? explode(',',$dataSave['user_group_depart']): array();
 
         $user_time_work_start = trim(Request::get('user_time_work_start', ''));
         $user_time_work_end = trim(Request::get('user_time_work_end', ''));
@@ -99,8 +121,8 @@ class UserController extends BaseAdminController
             $dataSave['user_group'] = $strGroupUser;
         }
 
-        //FunctionLib::debug($dataSave);
-        if($this->validUser($dataSave) && empty($this->error)) {
+        //FunctionLib::debug($arrUserGroupDepart);
+        if($this->validUser($id, $dataSave) && empty($this->error)) {
             if($id > 0) {
                 //cap nhat
                 if(User::updateUser($id, $dataSave)) {
@@ -115,6 +137,7 @@ class UserController extends BaseAdminController
         }
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['user_status'])? $dataSave['user_status'] : 1);
+        $optionSex = FunctionLib::getOption($this->arrSex, isset($dataSave['user_sex'])? $dataSave['user_sex'] : 0);
         $arrGroupUser = GroupUser::getListGroupUser();
         $this->layout->content = View::make('admin.User.addUser')
             ->with('id', $id)
@@ -122,16 +145,27 @@ class UserController extends BaseAdminController
             ->with('is_root', $this->is_root)
             ->with('error', $this->error)
             ->with('optionStatus', $optionStatus)
+            ->with('optionSex', $optionSex)
+            ->with('arrDepart', $arrDepart)
+            ->with('arrUserGroupDepart', $arrUserGroupDepart)
             ->with('data', $dataSave);
     }
-    private function validUser($data=array()) {
+    private function validUser($user_id =0, $data=array()) {
         if(!empty($data)) {
-            if(isset($data['user_name']) && trim($data['user_name']) == '') {
-                $this->error[] = 'Tài khoản đăng nhập không được bỏ trống';
+            if($user_id == 0){
+                if(isset($data['user_name']) && trim($data['user_name']) == '') {
+                    $this->error[] = 'Tài khoản đăng nhập không được bỏ trống';
+                }elseif(isset($data['user_name']) && trim($data['user_name']) != ''){
+                    $checkIssetUser = User::getUserByName($data['user_name']);
+                    if($checkIssetUser && $checkIssetUser->user_id != $user_id){
+                        $this->error[] = 'Tài khoản này đã tồn tại, hãy tạo lại';
+                    }
+                }
             }
-            if(isset($data['user_full_name']) && trim($data['user_full_name']) == '') {
+
+            /*if(isset($data['user_full_name']) && trim($data['user_full_name']) == '') {
                 $this->error[] = 'Tài nhân viên không được bỏ trống';
-            }
+            }*/
         }
         return true;
     }
