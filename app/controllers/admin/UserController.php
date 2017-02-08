@@ -139,6 +139,11 @@ class UserController extends BaseAdminController
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['user_status'])? $dataSave['user_status'] : 1);
         $optionSex = FunctionLib::getOption($this->arrSex, isset($dataSave['user_sex'])? $dataSave['user_sex'] : 0);
         $arrGroupUser = GroupUser::getListGroupUser();
+
+        if($id > 0) {
+            $data = User::getUserById($id);
+            $dataSave['user_group'] = explode(',', $data['user_group']);
+        }
         $this->layout->content = View::make('admin.User.addUser')
             ->with('id', $id)
             ->with('arrGroupUser', $arrGroupUser)
@@ -163,9 +168,9 @@ class UserController extends BaseAdminController
                 }
             }
 
-            /*if(isset($data['user_full_name']) && trim($data['user_full_name']) == '') {
+            if(isset($data['user_full_name']) && trim($data['user_full_name']) == '') {
                 $this->error[] = 'Tài nhân viên không được bỏ trống';
-            }*/
+            }
         }
         return true;
     }
