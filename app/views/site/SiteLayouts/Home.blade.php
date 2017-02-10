@@ -72,7 +72,7 @@
 							<a href="" class="title-main">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017</a>
 						</div>
 						<div class="intro-main">
-							<img src="{{URL::route('site.home')}}/assets/frontend/img/LaiXeAnToan_anhnho.JPG" alt="LaiXeAnToan_anhnho.JPG" height="133" width="200" border="0" align="left">
+							<img src="{{URL::route('site.home')}}/assets/frontend/img/1479523351_article.jpg" alt="1479523351_article.jpg" height="133" width="200" border="0" align="left">
 							<span>
 								Thực hiện Chỉ thị số 3031/CT-BGDĐT ngày 26 tháng 8 năm 2016 của Bộ trưởng Bộ Giáo dục và Đào tạo về nhiệm vụ chủ yếu năm học 2016 - 2017 của ngành Giáo dục.
 								Thực hiện sự chỉ đạo của Đảng ủy, Ban Giám hiệu Nhà trường, Trường Cao đẳng Sư phạm Trung ương xây dựng kế hoạch tổ chức hội thi “Học sinh, sinh viên giỏi Tin học Văn phòng” năm học 2016-2017
