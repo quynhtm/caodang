@@ -5,7 +5,7 @@
 }
 body{
 	background: #e1e1e1;
-    color: #e1e1e1;
+    color: #333;
     font-family: Helvetica,Arial,sans-serif;
     font-size: 13px;
     line-height: 1.42857;
@@ -238,7 +238,6 @@ h1, h2, h3, h4, h5, h6{
     width: 190px;
     float: left;
     padding-right: 5px;
-	border-right: 1px dotted #ddd;
 }
 .top-box {
     height: 35px;
@@ -282,7 +281,7 @@ h1, h2, h3, h4, h5, h6{
     padding-left: 10px;
 	padding-right: 10px;
 	border-right: 1px dotted #ddd;
-	height:900px;
+	border-left: 1px dotted #ddd;
 }
 .item-box{
 	margin-bottom:8px;
@@ -340,6 +339,9 @@ h1, h2, h3, h4, h5, h6{
 .list-main {
     padding: 0px 0px;
     margin-top: 10px;
+	clear: both;
+	display:inline-block;
+	width:100%;
 }
 .list-main ul li {
     font-size: 14px;
@@ -363,6 +365,12 @@ h1, h2, h3, h4, h5, h6{
 }
 .box-item-ext{
 	border-bottom:1px dotted #ddd;
+}
+.selectLink{
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 3px 0px;
+	margin-bottom: 10px;
 }
 /*Footer*/
 .wraps-footer{

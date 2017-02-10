@@ -20,7 +20,8 @@
 <div class="head-banner">
 	<div class="container">
 		<div class="flash">
-	        <embed wmode="transparent" src="http://www.epu.edu.vn/Images/dhdienluc-to.swf" height="172px" width="1000px">
+	        <!--<embed wmode="transparent" src="http://www.epu.edu.vn/Images/dhdienluc-to.swf" height="172px" width="1000px">-->
+	        <img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/1.png">
 	    </div>
 	    <ul class="menu">
 			<li><a class="aline" href="">Trang chủ</a></li>
