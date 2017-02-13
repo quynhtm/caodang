@@ -17,7 +17,7 @@ class DepartmentController extends BaseAdminController
     {
         parent::__construct();
 
-        //Include style.
+        /*//Include style.
         FunctionLib::link_css(array(
             'lib/cssUpload.css',
         ));
@@ -25,7 +25,7 @@ class DepartmentController extends BaseAdminController
         //Include javascript.
         FunctionLib::link_js(array(
             'lib/jquery.uploadfile.js',
-        ));
+        ));*/
     }
 
     public function view() {
@@ -88,6 +88,8 @@ class DepartmentController extends BaseAdminController
         $dataSave['department_name'] = addslashes(Request::get('department_name'));
         $dataSave['department_status'] = (int)Request::get('department_status', CGlobal::status_show);
         $dataSave['department_order'] = (int)Request::get('department_order', 1);
+        $dataSave['department_type'] = (int)Request::get('department_type', 1);
+        $dataSave['department_design'] = (int)Request::get('department_design', 0);
 
         if($this->valid($dataSave) && empty($this->error)) {
             $dataSave['department_alias'] = strtolower(FunctionLib::stringTitle($dataSave['department_name']));

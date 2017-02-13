@@ -55,10 +55,10 @@ class BaseAdminController extends BaseController
             'name'=>'QL khoa nghành',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-gift',
-            'arr_link_sub'=>array('admin.department_list','admin.categoryDepart_list',),
+            'arr_link_sub'=>array('admin.department_list','admin.category_list',),
             'sub'=>array(
                 array('name'=>'Khoa - Trung tâm', 'RouteName'=>'admin.department_list', 'icon'=>'fa fa-users icon-4x', 'showcontent'=>1, 'permission'=>'department_full'),
-                array('name'=>'Chuyên nghành', 'RouteName'=>'admin.categoryDepart_list', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1, 'permission'=>'category_depart_full'),
+                array('name'=>'Danh mục tin', 'RouteName'=>'admin.category_list', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1, 'permission'=>'category_full'),
             ),
         );
 

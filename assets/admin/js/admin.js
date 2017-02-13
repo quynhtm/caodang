@@ -153,6 +153,27 @@ var Admin = {
             });
         }
     },
+    //cap nhat an - hien theo vị trí
+    updatePositionStatusItem: function(id,status,position) {
+        if(confirm('Bạn có muốn thay đổi Ẩn/Hiện vị trí này không?')) {
+            $('#img_loading_'+id).show();
+            var url_ajax = WEB_ROOT + '/admin/category/updatePositionStatusCategory';
+            $.ajax({
+                type: "post",
+                url: url_ajax,
+                data: {id : id,status : status,position : position},
+                dataType: 'json',
+                success: function(res) {
+                    $('#img_loading_'+id).hide();
+                    if(res.isIntOk == 1){
+                        window.location.reload();
+                    }else{
+                        alert('Không thể thực hiện được thao tác.');
+                    }
+                }
+            });
+        }
+    },
     changeOptionPersonnel: function(){
         var personnel_check_creater = $('#personnel_check_creater').val();
         if(parseInt(personnel_check_creater) == 1){
