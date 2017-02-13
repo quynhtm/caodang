@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Absolute_Positioner' => $vendorDir . '/dompdf/dompdf/include/absolute_positioner.cls.php',
     'Abstract_Renderer' => $vendorDir . '/dompdf/dompdf/include/abstract_renderer.cls.php',
+    'ActionSettingController' => $baseDir . '/app/controllers/admin/ActionSettingController.php',
     'Adobe_Font_Metrics' => $vendorDir . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
     'AjaxCommonController' => $baseDir . '/app/controllers/admin/AjaxCommonController.php',
     'ArrayPermission' => $baseDir . '/app/library/AdminFunction/ArrayPermission.php',
@@ -3442,6 +3443,7 @@ return array(
     'ToolsCommonController' => $baseDir . '/app/controllers/admin/ToolsCommonController.php',
     'Trash' => $baseDir . '/app/models/Trash.php',
     'TrashController' => $baseDir . '/app/controllers/admin/TrashController.php',
+    'TypeSetting' => $baseDir . '/app/models/TypeSetting.php',
     'Upload' => $baseDir . '/app/library/AdminFunction/Upload.php',
     'User' => $baseDir . '/app/models/User.php',
     'UserController' => $baseDir . '/app/controllers/admin/UserController.php',

@@ -66,15 +66,8 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
 
     /*thông tin tài khoản*/
     Route::get('user/view',array('as' => 'admin.user_view','uses' => 'UserController@view'));
-
     Route::get('user/edit/{id?}', array('as' => 'admin.user_edit','uses' => 'UserController@getUser'))->where('id', '[0-9]+');
     Route::post('user/edit/{id?}', array('as' => 'admin.user_edit','uses' => 'UserController@postUser'))->where('id', '[0-9]+');
-
-    /*Route::get('user/create',array('as' => 'admin.user_create','uses' => 'UserController@createInfo'));
-    Route::post('user/create',array('as' => 'admin.user_create','uses' => 'UserController@create'));
-    Route::get('user/edit/{id}',array('as' => 'admin.user_edit','uses' => 'UserController@editInfo'))->where('id', '[0-9]+');
-    Route::post('user/edit/{id}',array('as' => 'admin.user_edit','uses' => 'UserController@edit'))->where('id', '[0-9]+');*/
-
     Route::get('user/change/{id}',array('as' => 'admin.user_change','uses' => 'UserController@changePassInfo'));
     Route::post('user/change/{id}',array('as' => 'admin.user_change','uses' => 'UserController@changePass'));
     Route::post('user/remove/{id}',array('as' => 'admin.user_remove','uses' => 'UserController@remove'));
@@ -93,6 +86,14 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('groupUser/create',array('as' => 'admin.groupUser_create','uses' => 'GroupUserController@create'));
     Route::get('groupUser/edit/{id}',array('as' => 'admin.groupUser_edit','uses' => 'GroupUserController@editInfo'))->where('id', '[0-9]+');
     Route::post('groupUser/edit/{id}',array('as' => 'admin.groupUser_edit','uses' => 'GroupUserController@edit'))->where('id', '[0-9]+');
+
+    /*Quản lý Action Setting*/
+    //type_setting
+    Route::get('typeSetting/view',array('as' => 'admin.typeSetting_view','uses' => 'ActionSettingController@viewTypeSetting'));
+    Route::get('typeSetting/editTypeSetting/{id?}', array('as' => 'admin.typeSetting_edit','uses' => 'ActionSettingController@getTypeSetting'))->where('id', '[0-9]+');
+    Route::post('typeSetting/editTypeSetting/{id?}', array('as' => 'admin.typeSetting_edit','uses' => 'ActionSettingController@postTypeSetting'))->where('id', '[0-9]+');
+    Route::post('typeSetting/deleteTypeSetting', array('as' => 'admin.deltete_typeSetting','uses' => 'ActionSettingController@deleteTypeSetting'));//ajax
+    Route::post('typeSetting/updateStatusTypeSetting', array('as' => 'admin.status_typeSetting','uses' => 'ActionSettingController@updateStatusTypeSetting'));//ajax
 
     /*Quản lý Department*/
     Route::get('department/view',array('as' => 'admin.department_list','uses' => 'DepartmentController@view'));

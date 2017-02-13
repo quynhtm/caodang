@@ -27,6 +27,10 @@ class Memcache{
     const CACHE_ALL_DEPARTMENT    = 'cache_all_department';
 
     //depart
+    const CACHE_TYPE_SETTING_ID    = 'cache_type_setting_id_';
+    const CACHE_ALL_TYPE_SETTING    = 'cache_all_type_setting';
+
+    //depart
     const CACHE_CATEGORY_DEPARTMENT_ID    = 'cache_category_depart_id_';
 
     //tin đăng
