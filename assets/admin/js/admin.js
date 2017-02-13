@@ -24,6 +24,8 @@ var Admin = {
             	url_ajax = 'deleteInfor';
             }else if(type == 12){
             	url_ajax = 'deleteContract';
+            }else if(type == 13){
+            	url_ajax = 'deleteTypeSetting';
             }
             if(url_ajax != ''){
                 $.ajax({
@@ -136,6 +138,8 @@ var Admin = {
                 var url_ajax = WEB_ROOT + '/admin/department/updateStatusDepartment';
             }else if(type == 3){
                 var url_ajax = WEB_ROOT + '/admin/categoryDepart/updateStatusCategoryDepart';
+            }else if(type == 4){
+                var url_ajax = WEB_ROOT + '/admin/typeSetting/updateStatusTypeSetting';
             }
             $.ajax({
                 type: "post",

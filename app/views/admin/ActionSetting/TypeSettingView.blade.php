@@ -5,7 +5,7 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li class="active">Danh mục sản phẩm</li>
+            <li class="active">Danh mục Type setting</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -51,7 +51,9 @@
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="25%" class="td_list">Tên khoa - trung tâm</th>
+                            <th width="25%" class="td_list">Tên type</th>
+                            <th width="10%" class="text-center">Key word</th>
+                            <th width="20%" class="td_list">Thông tin thêm</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
@@ -60,27 +62,31 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['department_id']}}"></td>
+                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['type_id']}}"></td>
                                 <td>
-                                    [<b>{{ $item['department_id'] }}</b>] {{ $item['department_name'] }}
+                                    [<b>{{ $item['type_id'] }}</b>] {{ $item['type_title'] }}
                                 </td>
+                                <td class="text-center">
+                                    {{ $item['type_keyword'] }}
+                                </td>
+                                <td>{{ $item['type_infor'] }}</td>
 
                                 <td class="text-center">
-                                    @if($item['department_status'] == 1)
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['department_id']}},{{$item['department_status']}},2)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
+                                    @if($item['type_status'] == 1)
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['type_id']}},{{$item['type_status']}},2)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
                                     @else
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['department_id']}},{{$item['department_status']}},2)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['type_id']}},{{$item['type_status']}},2)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
                                     @endif
-                                    <span class="img_loading" id="img_loading_{{$item['department_id']}}"></span>
+                                    <span class="img_loading" id="img_loading_{{$item['type_id']}}"></span>
                                 </td>
 
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-                                        <a href="{{URL::route('admin.typeSettingEdit',array('id' => $item['department_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{URL::route('admin.typeSettingEdit',array('id' => $item['type_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root)
                                        &nbsp;&nbsp;&nbsp;
-                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['department_id']}},10)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
+                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['type_id']}},10)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>
                             </tr>

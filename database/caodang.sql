@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-02-13 17:45:40
+Date: 2017-02-13 21:43:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -140,7 +140,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '0', '', null, null, '0', null, null, '1', '1', '1486973275', '::1', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '0', '', null, null, '0', null, null, '1', '1', '1486993740', '::1', null, null, null, null, null, null);
 INSERT INTO `user` VALUES ('19', 'tech_code', '7eb3b9aba1960c22aa9bc8d1f27ebfb9', 'Tech code 3555', '0', '', '', '', '0', '0', null, '1', '2', '1481772767', '::1', null, null, '2', 'admin', null, '1481772561');
 INSERT INTO `user` VALUES ('20', 'svquynhtm', 'fa268d7af7410dbf1b860075e9074889', 'Trương Mạnh Quỳnh', '1', 'manhquynh1984@gmail.com', '0938413368', 'Cộng tác viên', '1483203600', '1484240400', '1,6,7,8,9', '1', '2', '1482826054', '::1', '2', 'admin', '2', 'admin', '1482823830', '1482824272');
 
@@ -241,7 +241,7 @@ INSERT INTO `web_category_new` VALUES ('260', 'Điện tử - Kỹ thuật số'
 INSERT INTO `web_category_new` VALUES ('261', 'Thời trang - Làm đẹp', null, '0', '1', '1', null, '9', '1', '9', null, null, null, null, null, null);
 INSERT INTO `web_category_new` VALUES ('262', 'Ẩm thực - Du lịch', null, '0', '0', '1', null, '10', '1', '10', null, null, null, null, null, null);
 INSERT INTO `web_category_new` VALUES ('263', 'Dịch vụ', null, '0', '0', '1', null, '11', '1', '11', null, null, null, null, null, null);
-INSERT INTO `web_category_new` VALUES ('264', 'Khác 2222', '1', '0', '1', '1', '1', '1', '0', '12', null, null, null, '1486959499', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('264', 'Khác 2222', '1', '0', '0', '0', '0', '1', '1', '12', null, null, null, '1486959499', '2', 'admin');
 
 -- ----------------------------
 -- Table structure for web_department
@@ -263,7 +263,7 @@ CREATE TABLE `web_department` (
 -- ----------------------------
 -- Records of web_department
 -- ----------------------------
-INSERT INTO `web_department` VALUES ('1', 'Khoa âm nhạc', null, '1', '0', '1', '1');
+INSERT INTO `web_department` VALUES ('1', 'Khoa âm nhạc', null, '1', '0', '0', '1');
 INSERT INTO `web_department` VALUES ('2', 'Khoa tiếng anh', null, '1', '0', '1', '2');
 INSERT INTO `web_department` VALUES ('3', 'Khoa cơ bản', null, '1', '0', '1', '3');
 INSERT INTO `web_department` VALUES ('4', 'Khoa Giáo dục đặc biệt', null, '1', '0', '1', '4');
@@ -339,8 +339,12 @@ CREATE TABLE `web_type_setting` (
   `type_order` int(10) DEFAULT '0',
   `type_status` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_type_setting
 -- ----------------------------
+INSERT INTO `web_type_setting` VALUES ('1', 'Kiểu khoa', 'định nghĩa kiểu khoa hay trung tâm 222', 'type_khoa', '1', '1');
+INSERT INTO `web_type_setting` VALUES ('2', 'Kiểu trung tâm', 'định nghĩa kiểu khoa hay trung tâm', 'type_trung tâm', '2', '1');
+INSERT INTO `web_type_setting` VALUES ('3', 'Giao diện trang chủ', 'kiểu hiển thị page', 'layouts_home', '3', '1');
+INSERT INTO `web_type_setting` VALUES ('4', 'Giao diện khoa', 'kiểu hiển thị page', 'layouts_khoa', '4', '1');

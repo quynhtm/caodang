@@ -5,8 +5,8 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li><a href="{{URL::route('admin.department_list')}}"> Danh sách Khoa - Trung tâm</a></li>
-            <li class="active">@if($id > 0)Cập nhật Khoa - Trung tâm @else Tạo mới Khoa - Trung tâm @endif</li>
+            <li><a href="{{URL::route('admin.typeSettingView')}}"> Danh sách Type setting</a></li>
+            <li class="active">@if($id > 0)Cập nhật Type setting @else Tạo mới Type setting @endif</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <!-- PAGE CONTENT BEGINS -->
-                {{Form::open(array('role'=>'form','url' =>($id > 0)? "admin/department/postDepartment/$id" : 'admin/department/postDepartment','files' => true))}}
+                {{Form::open(array('role'=>'form','files' => true))}}
                 @if(isset($error))
                     <div class="alert alert-danger" role="alert">
                         @foreach($error as $itmError)
@@ -26,24 +26,33 @@
                 <div style="float: left; width: 50%">
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label for="name" class="control-label">Tên Khoa - Trung tâm<span class="red"> (*) </span></label>
-                            <input type="text" placeholder="Tên khoa - trung tâm" id="department_name" name="department_name"  class="form-control input-sm" value="@if(isset($data['department_name'])){{$data['department_name']}}@endif">
+                            <label for="name" class="control-label">Tên type<span class="red"> (*) </span></label>
+                            <input type="text" id="type_title" name="type_title"  class="form-control input-sm" value="@if(isset($data['type_title'])){{$data['type_title']}}@endif">
                         </div>
                     </div>
-                    @if($id > 0)
+
+                    <div class="clearfix"></div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label for="name" class="control-label">Tên rút gọn</label>
-                            <input type="text" disabled id="department_alias" name="department_alias"  class="form-control input-sm" value="@if(isset($data['department_alias'])){{$data['department_alias']}}@endif">
+                            <label for="name" class="control-label">Key word</label>
+                            <input type="text" @if($id > 0) readonly @endif id="type_keyword" name="type_keyword"  class="form-control input-sm" value="@if(isset($data['type_keyword'])){{$data['type_keyword']}}@endif">
                         </div>
                     </div>
-                    @endif
+
+                    <div class="clearfix"></div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Thông tin thêm</label>
+                            <input type="text" id="type_infor" name="type_infor"  class="form-control input-sm" value="@if(isset($data['type_infor'])){{$data['type_infor']}}@endif">
+                        </div>
+                    </div>
+
 
                     <div class="clearfix"></div>
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="name" class="control-label">Trạng thái</label>
-                            <select name="department_status" id="department_status" class="form-control input-sm">
+                            <select name="type_status" id="type_status" class="form-control input-sm">
                                 {{$optionStatus}}
                             </select>
                         </div>
@@ -53,12 +62,12 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="name" class="control-label">Vị trí hiển thị</label>
-                            <input type="text" placeholder="Vị trí hiển thị" id="department_order" name="department_order"  class="form-control input-sm" value="@if(isset($data['department_order'])){{$data['department_order']}}@endif">
+                            <input type="text" placeholder="Vị trí hiển thị" id="type_order" name="type_order"  class="form-control input-sm" value="@if(isset($data['type_order'])){{$data['type_order']}}@endif">
                         </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-sm-12 text-left">
-                        <a class="btn btn-warning" href="{{URL::route('admin.department_list')}}"><i class="fa fa-reply"></i> Trở lại</a>
+                        <a class="btn btn-warning" href="{{URL::route('admin.typeSettingView')}}"><i class="fa fa-reply"></i> Trở lại</a>
                         <button  class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Lưu lại</button>
                     </div>
                     <input type="hidden" id="id_hiden" name="id_hiden" value="{{$id}}"/>
