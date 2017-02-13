@@ -40,7 +40,17 @@ class BaseAdminController extends BaseController
         );
 
         $menu[] = array(
-            'name'=>'QL hệ thống',
+            'name'=>'Setting site',
+            'link'=>'javascript:void(0)',
+            'icon'=>'fa fa-cogs',
+            'arr_link_sub'=>array('admin.typeSettingView'),
+            'sub'=>array(
+                array('name'=>'Type Setting', 'RouteName'=>'admin.typeSettingView', 'icon'=>'fa fa-wrench icon-4x', 'showcontent'=>1, 'permission'=>'setting_site_full'),
+            ),
+        );
+
+        $menu[] = array(
+            'name'=>'QL site',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-cogs',
             'arr_link_sub'=>array('admin.info','admin.trash','admin.contract'),

@@ -12,7 +12,7 @@ class ActionSettingController extends BaseAdminController
     private $permission_create = 'setting_site_create';
     private $permission_edit = 'setting_site_edit';
     private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-
+    private $error = array();
     public function __construct()
     {
         parent::__construct();
@@ -42,14 +42,13 @@ class ActionSettingController extends BaseAdminController
         $search = $data = $treeCategroy = array();
         $total = 0;
 
-        $search['department_id'] = addslashes(Request::get('department_id',''));
-        $search['department_name'] = addslashes(Request::get('department_name',''));
-        $search['department_status'] = (int)Request::get('department_status',-1);
+        $search['type_title'] = addslashes(Request::get('type_title',''));
+        $search['type_status'] = (int)Request::get('type_status',-1);
 
-        $dataSearch = Department::searchByCondition($search, 500, $offset,$total);
+        $dataSearch = TypeSetting::searchByCondition($search, 500, $offset,$total);
         $paging = '';
 
-        $optionStatus = FunctionLib::getOption($this->arrStatus, $search['department_status']);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, $search['type_status']);
         $this->layout->content = View::make('admin.ActionSetting.TypeSettingView')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -73,10 +72,10 @@ class ActionSettingController extends BaseAdminController
         }
         $data = array();
         if($id > 0) {
-            $data = Department::find($id);
+            $data = TypeSetting::find($id);
         }
 
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['department_status'])? $data['department_status'] : CGlobal::status_show);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['type_status'])? $data['type_status'] : CGlobal::status_show);
         $this->layout->content = View::make('admin.ActionSetting.TypeSettingAdd')
             ->with('id', $id)
             ->with('data', $data)
@@ -88,27 +87,26 @@ class ActionSettingController extends BaseAdminController
             return Redirect::route('admin.dashboard',array('error'=>1));
         }
 
-        $dataSave['department_name'] = addslashes(Request::get('department_name'));
-        $dataSave['department_status'] = (int)Request::get('department_status', CGlobal::status_show);
-        $dataSave['department_order'] = (int)Request::get('department_order', 1);
-        $dataSave['department_type'] = (int)Request::get('department_type', 1);
-        $dataSave['department_design'] = (int)Request::get('department_design', 0);
+        $dataSave['type_title'] = addslashes(Request::get('type_title'));
+        $dataSave['type_keyword'] = addslashes(Request::get('type_keyword'));
+        $dataSave['type_infor'] = addslashes(Request::get('type_infor'));
+        $dataSave['type_status'] = (int)Request::get('type_status', CGlobal::status_show);
+        $dataSave['type_order'] = (int)Request::get('type_order', 1);
 
-        if($this->valid($dataSave) && empty($this->error)) {
-            $dataSave['department_alias'] = strtolower(FunctionLib::stringTitle($dataSave['department_name']));
+        if($this->validTypeSetting($dataSave) && empty($this->error)) {
             if($id > 0) {
                 //cap nhat
-                if(Department::updateData($id, $dataSave)) {
-                    return Redirect::route('admin.typeSetting_view');
+                if(TypeSetting::updateData($id, $dataSave)) {
+                    return Redirect::route('admin.typeSettingView');
                 }
             } else {
                 //them moi
-                if(Department::addData($dataSave)) {
-                    return Redirect::route('admin.typeSetting_view');
+                if(TypeSetting::addData($dataSave)) {
+                    return Redirect::route('admin.typeSettingView');
                 }
             }
         }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['department_status'])? $dataSave['department_status'] : CGlobal::status_show);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['type_status'])? $dataSave['type_status'] : CGlobal::status_show);
         $this->layout->content =  View::make('admin.ActionSetting.TypeSettingAdd')
             ->with('id', $id)
             ->with('data', $dataSave)
@@ -118,10 +116,10 @@ class ActionSettingController extends BaseAdminController
 
     private function validTypeSetting($data=array()) {
         if(!empty($data)) {
-            if(isset($data['department_name']) && $data['department_name'] == '') {
-                $this->error[] = 'Tên khoa - trung tâm không được bỏ trống';
+            if(isset($data['type_title']) && $data['type_title'] == '') {
+                $this->error[] = 'Tên không được bỏ trống';
             }
-            if(isset($data['department_status']) && $data['department_status'] == -1) {
+            if(isset($data['type_status']) && $data['type_status'] == -1) {
                 $this->error[] = 'Bạn chưa chọn trạng thái';
             }
             return true;
@@ -137,7 +135,7 @@ class ActionSettingController extends BaseAdminController
             return Response::json($result);
         }
         $id = (int)Request::get('id', 0);
-        if ($id > 0 && Department::deleteData($id)) {
+        if ($id > 0 && TypeSetting::deleteData($id)) {
             $result['isIntOk'] = 1;
         }
         return Response::json($result);
@@ -154,8 +152,8 @@ class ActionSettingController extends BaseAdminController
         }
 
         if ($id > 0) {
-            $dataSave['department_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
-            if(Department::updateData($id, $dataSave)) {
+            $dataSave['type_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
+            if(TypeSetting::updateData($id, $dataSave)) {
                 $result['isIntOk'] = 1;
             }
         }

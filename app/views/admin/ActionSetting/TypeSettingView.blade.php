@@ -17,12 +17,12 @@
                     {{ Form::open(array('method' => 'GET', 'role'=>'form')) }}
                     <div class="panel-body">
                         <div class="form-group col-lg-3">
-                            <label for="department_name">Tên khoa - trung tâm</label>
-                            <input type="text" class="form-control input-sm" id="department_name" name="department_name" placeholder="Tên khoa - trung tâm" @if(isset($search['department_name']) && $search['department_name'] != '')value="{{$search['department_name']}}"@endif>
+                            <label for="department_name">Tên type</label>
+                            <input type="text" class="form-control input-sm" id="type_title" name="type_title" placeholder="Tên khoa - trung tâm" @if(isset($search['type_title']) && $search['type_title'] != '')value="{{$search['department_name']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="department_status">Trạng thái</label>
-                            <select name="department_status" id="department_status" class="form-control input-sm">
+                            <select name="type_status" id="type_status" class="form-control input-sm">
                                 {{$optionStatus}}
                             </select>
                         </div>
@@ -31,7 +31,7 @@
                     <div class="panel-footer text-right">
                         @if($is_root || $permission_full ==1 || $permission_create == 1)
                         <span class="">
-                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.department_edit')}}">
+                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.typeSettingEdit')}}">
                                 <i class="ace-icon fa fa-plus-circle"></i>
                                 Thêm mới
                             </a>
@@ -76,7 +76,7 @@
 
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-                                        <a href="{{URL::route('admin.department_edit',array('id' => $item['department_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{URL::route('admin.typeSettingEdit',array('id' => $item['department_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root)
                                        &nbsp;&nbsp;&nbsp;

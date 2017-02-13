@@ -89,9 +89,9 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
 
     /*Quản lý Action Setting*/
     //type_setting
-    Route::get('typeSetting/view',array('as' => 'admin.typeSetting_view','uses' => 'ActionSettingController@viewTypeSetting'));
-    Route::get('typeSetting/editTypeSetting/{id?}', array('as' => 'admin.typeSetting_edit','uses' => 'ActionSettingController@getTypeSetting'))->where('id', '[0-9]+');
-    Route::post('typeSetting/editTypeSetting/{id?}', array('as' => 'admin.typeSetting_edit','uses' => 'ActionSettingController@postTypeSetting'))->where('id', '[0-9]+');
+    Route::get('typeSetting/view',array('as' => 'admin.typeSettingView','uses' => 'ActionSettingController@viewTypeSetting'));
+    Route::get('typeSetting/editTypeSetting/{id?}', array('as' => 'admin.typeSettingEdit','uses' => 'ActionSettingController@getTypeSetting'))->where('id', '[0-9]+');
+    Route::post('typeSetting/editTypeSetting/{id?}', array('as' => 'admin.typeSettingEdit','uses' => 'ActionSettingController@postTypeSetting'))->where('id', '[0-9]+');
     Route::post('typeSetting/deleteTypeSetting', array('as' => 'admin.deltete_typeSetting','uses' => 'ActionSettingController@deleteTypeSetting'));//ajax
     Route::post('typeSetting/updateStatusTypeSetting', array('as' => 'admin.status_typeSetting','uses' => 'ActionSettingController@updateStatusTypeSetting'));//ajax
 
