@@ -197,7 +197,7 @@ h1, h2, h3, h4, h5, h6{
     width: 100%;
     margin: auto;
     font-size: 12px;
-    background: url(../img/bg-menu.png) repeat-x 0 0;
+    background: #36287d;
     height: 36px;
     text-transform: uppercase;
 	display: block;
@@ -373,6 +373,37 @@ h1, h2, h3, h4, h5, h6{
 	margin-bottom: 10px;
 }
 /*Footer*/
+.menu-footer{
+    width: 100%;
+    margin: auto;
+    font-size: 12px;
+    background: #36287d;
+    height: 30px;
+    text-transform: none;
+	display: block;
+}
+.menu-footer li {
+    float: left;
+    line-height: 30px;
+    display: inline-block;
+}
+.menu-footer li a {
+    color: #fff;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+    display: inline-block;
+	font-size: 12px;
+}
+.menu-footer li a.aline{
+    background: url(../img/line-menu-footer.png) no-repeat right 3px;
+    float: left;
+    line-height: 30px;
+    display: block;
+}
+.menu-footer li a:hover {
+    background: #463798;
+}
 .wraps-footer{
 	background: #e1e1e1 url(../img/bg-footer.png) repeat-x left top;
 	width: 1000px;
