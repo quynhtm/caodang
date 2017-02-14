@@ -25,12 +25,17 @@
 	    </div>
 	    <ul class="menu">
 			<li><a class="aline" href="{{URL::route('site.home')}}">Trang chủ</a></li>
-			<li><a class="aline" href="">Giới thiệu</a></li>
-			<li><a class="aline" href="">Tuyển sinh</a></li>
-			<li><a class="aline" href="">Đào tạo</a></li>
-			<li><a class="aline" href="">Đoàn - Hội - Sinh viên</a></li>
-			<li><a class="aline" href="">Nghiên cứu khoa học</a></li>
-			<li><a class="aline" href="">Thông báo</a></li>
+			@if(!empty($menuCategoriessAll))
+				<?php $i=1; ?>
+				@foreach($menuCategoriessAll as $cat)
+					@if($i <= 7)
+						@if($cat['category_show_top'] == CGlobal::status_show)
+						<?php $i++; ?>
+						<li><a class="aline @if(isset($catid) && $catid == $cat['category_id']) act @endif" href="{{FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name'])}}" title="{{$cat['category_name']}}">{{$cat['category_name']}}</a></li>
+						@endif
+					@endif
+				@endforeach
+			@endif
 			<li><a href="{{URL::route('site.pageContact')}}" title="Liên hệ">Liên hệ</a></li>
 		</ul>
 	</div>

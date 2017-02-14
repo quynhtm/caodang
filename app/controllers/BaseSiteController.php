@@ -17,8 +17,8 @@ class BaseSiteController extends BaseController{
     }
     public function header(){
         $menuCategoriessAll = Category::getCategoriessAll();
-        //FunctionLib::debug($menuCategoriessAll);
-    	$this->layout->header = View::make("site.BaseLayouts.header");
+    	$this->layout->header = View::make("site.BaseLayouts.header")
+                                ->with('menuCategoriessAll', $menuCategoriessAll);
     }
 	public function footer(){
         $footer = '';

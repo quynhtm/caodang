@@ -436,7 +436,7 @@ class FunctionLib {
     static function buildLinkCategory($cat_id = 0, $cat_title = 'Danh-mục', $province_id=0, $province_name=''){
         $link_view = '#';
     	if($cat_id > 0){
-            $link_view = URL::route('Site.pageCategory', array('id'=>$cat_id, 'name'=>strtolower(FunctionLib::safe_title($cat_title))));
+            $link_view = URL::route('site.pageCategory', array('id'=>$cat_id, 'name'=>strtolower(FunctionLib::safe_title($cat_title))));
             if($province_id > 0 && $province_name != ''){
                 $link_view .= '?city_id='.$province_id.'&tinh='.$province_name;
             }
