@@ -16,7 +16,8 @@ class BaseSiteController extends BaseController{
     	FunctionLib::site_js('lib/jAlert/jquery.alerts.js', CGlobal::$POS_END);	
     }
     public function header(){
-		
+        $menuCategoriessAll = Category::getCategoriessAll();
+        //FunctionLib::debug($menuCategoriessAll);
     	$this->layout->header = View::make("site.BaseLayouts.header");
     }
 	public function footer(){
