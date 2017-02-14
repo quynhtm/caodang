@@ -19,7 +19,7 @@ class BaseSiteController extends BaseController{
         //Banner Header
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP, 0 , 0, 0);
         $arrBannerHead = $this->getBannerWithPosition($arrBanner);// Hien thi theo: TOP, CENTER, BOTTOM
-
+        //FunctionLib::debug($arrBannerHead);
         $menuCategoriessAll = Category::getCategoriessAll();
     	$this->layout->header = View::make("site.BaseLayouts.header")
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
