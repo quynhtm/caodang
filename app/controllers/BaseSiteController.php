@@ -17,9 +17,9 @@ class BaseSiteController extends BaseController{
     }
     public function header(){
         //Banner Header
-        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP, 0 , 0, 0);
-        $arrBannerHead = $this->getBannerWithPosition($arrBanner);// Hien thi theo: TOP, CENTER, BOTTOM
-        //FunctionLib::debug($arrBannerHead);
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP);
+        $arrBannerHead = $this->getBannerWithPosition($arrBanner);
+
         $menuCategoriessAll = Category::getCategoriessAll();
     	$this->layout->header = View::make("site.BaseLayouts.header")
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
@@ -34,7 +34,15 @@ class BaseSiteController extends BaseController{
 		$this->layout->footer = View::make("site.BaseLayouts.footer")->with('footer', $footer);
 	}
     public function slider(){
-        $this->layout->slider = View::make("site.BaseLayouts.slider");
+
+        FunctionLib::site_css('lib/skitter-master/skitter.css', CGlobal::$POS_HEAD);
+        FunctionLib::site_js('lib/skitter-master/jquery.easing.1.3.js', CGlobal::$POS_END);
+        FunctionLib::site_js('lib/skitter-master/jquery.skitter.min.js', CGlobal::$POS_END);
+
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_SLIDE);
+        $arrBannerSlider = $this->getBannerWithPosition($arrBanner);
+        $this->layout->slider = View::make("site.BaseLayouts.slider")
+                                ->with('arrBannerSlider', $arrBannerSlider);
     }
     public function left(){
         $this->layout->left = View::make("site.BaseLayouts.left");

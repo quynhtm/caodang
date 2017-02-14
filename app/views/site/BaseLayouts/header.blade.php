@@ -3,10 +3,9 @@
 		<div class="time">{{FunctionLib::date_vietname(date('D', time()))}}, ngày {{date('d/m/Y', time())}}</div>
 		<div class="topMenu">
 			<ul>
-			   <li><a href="" target="_blank">Thư điện tử</a> &nbsp;&nbsp;&nbsp;|</li>
+			   <li><a href="{{CGlobal::linkMail}}" target="_blank">Thư điện tử</a> &nbsp;&nbsp;&nbsp;|</li>
 			   <li><a href="">Lịch công tác</a>&nbsp;&nbsp;&nbsp;|</li>
 			   <li><a href="">Tin tức sự kiện</a>&nbsp;&nbsp;&nbsp;|</li>
-			   <li><a href="">Liên kết website</a>&nbsp;&nbsp;&nbsp;|</li>
 			   <li><a href="" target="_blank">Diễn đàn Khoa TTMT</a>&nbsp;&nbsp;&nbsp;</li>
 			</ul>
 		</div>
@@ -26,14 +25,13 @@
 					<?php $i++; ?>
 					@if($i == 1)
 						@if($item->banner_image != '')
-							<a @if($item->banner_is_rel == CGlobal::LINK_NOFOLLOW) rel="nofollow" @endif @if($item->banner_is_target == CGlobal::BANNER_TARGET_BLANK) target="_blank" @endif href="@if($item->banner_link != '') {{$item->banner_link}} @else javascript:void(0) @endif" title="{{$item->banner_name}}">
+							<embed wmode="transparent" src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/flashbg00015.swf" height="172px" width="1000px">
+							<a class="banner-img" @if($item->banner_is_rel == CGlobal::LINK_NOFOLLOW) rel="nofollow" @endif @if($item->banner_is_target == CGlobal::BANNER_TARGET_BLANK) target="_blank" @endif href="@if($item->banner_link != '') {{$item->banner_link}} @else javascript:void(0) @endif" title="{{$item->banner_name}}">
 								<img src="{{ThumbImg::thumbImageBannerNormal($item->banner_id,$item->banner_parent_id, $item->banner_image, CGlobal::sizeImage_1000,CGlobal::sizeImage_200, $item->banner_name,true,true)}}" alt="{{$item->banner_name}}" />
 							</a>
 						@endif
 					@endif
 				@endforeach
-			<!--<embed wmode="transparent" src="http://www.epu.edu.vn/Images/dhdienluc-to.swf" height="172px" width="1000px">
-	       <img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/1.png">-->
 			@endif
 	    </div>
 	    <ul class="menu">

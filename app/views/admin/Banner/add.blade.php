@@ -38,7 +38,7 @@
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="name" class="control-label">Link URL <span class="red"> (*) </span></label>
+                        <label for="name" class="control-label">Link URL</label>
                         <input type="text" placeholder="url banner" id="banner_link" name="banner_link"  class="form-control input-sm" value="@if(isset($data['banner_link'])){{$data['banner_link']}}@endif">
                     </div>
                 </div>
