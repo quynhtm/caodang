@@ -16,9 +16,14 @@ class BaseSiteController extends BaseController{
     	FunctionLib::site_js('lib/jAlert/jquery.alerts.js', CGlobal::$POS_END);	
     }
     public function header(){
+        //Banner Header
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP, 0 , 0, 0);
+        $arrBannerHead = $this->getBannerWithPosition($arrBanner);// Hien thi theo: TOP, CENTER, BOTTOM
+
         $menuCategoriessAll = Category::getCategoriessAll();
     	$this->layout->header = View::make("site.BaseLayouts.header")
-                                ->with('menuCategoriessAll', $menuCategoriessAll);
+                                ->with('menuCategoriessAll', $menuCategoriessAll)
+                                ->with('arrBannerHead', $arrBannerHead);
     }
 	public function footer(){
         $footer = '';
@@ -36,5 +41,32 @@ class BaseSiteController extends BaseController{
     }
     public function right(){
         $this->layout->right = View::make("site.BaseLayouts.right");
+    }
+
+    public function getBannerWithPosition($arrBanner = array()){
+        $arrBannerShow = array();
+        if(sizeof($arrBanner) > 0){
+            foreach($arrBanner as $id_banner =>$valu){
+                $banner_is_run_time = 1;
+                if($valu->banner_is_run_time == CGlobal::BANNER_NOT_RUN_TIME){
+                    $banner_is_run_time = 1;
+                }else{
+                    $banner_start_time = $valu->banner_start_time;
+                    $banner_end_time = $valu->banner_end_time;
+                    $date_current = time();
+                    if($banner_start_time > 0 && $banner_end_time > 0 && $banner_start_time <= $banner_end_time){
+                        if($banner_start_time <= $date_current && $date_current <= $banner_end_time){
+                            $banner_is_run_time = 1;
+                        }
+                    }else{
+                        $banner_is_run_time = 0;
+                    }
+                }
+                if($banner_is_run_time == 1){
+                    $arrBannerShow[$valu->banner_position][] = $valu;
+                }
+            }
+        }
+        return $arrBannerShow;
     }
 }

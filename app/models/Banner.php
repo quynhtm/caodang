@@ -40,6 +40,7 @@ class Banner extends Eloquent
                 Cache::put($key_cache, $bannerAdvanced, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
             }
         }
+
         return $bannerAdvanced;
     }
 

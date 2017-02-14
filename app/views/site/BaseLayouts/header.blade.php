@@ -20,8 +20,22 @@
 <div class="head-banner">
 	<div class="container">
 		<div class="flash">
-	        <!--<embed wmode="transparent" src="http://www.epu.edu.vn/Images/dhdienluc-to.swf" height="172px" width="1000px">-->
-	        <img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/1.png">
+	        @if(sizeof($arrBannerHead) > 0) a
+				<?php $i=0; ?>
+				@foreach($arrBannerHead as $item)
+					a
+					<?php $i++; ?>
+					@if($i == 1)
+						@if($item['banner_image'] != '')
+							<a @if($item['banner_is_rel'] == CGlobal::LINK_NOFOLLOW) rel="nofollow" @endif @if($item['banner_is_target'] == CGlobal::BANNER_TARGET_BLANK) target="_blank" @endif href="@if($item['banner_link'] != '') {{$item['banner_link']}} @else javascript:void(0) @endif" title="{{$item['banner_name']}}">
+								<img src="{{ThumbImg::thumbImageBannerNormal($item['banner_id'],$item['banner_parent_id'], $item['banner_image'], CGlobal::sizeImage_1000,CGlobal::sizeImage_200, $item['banner_name'],true,true)}}" alt="{{$item['banner_name']}}" />
+							</a>
+						@endif
+					@endif
+				@endforeach
+			<!--<embed wmode="transparent" src="http://www.epu.edu.vn/Images/dhdienluc-to.swf" height="172px" width="1000px">
+	       <img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/1.png">-->
+			@endif
 	    </div>
 	    <ul class="menu">
 			<li><a class="aline" href="{{URL::route('site.home')}}">Trang chủ</a></li>

@@ -874,4 +874,12 @@ class FunctionLib {
 		}
 		return $current_date_str;
 	}
+    public static function chkFileExtension($str='') {
+        $match= preg_match('/.swf/i', $str);
+        if($match>0){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
 }

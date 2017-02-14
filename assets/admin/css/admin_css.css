@@ -8,7 +8,8 @@
 /*Cpanel*/
 .no-skin small,
 .no-skin .small {
-    font-size: 70%;
+    font-size: 14px;
+	font-style: italic;
 }
 .no-skin .user-info small {
     display: inline-block;
@@ -57,4 +58,7 @@
     clear: both;
     display: inline-block;
     width: 100%;
+}
+.breadcrumb{
+	font-style: italic;
 }
