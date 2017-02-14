@@ -24,14 +24,14 @@
 	        <img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/1.png">
 	    </div>
 	    <ul class="menu">
-			<li><a class="aline" href="">Trang chủ</a></li>
+			<li><a class="aline" href="{{URL::route('site.home')}}">Trang chủ</a></li>
 			<li><a class="aline" href="">Giới thiệu</a></li>
 			<li><a class="aline" href="">Tuyển sinh</a></li>
 			<li><a class="aline" href="">Đào tạo</a></li>
 			<li><a class="aline" href="">Đoàn - Hội - Sinh viên</a></li>
 			<li><a class="aline" href="">Nghiên cứu khoa học</a></li>
 			<li><a class="aline" href="">Thông báo</a></li>
-			<li><a href="">Liên hệ</a></li>
+			<li><a href="{{URL::route('site.pageContact')}}" title="Liên hệ">Liên hệ</a></li>
 		</ul>
 	</div>
 </div>

@@ -27,8 +27,13 @@ class BaseSiteController extends BaseController{
         }
 		$this->layout->footer = View::make("site.BaseLayouts.footer")->with('footer', $footer);
 	}
-	public function popupHide(){
-		
-		$this->layout->popupHide = View::make("site.BaseLayouts.popupHide");
-	}
+    public function slider(){
+        $this->layout->slider = View::make("site.BaseLayouts.slider");
+    }
+    public function left(){
+        $this->layout->left = View::make("site.BaseLayouts.left");
+    }
+    public function right(){
+        $this->layout->right = View::make("site.BaseLayouts.right");
+    }
 }

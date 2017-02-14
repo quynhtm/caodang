@@ -415,3 +415,67 @@ h1, h2, h3, h4, h5, h6{
 .wraps-footer p{
     margin:0 0 5px 0px;
 }
+.contact textarea {
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+}
+.contact input[type="text"] {
+    border: 1px solid #ccc;
+    font-size: 14px;
+    height: 30px;
+    border-radius: 0;
+    box-shadow: none;
+    padding-left: 5px;
+}
+.txtInputCaptchar {
+    float: left;
+    display: inline-block;
+    padding-left: 5px;
+}
+.imageCaptchar {
+    display: inline-block;
+    float: left;
+    height: 30px;
+    margin-left: 10px;
+    width: 50px;
+}
+.iconRefreh {
+    background: rgba(0, 0, 0, 0) url("../img/refreh.png") no-repeat scroll 0 0;
+    display: inline-block;
+    float: left;
+    height: 35px;
+    margin-left: 10px;
+    width: 35px;
+}
+.contact .form-group {
+    clear: both;
+}
+.labelInputCaptchar {
+    clear: both;
+    width: 100%;
+}
+.contact label span {
+    color: #ff0000;
+}
+.error{
+    border: 1px solid #ff0000 !important;
+}
+.title-path{
+    border-bottom: 1px solid #e7e7e7;
+    padding: 2px 0 5px 0;
+    font-size: 15px;
+    color: #383838;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+.title-path a {
+    color: #555;
+    border-left: 5px solid #dd0023;
+    padding-left: 10px;
+}
+.btn-ext {
+    padding: 5px 22px;
+}
+.
