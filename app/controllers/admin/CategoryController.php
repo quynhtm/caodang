@@ -56,7 +56,7 @@ class CategoryController extends BaseAdminController
         //FunctionLib::debug($dataSearch);
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, $search['category_status']);
-        $optionCategoryDepart = FunctionLib::getOption($this->arrCategoryDepart, $search['category_depart_id']);
+        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryDepart, $search['category_depart_id']);
         $this->layout->content = View::make('admin.Category.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -86,7 +86,7 @@ class CategoryController extends BaseAdminController
         }
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['category_status'])? $data['category_status'] : -1);
-        $optionCategoryParent = FunctionLib::getOption($this->arrCategoryParent, isset($data['category_parent_id'])? $data['category_parent_id'] : -1);
+        $optionCategoryParent = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryParent, isset($data['category_parent_id'])? $data['category_parent_id'] : -1);
         $optionCategoryDepart = FunctionLib::getOption($this->arrCategoryDepart, isset($data['category_depart_id'])? $data['category_depart_id'] : -1);
         $this->layout->content = View::make('admin.Category.add')
             ->with('id', $id)
@@ -142,7 +142,7 @@ class CategoryController extends BaseAdminController
             }
         }
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
-        $optionCategoryParent = FunctionLib::getOption($this->arrCategoryParent, isset($dataSave['category_parent_id'])? $dataSave['category_parent_id'] : -1);
+        $optionCategoryParent = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryParent, isset($dataSave['category_parent_id'])? $dataSave['category_parent_id'] : -1);
         $optionCategoryDepart = FunctionLib::getOption($this->arrCategoryDepart, isset($dataSave['category_depart_id'])? $dataSave['category_depart_id'] : -1);
 
         $this->layout->content =  View::make('admin.Category.add')
