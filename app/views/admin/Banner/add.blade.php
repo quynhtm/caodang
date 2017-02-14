@@ -115,16 +115,6 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="name" class="control-label">Tỉnh thành</label>
-                        <div class="form-group">
-                            <select name="banner_province_id" id="banner_province_id" class="form-control input-sm">
-                                {{$optionProvince}}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
                         <label for="name" class="control-label">Trạng thái</label>
                         <div class="form-group">
                             <select name="banner_status" id="banner_status" class="form-control input-sm">

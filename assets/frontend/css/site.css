@@ -405,10 +405,13 @@ h1, h2, h3, h4, h5, h6{
     background: #463798;
 }
 .wraps-footer{
-	background: #e1e1e1 url(../img/bg-footer.png) repeat-x left top;
+	#background: #e1e1e1 url(../img/bg-footer.png) repeat-x left top;
 	width: 1000px;
 	margin: auto;
 	text-align: center;
 	padding: 15px 0px;
 	color: #666;
+}
+.wraps-footer p{
+    margin:0 0 5px 0px;
 }
