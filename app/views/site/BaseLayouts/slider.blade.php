@@ -7,9 +7,7 @@
 		});
 	});
 </script>
-<?php
-    $rands = array('cube', 'cubeRandom', 'block', 'cubeStop', 'showBars', 'horizontal', 'fadeFour', 'paralell', 'blind', 'directionTop', 'directionBottom', 'directionRight');
-?>
+<?php $rands = array('cube', 'cubeRandom', 'block', 'cubeStop', 'showBars', 'horizontal', 'fadeFour', 'paralell', 'blind', 'directionTop', 'directionBottom', 'directionRight'); ?>
 <div class="line">
 	<div class="skitter-large-box">
 		<div class="skitter skitter-large _sliders">

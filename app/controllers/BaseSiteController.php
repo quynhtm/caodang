@@ -45,10 +45,18 @@ class BaseSiteController extends BaseController{
                                 ->with('arrBannerSlider', $arrBannerSlider);
     }
     public function left(){
-        $this->layout->left = View::make("site.BaseLayouts.left");
+
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_LEFT);
+        $arrBannerLeft = $this->getBannerWithPosition($arrBanner);
+        $this->layout->left = View::make("site.BaseLayouts.left")
+                                ->with('arrBannerLeft', $arrBannerLeft);
     }
     public function right(){
-        $this->layout->right = View::make("site.BaseLayouts.right");
+
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT);
+        $arrBannerRight = $this->getBannerWithPosition($arrBanner);
+        $this->layout->right = View::make("site.BaseLayouts.right")
+                                ->with('arrBannerRight', $arrBannerRight);
     }
 
     public function getBannerWithPosition($arrBanner = array()){
