@@ -20,8 +20,12 @@ class BaseSiteController extends BaseController{
     	$this->layout->header = View::make("site.BaseLayouts.header");
     }
 	public function footer(){
-		
-		$this->layout->footer = View::make("site.BaseLayouts.footer");
+        $footer = '';
+        $arrFooter = Info::getItemByKeyword('SITE_FOOTER_LEFT');
+        if(sizeof($arrFooter) > 0){
+            $footer = stripslashes($arrFooter->info_content);
+        }
+		$this->layout->footer = View::make("site.BaseLayouts.footer")->with('footer', $footer);
 	}
 	public function popupHide(){
 		

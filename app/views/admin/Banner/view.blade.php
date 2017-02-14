@@ -21,13 +21,6 @@
                             <input type="text" class="form-control input-sm" id="banner_name" name="banner_name" placeholder="Tiêu đề banner" @if(isset($search['banner_name']) && $search['banner_name'] != '')value="{{$search['banner_name']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
-                            <label for="banner_province_id">Tỉnh thành</label>
-                            <select name="banner_province_id" id="banner_province_id" class="form-control input-sm">
-                                {{$optionProvince}}
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-3">
                             <label for="banner_page">Thuộc page</label>
                             <select name="banner_page" id="banner_page" class="form-control input-sm">
                                 {{$optionPage}}
@@ -103,7 +96,6 @@
                                 </td>
                                 <td>
                                     <b>Danh mục: </b>@if(isset($arrCategory[$item->banner_category_id])){{$arrCategory[$item->banner_category_id]}}@else ----- @endif
-                                    <br/><b>Tỉnh: </b>@if(isset($arrProvince[$item->banner_province_id])){{$arrProvince[$item->banner_province_id]}}@else Toàn quốc @endif
                                     <br/>@if($item->banner_is_rel == 1)Follow @else Nofollow @endif
                                 </td>
                                 <td class="text-center text-middle">
