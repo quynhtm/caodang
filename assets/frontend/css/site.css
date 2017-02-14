@@ -36,6 +36,9 @@ img {
     line-height: 0;
     max-width: 100%;
 }
+._sliders img{
+    max-width: none;
+}
 input, textarea {
     background: none;
     border: medium none;
@@ -91,11 +94,11 @@ h1, h2, h3, h4, h5, h6{
     color: #23527c;
     z-index: 3;
 }
-.pagination > .active > a, 
-.pagination > .active > span, 
-.pagination > .active > a:hover, 
-.pagination > .active > span:hover, 
-.pagination > .active > a:focus, 
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
 .pagination > .active > span:focus {
     background-color: #337ab7;
     border-color: #337ab7;
@@ -103,11 +106,11 @@ h1, h2, h3, h4, h5, h6{
     cursor: default;
     z-index: 2;
 }
-.pagination > .disabled > span, 
+.pagination > .disabled > span,
 .pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus, 
-.pagination > .disabled > a, 
-.pagination > .disabled > a:hover, 
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
     background-color: #fff;
     border-color: #ddd;
@@ -192,6 +195,14 @@ h1, h2, h3, h4, h5, h6{
 .flash {
     width: 1000px;
     height: 172px;
+    position: relative;
+}
+.flash embed {
+    position: absolute;
+    z-index: 1;
+}
+.flash .banner-img{
+    z-index: 2;
 }
 .menu{
     width: 100%;
@@ -290,9 +301,6 @@ h1, h2, h3, h4, h5, h6{
     width: 190px;
     float: right;
     padding-left: 5px;
-}
-._sliders img {
-    width: 100%;
 }
 /*Content*/
 .top-title {
@@ -478,4 +486,3 @@ h1, h2, h3, h4, h5, h6{
 .btn-ext {
     padding: 5px 22px;
 }
-.
