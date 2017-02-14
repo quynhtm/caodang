@@ -252,9 +252,9 @@ class BannerController extends BaseAdminController
             if(isset($data['banner_type']) && trim($data['banner_type']) == 0) {
                 $this->error[] = 'Chưa chọn loại Banner';
             }
-            if(isset($data['banner_page']) && trim($data['banner_page']) == 0) {
+            /*if(isset($data['banner_page']) && trim($data['banner_page']) == 0) {
                 $this->error[] = 'Chưa chọn page';
-            }
+            }*/
             if(isset($data['banner_link']) && trim($data['banner_link']) == '') {
                 $this->error[] = 'Chưa có link view cho banner';
             }
