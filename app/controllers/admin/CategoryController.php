@@ -31,8 +31,8 @@ class CategoryController extends BaseAdminController
             'lib/jquery.uploadfile.js',
         ));*/
         
-        $this->arrCategoryParent = $this->arrCategoryParent + Category::getAllParentCategoryId();
-        $this->arrCategoryDepart = $this->arrCategoryDepart + Department::getDepart();
+        $this->arrCategoryParent = Category::getAllParentCategoryId();
+        $this->arrCategoryDepart = Department::getDepart();
     }
 
     public function view() {
