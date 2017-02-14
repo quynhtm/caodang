@@ -53,6 +53,7 @@
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
                             <th width="25%" class="td_list">Tên type</th>
                             <th width="10%" class="text-center">Key word</th>
+                            <th width="10%" class="text-center">Group</th>
                             <th width="20%" class="td_list">Thông tin thêm</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>
@@ -66,9 +67,8 @@
                                 <td>
                                     [<b>{{ $item['type_id'] }}</b>] {{ $item['type_title'] }}
                                 </td>
-                                <td class="text-center">
-                                    {{ $item['type_keyword'] }}
-                                </td>
+                                <td class="text-center">{{ $item['type_keyword'] }}</td>
+                                <td class="text-center">{{ $item['type_group'] }}</td>
                                 <td>{{ $item['type_infor'] }}</td>
 
                                 <td class="text-center">

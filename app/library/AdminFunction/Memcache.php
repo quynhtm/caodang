@@ -28,7 +28,8 @@ class Memcache{
 
     //depart
     const CACHE_TYPE_SETTING_ID    = 'cache_type_setting_id_';
-    const CACHE_ALL_TYPE_SETTING    = 'cache_all_type_setting';
+    const CACHE_GROUP_TYPE_SETTING    = 'cache_group_type_setting_';
+    const CACHE_KEYWORD_TYPE_SETTING    = 'cache_keyword_type_setting_';
 
     //depart
     const CACHE_CATEGORY_DEPARTMENT_ID    = 'cache_category_depart_id_';

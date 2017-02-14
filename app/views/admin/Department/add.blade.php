@@ -42,6 +42,26 @@
                     <div class="clearfix"></div>
                     <div class="col-sm-10">
                         <div class="form-group">
+                            <label for="name" class="control-label">Kiểu</label>
+                            <select name="department_type" id="department_type" class="form-control input-sm">
+                                {{$optionTypeDepart}}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Layous hiển thị</label>
+                            <select name="department_layouts" id="department_layouts" class="form-control input-sm">
+                                {{$optionLayoutsDepart}}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
                             <label for="name" class="control-label">Trạng thái</label>
                             <select name="department_status" id="department_status" class="form-control input-sm">
                                 {{$optionStatus}}

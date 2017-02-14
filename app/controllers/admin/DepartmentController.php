@@ -12,6 +12,8 @@ class DepartmentController extends BaseAdminController
     private $permission_create = 'department_create';
     private $permission_edit = 'category_edit';
     private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
+    private $arrTypeDepart = array();
+    private $arrLayoutsDepart = array();
 
     public function __construct()
     {
@@ -26,6 +28,8 @@ class DepartmentController extends BaseAdminController
         FunctionLib::link_js(array(
             'lib/jquery.uploadfile.js',
         ));*/
+        $this->arrTypeDepart = TypeSetting::getTypeSettingWithGroup('group_type');
+        $this->arrLayoutsDepart = TypeSetting::getTypeSettingWithGroup('group_layouts');
     }
 
     public function view() {
@@ -41,12 +45,16 @@ class DepartmentController extends BaseAdminController
 
         $search['department_id'] = addslashes(Request::get('department_id',''));
         $search['department_name'] = addslashes(Request::get('department_name',''));
+        $search['department_type'] = addslashes(Request::get('department_type',''));
+        $search['department_layouts'] = addslashes(Request::get('department_layouts',''));
         $search['department_status'] = (int)Request::get('department_status',-1);
 
         $dataSearch = Department::searchByCondition($search, 500, $offset,$total);
         $paging = '';
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, $search['department_status']);
+        $optionTypeDepart = FunctionLib::getOption(array(''=>'---Chọn kiểu---')+$this->arrTypeDepart, $search['department_type']);
+        $optionLayoutsDepart = FunctionLib::getOption(array(''=>'---Chọn giao diện hiển thị---')+$this->arrLayoutsDepart, $search['department_layouts'] );
         $this->layout->content = View::make('admin.Department.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -54,9 +62,11 @@ class DepartmentController extends BaseAdminController
             ->with('data', $dataSearch)
             ->with('search', $search)
             ->with('optionStatus', $optionStatus)
-            ->with('arrStatus', $this->arrStatus)
+            ->with('optionTypeDepart', $optionTypeDepart)
+            ->with('optionLayoutsDepart', $optionLayoutsDepart)
+            ->with('arrTypeDepart', $this->arrTypeDepart)
+            ->with('arrLayoutsDepart', $this->arrLayoutsDepart)
 
-            
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)//dùng common
@@ -74,9 +84,13 @@ class DepartmentController extends BaseAdminController
         }
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['department_status'])? $data['department_status'] : CGlobal::status_show);
+        $optionTypeDepart = FunctionLib::getOption(array(''=>'---Chọn kiểu---')+$this->arrTypeDepart, isset($data['department_type'])? $data['department_type'] : '');
+        $optionLayoutsDepart = FunctionLib::getOption(array(''=>'---Chọn giao diện hiển thị---')+$this->arrLayoutsDepart, isset($data['department_layouts'])? $data['department_layouts'] : '');
         $this->layout->content = View::make('admin.Department.add')
             ->with('id', $id)
             ->with('data', $data)
+            ->with('optionTypeDepart', $optionTypeDepart)
+            ->with('optionLayoutsDepart', $optionLayoutsDepart)
             ->with('optionStatus', $optionStatus);
     }
 
@@ -88,8 +102,8 @@ class DepartmentController extends BaseAdminController
         $dataSave['department_name'] = addslashes(Request::get('department_name'));
         $dataSave['department_status'] = (int)Request::get('department_status', CGlobal::status_show);
         $dataSave['department_order'] = (int)Request::get('department_order', 1);
-        $dataSave['department_type'] = (int)Request::get('department_type', 1);
-        $dataSave['department_design'] = (int)Request::get('department_design', 0);
+        $dataSave['department_type'] = Request::get('department_type', '');
+        $dataSave['department_layouts'] = Request::get('department_layouts', '');
 
         if($this->valid($dataSave) && empty($this->error)) {
             $dataSave['department_alias'] = strtolower(FunctionLib::stringTitle($dataSave['department_name']));
@@ -106,10 +120,15 @@ class DepartmentController extends BaseAdminController
             }
         }
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['department_status'])? $dataSave['department_status'] : CGlobal::status_show);
+        $optionTypeDepart = FunctionLib::getOption(array(''=>'---Chọn kiểu---')+$this->arrTypeDepart, isset($dataSave['department_type'])? $dataSave['department_type'] : '');
+        $optionLayoutsDepart = FunctionLib::getOption(array(''=>'---Chọn giao diện hiển thị---')+$this->arrLayoutsDepart, isset($dataSave['department_layouts'])? $dataSave['department_layouts'] : '');
+
         $this->layout->content =  View::make('admin.Department.add')
             ->with('id', $id)
             ->with('data', $dataSave)
             ->with('optionStatus', $optionStatus)
+            ->with('optionTypeDepart', $optionTypeDepart)
+            ->with('optionLayoutsDepart', $optionLayoutsDepart)
             ->with('error', $this->error);
     }
 
@@ -117,6 +136,12 @@ class DepartmentController extends BaseAdminController
         if(!empty($data)) {
             if(isset($data['department_name']) && $data['department_name'] == '') {
                 $this->error[] = 'Tên khoa - trung tâm không được bỏ trống';
+            }
+            if(isset($data['department_type']) && $data['department_type'] == '') {
+                $this->error[] = 'Chưa chọn kiểu.';
+            }
+            if(isset($data['department_layouts']) && $data['department_layouts'] == '') {
+                $this->error[] = 'Chưa chọn giao hiện hiển thị';
             }
             if(isset($data['department_status']) && $data['department_status'] == -1) {
                 $this->error[] = 'Bạn chưa chọn trạng thái';

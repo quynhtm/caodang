@@ -10,7 +10,7 @@ class Department extends Eloquent
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('department_name','department_alias','department_status','department_type','department_design', 'department_order');
+    protected $fillable = array('department_name','department_alias','department_status','department_type','department_layouts', 'department_order');
 
     public static function getByID($id) {
         $category = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_DEPARTMENT_ID.$id) : array();
@@ -49,6 +49,12 @@ class Department extends Eloquent
             }
             if (isset($dataSearch['department_status']) && $dataSearch['department_status'] != -1) {
                 $query->where('department_status', $dataSearch['department_status']);
+            }
+            if (isset($dataSearch['department_type']) && $dataSearch['department_type'] != '') {
+                $query->where('department_type', $dataSearch['department_type']);
+            }
+            if (isset($dataSearch['department_layouts']) && $dataSearch['department_layouts'] != '') {
+                $query->where('department_layouts', $dataSearch['department_layouts']);
             }
             $query->orderBy('department_id', 'desc');
             $total = $query->count();

@@ -21,6 +21,18 @@
                             <input type="text" class="form-control input-sm" id="department_name" name="department_name" placeholder="Tên khoa - trung tâm" @if(isset($search['department_name']) && $search['department_name'] != '')value="{{$search['department_name']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
+                            <label for="department_status">Kiểu</label>
+                            <select name="department_type" id="department_type" class="form-control input-sm">
+                                {{$optionTypeDepart}}
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label for="department_status">Giao diện hiển thị</label>
+                            <select name="department_layouts" id="department_layouts" class="form-control input-sm">
+                                {{$optionLayoutsDepart}}
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3">
                             <label for="department_status">Trạng thái</label>
                             <select name="department_status" id="department_status" class="form-control input-sm">
                                 {{$optionStatus}}
@@ -50,8 +62,10 @@
                         <thead class="thin-border-bottom">
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
-                            <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="25%" class="td_list">Tên khoa - trung tâm</th>
+                            <!--<th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>-->
+                            <th width="35%" class="td_list">Tên khoa - trung tâm</th>
+                            <th width="20%" class="td_list">Kiểu</th>
+                            <th width="20%" class="td_list">Giao diện</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
@@ -60,10 +74,12 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['department_id']}}"></td>
+                                <!---<td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['department_id']}}"></td>-->
                                 <td>
                                     [<b>{{ $item['department_id'] }}</b>] {{ $item['department_name'] }}
                                 </td>
+                                <td>@if(isset($arrTypeDepart[$item['department_type']])){{ $arrTypeDepart[$item['department_type']] }} @endif </td>
+                                <td>@if(isset($arrLayoutsDepart[$item['department_layouts']])){{ $arrLayoutsDepart[$item['department_layouts']] }} @endif </td>
 
                                 <td class="text-center">
                                     @if($item['department_status'] == 1)
