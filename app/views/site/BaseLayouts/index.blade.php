@@ -36,13 +36,26 @@
 	 
 	<div id="content">
 		<div class="line-content">
-			@if(isset($menuLeft))
-				{{$menuLeft}}
-			@endif
-			
-			@if(isset($content))
-				{{$content}}
-			@endif
+			<div class="container">
+				<div class="wraps">
+					@if(isset($slider))
+						{{$slider}}
+					@endif
+					<div class="line">
+						@if(isset($left))
+							{{$left}}
+						@endif
+
+						@if(isset($content))
+							{{$content}}
+						@endif
+
+						@if(isset($right))
+							{{$right}}
+						@endif
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -51,9 +64,6 @@
 		{{$footer}}
 	</div>
 	@endif
-	@if(isset($popupHide))
-		{{$popupHide}}
-     @endif
 </div>
 {{CGlobal::$extraFooterCSS}}
 {{CGlobal::$extraFooterJS}}
