@@ -65,9 +65,6 @@ class BannerController extends BaseAdminController
         //Include javascript.
         FunctionLib::link_js(array(
             'lib/upload/jquery.uploadfile.js',
-            'lib/ckeditor/ckeditor.js',
-            'lib/ckeditor/config.js',
-            'frontend/js/site.js',
             'js/common.js',
         ));
     }
@@ -254,10 +251,11 @@ class BannerController extends BaseAdminController
             }
             /*if(isset($data['banner_page']) && trim($data['banner_page']) == 0) {
                 $this->error[] = 'Chưa chọn page';
-            }*/
+            }
             if(isset($data['banner_link']) && trim($data['banner_link']) == '') {
                 $this->error[] = 'Chưa có link view cho banner';
             }
+            */
             if(isset($data['banner_image']) && trim($data['banner_image']) == '' && isset($data['banner_parent_id']) && (int)trim($data['banner_parent_id']) == 0) {
                 $this->error[] = 'Chưa up ảnh banner quảng cáo';
             }
