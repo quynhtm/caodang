@@ -863,4 +863,15 @@ class FunctionLib {
     	}
     	return $text;
     }
+	//Date Vietnamese Convert
+	public static function date_vietname($str=''){
+		$current_date_str='';
+		$arrListTodayVietnamese = array("Mon" => "Thứ hai","Tue" => "Thứ ba","Wed" => "Thứ tư","Thu" => "Thứ năm","Fri" => "Thứ sáu","Sat" => "Thứ bảy","Sun" => "Chủ nhật");
+		foreach($arrListTodayVietnamese as $k => $v){
+			if(strtolower($str)===strtolower($k)){
+				$current_date_str = $v;
+			}
+		}
+		return $current_date_str;
+	}
 }

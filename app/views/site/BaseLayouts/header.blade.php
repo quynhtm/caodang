@@ -1,6 +1,6 @@
 <div class="head-top">
 	<div class="container">
-		<div class="time">Thứ hai, ngày 16/01/2017</div>
+		<div class="time">{{FunctionLib::date_vietname(date('D', time()))}}, ngày {{date('d/m/Y', time())}}</div>
 		<div class="topMenu">
 			<ul>
 			   <li><a href="" target="_blank">Thư điện tử</a> &nbsp;&nbsp;&nbsp;|</li>
