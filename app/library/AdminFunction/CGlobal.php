@@ -49,7 +49,8 @@ class CGlobal{
     const sizeImage_750 = 750;
     const sizeImage_1020 = 1020;
 
-    const sizeImage_1010 = 1010;//banner header
+    const sizeImage_1000 = 1000;
+    const sizeImage_1010 = 1010;
     const sizeImage_90 = 90;//banner header
 
     const freeSizeImage_300 = 301;
@@ -79,6 +80,7 @@ class CGlobal{
         self::sizeImage_300 =>array('w'=>self::sizeImage_300,'h'=>self::sizeImage_300),
     	self::sizeImage_450 =>array('w'=>self::sizeImage_450,'h'=>self::sizeImage_450),
     	self::sizeImage_750 =>array('w'=>self::sizeImage_750,'h'=>self::sizeImage_450),
+        self::sizeImage_1000 =>array('w'=>self::sizeImage_1000,'h'=>0),
     	self::sizeImage_1020 =>array('w'=>self::sizeImage_1020,'h'=>0),
     	self::freeSizeImage_300 =>array('w'=>self::freeSizeImage_300,'h'=>0),
     	1 =>array('w'=>self::sizeImage_1010,'h'=>self::sizeImage_90),//banner header
@@ -158,6 +160,7 @@ class CGlobal{
     const BANNER_TYPE_RIGHT = 3;
     const BANNER_TYPE_BOTTOM = 4;
     const BANNER_TYPE_CENTER = 5;
+    const BANNER_TYPE_SLIDE = 6;
 
     //page gắn link quảng cáo
     const BANNER_PAGE_HOME = 1;
@@ -192,5 +195,5 @@ class CGlobal{
     	'\r\n', '☎', '👉', '✈', '🍬', '🏃', '🏻', '😁','🍬', '🏃🏻', '💃🏽', '✅', '😜', '🌳', '🌴', '🌲', '🌱',
     	'🌻', '🐮', '🐃', '🐎', '🐎', '🐓', '🐔', '🐗', '💥'
     );
-    
+    const linkMail = 'http://mail.cdsptw.edu.vn';
 }

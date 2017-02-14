@@ -10,7 +10,7 @@ class TypeSetting extends Eloquent
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('type_title','type_infor','type_keyword','type_order','type_status');
+    protected $fillable = array('type_title','type_infor','type_keyword','type_group','type_order','type_status');
 
     public static function getByID($id) {
         $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_TYPE_SETTING_ID.$id) : array();
@@ -23,19 +23,31 @@ class TypeSetting extends Eloquent
         return $data;
     }
 
-    public static function getTypeSetting(){
-        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_TYPE_SETTING) : array();
+    public static function getTypeSettingWithGroup($group_type){
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_GROUP_TYPE_SETTING.$group_type) : array();
         if (sizeof($data) == 0) {
             $department = TypeSetting::where('type_id', '>', 0)
+                ->where('type_group',$group_type)
                 ->where('type_status',CGlobal::status_show)
                 ->orderBy('type_order','asc')->get();
             if($department){
                 foreach($department as $itm) {
-                    $data[$itm['type_id']] = $itm['type_title'];
+                    $data[$itm['type_keyword']] = $itm['type_title'];
                 }
             }
             if($data && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_ALL_TYPE_SETTING, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+                Cache::put(Memcache::CACHE_GROUP_TYPE_SETTING.$group_type, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $data;
+    }
+
+    public static function getTypeSettingWithKe($keyword){
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_KEYWORD_TYPE_SETTING.$keyword) : array();
+        if (sizeof($data) == 0) {
+            $data = TypeSetting::where('type_id', '>', 0)->where('type_keyword','=', $keyword)->first();
+            if($data && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_KEYWORD_TYPE_SETTING.$keyword, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
             }
         }
         return $data;
@@ -86,7 +98,7 @@ class TypeSetting extends Eloquent
             if ($data->save()) {
                 DB::connection()->getPdo()->commit();
                 if(isset($data->type_id) && $data->type_id > 0){
-                    self::removeCache($data->type_id);
+                    self::removeCache($data->type_id,$data);
                 }
                 return $data->type_id;
             }
@@ -109,11 +121,11 @@ class TypeSetting extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = TypeSetting::find($id);
+            $data = TypeSetting::find($id);
             if (!empty($dataInput)){
-                $dataSave->update($dataInput);
-                if(isset($dataSave->type_id) && $dataSave->type_id > 0){
-                    self::removeCache($dataSave->type_id);
+                $data->update($dataInput);
+                if(isset($data->type_id) && $data->type_id > 0){
+                    self::removeCache($data->type_id,$data);
                 }
             }
             DB::connection()->getPdo()->commit();
@@ -134,10 +146,10 @@ class TypeSetting extends Eloquent
     public static function deleteData($id){
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = TypeSetting::find($id);
-            $dataSave->delete();
-            if(isset($dataSave->type_id) && $dataSave->type_id > 0){
-                self::removeCache($dataSave->type_id);
+            $data = TypeSetting::find($id);
+            $data->delete();
+            if(isset($data->type_id) && $data->type_id > 0){
+                self::removeCache($data->type_id,$data);
             }
             DB::connection()->getPdo()->commit();
             return true;
@@ -147,10 +159,11 @@ class TypeSetting extends Eloquent
         }
     }
 
-    public static function removeCache($id = 0){
+    public static function removeCache($id = 0,$data){
         if($id > 0){
             Cache::forget(Memcache::CACHE_TYPE_SETTING_ID.$id);
         }
-        Cache::forget(Memcache::CACHE_ALL_TYPE_SETTING);
+        Cache::forget(Memcache::CACHE_KEYWORD_TYPE_SETTING.$data->type_keyword);
+        Cache::forget(Memcache::CACHE_GROUP_TYPE_SETTING.$data->type_group);
     }
 }

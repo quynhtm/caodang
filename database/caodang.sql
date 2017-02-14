@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-02-13 21:43:26
+Date: 2017-02-14 10:14:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -140,7 +140,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '0', '', null, null, '0', null, null, '1', '1', '1486993740', '::1', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('2', 'admin', 'eef828faf0754495136af05c051766cb', 'Root', '0', '', null, null, '0', null, null, '1', '1', '1487039104', '::1', null, null, null, null, null, null);
 INSERT INTO `user` VALUES ('19', 'tech_code', '7eb3b9aba1960c22aa9bc8d1f27ebfb9', 'Tech code 3555', '0', '', '', '', '0', '0', null, '1', '2', '1481772767', '::1', null, null, '2', 'admin', null, '1481772561');
 INSERT INTO `user` VALUES ('20', 'svquynhtm', 'fa268d7af7410dbf1b860075e9074889', 'Trương Mạnh Quỳnh', '1', 'manhquynh1984@gmail.com', '0938413368', 'Cộng tác viên', '1483203600', '1484240400', '1,6,7,8,9', '1', '2', '1482826054', '::1', '2', 'admin', '2', 'admin', '1482823830', '1482824272');
 
@@ -251,8 +251,8 @@ CREATE TABLE `web_department` (
   `department_id` int(10) NOT NULL AUTO_INCREMENT,
   `department_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `department_alias` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `department_type` tinyint(5) DEFAULT '1' COMMENT '1: khoa, 2: trung tâm',
-  `department_design` tinyint(5) DEFAULT '0' COMMENT '0: trang chủ, 1: các page khác',
+  `department_type` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'giá trị type_keword',
+  `department_layouts` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'giá trị type_keword',
   `department_status` tinyint(1) DEFAULT '0',
   `department_order` tinyint(5) DEFAULT '0',
   PRIMARY KEY (`department_id`),
@@ -263,15 +263,15 @@ CREATE TABLE `web_department` (
 -- ----------------------------
 -- Records of web_department
 -- ----------------------------
-INSERT INTO `web_department` VALUES ('1', 'Khoa âm nhạc', null, '1', '0', '0', '1');
-INSERT INTO `web_department` VALUES ('2', 'Khoa tiếng anh', null, '1', '0', '1', '2');
-INSERT INTO `web_department` VALUES ('3', 'Khoa cơ bản', null, '1', '0', '1', '3');
-INSERT INTO `web_department` VALUES ('4', 'Khoa Giáo dục đặc biệt', null, '1', '0', '1', '4');
-INSERT INTO `web_department` VALUES ('5', 'Khoa Giáo dục mầm non', null, '1', '0', '1', '5');
-INSERT INTO `web_department` VALUES ('6', 'Khoa Mỹ thuật', null, '1', '0', '1', '6');
-INSERT INTO `web_department` VALUES ('7', 'Khoa Công Nghệ Thông Tin', null, '1', '0', '1', '7');
-INSERT INTO `web_department` VALUES ('8', 'Khoa Quản lý - Văn thư', null, '1', '0', '1', '8');
-INSERT INTO `web_department` VALUES ('9', 'Khoa Xã hội - Nhân văn', 'khoaxahoinhanvan', '1', '0', '1', '9');
+INSERT INTO `web_department` VALUES ('1', 'Khoa âm nhạc', 'khoaamnhac', 'type_khoa', 'layouts_khoa', '1', '1');
+INSERT INTO `web_department` VALUES ('2', 'Trung tâm tiếng anh', 'trungtamtienganh', 'type_trung tâm', 'layouts_khoa', '1', '2');
+INSERT INTO `web_department` VALUES ('3', 'Khoa cơ bản', 'khoacoban', 'type_khoa', 'layouts_home', '1', '3');
+INSERT INTO `web_department` VALUES ('4', 'Khoa Giáo dục đặc biệt', 'khoagiaoducdacbiet', 'type_khoa', 'layouts_home', '1', '4');
+INSERT INTO `web_department` VALUES ('5', 'Khoa Giáo dục mầm non', 'khoagiaoducmamnon', 'type_khoa', 'layouts_home', '1', '5');
+INSERT INTO `web_department` VALUES ('6', 'Khoa Mỹ thuật', 'khoamythuat', 'type_khoa', 'layouts_home', '1', '6');
+INSERT INTO `web_department` VALUES ('7', 'Khoa Công Nghệ Thông Tin', 'khoacongnghethongtin', 'type_khoa', 'layouts_home', '1', '7');
+INSERT INTO `web_department` VALUES ('8', 'Khoa Quản lý - Văn thư', 'khoaquanlyvanthu', 'type_khoa', 'layouts_home', '1', '8');
+INSERT INTO `web_department` VALUES ('9', 'Khoa Xã hội - Nhân văn', 'khoaxahoinhanvan', 'type_khoa', 'layouts_home', '1', '9');
 
 -- ----------------------------
 -- Table structure for web_info
@@ -336,6 +336,7 @@ CREATE TABLE `web_type_setting` (
   `type_title` varchar(255) DEFAULT NULL,
   `type_infor` text,
   `type_keyword` varchar(255) DEFAULT NULL,
+  `type_group` varchar(255) DEFAULT NULL COMMENT 'Nhóm các thuộc tính cùng nhau',
   `type_order` int(10) DEFAULT '0',
   `type_status` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`type_id`)
@@ -344,7 +345,7 @@ CREATE TABLE `web_type_setting` (
 -- ----------------------------
 -- Records of web_type_setting
 -- ----------------------------
-INSERT INTO `web_type_setting` VALUES ('1', 'Kiểu khoa', 'định nghĩa kiểu khoa hay trung tâm 222', 'type_khoa', '1', '1');
-INSERT INTO `web_type_setting` VALUES ('2', 'Kiểu trung tâm', 'định nghĩa kiểu khoa hay trung tâm', 'type_trung tâm', '2', '1');
-INSERT INTO `web_type_setting` VALUES ('3', 'Giao diện trang chủ', 'kiểu hiển thị page', 'layouts_home', '3', '1');
-INSERT INTO `web_type_setting` VALUES ('4', 'Giao diện khoa', 'kiểu hiển thị page', 'layouts_khoa', '4', '1');
+INSERT INTO `web_type_setting` VALUES ('1', 'Kiểu khoa', 'định nghĩa kiểu khoa hay trung tâm ', 'type_khoa', 'group_type', '1', '1');
+INSERT INTO `web_type_setting` VALUES ('2', 'Kiểu trung tâm', 'định nghĩa kiểu khoa hay trung tâm', 'type_trung tâm', 'group_type', '2', '1');
+INSERT INTO `web_type_setting` VALUES ('3', 'Giao diện trang chủ', 'kiểu hiển thị page', 'layouts_home', 'group_layouts', '3', '1');
+INSERT INTO `web_type_setting` VALUES ('4', 'Giao diện khoa', 'kiểu hiển thị page', 'layouts_khoa', 'group_layouts', '4', '1');

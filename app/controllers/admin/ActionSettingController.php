@@ -89,6 +89,7 @@ class ActionSettingController extends BaseAdminController
 
         $dataSave['type_title'] = addslashes(Request::get('type_title'));
         $dataSave['type_keyword'] = addslashes(Request::get('type_keyword'));
+        $dataSave['type_group'] = addslashes(Request::get('type_group'));
         $dataSave['type_infor'] = addslashes(Request::get('type_infor'));
         $dataSave['type_status'] = (int)Request::get('type_status', CGlobal::status_show);
         $dataSave['type_order'] = (int)Request::get('type_order', 1);
@@ -118,6 +119,12 @@ class ActionSettingController extends BaseAdminController
         if(!empty($data)) {
             if(isset($data['type_title']) && $data['type_title'] == '') {
                 $this->error[] = 'Tên không được bỏ trống';
+            }
+            if(isset($data['type_group']) && $data['type_group'] == '') {
+                $this->error[] = 'Nhóm không được bỏ trống';
+            }
+            if(isset($data['type_keyword']) && $data['type_keyword'] == '') {
+                $this->error[] = 'Keyword không được bỏ trống';
             }
             if(isset($data['type_status']) && $data['type_status'] == -1) {
                 $this->error[] = 'Bạn chưa chọn trạng thái';

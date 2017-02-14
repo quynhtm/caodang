@@ -34,10 +34,19 @@
                     <div class="clearfix"></div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label for="name" class="control-label">Key word</label>
-                            <input type="text" @if($id > 0) readonly @endif id="type_keyword" name="type_keyword"  class="form-control input-sm" value="@if(isset($data['type_keyword'])){{$data['type_keyword']}}@endif">
+                            <label for="name" class="control-label">Thuộc nhóm</label>
+                            <input type="text" @if($id > 0 && isset($data['type_group']) && $data['type_group'] !='') readonly @endif id="type_group" name="type_group"  class="form-control input-sm" value="@if(isset($data['type_group'])){{$data['type_group']}}@endif">
                         </div>
                     </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Key word</label>
+                            <input type="text" @if($id > 0 && isset($data['type_keyword']) && $data['type_keyword'] !='') readonly @endif id="type_keyword" name="type_keyword"  class="form-control input-sm" value="@if(isset($data['type_keyword'])){{$data['type_keyword']}}@endif">
+                        </div>
+                    </div>
+
 
                     <div class="clearfix"></div>
                     <div class="col-sm-10">

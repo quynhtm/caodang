@@ -11,10 +11,12 @@ class NewsController extends BaseAdminController
     private $permission_delete = 'news_delete';
     private $permission_create = 'news_create';
     private $permission_edit = 'news_edit';
-    private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
+    private $arrStatus = array(CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
+    private $arrCommonPage = array(CGlobal::status_hide => 'Tin tức riêng', CGlobal::status_show => 'Tin tức chung');
     private $error = array();
     private $arrCategoryNew = array();
     private $arrTypeNew = array();
+    private $arrDepart = array();
 
     public function __construct()
     {
@@ -22,6 +24,7 @@ class NewsController extends BaseAdminController
 
         $this->arrCategoryNew = CGlobal::$arrCategoryNew;
         $this->arrTypeNew = CGlobal::$arrTypeNew;
+        $this->arrDepart = Department::getDepart();
 
         //Include style.
         FunctionLib::link_css(array(
@@ -67,7 +70,7 @@ class NewsController extends BaseAdminController
             }
         }
         //FunctionLib::debug($dataSearch);
-        $optionStatus = FunctionLib::getOption($this->arrStatus, $search['news_status']);
+        $optionStatus = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrStatus, $search['news_status']);
         $this->layout->content = View::make('admin.News.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -110,9 +113,11 @@ class NewsController extends BaseAdminController
                $imageOrigin = $data->news_image;
             }
         }
+        $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($data['news_depart_id'])? $data['news_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['news_status'])? $data['news_status'] : CGlobal::status_show);
-        $optionCategory = FunctionLib::getOption($this->arrCategoryNew, isset($data['news_category'])? $data['news_category'] : CGlobal::NEW_CATEGORY_TIN_TUC_CHUNG);
-        $optionType = FunctionLib::getOption($this->arrTypeNew, isset($data['news_type'])? $data['news_type'] : CGlobal::NEW_TYPE_TIN_TUC);
+        $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($data['news_common_page'])? $data['news_common_page'] : CGlobal::status_hide);
+        $optionCategory = FunctionLib::getOption($this->arrCategoryNew, isset($data['news_category_id'])? $data['news_category_id'] : CGlobal::status_hide);
+        $optionCategoryShow = FunctionLib::getOption($this->arrCategoryNew, isset($data['news_show_cate_id'])? $data['news_show_cate_id'] : CGlobal::status_hide);
 
         $this->layout->content = View::make('admin.News.add')
             ->with('id', $id)
@@ -120,9 +125,11 @@ class NewsController extends BaseAdminController
             ->with('imageOrigin', $imageOrigin)
             ->with('urlImageOrigin', $urlImageOrigin)
             ->with('arrViewImgOther', $arrViewImgOther)
+            ->with('optionDepart', $optionDepart)
+            ->with('optionCommonPage', $optionCommonPage)
             ->with('optionStatus', $optionStatus)
             ->with('optionCategory', $optionCategory)
-            ->with('optionType', $optionType)
+            ->with('optionCategoryShow', $optionCategoryShow)
             ->with('arrStatus', $this->arrStatus);
     }
     public function postNews($id=0) {
@@ -133,8 +140,12 @@ class NewsController extends BaseAdminController
         $dataSave['news_desc_sort'] = addslashes(Request::get('news_desc_sort'));
         $dataSave['news_content'] = FunctionLib::strReplace(Request::get('news_content'), '\r\n', '');
         $dataSave['news_type'] = addslashes(Request::get('news_type'));
-        $dataSave['news_category'] = addslashes(Request::get('news_category'));
         $dataSave['news_status'] = (int)Request::get('news_status', 0);
+        $dataSave['news_order'] = (int)Request::get('news_order', 1);
+        $dataSave['news_common_page'] = (int)Request::get('news_common_page', CGlobal::status_hide);
+        $dataSave['news_show_cate_id'] = (int)Request::get('news_show_cate_id', CGlobal::status_hide);
+        $dataSave['news_depart_id'] = (int)Request::get('news_depart_id', CGlobal::status_hide);
+        $dataSave['news_category_id'] = (int)Request::get('news_category_id', CGlobal::status_hide);
         $id_hiden = (int)Request::get('id_hiden', 0);
 		
         //ảnh chính
@@ -203,14 +214,4 @@ class NewsController extends BaseAdminController
         }
         return false;
     }
-
-    function sendEmail(){
-         // test gửi email
-         Mail::send('emails.test_email', array('firstname'=>'Trương Mạnh Quỳnh'), function($message){
-             $message->to('manhquynh1984@gmail.com', 'Trương Mạnh Quỳnh')
-                 ->subject('Welcome to the Laravel 4 Auth App!');
-         });
-         die();
-    }
-
 }

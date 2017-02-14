@@ -436,7 +436,7 @@ class FunctionLib {
     static function buildLinkCategory($cat_id = 0, $cat_title = 'Danh-mục', $province_id=0, $province_name=''){
         $link_view = '#';
     	if($cat_id > 0){
-            $link_view = URL::route('Site.pageCategory', array('id'=>$cat_id, 'name'=>strtolower(FunctionLib::safe_title($cat_title))));
+            $link_view = URL::route('site.pageCategory', array('id'=>$cat_id, 'name'=>strtolower(FunctionLib::safe_title($cat_title))));
             if($province_id > 0 && $province_name != ''){
                 $link_view .= '?city_id='.$province_id.'&tinh='.$province_name;
             }
@@ -862,5 +862,24 @@ class FunctionLib {
 	    	$text = str_replace($strInput, $strReplace, $text);
     	}
     	return $text;
+    }
+	//Date Vietnamese Convert
+	public static function date_vietname($str=''){
+		$current_date_str='';
+		$arrListTodayVietnamese = array("Mon" => "Thứ hai","Tue" => "Thứ ba","Wed" => "Thứ tư","Thu" => "Thứ năm","Fri" => "Thứ sáu","Sat" => "Thứ bảy","Sun" => "Chủ nhật");
+		foreach($arrListTodayVietnamese as $k => $v){
+			if(strtolower($str)===strtolower($k)){
+				$current_date_str = $v;
+			}
+		}
+		return $current_date_str;
+	}
+    public static function chkFileExtension($str='') {
+        $match= preg_match('/.swf/i', $str);
+        if($match>0){
+            return "yes";
+        }else{
+            return "no";
+        }
     }
 }

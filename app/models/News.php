@@ -10,9 +10,9 @@ class News extends Eloquent
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('news_id','news_title', 'news_desc_sort',
-        'news_content', 'news_image', 'news_image_other','news_create',
-        'news_type', 'news_category', 'news_status');
+    protected $fillable = array('news_id','news_title', 'news_desc_sort','news_depart_id',
+        'news_content', 'news_image', 'news_image_other','news_create','news_order','news_common_page','news_show_cate_id',
+        'news_type', 'news_category_id','news_category_name', 'news_status');
 
     public static function getNewByID($id) {
         $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_NEW_ID.$id) : array();
@@ -34,8 +34,8 @@ class News extends Eloquent
             if (isset($dataSearch['news_status']) && $dataSearch['news_status'] != -1) {
                 $query->where('news_status', $dataSearch['news_status']);
             }
-            if (isset($dataSearch['news_category']) && $dataSearch['news_category'] > 0) {
-                $query->where('news_category', $dataSearch['news_category']);
+            if (isset($dataSearch['news_category_id']) && $dataSearch['news_category_id'] > 0) {
+                $query->where('news_category_id', $dataSearch['news_category_id']);
             }
             if (isset($dataSearch['not_news_id']) && $dataSearch['not_news_id'] > 0) {
                 $query->where('news_id','<>', $dataSearch['not_news_id']);
@@ -109,6 +109,7 @@ class News extends Eloquent
             DB::connection()->getPdo()->commit();
             return true;
         } catch (PDOException $e) {
+            //return $e->getMessage();
             DB::connection()->getPdo()->rollBack();
             throw new PDOException();
         }
@@ -149,7 +150,7 @@ class News extends Eloquent
     		
     		if($catid>0 && $id>0 && $limit>0){
 	    		$query = News::where('news_id','<>', $id);
-	    		$query->where('news_category', $catid);
+	    		$query->where('news_category_id', $catid);
 	    		$query->where('news_status', CGlobal::status_show);
 	    		$query->orderBy('news_id', 'desc');
 	    

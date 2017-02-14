@@ -52,10 +52,10 @@ class BaseAdminController extends BaseController
         $menu[] = array(
             'name'=>'QL site',
             'link'=>'javascript:void(0)',
-            'icon'=>'fa fa-cogs',
+            'icon'=>'fa fa-location-arrow',
             'arr_link_sub'=>array('admin.info','admin.trash','admin.contract'),
             'sub'=>array(
-                //array('name'=>'Liên hệ quản trị', 'RouteName'=>'admin.contract', 'icon'=>'fa fa-envelope-o icon-4x', 'showcontent'=>1, 'permission'=>'contract_view'),
+                array('name'=>'Liên hệ quản trị', 'RouteName'=>'admin.contract', 'icon'=>'fa fa-envelope-o icon-4x', 'showcontent'=>1, 'permission'=>'contract_view'),
                 array('name'=>'Thông tin chung', 'RouteName'=>'admin.info', 'icon'=>'fa fa-cogs icon-4x', 'showcontent'=>1, 'permission'=>'abc'),
                 array('name'=>'Thùng rác', 'RouteName'=>'admin.trash', 'icon'=>'fa fa-trash icon-4x', 'showcontent'=>1, 'permission'=>'abc', 'clear'=>1),
             ),
