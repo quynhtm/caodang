@@ -52,7 +52,15 @@
 			</ul>
 		</div>
 	</div>
-	<div class="item-box">
-		<img alt="" src="{{URL::route('site.home')}}/assets/frontend/img/chuyen-de.gif">
-	</div>
+	@if(sizeof($arrBannerLeft) > 0)
+		@foreach($arrBannerLeft as $item)
+			@if($item->banner_image != '')
+				<div class="item-box">
+					<a @if($item->banner_is_rel == CGlobal::LINK_NOFOLLOW) rel="nofollow" @endif @if($item->banner_is_target == CGlobal::BANNER_TARGET_BLANK) target="_blank" @endif href="@if($item->banner_link != '') {{$item->banner_link}} @else javascript:void(0) @endif" title="{{$item->banner_name}}">
+						<img src="{{ThumbImg::thumbImageBannerNormal($item->banner_id,$item->banner_parent_id, $item->banner_image, CGlobal::sizeImage_1000,CGlobal::sizeImage_200, $item->banner_name,true,true)}}" alt="{{$item->banner_name}}" />
+					</a>
+				</div>
+			@endif
+		@endforeach
+	@endif
 </div>
