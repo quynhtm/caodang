@@ -63,7 +63,7 @@ class BaseSiteController extends BaseController{
                     }
                 }
                 if($banner_is_run_time == 1){
-                    $arrBannerShow[$valu->banner_position][] = $valu;
+                    $arrBannerShow[$valu->banner_id] = $valu;
                 }
             }
         }
