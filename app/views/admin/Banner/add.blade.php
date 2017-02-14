@@ -29,7 +29,7 @@
                         <input type="text" placeholder="Tên banner" id="banner_name" name="banner_name"  class="form-control input-sm" value="@if(isset($data['banner_name'])){{$data['banner_name']}}@endif">
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" style="display: none">
                     <div class="form-group">
                         <label for="name" class="control-label">BannerId show ảnh</label>
                         <input type="text" placeholder="Banner parent show ảnh" id="banner_parent_id" name="banner_parent_id"  class="form-control input-sm" value="@if(isset($data['banner_parent_id'])){{$data['banner_parent_id']}}@endif">
@@ -46,6 +46,16 @@
                 <div class="clearfix"></div>
                 <div class="col-sm-4">
                     <div class="form-group">
+                        <label for="name" class="control-label">Page quảng cáo</label>
+                        <div class="form-group">
+                            <select name="banner_page" id="banner_page" class="form-control input-sm">
+                                {{$optionPage}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
                         <label for="name" class="control-label">Loại quảng cáo</label>
                         <div class="form-group">
                             <select name="banner_type" id="banner_type" class="form-control input-sm">
@@ -56,6 +66,17 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
+                        <label for="name" class="control-label">Mở tab mới?</label>
+                        <div class="form-group">
+                            <select name="banner_is_target" id="banner_is_target" class="form-control input-sm">
+                                {{$optionTarget}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4" style="display: none">
+                    <div class="form-group">
                         <label for="name" class="control-label">Vị trí hiển thị</label>
                         <div class="form-group">
                             <select name="banner_position" id="banner_position" class="form-control input-sm">
@@ -64,19 +85,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label for="name" class="control-label">Page quảng cáo</label>
-                        <div class="form-group">
-                            <select name="banner_page" id="banner_page" class="form-control input-sm">
-                                {{$optionPage}}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="clearfix"></div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="display: none">
                     <div class="form-group">
                         <label for="name" class="control-label">Danh mục quảng cáo</label>
                         <div class="form-group">
@@ -85,26 +95,17 @@
                             </select>
                         </div>
                     </div>
-                </div><div class="col-sm-4">
+                </div>
+                <div class="col-sm-4" style="display: none">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Nofollow</label>
                         <div class="form-group">
-                            <label for="name" class="control-label">Taget bank</label>
-                            <div class="form-group">
-                                <select name="banner_is_target" id="banner_is_target" class="form-control input-sm">
-                                    {{$optionTarget}}
-                                </select>
-                            </div>
+                            <select name="banner_is_rel" id="banner_is_rel" class="form-control input-sm">
+                                {{$optionRel}}
+                            </select>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="name" class="control-label">Nofollow</label>
-                            <div class="form-group">
-                                <select name="banner_is_rel" id="banner_is_rel" class="form-control input-sm">
-                                    {{$optionRel}}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                </div>
 
                 <div class="clearfix"></div>
                 <div class="col-sm-4">
@@ -151,9 +152,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <div class="clearfix"></div>
                 </div>
 
@@ -169,9 +167,9 @@
                         <!--hien thi anh-->
                         <div id="block_img_upload">
                             @if(isset($data['banner_image']) && $data['banner_image']!= '')
-                                <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_BANNER, $data['banner_id'], $data['banner_image'], CGlobal::sizeImage_300, '', true, CGlobal::type_thumb_image_banner, false)}}">
+                                <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_BANNER, $id, $data['banner_image'], CGlobal::sizeImage_300, '', true, CGlobal::type_thumb_image_banner, false)}}">
                                 <div class="clearfix"></div>
-                                <a href="javascript: void(0);" onclick="Common.removeImageItem({{$data['banner_id']}},'{{$data['banner_image']}}',3);">Xóa ảnh</a>
+                                <!--<a href="javascript: void(0);" onclick="Common.removeImageItem({{$id}},'{{$data['banner_image']}}',3);">Xóa ảnh</a>-->
                             @endif
                         </div>
                     </div>
@@ -180,6 +178,7 @@
 
                 <div class="clearfix"></div>
                 <div class="form-group col-sm-12 text-left">
+                    <a class="btn btn-warning" href="{{URL::route('admin.bannerView')}}"><i class="fa fa-reply"></i> Trở lại</a>
                     <button  class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Lưu lại</button>
                 </div>
                 <input type="hidden" id="id_hiden" name="id_hiden" value="{{$id}}"/>

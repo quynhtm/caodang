@@ -38,13 +38,13 @@
                                 {{$optionType}}
                             </select>
                         </div>
-                        <div class="form-group col-lg-3">
+                        <div class="form-group col-lg-3" style="display: none">
                             <label for="category_status">Vị trí hiển thị</label>
                             <select name="banner_position" id="banner_position" class="form-control input-sm">
                                 {{$optionPosition}}
                             </select>
                         </div>
-                        <div class="form-group col-lg-9 text-right">
+                        <div class="form-group col-lg-12 text-right">
                             @if($is_root || $permission_full ==1 || $permission_create == 1)
                                 <a class="btn btn-danger btn-sm" href="{{URL::route('admin.bannerEdit')}}">
                                     <i class="ace-icon fa fa-plus-circle"></i>
@@ -64,10 +64,9 @@
                         <tr class="">
                             <th width="2%" class="text-center">TT</th>
                             <th width="10%" class="text-center">Ảnh</th>
-                            <th width="20%">Tên banner</th>
-                            <th width="15%">Thông tin banner</th>
-                            <th width="13%">Loại banner</th>
-                            <th width="10%" class="text-center">Thuộc page</th>
+                            <th width="25%">Tên banner</th>
+                            <th width="15%">Thuộc page</th>
+                            <th width="10%">Thông tin banner</th>
                             <th width="10%" class="text-center">Ngày chạy</th>
                             <th width="10%" class="text-center">Thao tác</th>
                         </tr>
@@ -90,16 +89,13 @@
                                    @if($item->banner_update_time > 0)<br/>U: {{date('d-m-Y h:i',$item->banner_update_time)}}@endif
                                 </td>
                                 <td>
-                                    @if($item->banner_position > 0){{$arrPosition[$item->banner_position]}} <br/>@endif
-                                    @if(isset($arrTypeBanner[$item->banner_type])){{$arrTypeBanner[$item->banner_type]}} <br/> @endif
-                                    @if($item->banner_order > 0)Thứ tự: {{$item->banner_order}} <br/>@endif
+                                    @if(isset($arrPage[$item->banner_page])){{$arrPage[$item->banner_page]}}@else ---- @endif
                                 </td>
                                 <td>
-                                    <b>Danh mục: </b>@if(isset($arrCategory[$item->banner_category_id])){{$arrCategory[$item->banner_category_id]}}@else ----- @endif
-                                    <br/>@if($item->banner_is_rel == 1)Follow @else Nofollow @endif
-                                </td>
-                                <td class="text-center text-middle">
-                                    @if(isset($arrPage[$item->banner_page])){{$arrPage[$item->banner_page]}}@else ---- @endif
+                                    <!--@if($item->banner_position > 0){{$arrPosition[$item->banner_position]}} <br/>@endif -->
+                                    @if(isset($arrTypeBanner[$item->banner_type])){{$arrTypeBanner[$item->banner_type]}} <br/> @endif
+                                    @if($item->banner_order > 0)Thứ tự: {{$item->banner_order}} <br/>@endif
+                                    @if($item->banner_is_rel == 1)Follow @else Nofollow @endif
                                 </td>
                                 <td class="text-center text-middle">
                                     @if($item->banner_is_run_time == CGlobal::BANNER_IS_RUN_TIME)
