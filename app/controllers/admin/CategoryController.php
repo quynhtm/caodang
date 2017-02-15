@@ -53,15 +53,22 @@ class CategoryController extends BaseAdminController
         
         $dataSearch = ($search['category_depart_id'] > 0)?Category::searchByCondition($search, 500, $offset,$total): array();
         $paging = '';
-        //FunctionLib::debug($dataSearch);
+        if(!empty($dataSearch)){
+            if($search['category_status'] == -1 && $search['category_name'] == '' ){
+                $data = Category::getTreeCategory($dataSearch);
+            }else{
+                $data = $dataSearch;
+            }
+        }
 
+        //FunctionLib::debug($dataSearch);
         $optionStatus = FunctionLib::getOption($this->arrStatus, $search['category_status']);
-        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryDepart, $search['category_depart_id']);
+        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn khoa-trung tâm ---')+$this->arrCategoryDepart, $search['category_depart_id']);
         $this->layout->content = View::make('admin.Category.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
             ->with('total', $total)
-            ->with('data', $dataSearch)
+            ->with('data', $data)
             ->with('search', $search)
             ->with('optionStatus', $optionStatus)
             ->with('optionCategoryDepart', $optionCategoryDepart)
@@ -70,6 +77,7 @@ class CategoryController extends BaseAdminController
             ->with('arrCategoryParent', $this->arrCategoryParent)
 
             ->with('is_root', $this->is_root)//dùng common
+            ->with('is_boss', $this->is_boss)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)//dùng common

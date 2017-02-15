@@ -5,7 +5,7 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li class="active">Danh mục sản phẩm</li>
+            <li class="active">Danh mục tin bài</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -57,9 +57,9 @@
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
                             <!--<th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>-->
-                            <th width="25%" class="td_list">Tên danh mục</th>
-                            <th width="15%" class="td_list">Khoa - trung tâm</th>
-                            <th width="15%" class="td_list">Danh mục cha</th>
+                            <th width="35%" class="td_list">Tên danh mục</th>
+                            <th width="20%" class="td_list">Danh mục cha</th>
+                            <!---<th width="15%" class="td_list">Khoa - trung tâm</th>-->
                             <th width="5%" class="text-center">Thứ tự</th>
 
                             <th width="5%" class="text-center">Show header</th>
@@ -76,10 +76,15 @@
                                 <td class="text-center">{{ $key+1 }}</td>
                                 <!--<td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['category_id']}}"></td>-->
                                 <td>
-                                    [<b>{{ $item['category_id'] }}</b>] {{ $item['padding_left'].$item['category_name'] }}
+                                   @if($is_boss)[<b>{{ $item['category_id'] }}</b>]@endif
+                                       @if($item['category_parent_id']==0)
+                                           <b>{{ $item['padding_left'].$item['category_name'] }}</b>
+                                       @else
+                                            {{ $item['padding_left'].$item['category_name'] }}
+                                       @endif
                                 </td>
-                                <td>@if(isset($arrCategoryDepart[$item['category_depart_id']])){{$arrCategoryDepart[$item['category_depart_id']]}}@else --- @endif</td>
                                 <td>@if(isset($arrCategoryParent[$item['category_parent_id']])){{$arrCategoryParent[$item['category_parent_id']]}}@else --- @endif</td>
+                                <!--<td>@if(isset($arrCategoryDepart[$item['category_depart_id']])){{$arrCategoryDepart[$item['category_depart_id']]}}@else --- @endif</td>-->
                                 <td class="text-center">{{$item['category_order']}}</td>
 
                                 <td class="text-center">
