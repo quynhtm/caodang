@@ -140,6 +140,8 @@ var Admin = {
                 var url_ajax = WEB_ROOT + '/admin/categoryDepart/updateStatusCategoryDepart';
             }else if(type == 4){
                 var url_ajax = WEB_ROOT + '/admin/typeSetting/updateStatusTypeSetting';
+            }else if(type == 5){
+                var url_ajax = WEB_ROOT + '/admin/news/updateStatusNew';
             }
             $.ajax({
                 type: "post",
@@ -492,28 +494,47 @@ var Admin = {
         });
     },
     submitInforDistrictOfProvince: function() {
-    var district_name = document.getElementById('district_name').value;
-    var district_status = document.getElementById('district_status').value;
-    var district_position = document.getElementById('district_position').value;
-    var district_province_id = document.getElementById('district_province_id').value;
-    var district_id = document.getElementById('district_id').value;
-    $.ajax({
-        type: "POST",
-        url: WEB_ROOT + '/admin/province/submitInforDistrictOfProvince',
-        data: {district_name : district_name,
-            district_status : district_status,
-            district_position : district_position,
-            district_province_id : district_province_id,
-            district_id : district_id,
-        },
-        dataType: 'json',
-        success: function(res) {
-            if(res.intReturn === 1){
-                window.location.reload();
-            }else{
-                alert(res.msg);
+        var district_name = document.getElementById('district_name').value;
+        var district_status = document.getElementById('district_status').value;
+        var district_position = document.getElementById('district_position').value;
+        var district_province_id = document.getElementById('district_province_id').value;
+        var district_id = document.getElementById('district_id').value;
+        $.ajax({
+            type: "POST",
+            url: WEB_ROOT + '/admin/province/submitInforDistrictOfProvince',
+            data: {district_name : district_name,
+                district_status : district_status,
+                district_position : district_position,
+                district_province_id : district_province_id,
+                district_id : district_id,
+            },
+            dataType: 'json',
+            success: function(res) {
+                if(res.intReturn === 1){
+                    window.location.reload();
+                }else{
+                    alert(res.msg);
+                }
             }
+        });
+    },
+    getCategoryWithDepart:function(){
+        var news_depart_id = $('#news_depart_id').val();
+        if(parseInt(news_depart_id) > 0){
+            jQuery.ajax({
+                type: "POST",
+                url: WEB_ROOT + '/admin/news/getCategoryWithDepart',
+                data: {news_depart_id : news_depart_id},
+                dataType: 'json',
+                success: function(res) {
+                    if(res.isIntOk === 1){
+                        $('#news_category_id').html(res.html_option);
+                        $('#news_show_cate_id').html(res.html_option);
+                    }else{
+                        jAlert(res.msg, 'Thông báo');
+                    }
+                }
+            });
         }
-    });
-},
+    },
 }

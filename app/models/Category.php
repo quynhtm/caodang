@@ -26,10 +26,31 @@ class Category extends Eloquent
         return $category;
     }
 
+    public static function getOptionAllCategory() {
+        $data = array();
+        $category = Category::where('category_id','>',0)->orderBy('category_id','asc')->get();
+        foreach($category as $itm) {
+            $data[$itm['category_id']] = $itm['category_name'];
+        }
+        return $data;
+      }
+
     public static function getCategoryByArrayId($arrCate = array()) {
         $data = array();
         if(!empty($arrCate)){
             $category = Category::whereIn('category_id',$arrCate)->orderBy('category_id','asc')->get();
+            foreach($category as $itm) {
+                $data[$itm['category_id']] = $itm['category_name'];
+            }
+            return $data;
+        }
+        return $data;
+    }
+
+    public static function getCategoryByDepartId($depart_id = 0) {
+        $data = array();
+        if($depart_id > 0){
+            $category = Category::where('category_depart_id',$depart_id)->orderBy('category_id','asc')->get();
             foreach($category as $itm) {
                 $data[$itm['category_id']] = $itm['category_name'];
             }
@@ -237,7 +258,7 @@ class Category extends Eloquent
                 $max = ($max < $value->category_parent_id)? $value->category_parent_id : $max;
                 $arrCategory[$value->category_id] = array(
                     'category_id'=>$value->category_id,
-                    'category_depart_id'=>$itm->category_depart_id,
+                    'category_depart_id'=>$value->category_depart_id,
                     'category_parent_id'=>$value->category_parent_id,
                     'category_show_top'=>$value->category_show_top,
                     'category_show_left'=>$value->category_show_left,

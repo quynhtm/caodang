@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label">Thuộc khoa - trung tâm<span class="red"> (*) </span></label>
                             <div class="form-group">
-                                <select class="form-control input-sm" name="news_depart_id">
+                                <select class="form-control input-sm" name="news_depart_id"id="news_depart_id" onchange="Admin.getCategoryWithDepart();">
                                     <?php echo $optionDepart;?>
                                 </select>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label">Danh mục<span class="red"> (*) </span></label>
                             <div class="form-group">
-                                <select class="form-control input-sm" name="news_category_id">
+                                <select class="form-control input-sm" name="news_category_id" id="news_category_id">
                                     <?php echo $optionCategory;?>
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label">Tiêu đề tin hiển thị ở menu danh mục</label>
                             <div class="form-group">
-                                <select class="form-control input-sm" name="news_show_cate_id">
+                                <select class="form-control input-sm" name="news_show_cate_id" id="news_show_cate_id">
                                     <?php echo $optionCategoryShow;?>
                                 </select>
                             </div>

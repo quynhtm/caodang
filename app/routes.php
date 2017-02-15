@@ -138,6 +138,8 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::get('news/edit/{id?}', array('as' => 'admin.newsEdit','uses' => 'NewsController@getNews'))->where('id', '[0-9]+');
     Route::post('news/edit/{id?}', array('as' => 'admin.newsEdit','uses' => 'NewsController@postNews'))->where('id', '[0-9]+');
     Route::post('news/deleteNews', array('as' => 'admin.delteteNews','uses' => 'NewsController@deleteNews'));//ajax
+    Route::post('news/getCategoryWithDepart',array('as' => 'admin.getCategoryWithDepart','uses' =>'NewsController@getCategoryWithDepart'));
+    Route::post('news/updateStatusNew', array('as' => 'admin.updateStatusNew','uses' => 'NewsController@updateStatusNew'));//ajax
 
     /*Quản lý banner*/
     Route::any('banner/view',array('as' => 'admin.bannerView','uses' => 'BannerController@view'));

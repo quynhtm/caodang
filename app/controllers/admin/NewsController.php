@@ -22,7 +22,7 @@ class NewsController extends BaseAdminController
     {
         parent::__construct();
 
-        $this->arrCategoryNew = CGlobal::$arrCategoryNew;
+        $this->arrCategoryNew = Category::getOptionAllCategory();
         $this->arrTypeNew = CGlobal::$arrTypeNew;
         $this->arrDepart = Department::getDepart();
 
@@ -59,16 +59,6 @@ class NewsController extends BaseAdminController
         $dataSearch = News::searchByCondition($search, $limit, $offset,$total);
         $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
-        if(!empty($dataSearch)){
-            foreach($dataSearch as $k=> $val){
-                $url_image = ($val->news_image != '')?ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $val->news_id, $val->news_image, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false):'';
-                $data[] = array('news_id'=>$val->news_id,
-                    'news_title'=>$val->news_title,
-                    'news_status'=>$val->news_status,
-                    'url_image'=>$url_image,
-                );
-            }
-        }
         //FunctionLib::debug($dataSearch);
         $optionStatus = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrStatus, $search['news_status']);
         $this->layout->content = View::make('admin.News.view')
@@ -76,10 +66,11 @@ class NewsController extends BaseAdminController
             ->with('stt', ($pageNo-1)*$limit)
             ->with('total', $total)
             ->with('sizeShow', count($data))
-            ->with('data', $data)
+            ->with('data', $dataSearch)
             ->with('search', $search)
             ->with('optionStatus', $optionStatus)
-            ->with('arrStatus', $this->arrStatus)
+            ->with('arrDepart', $this->arrDepart)
+            ->with('arrCategoryNew', $this->arrCategoryNew)
 
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
@@ -202,6 +193,24 @@ class NewsController extends BaseAdminController
         return Response::json($data);
     }
 
+    public function getCategoryWithDepart(){
+        $data = array('isIntOk' => 0,'msg' => 'Không lấy được thông tin danh mục');
+        $news_depart_id = (int)Request::get('news_depart_id', 0);
+
+        if ($news_depart_id > 0) {
+            $category = Category::getCategoryByDepartId($news_depart_id);
+            if(!empty($category)){
+                $str_option = '<option value="">---Chọn danh mục---</option>';
+                foreach($category as $dis_id =>$dis_name){
+                    $str_option .='<option value="'.$dis_id.'">'.$dis_name.'</option>';
+                }
+                $data['html_option'] = $str_option;
+                $data['isIntOk'] = 1;
+            }
+        }
+        return Response::json($data);
+    }
+
     private function valid($data=array()) {
         if(!empty($data)) {
             if(isset($data['category_name']) && $data['category_name'] == '') {
@@ -213,5 +222,24 @@ class NewsController extends BaseAdminController
             return true;
         }
         return false;
+    }
+
+    //ajax
+    public function updateStatusNew()
+    {
+        $id = (int)Request::get('id', 0);
+        $category_status = (int)Request::get('status', CGlobal::status_hide);
+        $result = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($result);
+        }
+
+        if ($id > 0) {
+            $dataSave['news_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
+            if(News::updateData($id, $dataSave)) {
+                $result['isIntOk'] = 1;
+            }
+        }
+        return Response::json($result);
     }
 }
