@@ -52,8 +52,8 @@
 								<td>
 									[<b>{{ $item['contact_id'] }}</b>] {{ $item['contact_title'] }}
 								</td>
-								<td class="text-center">{{ $item['contact_content'] }}</td>
-								<td class="text-center">
+								<td class="text-left">{{ $item['contact_content'] }}</td>
+								<td class="text-left">
 									Họ Tên: {{ $item['contact_user_name_send'] }}
 									<br/>Email: {{ $item['contact_email_send'] }}
 								</td>

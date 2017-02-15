@@ -61,7 +61,11 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $stt + $key+1 }}</td>
-                                <td class="text-center"><img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item->news_id, $item->news_image, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false)}}"></td>
+                                <td class="text-center">
+                                   @if($item->news_image != '')
+                                    <img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item->news_id, $item->news_image, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false)}}">
+                                    @endif
+                                </td>
                                 <td>
                                     [<b>{{ $item['news_id'] }}</b>]<a href="#" target="_blank">{{ $item['news_title'] }}</a>
                                 </td>
