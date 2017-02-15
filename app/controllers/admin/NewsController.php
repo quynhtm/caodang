@@ -104,11 +104,15 @@ class NewsController extends BaseAdminController
                $imageOrigin = $data->news_image;
             }
         }
+
         $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($data['news_depart_id'])? $data['news_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['news_status'])? $data['news_status'] : CGlobal::status_show);
         $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($data['news_common_page'])? $data['news_common_page'] : CGlobal::status_hide);
-        $optionCategory = FunctionLib::getOption($this->arrCategoryNew, isset($data['news_category_id'])? $data['news_category_id'] : CGlobal::status_hide);
-        $optionCategoryShow = FunctionLib::getOption($this->arrCategoryNew, isset($data['news_show_cate_id'])? $data['news_show_cate_id'] : CGlobal::status_hide);
+
+        $arrCategory = (isset($data->news_depart_id))? $this->buildOptionCategoryNew($data->news_depart_id):array();
+        $arrCategory = !empty($arrCategory)? $arrCategory :array(0=>'----Chọn danh mục tin----');
+        $optionCategory = FunctionLib::getOption($arrCategory, isset($data['news_category_id'])? $data['news_category_id'] : CGlobal::status_hide);
+        $optionCategoryShow = FunctionLib::getOption($arrCategory, isset($data['news_show_cate_id'])? $data['news_show_cate_id'] : CGlobal::status_hide);
 
         $this->layout->content = View::make('admin.News.add')
             ->with('id', $id)
@@ -181,6 +185,22 @@ class NewsController extends BaseAdminController
             ->with('arrStatus', $this->arrStatus);
     }
 
+    public function buildOptionCategoryNew($category_depart_id = 0){
+        if($category_depart_id > 0){
+            $search['category_depart_id'] = $category_depart_id;
+            $dataSearch = Category::searchByCondition($search, 500, 0,$total);
+            if(!empty($dataSearch)){
+                $arrCategory = array();
+                $arrCategoryAll = Category::getTreeCategory($dataSearch);
+                foreach($arrCategoryAll as $k =>$cat){
+                    $arrCategory[$cat['category_id']] = $cat['padding_left'].$cat['category_name'];
+                }
+                return $arrCategory;
+            }
+        }
+        return array();
+    }
+
     public function deleteNews(){
         $data = array('isIntOk' => 0);
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
@@ -198,7 +218,7 @@ class NewsController extends BaseAdminController
         $news_depart_id = (int)Request::get('news_depart_id', 0);
 
         if ($news_depart_id > 0) {
-            $category = Category::getCategoryByDepartId($news_depart_id);
+            $category = $this->buildOptionCategoryNew($news_depart_id);
             if(!empty($category)){
                 $str_option = '<option value="">---Chọn danh mục---</option>';
                 foreach($category as $dis_id =>$dis_name){

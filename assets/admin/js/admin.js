@@ -521,6 +521,8 @@ var Admin = {
     getCategoryWithDepart:function(){
         var news_depart_id = $('#news_depart_id').val();
         if(parseInt(news_depart_id) > 0){
+            $('#news_category_id').html('');
+            $('#news_show_cate_id').html('');
             jQuery.ajax({
                 type: "POST",
                 url: WEB_ROOT + '/admin/news/getCategoryWithDepart',
