@@ -48,27 +48,32 @@
                     <table class="table table-bordered table-hover">
                         <thead class="thin-border-bottom">
                         <tr class="">
-                            <th width="5%" class="text-center">STT</th>
-                            <th width="5%" class="text-center">Ảnh</th>
-                            <th width="60%">Tên bài viết</th>
-                            <th width="15%" class="text-center">Trạng thái</th>
-                            <th width="15%" class="text-center">Thao tác</th>
+                            <th width="2%" class="text-center">TT</th>
+                            <th width="8%" class="text-center">Ảnh</th>
+                            <th width="42%">Tên bài viết</th>
+                            <th width="15%" class="text-center">Thuộc khoa - trung tâm</th>
+                            <th width="15%" class="text-center">Danh mục tin</th>
+                            <th width="8%" class="text-center">Trạng thái</th>
+                            <th width="10%" class="text-center">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $stt + $key+1 }}</td>
-                                <td class="text-center"><img src="{{$item['url_image']}}"></td>
+                                <td class="text-center"><img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item->news_id, $item->news_image, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false)}}"></td>
                                 <td>
                                     [<b>{{ $item['news_id'] }}</b>]<a href="#" target="_blank">{{ $item['news_title'] }}</a>
                                 </td>
+                                <td>@if(isset($arrDepart[$item['news_depart_id']])){{ $arrDepart[$item['news_depart_id']] }}@else --- @endif</td>
+                                <td>@if(isset($arrCategoryNew[$item['news_category_id']])){{ $arrCategoryNew[$item['news_category_id']] }}@else --- @endif</td>
                                 <td class="text-center">
                                     @if($item['news_status'] == 1)
-                                        <a href="javascript:void(0);" title="Hiện"><i class="fa fa-check fa-2x"></i></a>
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['news_id']}},{{$item['news_status']}},5)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
                                     @else
-                                        <a href="javascript:void(0);" style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['news_id']}},{{$item['news_status']}},5)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
                                     @endif
+                                    <span class="img_loading" id="img_loading_{{$item['news_id']}}"></span>
                                 </td>
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
