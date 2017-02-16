@@ -32,7 +32,9 @@ class SiteHomeController extends BaseSiteController{
         $this->layout->content = View::make('site.SiteLayouts.Home');
         $this->footer();
     }
-
+	public function pageCategory(){
+		return Redirect::route('site.home');
+	}
     public function pageContact(){
 
         //Meta title
