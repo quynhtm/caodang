@@ -109,6 +109,9 @@ class Category extends Eloquent
             if (isset($dataSearch['category_depart_id']) && $dataSearch['category_depart_id'] != -1) {
                 $query->where('category_depart_id', $dataSearch['category_depart_id']);
             }
+            if (isset($dataSearch['string_depart_id']) && $dataSearch['string_depart_id'] != '') {
+                $query->whereIn('category_depart_id', explode(',',$dataSearch['string_depart_id']));
+            }
             $total = $query->count();
             $query->orderBy('category_id', 'desc');
 

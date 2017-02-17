@@ -88,12 +88,14 @@ class BannerController extends BaseAdminController
         $search['banner_type'] = (int)Request::get('banner_type',-1);
         $search['banner_position'] = (int)Request::get('banner_position',0);
         $search['banner_parent_id'] = (int)Request::get('banner_parent_id',0);
+        if(!$this->is_root){
+            $search['string_banner_page'] = $this->user_group_depart.',0';
+        }
         //$search['field_get'] = 'category_id,news_title,news_status';//cac truong can lay
 
         $dataSearch = Banner::searchByCondition($search, $limit, $offset,$total);
         $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
-        //FunctionLib::debug($dataSearch);
         $optionStatus = FunctionLib::getOption($this->arrStatus, $search['banner_status']);
         $optionType = FunctionLib::getOption($this->arrTypeBanner, $search['banner_type']);
         $optionPage = FunctionLib::getOption( array(0 => '-- Chọn page --')+$this->arrPage, $search['banner_page']);

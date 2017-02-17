@@ -37,6 +37,9 @@ class News extends Eloquent
             if (isset($dataSearch['news_category_id']) && $dataSearch['news_category_id'] > 0) {
                 $query->where('news_category_id', $dataSearch['news_category_id']);
             }
+            if (isset($dataSearch['string_depart_id']) && $dataSearch['string_depart_id'] != '') {
+                $query->whereIn('news_depart_id', explode(',',$dataSearch['string_depart_id']));
+            }
             if (isset($dataSearch['not_news_id']) && $dataSearch['not_news_id'] > 0) {
                 $query->where('news_id','<>', $dataSearch['not_news_id']);
             }

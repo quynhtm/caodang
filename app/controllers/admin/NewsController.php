@@ -56,8 +56,11 @@ class NewsController extends BaseAdminController
 
         $search['news_title'] = addslashes(Request::get('news_title',''));
         $search['news_status'] = (int)Request::get('news_status',-1);
-        //$search['field_get'] = 'category_id,news_title,news_status';//cac truong can lay
+        if(!$this->is_root){
+            $search['string_depart_id'] = $this->user_group_depart;
+        }
 
+        //$search['field_get'] = 'category_id,news_title,news_status';//cac truong can lay
         $dataSearch = News::searchByCondition($search, $limit, $offset,$total);
         $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 

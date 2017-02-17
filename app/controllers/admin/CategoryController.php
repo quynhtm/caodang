@@ -52,6 +52,9 @@ class CategoryController extends BaseAdminController
         $search['category_name'] = addslashes(Request::get('category_name',''));
         $search['category_status'] = (int)Request::get('category_status',-1);
         $search['category_depart_id'] = (int)Request::get('category_depart_id',-1);
+        if(!$this->is_root){
+            $search['string_depart_id'] = $this->user_group_depart;
+        }
         
         $dataSearch = ($search['category_depart_id'] > 0)?Category::searchByCondition($search, 500, $offset,$total): array();
         $paging = '';
