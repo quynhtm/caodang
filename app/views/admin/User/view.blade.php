@@ -109,7 +109,7 @@
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="{{URL::route('admin.user_change',array('id' => base64_encode($item['user_id'])))}}" title="Đổi mật khẩu"><i class="fa fa-refresh fa-2x"></i></a>
                                     @endif
-                                        
+
                                     @if($is_boss || $permission_remove)
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="javascript:void(0)" class="sys_delete_user" data-content="Xóa tài khoản" data-placement="bottom" data-trigger="hover" data-rel="popover" data-id="{{$item['user_id']}}">

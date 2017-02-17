@@ -167,13 +167,15 @@
                             @if(isset($item['sub']) && !empty($item['sub']))
                                 @foreach($item['sub'] as $sub)
                                     @if($is_root || (isset($sub['permission']) && in_array($sub['permission'],$aryPermission)))
-                                        <li class="@if(strcmp(Route::currentRouteName(),$sub['RouteName']) == 0) active @endif">
-                                            <a href="{{URL::route($sub['RouteName'])}}">
-                                                <i class="menu-icon fa fa-caret-right"></i>
-                                                {{ $sub['name'] }}
-                                            </a>
-                                            <b class="arrow"></b>
-                                        </li>
+                                        @if($is_boss || isset($sub['showMenu']) && $sub['showMenu'] == 1)
+                                            <li class="@if(strcmp(Route::currentRouteName(),$sub['RouteName']) == 0) active @endif">
+                                                <a href="{{URL::route($sub['RouteName'])}}">
+                                                    <i class="menu-icon fa fa-caret-right"></i>
+                                                    {{ $sub['name'] }}
+                                                </a>
+                                                <b class="arrow"></b>
+                                            </li>
+                                        @endif
                                     @endif
                                 @endforeach
                             @endif
