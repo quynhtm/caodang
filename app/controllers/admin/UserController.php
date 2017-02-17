@@ -34,12 +34,13 @@ class UserController extends BaseAdminController
         $dataSearch['user_full_name'] = Request::get('user_full_name', '');
         $dataSearch['user_name'] = Request::get('user_name', '');
         $dataSearch['user_group'] = Request::get('user_group', 0);
+        $dataSearch['is_boss'] = $this->is_boss;
 
         $limit = CGlobal::number_limit_show;
         $total = 0;
         $offset = ($page_no - 1) * $limit;
         $data = User::searchByCondition($dataSearch, $limit, $offset, $total);
-        $arrGroupUser = GroupUser::getListGroupUser();
+        $arrGroupUser = GroupUser::getListGroupUser($this->is_boss);
 
         $paging = $total > 0 ? Pagging::getNewPager(3,$page_no,$total,$limit,$dataSearch) : '';
         $this->layout->content = View::make('admin.User.view')
@@ -52,13 +53,15 @@ class UserController extends BaseAdminController
             ->with('start', ($page_no - 1) * $limit)
             ->with('paging', $paging)
             ->with('is_root', $this->is_root)
+            ->with('is_boss', $this->is_boss)
             ->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0)
             ->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)
             ->with('permission_change_pass', in_array($this->permission_change_pass, $this->permission) ? 1 : 0)
             ->with('permission_remove', in_array($this->permission_remove, $this->permission) ? 1 : 0);
     }
 
-    public function getUser($id=0) {
+    public function getUser($ids) {
+        $id = base64_decode($ids);
         CGlobal::$pageAdminTitle = "Cập nhật thông tin User | Admin CMS";
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
             return Redirect::route('admin.dashboard',array('error'=>1));
@@ -73,7 +76,7 @@ class UserController extends BaseAdminController
         $arrUserGroupDepart = isset($data['user_group_depart'])? explode(',',$data['user_group_depart']): array();
 
         //nhóm quyền
-        $arrGroupUser = GroupUser::getListGroupUser();
+        $arrGroupUser = GroupUser::getListGroupUser($this->is_boss);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['user_status'])? $data['user_status'] : 1);
         $optionSex = FunctionLib::getOption($this->arrSex, isset($data['user_sex'])? $data['user_sex'] : 0);
         $this->layout->content = View::make('admin.User.addUser')
@@ -87,7 +90,8 @@ class UserController extends BaseAdminController
             ->with('arrUserGroupDepart', $arrUserGroupDepart)
             ->with('data', $data);
     }
-    public function postUser($id=0) {
+    public function postUser($ids) {
+        $id = base64_decode($ids);
         CGlobal::$pageAdminTitle = "Cập nhật thông tin User | Admin CMS";
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
             return Redirect::route('admin.dashboard',array('error'=>1));
@@ -138,7 +142,7 @@ class UserController extends BaseAdminController
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['user_status'])? $dataSave['user_status'] : 1);
         $optionSex = FunctionLib::getOption($this->arrSex, isset($dataSave['user_sex'])? $dataSave['user_sex'] : 0);
-        $arrGroupUser = GroupUser::getListGroupUser();
+        $arrGroupUser = GroupUser::getListGroupUser($this->is_boss);
 
         if($id > 0) {
             $data = User::getUserById($id);

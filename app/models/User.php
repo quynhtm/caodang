@@ -75,7 +75,7 @@ class User extends Eloquent {
     public static function searchByCondition($data = array(), $limit = 0, $offset = 0, &$size)
     {
         try {
-            $query = User::where('user_id', '>', 0);
+            $query = (isset($data['is_boss']) && $data['is_boss'] == true)? User::where('user_id', '>', 0): User::where('user_id', '>', 5);
 
             if (isset($data['user_id']) && $data['user_id'] > 0) {
                 $query->where('user_id', $data['user_id']);

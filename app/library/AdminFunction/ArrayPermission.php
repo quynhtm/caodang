@@ -5,7 +5,8 @@
  */
 class ArrayPermission{
     public static $arrPermit = array(
-        'root' => array('name_permit'=>'Root','group_permit'=>'Root'),
+        'root' => array('name_permit'=>'Quản trị site','group_permit'=>'Quản trị site'),//admin site
+        'is_boss' => array('name_permit'=>'Boss','group_permit'=>'Boss'),//tech dùng quyen cao nhat
 
         'user_view' => array('name_permit'=>'Xem danh sách user Admin','group_permit'=>'Tài khoản Admin'),
         'user_create' => array('name_permit'=>'Tạo user Admin','group_permit'=>'Tài khoản Admin'),

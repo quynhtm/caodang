@@ -17,6 +17,12 @@ class BaseAdminController extends BaseController
         if($this->user && sizeof($this->user['user_permission']) > 0){
             $this->permission = $this->user['user_permission'];
         }
+        //FunctionLib::debug($this->user);
+        //boss admin
+        if(in_array('is_boss',$this->permission)){
+            $this->is_boss = true;
+        }
+        //quản trị viên
         if(in_array('root',$this->permission)){
             $this->is_root = true;
         }

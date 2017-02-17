@@ -103,13 +103,14 @@
                                 </td>
                                 <td class="text-center text-middle" >
                                     @if($is_root || $permission_edit)
-                                        <a href="{{URL::route('admin.user_edit',array('id' => $item['user_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{URL::route('admin.user_edit',array('id' => base64_encode($item['user_id'])))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root || $permission_change_pass)
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="{{URL::route('admin.user_change',array('id' => base64_encode($item['user_id'])))}}" title="Đổi mật khẩu"><i class="fa fa-refresh fa-2x"></i></a>
                                     @endif
-                                    @if($is_root || $permission_remove)
+                                        
+                                    @if($is_boss || $permission_remove)
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="javascript:void(0)" class="sys_delete_user" data-content="Xóa tài khoản" data-placement="bottom" data-trigger="hover" data-rel="popover" data-id="{{$item['user_id']}}">
                                             <i class="fa fa-trash fa-2x"></i>

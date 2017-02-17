@@ -129,9 +129,9 @@ class GroupUser extends Eloquent
         return $data;
     }
 
-    public static function getListGroupUser()
+    public static function getListGroupUser($is_boss = false)
     {
-        return GroupUser::where('group_user_status', '=', 1)->lists('group_user_name','group_user_id');
+        return ($is_boss)? GroupUser::where('group_user_status', '=', 1)->lists('group_user_name','group_user_id'): GroupUser::where('group_user_id', '>', 2)->where('group_user_status', '=', 1)->lists('group_user_name','group_user_id');
     }
 
 

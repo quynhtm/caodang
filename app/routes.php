@@ -66,8 +66,8 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
 
     /*thông tin tài khoản*/
     Route::get('user/view',array('as' => 'admin.user_view','uses' => 'UserController@view'));
-    Route::get('user/edit/{id?}', array('as' => 'admin.user_edit','uses' => 'UserController@getUser'))->where('id', '[0-9]+');
-    Route::post('user/edit/{id?}', array('as' => 'admin.user_edit','uses' => 'UserController@postUser'))->where('id', '[0-9]+');
+    Route::get('user/edit/{id?}', array('as' => 'admin.user_edit','uses' => 'UserController@getUser'));
+    Route::post('user/edit/{id?}', array('as' => 'admin.user_edit','uses' => 'UserController@postUser'));
     Route::get('user/change/{id}',array('as' => 'admin.user_change','uses' => 'UserController@changePassInfo'));
     Route::post('user/change/{id}',array('as' => 'admin.user_change','uses' => 'UserController@changePass'));
     Route::post('user/remove/{id}',array('as' => 'admin.user_remove','uses' => 'UserController@remove'));
