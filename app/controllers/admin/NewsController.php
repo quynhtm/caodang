@@ -24,7 +24,9 @@ class NewsController extends BaseAdminController
 
         $this->arrCategoryNew = Category::getOptionAllCategory();
         $this->arrTypeNew = CGlobal::$arrTypeNew;
-        $this->arrDepart = Department::getDepart();
+
+        $userDepar = explode(',',$this->user_group_depart);
+        $this->arrDepart = Department::getDepartWithUser($userDepar,$this->is_root);
 
         //Include style.
         FunctionLib::link_css(array(

@@ -56,7 +56,9 @@ class BannerController extends BaseAdminController
     {
         parent::__construct();
         $this->arrCategoryParent = Category::getAllParentCategoryId();
-        $this->arrPage = Department::getDepart();
+
+        $userDepar = explode(',',$this->user_group_depart);
+        $this->arrPage = Department::getDepartWithUser($userDepar,$this->is_root);
         //Include style.
         FunctionLib::link_css(array(
             'lib/upload/cssUpload.css',

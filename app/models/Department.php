@@ -40,6 +40,21 @@ class Department extends Eloquent
         }
         return $data;
     }
+    public static function getDepartWithUser($userDepar = array(),$is_root = false){
+        $arrDepart = self::getDepart();
+        if($is_root) return $arrDepart;
+        if(!empty($userDepar)){
+            $arrDepartWithUser = array();
+            foreach($userDepar as $depart_id){
+                if(isset($arrDepart[(int)$depart_id])){
+                    $arrDepartWithUser[(int)$depart_id] = $arrDepart[(int)$depart_id];
+                }
+            }
+            return $arrDepartWithUser;
+        }
+        return array();
+    }
+
 
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{

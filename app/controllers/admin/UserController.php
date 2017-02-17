@@ -60,7 +60,7 @@ class UserController extends BaseAdminController
             ->with('permission_remove', in_array($this->permission_remove, $this->permission) ? 1 : 0);
     }
 
-    public function getUser($ids) {
+    public function getUser($ids = '') {
         $id = base64_decode($ids);
         CGlobal::$pageAdminTitle = "Cập nhật thông tin User | Admin CMS";
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
@@ -90,7 +90,7 @@ class UserController extends BaseAdminController
             ->with('arrUserGroupDepart', $arrUserGroupDepart)
             ->with('data', $data);
     }
-    public function postUser($ids) {
+    public function postUser($ids = '') {
         $id = base64_decode($ids);
         CGlobal::$pageAdminTitle = "Cập nhật thông tin User | Admin CMS";
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){

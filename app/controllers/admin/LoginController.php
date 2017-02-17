@@ -59,8 +59,7 @@ class LoginController extends BaseController
                                 'user_name' => $user->user_name,
                                 'user_full_name' => $user->user_full_name,
                                 'user_email' => $user->user_email,
-                                'user_employee_id' => $user->user_employee_id,
-                                'user_is_admin' => $user->user_is_admin,
+                                'user_group_depart' => $user->user_group_depart,
                                 'user_permission' => $permission_code
                             );
                             Session::put('user', $data, 60*24);

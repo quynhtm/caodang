@@ -102,8 +102,8 @@
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="light-blue">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <li class="light-blue" >
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle" >
 								<span class="user-info">
 									<small>Xin chào,</small>
                                     {{$user['user_full_name']}}

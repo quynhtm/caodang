@@ -6,6 +6,7 @@ class BaseAdminController extends BaseController
     protected $user = array();
     protected $is_root = false;
     protected $is_boss = false;
+    protected $user_group_depart = '';
 
     public function __construct()
     {
@@ -14,8 +15,11 @@ class BaseAdminController extends BaseController
         }
 
         $this->user = User::user_login();
-        if($this->user && sizeof($this->user['user_permission']) > 0){
-            $this->permission = $this->user['user_permission'];
+        if($this->user){
+            if(sizeof($this->user['user_permission']) > 0) {
+                $this->permission = $this->user['user_permission'];
+            }
+            $this->user_group_depart = $this->user['user_group_depart'];
         }
         //FunctionLib::debug($this->user);
         //boss admin
@@ -30,6 +34,7 @@ class BaseAdminController extends BaseController
         View::share('menu',$menu);
         View::share('aryPermission',$this->permission);
         View::share('user',$this->user);
+        View::share('user_group_depart',$this->user_group_depart);
         View::share('is_root',$this->is_root);
         View::share('is_boss',$this->is_boss);
     }

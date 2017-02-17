@@ -32,7 +32,9 @@ class CategoryController extends BaseAdminController
         ));*/
         
         $this->arrCategoryParent = Category::getAllParentCategoryId();
-        $this->arrCategoryDepart = Department::getDepart();
+
+        $userDepar = explode(',',$this->user_group_depart);
+        $this->arrCategoryDepart = Department::getDepartWithUser($userDepar,$this->is_root);
     }
 
     public function view() {
