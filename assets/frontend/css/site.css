@@ -483,3 +483,128 @@ h1, h2, h3, h4, h5, h6{
 .btn-ext {
     padding: 5px 22px;
 }
+.selectLink{
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 3px 0px;
+	margin-bottom: 10px;
+}
+.item-box{
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.item-box img {
+    width: 100%;
+}
+.col-middle{
+	border-right: 1px dotted #ddd;
+	border-left: 1px dotted #ddd;
+}
+
+.top-title {
+    background: url("../img/bg-title-left.png") no-repeat scroll 0 0 transparent;
+    height: 35px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0 0 0 5px;
+    text-transform: uppercase;
+    width: 200px;
+    color: #fff;
+}
+.top-title span {
+    background: url("../img/bg-title-right.png") repeat-x scroll right top transparent;
+    float: left;
+    height: 35px;
+    line-height: 23px;
+    padding: 0 35px 0 5px;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+}
+.top-title a{
+    color:#fff;
+}
+.list ul {
+    padding: 5px 0px;
+}
+.list ul li {
+    background: url(../img/icon-arrow.png) no-repeat left center;
+    line-height: 25px;
+    padding-left: 20px;
+    font-size: 14px;
+}
+.list ul li a {
+    color: #696a28;
+    font-style: italic;
+}
+.language {
+    padding: 5px 0;
+    text-align: right;
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 0;
+}
+.language a {
+    color: #fafafa;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 5px;
+    text-indent: -99999em;
+    width: 20px;
+    height: 18px;
+}
+.language a.vi {
+    background: rgba(0,0,0,0) url(../img/vn.jpg) no-repeat scroll 0 3px;
+}
+.language a.en {
+    background: rgba(0,0,0,0) url(../img/en.jpg) no-repeat scroll 0 3px;
+}
+.banner-week {
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+    border: 1px solid #999;
+}
+.banner-week img{
+    width: 100%;
+}
+.sliderBottomPartner{
+    padding: 0 95px;
+}
+.sliderBottomPartner .owl-item {
+    padding: 0 4px;
+}
+.sliderBottomPartner .owl-item .image-item {
+    display: inline-block;
+    height: 108px;
+    width: 100%;
+    border: #bfbebe solid 1px;
+    border-radius: 4px;
+    line-height: 95px;
+    text-align: center;
+}
+.sliderBottomPartner .owl-prev,
+.sliderBottomPartner .owl-next {
+    position: absolute;
+    width: 40px;
+    height: 108px;
+    top: 0;
+    background: url('../img/icon-arrow-partner.png') 0 0 no-repeat;
+    text-indent: -999999em;
+    display: inline-block;
+}
+.sliderBottomPartner .owl-prev {
+    left: 45px;
+}
+.sliderBottomPartner .owl-next {
+    right: 45px;
+    background-position: 100% 0;
+}
+.sliderBottomPartner .image-item a img {
+    width: auto;
+    height: auto;
+    max-height: 108px;
+}

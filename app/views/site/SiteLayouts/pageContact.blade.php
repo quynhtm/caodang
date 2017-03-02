@@ -1,4 +1,4 @@
-<div class="col-middle contact">
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
 	<h1 class="title-path"><a href="{{URL::route('site.pageContact')}}" title="Liên hệ">Liên hệ</a></h1>
 	<div class="info-contact">
 		{{$info}}

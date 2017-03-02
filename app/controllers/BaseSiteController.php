@@ -19,10 +19,18 @@ class BaseSiteController extends BaseController{
         //Banner Header
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP);
         $arrBannerHead = $this->getBannerWithPosition($arrBanner);
-
+        //List Category
         $menuCategoriessAll = Category::getCategoriessAll();
-    	$this->layout->header = View::make("site.BaseLayouts.header")
+        //Num Category Show Menu Horizontal
+        $numCategory = 0;
+        $numCategoryShow = Info::getItemByKeyword('SITE_NUM_MENU_HORIZONTAL');
+        if(sizeof($numCategoryShow) > 0){
+            $numCategory = (int)strip_tags(stripslashes($numCategoryShow->info_content));
+        }
+
+        $this->layout->header = View::make("site.BaseLayouts.header")
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
+                                ->with('numCategory', $numCategory)
                                 ->with('arrBannerHead', $arrBannerHead);
     }
 	public function footer(){
@@ -45,11 +53,15 @@ class BaseSiteController extends BaseController{
                                 ->with('arrBannerSlider', $arrBannerSlider);
     }
     public function left(){
-
+        //Banner Calendar Week
+        $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
+        $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
+        //Banner Bottom
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_LEFT);
         $arrBannerLeft = $this->getBannerWithPosition($arrBanner);
         $this->layout->left = View::make("site.BaseLayouts.left")
-                                ->with('arrBannerLeft', $arrBannerLeft);
+                                ->with('arrBannerLeft', $arrBannerLeft)
+                                ->with('arrBannerWeek', $arrBannerWeek);
     }
     public function right(){
 
@@ -57,6 +69,16 @@ class BaseSiteController extends BaseController{
         $arrBannerRight = $this->getBannerWithPosition($arrBanner);
         $this->layout->right = View::make("site.BaseLayouts.right")
                                 ->with('arrBannerRight', $arrBannerRight);
+    }
+
+    public function sliderPartnerBottom(){
+        FunctionLib::site_js('lib/owl.carousel/owl.carousel.min.js', CGlobal::$POS_END);
+        FunctionLib::site_css('lib/owl.carousel/owl.carousel.css', CGlobal::$POS_HEAD);
+
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_PARTNER);
+        $arrBannerPartner = $this->getBannerWithPosition($arrBanner);
+        $this->layout->right = View::make("site.BaseLayouts.partnerBottom")
+                                ->with('arrBannerPartner', $arrBannerPartner);
     }
 
     public function getBannerWithPosition($arrBanner = array()){

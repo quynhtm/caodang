@@ -161,6 +161,8 @@ class CGlobal{
     const BANNER_TYPE_BOTTOM = 4;
     const BANNER_TYPE_CENTER = 5;
     const BANNER_TYPE_SLIDE = 6;
+    const BANNER_TYPE_CALENDAR_WEEK = 7;
+    const BANNER_TYPE_PARTNER = 8;
 
     //page gắn link quảng cáo
     const BANNER_PAGE_HOME = 1;

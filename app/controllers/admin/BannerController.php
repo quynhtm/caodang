@@ -29,7 +29,9 @@ class BannerController extends BaseAdminController
         CGlobal::BANNER_TYPE_TOP => 'Banner Top Header',
         CGlobal::BANNER_TYPE_RIGHT => 'Banner Phải',
         CGlobal::BANNER_TYPE_LEFT => 'Banner Trái',
-        CGlobal::BANNER_TYPE_SLIDE => 'Banner slide' );
+        CGlobal::BANNER_TYPE_SLIDE => 'Banner slide',
+        CGlobal::BANNER_TYPE_CALENDAR_WEEK=> 'Banner lịch công tác tuần',
+        CGlobal::BANNER_TYPE_PARTNER=> 'Banner đối tác chân trang');
 
     /*const BANNER_PAGE_HOME = 1;
     const BANNER_PAGE_DETAIL = 3;

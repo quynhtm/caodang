@@ -24,17 +24,23 @@ class SiteHomeController extends BaseSiteController{
     		}
     	}
     	FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
-    	
+
+        //Banner Calendar Week
+        $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
+        $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
+
     	$this->header();
         $this->slider();
-        $this->layout->content = View::make('site.SiteLayouts.Home');
+        $this->layout->content = View::make('site.SiteLayouts.Home')
+                                ->with('arrBannerWeek', $arrBannerWeek);
+        $this->sliderPartnerBottom();
         $this->footer();
     }
 	public function pageCategory(){
 		return Redirect::route('site.home');
 	}
     public function pageContact(){
-        return Redirect::route('site.home');
+        
         //Meta title
         $meta_title='';
         $meta_keywords='';

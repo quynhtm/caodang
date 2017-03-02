@@ -1,6 +1,6 @@
-<div class="col-right">
+<div class="col-lg-3 col-md-3 col-sm-12 col-right">
 	<div class="item-box">
-		<div class="top-box">
+		<div class="top-title">
          <span>
          <a href="">Tuyển sinh</a>
          </span>
@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="item-box">
-		<div class="top-box">
+		<div class="top-title">
          <span>
          <a href="">Nghiên cứu khoa học</a>
          </span>
@@ -28,7 +28,7 @@
 		</div>
 	</div>
 	<div class="item-box">
-		<div class="top-box">
+		<div class="top-title ">
          <span>
          <a href="">Tốt nghiệp-Cựu sinh viên</a>
          </span>
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<div class="item-box">
-		<div class="top-box">
+		<div class="top-title">
          <span>
          <a href="">Đoàn TN - Hội SV</a>
          </span>
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<div class="item-box">
-		<div class="top-box">
+		<div class="top-title">
          <span>
          <a href="">Liên kết</a>
          </span>
@@ -84,7 +84,7 @@
 				@if($item->banner_image != '')
 				<div class="item-box">
 					<a @if($item->banner_is_rel == CGlobal::LINK_NOFOLLOW) rel="nofollow" @endif @if($item->banner_is_target == CGlobal::BANNER_TARGET_BLANK) target="_blank" @endif href="@if($item->banner_link != '') {{$item->banner_link}} @else javascript:void(0) @endif" title="{{$item->banner_name}}">
-							<img src="{{ThumbImg::thumbImageBannerNormal($item->banner_id,$item->banner_parent_id, $item->banner_image, CGlobal::sizeImage_1000,CGlobal::sizeImage_200, $item->banner_name,true,true)}}" alt="{{$item->banner_name}}" />
+						<img src="{{ThumbImg::thumbImageBannerNormal($item->banner_id,$item->banner_parent_id, $item->banner_image, CGlobal::sizeImage_1000,CGlobal::sizeImage_200, $item->banner_name,true,true)}}" alt="{{$item->banner_name}}" />
 					</a>
 				</div>
 				@endif

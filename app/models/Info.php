@@ -131,7 +131,7 @@ class Info extends Eloquent {
     			if($info_img != ''){
 					//xoa anh upload
 					FunctionLib::deleteFileUpload($data->info_img,$data->info_id,CGlobal::FOLDER_INFORSEO);
-					//x�a anh thumb
+					//xoa anh thumb
 					$arrSizeThumb = CGlobal::$arrBannerSizeImage;
 					foreach($arrSizeThumb as $k=>$size){
 						$sizeThumb = $size['w'].'x'.$size['h'];

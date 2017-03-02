@@ -54,11 +54,13 @@
 							{{$right}}
 						@endif
 					</div>
+					@if(isset($sliderPartnerBottom))
+						{{$sliderPartnerBottom}}
+					@endif
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	@if(isset($footer))
 	<div id="footer">
 		{{$footer}}
