@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2017-03-02 15:58:42
+Date: 2017-03-02 16:22:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -240,6 +240,7 @@ CREATE TABLE `web_category_new` (
   `category_show_left` tinyint(2) DEFAULT '1',
   `category_show_right` tinyint(2) DEFAULT NULL,
   `category_show_center` tinyint(2) DEFAULT '0',
+  `category_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_status` tinyint(1) DEFAULT '0',
   `category_order` tinyint(5) DEFAULT '0',
   `category_date_creater` int(11) DEFAULT NULL,
@@ -256,40 +257,40 @@ CREATE TABLE `web_category_new` (
 -- ----------------------------
 -- Records of web_category_new
 -- ----------------------------
-INSERT INTO `web_category_new` VALUES ('266', 'Giới thiệu', '7', '0', '1', '1', '0', '0', '1', '1', '1487045320', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('267', 'Tuyển sinh', '7', '0', '1', '0', '1', '0', '1', '3', '1487045387', '2', 'admin', '1488431387', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('268', 'Đào tạo', '7', '0', '1', '1', '0', '0', '1', '4', '1487045820', '2', 'admin', '1488431402', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('269', 'Đoàn thanh niên - Hội sinh viên', '7', '0', '1', '0', '0', '0', '1', '6', '1487045915', '2', 'admin', '1488431462', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('270', 'Nghiên cứu khoa học', '7', '296', '1', '0', '1', '0', '1', '5', '1487045947', '2', 'admin', '1487148699', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('271', 'Thông báo', '7', '0', '0', '0', '0', '0', '1', '6', '1487045974', '2', 'admin', '1488431477', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('272', 'Trung tâm, trường MNTH', '7', '0', '0', '0', '0', '0', '1', '7', '1487046211', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('273', 'Giới thiệu Đoàn thể', '7', '0', '0', '0', '0', '0', '1', '7', '1487046261', '2', 'admin', '1487066530', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('274', 'Giới thiệu chung', '7', '266', '0', '0', '0', '0', '1', '1', '1487046361', '2', 'admin', '1487047130', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('276', 'Tin tức', '7', '0', '1', '1', '0', '0', '1', '2', '1487147165', '2', 'admin', '1488431364', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('277', 'Lịch công tác tuần', '7', '276', '0', '0', '0', '0', '1', '1', '1487147582', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('278', 'Văn bản chỉ đạo, điều hành của Bộ Giáo dục và Đào tạo', '7', '276', '0', '0', '0', '0', '1', '2', '1487147608', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('279', 'Tin tuyển sinh', '7', '276', '0', '0', '0', '0', '1', '3', '1487147630', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('280', 'Hoạt động đào tạo', '7', '276', '0', '0', '0', '0', '1', '4', '1487147655', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('281', 'Hoạt động đoàn thể', '7', '276', '0', '0', '0', '0', '1', '5', '1487147673', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('282', 'Hoạt động của các trường Mầm non thực hành', '7', '276', '0', '0', '0', '0', '1', '6', '1487147690', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('283', 'Thư viện ảnh, video hoạt động', '7', '0', '0', '0', '0', '0', '1', '10', '1487147781', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('284', 'Thư viện ảnh', '7', '283', '0', '0', '0', '0', '1', '1', '1487147797', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('285', 'Video hoạt động', '7', '283', '0', '0', '0', '0', '1', '2', '1487147814', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('286', 'Trình độ cao đẳng', '7', '267', '0', '0', '0', '0', '1', '1', '1487148138', '2', 'admin', '1487148190', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('287', 'Trình độ Trung cấp chuyên nghiệp', '7', '267', '0', '0', '0', '0', '1', '2', '1487148157', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('288', 'Các khóa ngắn hạn', '7', '267', '0', '0', '0', '0', '1', '3', '1487148184', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('289', 'Tra cứu điểm tuyển sinh', '7', '267', '0', '0', '0', '0', '1', '4', '1487148213', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('290', 'Thông báo', '7', '268', '0', '0', '0', '0', '1', '1', '1487148239', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('291', 'Trình độ cao đẳng', '7', '268', '0', '0', '0', '0', '1', '2', '1487148257', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('292', 'Trình độ Trung cấp chuyên nghiệp', '7', '268', '0', '0', '0', '0', '1', '3', '1487148272', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('293', 'Bồi dưỡng thường xuyên', '7', '268', '0', '0', '0', '0', '1', '5', '1487148289', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('294', 'Phối hợp đào tạo', '7', '268', '0', '0', '0', '0', '1', '6', '1487148303', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('295', 'Văn bản pháp qui', '7', '268', '0', '0', '0', '0', '1', '6', '1487148318', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('296', 'Nghiên cứu khoa học và hợp tác quốc tế', '7', '0', '0', '0', '0', '0', '1', '5', '1487148671', '2', 'admin', '1488431416', '2', 'admin');
-INSERT INTO `web_category_new` VALUES ('297', 'Hợp tác quốc tế', '7', '296', '0', '0', '0', '0', '1', '2', '1487148823', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('298', 'Tốt nghiệp-Cựu sinh viên', '7', '0', '0', '0', '0', '0', '1', '12', '1487148927', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('299', 'Tra cứu văn bằng chứng chỉ', '7', '298', '0', '0', '0', '0', '1', '1', '1487148963', '2', 'admin', null, null, null);
-INSERT INTO `web_category_new` VALUES ('300', 'Khảo sát tình trạng việc làm', '7', '298', '0', '0', '0', '0', '1', '2', '1487148980', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('266', 'Giới thiệu', '7', '0', '1', '1', '0', '0', null, '1', '1', '1487045320', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('267', 'Tuyển sinh', '7', '0', '1', '0', '1', '0', null, '1', '3', '1487045387', '2', 'admin', '1488431387', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('268', 'Đào tạo', '7', '0', '1', '1', '0', '0', null, '1', '4', '1487045820', '2', 'admin', '1488431402', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('269', 'Đoàn thanh niên - Hội sinh viên', '7', '0', '1', '0', '0', '0', 'http://raovat30s.vn', '1', '6', '1487045915', '2', 'admin', '1488446420', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('270', 'Nghiên cứu khoa học', '7', '296', '1', '0', '1', '0', null, '1', '5', '1487045947', '2', 'admin', '1487148699', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('271', 'Thông báo', '7', '0', '0', '0', '0', '0', null, '1', '6', '1487045974', '2', 'admin', '1488431477', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('272', 'Trung tâm, trường MNTH', '7', '0', '0', '0', '0', '0', null, '1', '7', '1487046211', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('273', 'Giới thiệu Đoàn thể', '7', '0', '0', '0', '0', '0', null, '1', '7', '1487046261', '2', 'admin', '1487066530', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('274', 'Giới thiệu chung', '7', '266', '0', '0', '0', '0', null, '1', '1', '1487046361', '2', 'admin', '1487047130', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('276', 'Tin tức', '7', '0', '1', '1', '0', '0', null, '1', '2', '1487147165', '2', 'admin', '1488431364', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('277', 'Lịch công tác tuần', '7', '276', '0', '0', '0', '0', null, '1', '1', '1487147582', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('278', 'Văn bản chỉ đạo, điều hành của Bộ Giáo dục và Đào tạo', '7', '276', '0', '0', '0', '0', null, '1', '2', '1487147608', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('279', 'Tin tuyển sinh', '7', '276', '0', '0', '0', '0', null, '1', '3', '1487147630', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('280', 'Hoạt động đào tạo', '7', '276', '0', '0', '0', '0', null, '1', '4', '1487147655', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('281', 'Hoạt động đoàn thể', '7', '276', '0', '0', '0', '0', null, '1', '5', '1487147673', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('282', 'Hoạt động của các trường Mầm non thực hành', '7', '276', '0', '0', '0', '0', null, '1', '6', '1487147690', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('283', 'Thư viện ảnh, video hoạt động', '7', '0', '0', '0', '0', '0', null, '1', '10', '1487147781', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('284', 'Thư viện ảnh', '7', '283', '0', '0', '0', '0', null, '1', '1', '1487147797', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('285', 'Video hoạt động', '7', '283', '0', '0', '0', '0', null, '1', '2', '1487147814', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('286', 'Trình độ cao đẳng', '7', '267', '0', '0', '0', '0', null, '1', '1', '1487148138', '2', 'admin', '1487148190', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('287', 'Trình độ Trung cấp chuyên nghiệp', '7', '267', '0', '0', '0', '0', null, '1', '2', '1487148157', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('288', 'Các khóa ngắn hạn', '7', '267', '0', '0', '0', '0', null, '1', '3', '1487148184', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('289', 'Tra cứu điểm tuyển sinh', '7', '267', '0', '0', '0', '0', null, '1', '4', '1487148213', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('290', 'Thông báo', '7', '268', '0', '0', '0', '0', null, '1', '1', '1487148239', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('291', 'Trình độ cao đẳng', '7', '268', '0', '0', '0', '0', null, '1', '2', '1487148257', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('292', 'Trình độ Trung cấp chuyên nghiệp', '7', '268', '0', '0', '0', '0', null, '1', '3', '1487148272', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('293', 'Bồi dưỡng thường xuyên', '7', '268', '0', '0', '0', '0', null, '1', '5', '1487148289', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('294', 'Phối hợp đào tạo', '7', '268', '0', '0', '0', '0', null, '1', '6', '1487148303', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('295', 'Văn bản pháp qui', '7', '268', '0', '0', '0', '0', null, '1', '6', '1487148318', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('296', 'Nghiên cứu khoa học và hợp tác quốc tế', '7', '0', '0', '0', '0', '0', null, '1', '5', '1487148671', '2', 'admin', '1488431416', '2', 'admin');
+INSERT INTO `web_category_new` VALUES ('297', 'Hợp tác quốc tế', '7', '296', '0', '0', '0', '0', null, '1', '2', '1487148823', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('298', 'Tốt nghiệp-Cựu sinh viên', '7', '0', '0', '0', '0', '0', null, '1', '12', '1487148927', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('299', 'Tra cứu văn bằng chứng chỉ', '7', '298', '0', '0', '0', '0', null, '1', '1', '1487148963', '2', 'admin', null, null, null);
+INSERT INTO `web_category_new` VALUES ('300', 'Khảo sát tình trạng việc làm', '7', '298', '0', '0', '0', '0', null, '1', '2', '1487148980', '2', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for web_contact
