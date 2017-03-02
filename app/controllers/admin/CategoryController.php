@@ -124,6 +124,7 @@ class CategoryController extends BaseAdminController
         $dataSave['category_show_left'] = (int)Request::get('category_show_left', CGlobal::status_hide);
         $dataSave['category_show_right'] = (int)Request::get('category_show_right', CGlobal::status_hide);
         $dataSave['category_show_center'] = (int)Request::get('category_show_center', CGlobal::status_hide);
+        $dataSave['category_link'] = addslashes(Request::get('category_link', ''));
 
         /*$file = Input::file('image');
         if($file){

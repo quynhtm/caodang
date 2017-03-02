@@ -13,7 +13,7 @@ class Category extends Eloquent
     protected $fillable = array('category_id','category_name', 'category_depart_id','category_parent_id',
         'category_show_top', 'category_show_left', 'category_show_right', 'category_show_center',
         'category_status', 'category_order', 'category_date_creater', 'category_user_id_creater', 'category_user_name_creater',
-        'category_date_update', 'category_user_id_update', 'category_user_name_update');
+        'category_date_update', 'category_user_id_update', 'category_user_name_update', 'category_link');
 
     public static function getByID($id) {
         $category = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_CATEGORY_ID.$id) : array();
@@ -234,7 +234,8 @@ class Category extends Eloquent
                         'category_show_right'=>$itm->category_show_right,
                         'category_show_center'=>$itm->category_show_center,
                         'category_status'=>$itm->category_status,
-                        'category_order'=>$itm->category_order);
+                        'category_order'=>$itm->category_order,
+                        'category_link'=>$itm->category_link);
                 }
                 if(!empty($data) && Memcache::CACHE_ON){
                     Cache::put(Memcache::CACHE_ALL_CATEGORY, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
@@ -269,7 +270,8 @@ class Category extends Eloquent
                     'category_show_center'=>$value->category_show_center,
                     'category_order'=>$value->category_order,
                     'category_status'=>$value->category_status,
-                    'category_name'=>$value->category_name);
+                    'category_name'=>$value->category_name,
+                    'category_link'=>$value->category_link);
             }
         }
 

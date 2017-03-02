@@ -27,7 +27,7 @@
 							@if($i <= $numCategory)
 								@if($cat['category_show_top'] == CGlobal::status_show)
                                     <?php $i++; ?>
-									<li><a class="aline @if(isset($catid) && $catid == $cat['category_id']) act @endif" href="{{FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name'])}}" title="{{$cat['category_name']}}">{{$cat['category_name']}}</a></li>
+									<li><a class="aline @if(isset($catid) && $catid == $cat['category_id']) act @endif" @if($cat['category_link'] != '')href="{{$cat['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name'])}}" @endif title="{{$cat['category_name']}}">{{$cat['category_name']}}</a></li>
 								@endif
 							@endif
 						@endforeach
