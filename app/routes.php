@@ -141,6 +141,13 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('news/getCategoryWithDepart',array('as' => 'admin.getCategoryWithDepart','uses' =>'NewsController@getCategoryWithDepart'));
     Route::post('news/updateStatusNew', array('as' => 'admin.updateStatusNew','uses' => 'NewsController@updateStatusNew'));//ajax
 
+    ///*Quản lý lich sự kiện*/
+    Route::get('event/view',array('as' => 'admin.eventView','uses' => 'EventController@view'));
+    Route::get('event/edit/{id?}', array('as' => 'admin.eventEdit','uses' => 'EventController@getItem'))->where('id', '[0-9]+');
+    Route::post('event/edit/{id?}', array('as' => 'admin.eventEdit','uses' => 'EventController@postItem'))->where('id', '[0-9]+');
+    Route::post('event/deleteEvent', array('as' => 'admin.delteteEvent','uses' => 'EventController@deleteEvent'));//ajax
+    Route::post('event/updateStatusEvent', array('as' => 'admin.updateStatusEvent','uses' => 'EventController@updateStatusEvent'));//ajax
+
     /*Quản lý banner*/
     Route::any('banner/view',array('as' => 'admin.bannerView','uses' => 'BannerController@view'));
     Route::get('banner/edit/{id?}', array('as' => 'admin.bannerEdit','uses' => 'BannerController@getBanner'))->where('id', '[0-9]+');
