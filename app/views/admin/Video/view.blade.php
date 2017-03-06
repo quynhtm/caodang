@@ -83,7 +83,7 @@
                                        &nbsp;&nbsp;&nbsp;<a href="{{URL::route('admin.videoEdit',array('id' => $item->video_id))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root || $permission_full ==1 || $permission_delete == 1)
-                                        &nbsp;&nbsp;&nbsp; <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item->video_id}},2)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
+                                        &nbsp;&nbsp;&nbsp; <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item->video_id}},15)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                     <span class="img_loading" id="img_loading_{{$item->video_id}}"></span>
                                 </td>

@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <label for="name" class="control-label">Language</label>
                         <div class="form-group">
-                            <select name="type_language" id="type_language" class="form-control input-sm">
+                            <select name="type_language" id="type_language" class="form-control input-sm" disabled>
                                 {{$optionLanguage}}
                             </select>
                         </div>

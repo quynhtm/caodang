@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select class="form-control input-sm" id="type_language" name="type_language" onchange="Admin.getCategoryWithTypeLanguage()">
+                        <select class="form-control input-sm" id="type_language" name="type_language" disabled >
                             <?php echo $optionLanguage;?>
                         </select>
                     </div>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="col-sm-10">
                     <div class="form-group">
-                        <div class="controls"><button type="button" onclick="Admin.insertImageContent(5)" class="btn btn-primary">Chèn ảnh vào nội dung</button></div>
+                        <div class="controls" style="display: none"><button type="button" onclick="Admin.insertImageContent(5)" class="btn btn-primary">Chèn ảnh vào nội dung</button></div>
                         <textarea class="form-control input-sm"  name="image_content">@if(isset($data['image_content'])){{$data['image_content']}}@endif</textarea>
                     </div>
                 </div>

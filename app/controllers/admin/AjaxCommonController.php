@@ -26,8 +26,11 @@ class AjaxCommonController extends BaseSiteController
                 $aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_BANNER, $type);
                 break;
             case 4://img thông tin seo
-                	$aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_INFORSEO, $type);
-                	break;
+                $aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_INFORSEO, $type);
+                break;
+            case 5://img thu vien
+                $aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_LIBRARY_IMAGE, $type);
+                break;
             default:
                 break;
         }
@@ -76,6 +79,11 @@ class AjaxCommonController extends BaseSiteController
                         $new_row['info_created'] = time();
                         $new_row['info_status'] = CGlobal::IMAGE_ERROR;
                         $item_id = Info::addData($new_row);
+                        break;
+                    case 5://img thu vien anh
+                        $new_row['image_create'] = time();
+                        $new_row['image_status'] = CGlobal::IMAGE_ERROR;
+                        $item_id = LibraryImage::addData($new_row);
                         break;
                     default:
                         break;
@@ -151,6 +159,17 @@ class AjaxCommonController extends BaseSiteController
                             Info::updateData($item_id,array('info_img'=>$file_name));//cap nhat anh moi
                     	}
                     }
+                    if($type == 5){//anh thư viện
+                        //img news
+                        $inforItem = LibraryImage::getById($item_id);
+                        $arrImagOther = array();
+                        if($inforItem){
+                            $arrImagOther = unserialize($inforItem->image_image_other);
+                            $arrImagOther[] = $file_name;//gan anh vua upload
+                            $proUpdate['image_image_other'] = serialize($arrImagOther);
+                            LibraryImage::updateData($item_id,$proUpdate);
+                        }
+                    }
                 }
                 $aryData['intIsOK'] = 1;
                 $aryData['id_item'] = $item_id;
@@ -172,26 +191,61 @@ class AjaxCommonController extends BaseSiteController
         $key = trim(Request::get('key',''));
         $aryData = array();
         $aryData['intIsOK'] = -1;
-       	
+
         if($item_id > 0 && $nameImage != '' && $key != ''){
             switch( $type ){
                 case 1:
-                	//img news
-                	$inforNews = News::getNewByID($item_id);
-                	if(sizeof($inforNews) >0){
-                		$arrImagOther = unserialize($inforNews->news_image_other);
-                		if(!empty($arrImagOther)){
-                			foreach($arrImagOther as $k=>$v){
-                				if($v == $nameImage){
-                					unset($arrImagOther[$k]);
-                				}
-                			}
-                		}
-                		$proUpdate['news_image_other'] = serialize($arrImagOther);
-                		News::updateData($item_id,$proUpdate);
-                	}
-                	$aryData['intIsOK'] = 1;
-                	break;
+                    //img news
+                    $inforNews = News::getNewByID($item_id);
+                    if(sizeof($inforNews) >0){
+                        $arrImagOther = unserialize($inforNews->news_image_other);
+                        if(!empty($arrImagOther)){
+                            foreach($arrImagOther as $k=>$v){
+                                if($v == $nameImage){
+                                    unset($arrImagOther[$k]);
+                                    //xoa anh upload
+                                    FunctionLib::deleteFileUpload($nameImage,$item_id,CGlobal::FOLDER_NEWS);
+
+                                    //xóa anh thumb
+                                    $arrSizeThumb = CGlobal::$arrSizeImage;
+                                    foreach($arrSizeThumb as $k=>$size){
+                                        $sizeThumb = $size['w'].'x'.$size['h'];
+                                        FunctionLib::deleteFileThumb($nameImage,$item_id,CGlobal::FOLDER_NEWS,$sizeThumb);
+                                    }
+                                }
+                            }
+                        }
+                        $proUpdate['news_image_other'] = serialize($arrImagOther);
+                        News::updateData($item_id,$proUpdate);
+                    }
+                    $aryData['intIsOK'] = 1;
+                    break;
+                case 5:
+                    //img thu vien anh
+                    $inforNews = LibraryImage::getById($item_id);
+                    if(sizeof($inforNews) >0){
+                        $arrImagOther = unserialize($inforNews->image_image_other);
+                        if(!empty($arrImagOther)){
+                            foreach($arrImagOther as $k=>$v){
+                                if($v == $nameImage){
+                                    unset($arrImagOther[$k]);
+                                    //xoa anh upload
+                                    FunctionLib::deleteFileUpload($nameImage,$item_id,CGlobal::FOLDER_LIBRARY_IMAGE);
+
+                                    //xóa anh thumb
+                                    $arrSizeThumb = CGlobal::$arrSizeImage;
+                                    foreach($arrSizeThumb as $k=>$size){
+                                        $sizeThumb = $size['w'].'x'.$size['h'];
+                                        FunctionLib::deleteFileThumb($nameImage,$item_id,CGlobal::FOLDER_LIBRARY_IMAGE,$sizeThumb);
+                                    }
+                                }
+                            }
+                        }
+                        $proUpdate['image_image_other'] = serialize($arrImagOther);
+                        LibraryImage::updateData($item_id,$proUpdate);
+                    }
+                    $aryData['intIsOK'] = 1;
+                    break;
                 case 3 ://xoa anh banner
                     $banner = Banner::getBannerByID($item_id);
                     if($banner){
@@ -224,7 +278,7 @@ class AjaxCommonController extends BaseSiteController
                             }
                         }
                         //End Remove Img
-                         $aryData['intIsOK'] = 1;
+                        $aryData['intIsOK'] = 1;
                     }
                     break;
                 default:
