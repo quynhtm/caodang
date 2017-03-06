@@ -44,6 +44,12 @@ class Memcache{
     //share
     const CACHE_SHARE_OBJECT_ID    = 'cache_share_object_id_';
 
+    //video
+    const CACHE_VIDEO_ID    = 'cache_video_id_';
+
+    //thu vien anh
+    const CACHE_IMAGE_ID    = 'cache_image_id_';
+
     //banner
     const CACHE_BANNER_ID    = 'cache_banner_id_';
     const CACHE_BANNER_ADVANCED    = 'cache_banner_advanced';

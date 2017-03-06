@@ -89,11 +89,12 @@ class BaseAdminController extends BaseController
             'name'=>'QL nội dung',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-book',
-            'arr_link_sub'=>array('admin.newsView','admin.bannerView','admin.viewClickShare',),
+            'arr_link_sub'=>array('admin.newsView','admin.bannerView','admin.videoView','admin.libraryImageView',),
             'sub'=>array(
                 array('name'=>'Tin tức', 'RouteName'=>'admin.newsView', 'icon'=>'fa fa-book icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'news_full'),
                 array('name'=>'Banner quảng cáo', 'RouteName'=>'admin.bannerView', 'icon'=>'fa fa-globe icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'banner_full'),
-                //array('name'=>'Lượt Share', 'RouteName'=>'admin.viewClickShare', 'icon'=>'fa fa-thumbs-o-up icon-4x', 'showcontent'=>1, 'showMenu'=>1,'permission'=>'toolsCommon_full'),
+                array('name'=>'Video', 'RouteName'=>'admin.videoView', 'icon'=>'fa fa-video-camera icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'video_full'),
+                array('name'=>'Thư viện ảnh', 'RouteName'=>'admin.libraryImageView', 'icon'=>'fa fa-picture-o icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'libraryImage_full'),
             ),
         );
         return $menu;
