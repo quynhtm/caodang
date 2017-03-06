@@ -18,6 +18,9 @@ class AjaxCommonController extends BaseSiteController
             case 1://img news
                 $aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_NEWS, $type);
                 break;
+            case 6://img sự kiện
+                $aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_EVENT, $type);
+                break;
             case 2://img Item
                 $aryData = $this->uploadImageToFolder($dataImg, $id_hiden, CGlobal::FOLDER_PRODUCT, $type);
                 break;
@@ -51,6 +54,11 @@ class AjaxCommonController extends BaseSiteController
                         $new_row['news_create'] = time();
                         $new_row['news_status'] = CGlobal::IMAGE_ERROR;
                         $item_id = News::addData($new_row);
+                        break;
+                    case 6://sự kiện
+                        $new_row['event_create'] = time();
+                        $new_row['event_status'] = CGlobal::IMAGE_ERROR;
+                        $item_id = EventNew::addData($new_row);
                         break;
                     case 2://img Item
                         $customerLogin = UserCustomer::user_login();
@@ -112,6 +120,17 @@ class AjaxCommonController extends BaseSiteController
                     		$arrImagOther[] = $file_name;//gan anh vua upload
                     		$proUpdate['news_image_other'] = serialize($arrImagOther);
                     		News::updateData($item_id,$proUpdate);
+                    	}
+                    }
+                    //Cap nhat DB de quan ly file anh sự kiện
+                    if($type == 6 ){
+                    	//img news
+                   		$inforNews = EventNew::getByID($item_id);
+                    	if($inforNews){
+                    		$arrImagOther = unserialize($inforNews->event_image_other);
+                    		$arrImagOther[] = $file_name;//gan anh vua upload
+                    		$proUpdate['event_image_other'] = serialize($arrImagOther);
+                            EventNew::updateData($item_id,$proUpdate);
                     	}
                     }
                     //cap nhat DB de quan ly cac file anh tin đăng
@@ -246,6 +265,32 @@ class AjaxCommonController extends BaseSiteController
                     }
                     $aryData['intIsOK'] = 1;
                     break;
+                case 6:
+                    //img sụ kiện
+                    $inforNews = EventNew::getById($item_id);
+                    if(sizeof($inforNews) >0){
+                        $arrImagOther = unserialize($inforNews->event_image_other);
+                        if(!empty($arrImagOther)){
+                            foreach($arrImagOther as $k=>$v){
+                                if($v == $nameImage){
+                                    unset($arrImagOther[$k]);
+                                    //xoa anh upload
+                                    FunctionLib::deleteFileUpload($nameImage,$item_id,CGlobal::FOLDER_EVENT);
+
+                                    //xóa anh thumb
+                                    $arrSizeThumb = CGlobal::$arrSizeImage;
+                                    foreach($arrSizeThumb as $k=>$size){
+                                        $sizeThumb = $size['w'].'x'.$size['h'];
+                                        FunctionLib::deleteFileThumb($nameImage,$item_id,CGlobal::FOLDER_EVENT,$sizeThumb);
+                                    }
+                                }
+                            }
+                        }
+                        $proUpdate['event_image_other'] = serialize($arrImagOther);
+                        EventNew::updateData($item_id,$proUpdate);
+                    }
+                    $aryData['intIsOK'] = 1;
+                    break;
                 case 3 ://xoa anh banner
                     $banner = Banner::getBannerByID($item_id);
                     if($banner){
@@ -308,6 +353,24 @@ class AjaxCommonController extends BaseSiteController
             					'src_thumb_content'=>$url_thumb_content);
             		}
             		
+            	}
+            	$data['dataImage'] = $arrViewImgOther;
+            	$data['isIntOk'] = 1;
+            	return Response::json($data);
+            	break;
+             case 6://img sự kiện
+            	$inforNews = EventNew::getByID($id_hiden);
+            	if(sizeof($inforNews) >0){
+            		$arrImg = unserialize($inforNews->event_image_other);
+            		foreach($arrImg as $k=>$val){
+            			$url_thumb = ThumbImg::getImageThumb(CGlobal::FOLDER_EVENT, $id_hiden, $val, CGlobal::sizeImage_100);
+            			$url_thumb_content = ThumbImg::getImageThumb(CGlobal::FOLDER_EVENT, $id_hiden, $val, CGlobal::sizeImage_600);
+            			$arrViewImgOther[] = array(
+            					'post_title'=>$inforNews->event_title,
+            					'src_img_other'=>$url_thumb,
+            					'src_thumb_content'=>$url_thumb_content);
+            		}
+
             	}
             	$data['dataImage'] = $arrViewImgOther;
             	$data['isIntOk'] = 1;

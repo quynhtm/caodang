@@ -30,6 +30,8 @@ var Admin = {
             	url_ajax = 'deleteLibraryImage';
             }else if(type == 15){
             	url_ajax = 'deleteVideo';
+            }else if(type == 16){
+            	url_ajax = 'deleteEvent';
             }
             if(url_ajax != ''){
                 $.ajax({
@@ -146,6 +148,8 @@ var Admin = {
                 var url_ajax = WEB_ROOT + '/admin/typeSetting/updateStatusTypeSetting';
             }else if(type == 5){
                 var url_ajax = WEB_ROOT + '/admin/news/updateStatusNew';
+            }else if(type == 6){
+                var url_ajax = WEB_ROOT + '/admin/event/updateStatusEvent';
             }
             $.ajax({
                 type: "post",

@@ -5,8 +5,8 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li><a href="{{URL::route('admin.newsView')}}"> Danh sách tin tức</a></li>
-            <li class="active">@if($id > 0)Cập nhật tin tức @else Tạo mới tin tức @endif</li>
+            <li><a href="{{URL::route('admin.eventView')}}"> Danh sách sự kiện</a></li>
+            <li class="active">@if($id > 0)Cập nhật sự kiện @else Tạo mới sự kiện @endif</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -25,9 +25,9 @@
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="name" class="control-label">Tên bài viết<span class="red"> (*) </span></label>
+                        <label for="name" class="control-label">Tên sự kiện<span class="red"> (*) </span></label>
                         <div class="form-group">
-                            <input type="text" placeholder="Tên bài viết" id="news_title" name="news_title" class="form-control input-sm" value="@if(isset($data['news_title'])){{$data['news_title']}}@endif">
+                            <input type="text" placeholder="Tên sự kiện" id="event_title" name="event_title" class="form-control input-sm" value="@if(isset($data['event_title'])){{$data['event_title']}}@endif">
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label">Thuộc khoa - trung tâm<span class="red"> (*) </span></label>
                             <div class="form-group">
-                                <select class="form-control input-sm" name="news_depart_id"id="news_depart_id" onchange="Admin.getCategoryWithDepart();">
+                                <select class="form-control input-sm" name="event_depart_id"id="event_depart_id">
                                     <?php echo $optionDepart;?>
                                 </select>
                             </div>
@@ -46,52 +46,17 @@
                     </div>
 
                     <div class="clearfix"></div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="name" class="control-label">Danh mục<span class="red"> (*) </span></label>
-                            <div class="form-group">
-                                <select class="form-control input-sm" name="news_category_id" id="news_category_id">
-                                        {{$optionCategory}}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="clearfix"></div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="name" class="control-label">Tiêu đề tin hiển thị ở menu danh mục</label>
-                            <div class="form-group">
-                                <select class="form-control input-sm" name="news_show_cate_id" id="news_show_cate_id">
-                                        {{$optionCategoryShow}}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="clearfix"></div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="name" class="control-label">Loại tin</label>
-                            <div class="form-group">
-                                <select class="form-control input-sm" name="news_common_page">
-                                        {{$optionCommonPage}}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="name" class="control-label">Thứ tự hiển thị</label>
-                            <input type="text" id="news_order" name="news_order"  class="form-control input-sm" value="@if(isset($data['news_order'])){{$data['news_order']}}@endif">
+                            <input type="text" id="event_order" name="event_order"  class="form-control input-sm" value="@if(isset($data['event_order'])){{$data['event_order']}}@endif">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="name" class="control-label">Trạng thái</label>
                             <div class="form-group">
-                                <select name="news_status" id="news_status" class="form-control input-sm">
+                                <select name="event_status" id="event_status" class="form-control input-sm">
                                     {{$optionStatus}}
                                 </select>
                             </div>
@@ -106,8 +71,8 @@
                             <div class="form-group">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <a href="javascript:;"class="btn btn-primary" onclick="Admin.uploadMultipleImages(1);">Upload ảnh</a>
-                                        <input name="image_primary" type="hidden" id="image_primary" value="@if(isset($data['news_image'])){{$data['news_image']}}@endif">
+                                        <a href="javascript:;"class="btn btn-primary" onclick="Admin.uploadMultipleImages(6);">Upload ảnh</a>
+                                        <input name="image_primary" type="hidden" id="image_primary" value="@if(isset($data['event_image'])){{$data['event_image']}}@endif">
                                         <input name="news_image_hover" type="hidden" id="image_primary_hover" value="@if(isset($data['news_image_hover'])){{$data['news_image_hover']}}@endif">
                                     </div>
                                 </div>
@@ -122,10 +87,10 @@
                                                         <img src="{{$imgNew['src_img_other']}}" height='100' width='100'>
                                                         <input type="hidden" id="img_other_{{$key}}" name="img_other[]" value="{{$imgNew['img_other']}}" class="sys_img_other">
                                                         <div class='clear'></div>
-                                                        <input type="radio" id="checked_image_{{$key}}" name="checked_image" value="{{$key}}" @if(isset($imagePrimary) && $imagePrimary == $imgNew['img_other'] ) checked="checked" @endif onclick="Admin.checkedImage('{{$imgNew['img_other']}}','{{$key}}');">
+                                                        <input type="radio" id="checked_image_{{$key}}" name="checked_image" value="{{$key}}" @if(isset($imageOrigin) && $imageOrigin == $imgNew['img_other'] ) checked="checked" @endif onclick="Admin.checkedImage('{{$imgNew['img_other']}}','{{$key}}');">
                                                         <label for="checked_image_{{$key}}" style='font-weight:normal'>Ảnh đại diện</label>
                                                         <div class="clearfix"></div>
-                                                        <a href="javascript:void(0);" onclick="Admin.removeImage({{$key}},{{$id}},'{{$imgNew['img_other']}}', 1);">Xóa ảnh</a>
+                                                        <a href="javascript:void(0);" onclick="Admin.removeImage({{$key}},{{$id}},'{{$imgNew['img_other']}}',6);">Xóa ảnh</a>
                                                         <span style="display: none"><b>{{$key}}</b></span>
                                                     </div>
                                                 </li>
@@ -158,7 +123,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="name" class="control-label">Mô tả ngắn</label>
-                        <textarea class="form-control input-sm" rows="8" name="news_desc_sort">@if(isset($data['news_desc_sort'])){{$data['news_desc_sort']}}@endif</textarea>
+                        <textarea class="form-control input-sm" rows="8" name="event_desc_sort">@if(isset($data['event_desc_sort'])){{$data['event_desc_sort']}}@endif</textarea>
                     </div>
                 </div>
 
@@ -167,15 +132,15 @@
                     <div class="form-group">
                         <label for="name" class="control-label">Nội dung chi tiết</label>
                         <div class="form-group">
-                            <div class="controls"><button type="button" onclick="Admin.insertImageContent(1)" class="btn btn-primary">Chèn ảnh vào nội dung</button></div>
-                            <textarea class="form-control input-sm"  name="news_content">@if(isset($data['news_content'])){{$data['news_content']}}@endif</textarea>
+                            <div class="controls"><button type="button" onclick="Admin.insertImageContent(6)" class="btn btn-primary">Chèn ảnh vào nội dung</button></div>
+                            <textarea class="form-control input-sm"  name="event_content">@if(isset($data['event_content'])){{$data['event_content']}}@endif</textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="clearfix"></div>
                 <div class="form-group col-sm-10 text-left">
-                    <a class="btn btn-warning" href="{{URL::route('admin.newsView')}}"><i class="fa fa-reply"></i> Trở lại</a>
+                    <a class="btn btn-warning" href="{{URL::route('admin.eventView')}}"><i class="fa fa-reply"></i> Trở lại</a>
                     <button  class="btn btn-primary"><i class="glyphicon glyphicon-floppy-saved"></i> Lưu lại</button>
                 </div>
                 <input type="hidden" id="id_hiden" name="id_hiden" value="{{$id}}"/>
@@ -237,7 +202,7 @@
 </div>
 <!-- chen anh vào noi dung-->
 <script>
-    CKEDITOR.replace('news_content', {height:800});
+    CKEDITOR.replace('event_content', {height:800});
     /*CKEDITOR.replace(
             'news_content',
             {
@@ -259,6 +224,6 @@
         jQuery("input[name=list1SortOrder]").val(data.join(","));
     };
     function insertImgContent(src, name_news){
-        CKEDITOR.instances.news_content.insertHtml('<img src="'+src+'" alt="'+name_news+'"/>');
+        CKEDITOR.instances.event_content.insertHtml('<img src="'+src+'" alt="'+name_news+'"/>');
     }
 </script>

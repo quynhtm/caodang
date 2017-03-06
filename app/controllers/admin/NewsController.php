@@ -180,12 +180,15 @@ class NewsController extends BaseAdminController
                 }
             }
         }
-        
+        $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($dataSave['news_depart_id'])? $dataSave['news_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
+        $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($dataSave['news_common_page'])? $dataSave['news_common_page'] : CGlobal::status_hide);
         $this->layout->content =  View::make('admin.News.add')
             ->with('id', $id)
             ->with('data', $dataSave)
             ->with('optionStatus', $optionStatus)
+            ->with('optionDepart', $optionDepart)
+            ->with('optionCommonPage', $optionCommonPage)
             ->with('error', $this->error)
             ->with('arrStatus', $this->arrStatus);
     }

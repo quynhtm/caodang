@@ -5,7 +5,7 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li class="active">Quản lý tin tức</li>
+            <li class="active">Quản lý sự kiện</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -17,12 +17,12 @@
                     {{ Form::open(array('method' => 'GET', 'role'=>'form')) }}
                     <div class="panel-body">
                         <div class="form-group col-lg-3">
-                            <label for="news_title">Tên danh mục</label>
-                            <input type="text" class="form-control input-sm" id="news_title" name="news_title" placeholder="Tiêu đề tin tức" @if(isset($search['news_title']) && $search['news_title'] != '')value="{{$search['news_title']}}"@endif>
+                            <label for="news_title">Tên sự kiện</label>
+                            <input type="text" class="form-control input-sm" id="event_title" name="event_title" placeholder="Tiêu đề" @if(isset($search['event_title']) && $search['event_title'] != '')value="{{$search['event_title']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="category_status">Trạng thái</label>
-                            <select name="news_status" id="news_status" class="form-control input-sm">
+                            <select name="event_status" id="event_status" class="form-control input-sm">
                                 {{$optionStatus}}
                             </select>
                         </div>
@@ -30,7 +30,7 @@
                     <div class="panel-footer text-right">
                         @if($is_root || $permission_full ==1 || $permission_create == 1)
                         <span class="">
-                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.newsEdit')}}">
+                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.eventEdit')}}">
                                 <i class="ace-icon fa fa-plus-circle"></i>
                                 Thêm mới
                             </a>
@@ -50,9 +50,8 @@
                         <tr class="">
                             <th width="2%" class="text-center">TT</th>
                             <th width="8%" class="text-center">Ảnh</th>
-                            <th width="435">Tên bài viết</th>
-                            <th width="18%">Danh mục tin</th>
-                            <th width="18%">Thuộc khoa - trung tâm</th>
+                            <th width="43%">Tên sự kiện</th>
+                            <th width="25%">Thuộc khoa - trung tâm</th>
                             <th width="8%" class="text-center">Trạng thái</th>
                             <th width="10%" class="text-center">Thao tác</th>
                         </tr>
@@ -62,32 +61,31 @@
                             <tr>
                                 <td class="text-center">{{ $stt + $key+1 }}</td>
                                 <td class="text-center">
-                                   @if($item->news_image != '')
-                                    <img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item->news_id, $item->news_image, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false)}}">
+                                   @if($item->event_image != '')
+                                    <img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_EVENT, $item->event_id, $item->event_image, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false)}}">
                                     @endif
                                 </td>
                                 <td>
-                                    [<b>{{ $item['news_id'] }}</b>]<a href="#" target="_blank">{{ $item['news_title'] }}</a>
+                                    [<b>{{ $item['event_id'] }}</b>]<a href="#" target="_blank">{{ $item['event_title'] }}</a>
                                 </td>
-                                <td>@if(isset($arrCategoryNew[$item['news_category_id']])){{ $arrCategoryNew[$item['news_category_id']] }}@else --- @endif</td>
-                                <td>@if(isset($arrDepart[$item['news_depart_id']])){{ $arrDepart[$item['news_depart_id']] }}@else --- @endif</td>
+                                <td>@if(isset($arrDepart[$item['event_depart_id']])){{ $arrDepart[$item['event_depart_id']] }}@else --- @endif</td>
                                 <td class="text-center">
-                                    @if($item['news_status'] == 1)
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['news_id']}},{{$item['news_status']}},5)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
+                                    @if($item['event_status'] == 1)
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['event_id']}},{{$item['event_status']}},6)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
                                     @else
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['news_id']}},{{$item['news_status']}},5)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['event_id']}},{{$item['event_status']}},6)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
                                     @endif
-                                    <span class="img_loading" id="img_loading_{{$item['news_id']}}"></span>
+                                    <span class="img_loading" id="img_loading_{{$item['event_id']}}"></span>
                                 </td>
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-                                        <a href="{{URL::route('admin.newsEdit',array('id' => $item['news_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{URL::route('admin.eventEdit',array('id' => $item['event_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root || $permission_full ==1 || $permission_delete == 1)
                                        &nbsp;&nbsp;&nbsp;
-                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['news_id']}},1)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
+                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['event_id']}},16)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
-                                    <span class="img_loading" id="img_loading_{{$item['news_id']}}"></span>
+                                    <span class="img_loading" id="img_loading_{{$item['event_id']}}"></span>
                                 </td>
                             </tr>
                         @endforeach

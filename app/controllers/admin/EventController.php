@@ -54,18 +54,18 @@ class EventController extends BaseAdminController
         $search = $data = array();
         $total = 0;
 
-        $search['news_title'] = addslashes(Request::get('news_title',''));
-        $search['news_status'] = (int)Request::get('news_status',-1);
+        $search['event_title'] = addslashes(Request::get('event_title',''));
+        $search['event_status'] = (int)Request::get('event_status',-1);
         if(!$this->is_root){
             $search['string_depart_id'] = $this->user_group_depart;
         }
 
         //$search['field_get'] = 'category_id,news_title,news_status';//cac truong can lay
-        $dataSearch = Event::searchByCondition($search, $limit, $offset,$total);
+        $dataSearch = EventNew::searchByCondition($search, $limit, $offset,$total);
         $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
         //FunctionLib::debug($dataSearch);
-        $optionStatus = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrStatus, $search['news_status']);
+        $optionStatus = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrStatus, $search['event_status']);
         $this->layout->content = View::make('admin.Event.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -92,32 +92,26 @@ class EventController extends BaseAdminController
         $arrViewImgOther = array();
         $imageOrigin = $urlImageOrigin = '';
         if($id > 0) {
-            $data = Event::getNewByID($id);
+            $data = EventNew::getByID($id);
             if(sizeof($data) > 0){
                 //lay ảnh khác của san phẩm
                 $arrViewImgOther = array();
-                if(!empty($data->news_image_other)){
-                    $arrImagOther = unserialize($data->news_image_other);
+                if(!empty($data->event_image_other)){
+                    $arrImagOther = unserialize($data->event_image_other);
                     if(sizeof($arrImagOther) > 0){
                         foreach($arrImagOther as $k=>$val){
-                            $url_thumb = ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $id, $val, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false);
+                            $url_thumb = ThumbImg::getImageThumb(CGlobal::FOLDER_EVENT, $id, $val, CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false);
                             $arrViewImgOther[] = array('img_other'=>$val,'src_img_other'=>$url_thumb);
                         }
                     }
                 }
                 //ảnh sản phẩm chính
-               $imageOrigin = $data->news_image;
+               $imageOrigin = $data->event_image;
             }
         }
 
-        $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($data['news_depart_id'])? $data['news_depart_id'] : CGlobal::status_hide);
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['news_status'])? $data['news_status'] : CGlobal::status_show);
-        $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($data['news_common_page'])? $data['news_common_page'] : CGlobal::status_hide);
-
-        $arrCategory = (isset($data->news_depart_id))? $this->buildOptionCategoryNew($data->news_depart_id):array();
-        $arrCategory = !empty($arrCategory)? $arrCategory :array(0=>'----Chọn danh mục tin----');
-        $optionCategory = FunctionLib::getOption($arrCategory, isset($data['news_category_id'])? $data['news_category_id'] : CGlobal::status_hide);
-        $optionCategoryShow = FunctionLib::getOption($arrCategory, isset($data['news_show_cate_id'])? $data['news_show_cate_id'] : CGlobal::status_hide);
+        $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($data['event_depart_id'])? $data['event_depart_id'] : CGlobal::status_hide);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['event_status'])? $data['event_status'] : CGlobal::status_show);
 
         $this->layout->content = View::make('admin.Event.add')
             ->with('id', $id)
@@ -126,26 +120,21 @@ class EventController extends BaseAdminController
             ->with('urlImageOrigin', $urlImageOrigin)
             ->with('arrViewImgOther', $arrViewImgOther)
             ->with('optionDepart', $optionDepart)
-            ->with('optionCommonPage', $optionCommonPage)
             ->with('optionStatus', $optionStatus)
-            ->with('optionCategory', $optionCategory)
-            ->with('optionCategoryShow', $optionCategoryShow)
             ->with('arrStatus', $this->arrStatus);
     }
     public function postItem($id=0) {
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
             return Redirect::route('admin.dashboard',array('error'=>1));
         }
-        $dataSave['news_title'] = addslashes(Request::get('news_title'));
-        $dataSave['news_desc_sort'] = addslashes(Request::get('news_desc_sort'));
-        $dataSave['news_content'] = FunctionLib::strReplace(Request::get('news_content'), '\r\n', '');
-        $dataSave['news_type'] = addslashes(Request::get('news_type'));
-        $dataSave['news_status'] = (int)Request::get('news_status', 0);
-        $dataSave['news_order'] = (int)Request::get('news_order', 1);
-        $dataSave['news_common_page'] = (int)Request::get('news_common_page', CGlobal::status_hide);
-        $dataSave['news_show_cate_id'] = (int)Request::get('news_show_cate_id', CGlobal::status_hide);
-        $dataSave['news_depart_id'] = (int)Request::get('news_depart_id', CGlobal::status_hide);
-        $dataSave['news_category_id'] = (int)Request::get('news_category_id', CGlobal::status_hide);
+        $dataSave['event_title'] = addslashes(Request::get('event_title'));
+        $dataSave['event_desc_sort'] = addslashes(Request::get('event_desc_sort'));
+        $dataSave['event_content'] = FunctionLib::strReplace(Request::get('event_content'), '\r\n', '');
+
+        $dataSave['event_status'] = (int)Request::get('event_status', 0);
+        $dataSave['event_order'] = (int)Request::get('event_order', 1);
+
+        $dataSave['event_depart_id'] = (int)Request::get('event_depart_id', CGlobal::status_hide);
         $id_hiden = (int)Request::get('id_hiden', 0);
 		
         //ảnh chính
@@ -161,8 +150,8 @@ class EventController extends BaseAdminController
         }
         if (!empty($arrInputImgOther) && count($arrInputImgOther) > 0) {
             //nếu không chọn ảnh chính, lấy ảnh chính là cái đầu tiên
-            $dataSave['news_image'] = ($image_primary != '')? $image_primary: $arrInputImgOther[0];
-            $dataSave['news_image_other'] = serialize($arrInputImgOther);
+            $dataSave['event_image'] = ($image_primary != '')? $image_primary: $arrInputImgOther[0];
+            $dataSave['event_image_other'] = serialize($arrInputImgOther);
         }
 
         //FunctionLib::debug($dataSave);
@@ -170,68 +159,35 @@ class EventController extends BaseAdminController
             $id = ($id == 0)?$id_hiden: $id;
             if($id > 0) {
                 //cap nhat
-                if(Event::updateData($id, $dataSave)) {
-                    return Redirect::route('admin.newsView');
+                if(EventNew::updateData($id, $dataSave)) {
+                    return Redirect::route('admin.eventView');
                 }
             } else {
                 //them moi
-                if(Event::addData($dataSave)) {
-                    return Redirect::route('admin.newsView');
+                if(EventNew::addData($dataSave)) {
+                    return Redirect::route('admin.eventView');
                 }
             }
         }
-        
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
+        $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($dataSave['event_depart_id'])? $dataSave['event_depart_id'] : CGlobal::status_hide);
+        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['event_status'])? $dataSave['event_status'] : -1);
         $this->layout->content =  View::make('admin.Event.add')
             ->with('id', $id)
             ->with('data', $dataSave)
             ->with('optionStatus', $optionStatus)
+            ->with('optionDepart', $optionDepart)
             ->with('error', $this->error)
             ->with('arrStatus', $this->arrStatus);
     }
 
-    public function buildOptionCategoryNew($category_depart_id = 0){
-        if($category_depart_id > 0){
-            $search['category_depart_id'] = $category_depart_id;
-            $dataSearch = Category::searchByCondition($search, 500, 0,$total);
-            if(!empty($dataSearch)){
-                $arrCategory = array();
-                $arrCategoryAll = Category::getTreeCategory($dataSearch);
-                foreach($arrCategoryAll as $k =>$cat){
-                    $arrCategory[$cat['category_id']] = $cat['padding_left'].$cat['category_name'];
-                }
-                return $arrCategory;
-            }
-        }
-        return array();
-    }
-
-    public function deleteNews(){
+    public function deleteEvent(){
         $data = array('isIntOk' => 0);
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
             return Response::json($data);
         }
         $id = (int)Request::get('id', 0);
-        if ($id > 0 && Event::deleteData($id)) {
+        if ($id > 0 && EventNew::deleteData($id)) {
             $data['isIntOk'] = 1;
-        }
-        return Response::json($data);
-    }
-
-    public function getCategoryWithDepart(){
-        $data = array('isIntOk' => 0,'msg' => 'Không lấy được thông tin danh mục');
-        $news_depart_id = (int)Request::get('news_depart_id', 0);
-
-        if ($news_depart_id > 0) {
-            $category = $this->buildOptionCategoryNew($news_depart_id);
-            if(!empty($category)){
-                $str_option = '<option value="">---Chọn danh mục---</option>';
-                foreach($category as $dis_id =>$dis_name){
-                    $str_option .='<option value="'.$dis_id.'">'.$dis_name.'</option>';
-                }
-                $data['html_option'] = $str_option;
-                $data['isIntOk'] = 1;
-            }
         }
         return Response::json($data);
     }
@@ -250,7 +206,7 @@ class EventController extends BaseAdminController
     }
 
     //ajax
-    public function updateStatusNew()
+    public function updateStatusEvent()
     {
         $id = (int)Request::get('id', 0);
         $category_status = (int)Request::get('status', CGlobal::status_hide);
@@ -260,8 +216,8 @@ class EventController extends BaseAdminController
         }
 
         if ($id > 0) {
-            $dataSave['news_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
-            if(Event::updateData($id, $dataSave)) {
+            $dataSave['event_status'] = ($category_status == CGlobal::status_hide)? CGlobal::status_show : CGlobal::status_hide;
+            if(EventNew::updateData($id, $dataSave)) {
                 $result['isIntOk'] = 1;
             }
         }

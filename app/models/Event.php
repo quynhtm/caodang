@@ -3,7 +3,7 @@
  * Created by JetBrains PhpStorm.
  * User: Quynhtm
  */
-class Event extends Eloquent
+class EventNew extends Eloquent
 {
     protected $table = 'web_event';
     protected $primaryKey = 'event_id';
@@ -14,12 +14,12 @@ class Event extends Eloquent
         'event_content', 'event_image', 'event_image_other','event_create','event_order','event_common_page','event_show_cate_id',
         'event_type', 'event_category_id','event_category_name', 'event_status');
 
-    public static function getNewByID($id) {
-        $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_NEW_ID.$id) : array();
+    public static function getByID($id) {
+        $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_EVENT_ID.$id) : array();
         if (sizeof($new) == 0) {
-            $new = Event::where('event_id', $id)->first();
+            $new = EventNew::where('event_id', $id)->first();
             if($new && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_NEW_ID.$id, $new, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+                Cache::put(Memcache::CACHE_EVENT_ID.$id, $new, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
             }
         }
         return $new;
@@ -27,7 +27,7 @@ class Event extends Eloquent
 
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{
-            $query = Event::where('event_id','>',0);
+            $query = EventNew::where('event_id','>',0);
             if (isset($dataSearch['event_title']) && $dataSearch['event_title'] != '') {
                 $query->where('event_title','LIKE', '%' . $dataSearch['event_title'] . '%');
             }
@@ -70,7 +70,7 @@ class Event extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $data = new Event();
+            $data = new EventNew();
             if (is_array($dataInput) && count($dataInput) > 0) {
                 foreach ($dataInput as $k => $v) {
                     $data->$k = $v;
@@ -102,7 +102,7 @@ class Event extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = Event::find($id);
+            $dataSave = EventNew::find($id);
             if (!empty($dataInput)){
                 $dataSave->update($dataInput);
                 if(isset($dataSave->event_id) && $dataSave->event_id > 0){
@@ -128,9 +128,36 @@ class Event extends Eloquent
     public static function deleteData($id){
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = Event::find($id);
+            $dataSave = EventNew::find($id);
             $dataSave->delete();
             if(isset($dataSave->event_id) && $dataSave->event_id > 0){
+                if($dataSave->event_image != ''){//xoa anh c?
+                    //xoa anh upload
+                    FunctionLib::deleteFileUpload($dataSave->event_image,$dataSave->event_id,CGlobal::FOLDER_EVENT);
+                    //x?a anh thumb
+                    $arrSizeThumb = CGlobal::$arrSizeImage;
+                    foreach($arrSizeThumb as $k=>$size){
+                        $sizeThumb = $size['w'].'x'.$size['h'];
+                        FunctionLib::deleteFileThumb($dataSave->event_image,$dataSave->event_id,CGlobal::FOLDER_EVENT,$sizeThumb);
+                    }
+                }
+                //x?a ?nh kh?c
+                if(!empty($dataSave->event_image_other)){
+                    $arrImagOther = unserialize($dataSave->event_image_other);
+                    if(sizeof($arrImagOther) > 0){
+                        foreach($arrImagOther as $k=>$val){
+                            //xoa anh upload
+                            FunctionLib::deleteFileUpload($val,$id,CGlobal::FOLDER_EVENT);
+                            //x?a anh thumb
+                            $arrSizeThumb = CGlobal::$arrSizeImage;
+                            foreach($arrSizeThumb as $k=>$size){
+                                $sizeThumb = $size['w'].'x'.$size['h'];
+                                FunctionLib::deleteFileThumb($val,$id,CGlobal::FOLDER_EVENT,$sizeThumb);
+                            }
+
+                        }
+                    }
+                }
                 self::removeCache($dataSave->event_id);
             }
             DB::connection()->getPdo()->commit();
@@ -143,7 +170,7 @@ class Event extends Eloquent
 
     public static function removeCache($id = 0){
         if($id > 0){
-            Cache::forget(Memcache::CACHE_NEW_ID.$id);
+            Cache::forget(Memcache::CACHE_EVENT_ID.$id);
         }
     }
 }

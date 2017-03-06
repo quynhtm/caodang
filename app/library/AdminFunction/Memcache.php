@@ -41,6 +41,9 @@ class Memcache{
     //tin tức
     const CACHE_NEW_ID    = 'cache_news_id_';
 
+    //tin tức
+    const CACHE_EVENT_ID    = 'cache_event_id_';
+
     //share
     const CACHE_SHARE_OBJECT_ID    = 'cache_share_object_id_';
 
