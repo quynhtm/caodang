@@ -76,8 +76,9 @@ class BaseSiteController extends BaseController{
         FunctionLib::site_css('lib/owl.carousel/owl.carousel.css', CGlobal::$POS_HEAD);
 
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_PARTNER);
+
         $arrBannerPartner = $this->getBannerWithPosition($arrBanner);
-        $this->layout->right = View::make("site.BaseLayouts.partnerBottom")
+        $this->layout->sliderPartnerBottom = View::make("site.BaseLayouts.partnerBottom")
                                 ->with('arrBannerPartner', $arrBannerPartner);
     }
 
