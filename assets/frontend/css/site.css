@@ -608,21 +608,6 @@ h1, h2, h3, h4, h5, h6{
     height: auto;
     max-height: 108px;
 }
-.link-breadcrumb {
-    background: rgba(0, 0, 0, 0) url("../img/bg-breadcrumb.png") repeat scroll center center;
-    border-bottom: 2px solid #ddd;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    font-size: 12px;
-    margin-bottom: 15px;
-    padding: 4px 5px;
-    margin-top:-5px;
-}
-.link-breadcrumb > a {
-    color: #222;
-    font-size: 13px;
-    font-style: italic;
-}
 .item-video {
     height: 300px;
     margin-bottom: 5px;
