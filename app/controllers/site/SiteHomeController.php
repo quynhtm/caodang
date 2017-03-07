@@ -2,12 +2,13 @@
 class SiteHomeController extends BaseSiteController{
     public function __construct(){
         parent::__construct();
-        FunctionLib::site_js('lib/swfObject/swfObject.js', CGlobal::$POS_HEAD);
     }
 
 	//Trang chu
     public function index(){
-		
+        FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
+        FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
+
     	//Meta title
     	$meta_title='';
     	$meta_keywords='';
@@ -32,18 +33,107 @@ class SiteHomeController extends BaseSiteController{
 		//Video
 		$dataField['field_get'] = 'video_link';
 		$arrVideo = Video::getNewVideo($dataField='', 1, 0);
-		
+
+		//Images
+        $dataFieldImg['field_get'] = 'video_link';
+        $arrImg = LibraryImage::getNewImages($dataFieldImg='', 1, 0);
+
+        //Danh mục trang chủ: thông tin hoạt động Đoàn thanh niên
+        $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
+        //Danh mục trang chủ: Tin tuyển sinh-Tin đào tạo- Tin về cựu sinh viên
+        $data_ts_dt_csv = $this->getCategoryAndPostByKeyword('SITE_CATID_TUYENSINH_DAOTAO_CUUSINHVIEN', 5);
+        //Khac
+        $data_khac = $this->getCategoryAndPostByKeyword('SITE_CATID_HOPTACQUOCTE_KHAC', 5);
+
     	$this->header();
         $this->slider();
         $this->layout->content = View::make('site.SiteLayouts.Home')
                                 ->with('arrBannerWeek', $arrBannerWeek)
-                                ->with('arrVideo', $arrVideo);
+                                ->with('arrVideo', $arrVideo)
+                                ->with('arrImg', $arrImg)
+                                ->with('data_hdsv', $data_hdsv)
+                                ->with('data_ts_dt_csv', $data_ts_dt_csv)
+                                ->with('data_khac', $data_khac);
         $this->sliderPartnerBottom();
         $this->footer();
     }
+    /*
 	public function pageCategory(){
 		return Redirect::route('site.home');
 	}
+    */
+    public function pageCategory($catname='', $caid=0){
+        $arrCat = array(
+            'category_id'=>0,
+            'category_name'=>'',
+        );
+        $arrItem = array();
+        $meta_title = $meta_keywords = $meta_description = '';
+        $meta_img = '';
+        if($caid > 0){
+            //GetCat
+            $arrCat = Category::getByID($caid);
+            if(sizeof($arrCat) > 0){
+                $meta_title = stripslashes($arrCat->category_name);
+                $meta_keywords = stripslashes($arrCat->category_meta_keywords);
+                $meta_description = stripslashes($arrCat->category_meta_description);
+            }
+
+            $pageNo = (int) Request::get('page_no',1);
+            $limit = CGlobal::number_show_20;
+            $offset = ($pageNo - 1) * $limit;
+            $search = $data = array();
+            $total = 0;
+            $search['news_category_name'] = $catname;
+            $search['news_category_id'] = (int)$caid;
+
+            $arrItem = News::searchByConditionSite($search, $limit, $offset,$total);
+            $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
+        }
+
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->sliderPartnerBottom();
+        $this->right();
+        $this->layout->content = View::make('site.SiteLayouts.pageNews')
+                                ->with('arrItem', $arrItem)
+                                ->with('arrCat', $arrCat)
+                                ->with('paging', $paging);
+        $this->footer();
+    }
+    public function pageDetailNew($catname='', $title='', $id=0){
+        $item = array();
+        $arrCat = array();
+        $meta_title = $meta_keywords = $meta_description = '';
+        $meta_img = '';
+        $newsSame = array();
+        if($id > 0){
+            $item = News::getNewByID($id);
+            if(sizeof($item) > 0){
+                $arrCat = Category::getByID($item->news_category);
+                $meta_title = stripslashes($item->news_title);
+                $meta_keywords = stripslashes($item->news_title);
+                $meta_description = stripslashes($item->news_desc_sort);
+                $newsSame = News::getSameNews($dataField='', $item->news_category, $item->news_id, CGlobal::number_show_15, 0);
+            }
+        }
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageNewsDetail')
+            ->with('item', $item)
+            ->with('arrCat', $arrCat)
+            ->with('newsSame', $newsSame);
+        $this->right();
+        $this->sliderPartnerBottom();
+        $this->footer();
+    }
+
     public function pageContact(){
         
         //Meta title
@@ -117,7 +207,6 @@ class SiteHomeController extends BaseSiteController{
                                 ->with('messages', $messages);
         $this->footer();
     }
-
 	public function linkCaptcha(){
 		$captchaImages = new captchaImages(60,30,4);
 	}
@@ -142,12 +231,12 @@ class SiteHomeController extends BaseSiteController{
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
         $pageNo = (int) Request::get('page_no',1);
-        $limit = CGlobal::number_show_10;
+        $limit = CGlobal::number_show_20;
         $offset = ($pageNo - 1) * $limit;
         $search = $data = array();
         $total = 0;
         $search['video_status'] = CGlobal::status_show;
-        $search['page_no'] = $pageNo;
+
         $data = Video::searchByCondition($search, $limit, $offset,$total);
         $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
@@ -193,7 +282,7 @@ class SiteHomeController extends BaseSiteController{
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
         $pageNo = (int) Request::get('page_no',1);
-        $limit = CGlobal::number_show_40;
+        $limit = CGlobal::number_show_20;
         $offset = ($pageNo - 1) * $limit;
         $search = $data = array();
         $total = 0;
