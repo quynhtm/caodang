@@ -2,12 +2,13 @@
 class SiteHomeController extends BaseSiteController{
     public function __construct(){
         parent::__construct();
-        FunctionLib::site_js('lib/swfObject/swfObject.js', CGlobal::$POS_HEAD);
     }
 
 	//Trang chu
     public function index(){
-		
+        FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
+        FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
+
     	//Meta title
     	$meta_title='';
     	$meta_keywords='';
@@ -32,18 +33,24 @@ class SiteHomeController extends BaseSiteController{
 		//Video
 		$dataField['field_get'] = 'video_link';
 		$arrVideo = Video::getNewVideo($dataField='', 1, 0);
-		
+
+		//Images
+        $dataFieldImg['field_get'] = 'video_link';
+        $arrImg = LibraryImage::getNewImages($dataFieldImg='', 1, 0);
+
     	$this->header();
         $this->slider();
         $this->layout->content = View::make('site.SiteLayouts.Home')
                                 ->with('arrBannerWeek', $arrBannerWeek)
-                                ->with('arrVideo', $arrVideo);
+                                ->with('arrVideo', $arrVideo)
+                                ->with('arrImg', $arrImg);
         $this->sliderPartnerBottom();
         $this->footer();
     }
 	public function pageCategory(){
 		return Redirect::route('site.home');
 	}
+
     public function pageContact(){
         
         //Meta title
@@ -117,7 +124,6 @@ class SiteHomeController extends BaseSiteController{
                                 ->with('messages', $messages);
         $this->footer();
     }
-
 	public function linkCaptcha(){
 		$captchaImages = new captchaImages(60,30,4);
 	}

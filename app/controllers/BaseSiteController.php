@@ -10,10 +10,7 @@ class BaseSiteController extends BaseController{
     protected $layout = 'site.BaseLayouts.index';
    
     public function __construct(){
-    	FunctionLib::site_css('font-awesome/4.2.0/css/font-awesome.min.css', CGlobal::$POS_HEAD);
     	FunctionLib::site_js('frontend/js/site.js', CGlobal::$POS_END);
-    	FunctionLib::site_css('lib/jAlert/jquery.alerts.css', CGlobal::$POS_HEAD);
-    	FunctionLib::site_js('lib/jAlert/jquery.alerts.js', CGlobal::$POS_END);	
     }
     public function header(){
         //Banner Header
@@ -70,7 +67,6 @@ class BaseSiteController extends BaseController{
         $this->layout->right = View::make("site.BaseLayouts.right")
                                 ->with('arrBannerRight', $arrBannerRight);
     }
-
     public function sliderPartnerBottom(){
         FunctionLib::site_js('lib/owl.carousel/owl.carousel.min.js', CGlobal::$POS_END);
         FunctionLib::site_css('lib/owl.carousel/owl.carousel.css', CGlobal::$POS_HEAD);
