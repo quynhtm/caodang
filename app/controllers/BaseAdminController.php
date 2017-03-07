@@ -75,7 +75,7 @@ class BaseAdminController extends BaseController
         );
 
         $menu[] = array(
-            'name'=>'QL khoa nghành',
+            'name'=>'QL khoa ngành',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-gift',
             'arr_link_sub'=>array('admin.department_list','admin.category_list',),

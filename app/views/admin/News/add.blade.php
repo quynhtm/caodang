@@ -122,7 +122,7 @@
                                                         <img src="{{$imgNew['src_img_other']}}" height='100' width='100'>
                                                         <input type="hidden" id="img_other_{{$key}}" name="img_other[]" value="{{$imgNew['img_other']}}" class="sys_img_other">
                                                         <div class='clear'></div>
-                                                        <input type="radio" id="checked_image_{{$key}}" name="checked_image" value="{{$key}}" @if(isset($imagePrimary) && $imagePrimary == $imgNew['img_other'] ) checked="checked" @endif onclick="Admin.checkedImage('{{$imgNew['img_other']}}','{{$key}}');">
+                                                        <input type="radio" id="checked_image_{{$key}}" name="checked_image" value="{{$key}}" @if(isset($imageOrigin) && $imageOrigin == $imgNew['img_other'] ) checked="checked" @endif onclick="Admin.checkedImage('{{$imgNew['img_other']}}','{{$key}}');">
                                                         <label for="checked_image_{{$key}}" style='font-weight:normal'>Ảnh đại diện</label>
                                                         <div class="clearfix"></div>
                                                         <a href="javascript:void(0);" onclick="Admin.removeImage({{$key}},{{$id}},'{{$imgNew['img_other']}}', 1);">Xóa ảnh</a>
