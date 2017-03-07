@@ -38,12 +38,17 @@ class SiteHomeController extends BaseSiteController{
         $dataFieldImg['field_get'] = 'video_link';
         $arrImg = LibraryImage::getNewImages($dataFieldImg='', 1, 0);
 
+        //Hoat Dong Sinh Vien
+        $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 4);
+        //
+
     	$this->header();
         $this->slider();
         $this->layout->content = View::make('site.SiteLayouts.Home')
                                 ->with('arrBannerWeek', $arrBannerWeek)
                                 ->with('arrVideo', $arrVideo)
-                                ->with('arrImg', $arrImg);
+                                ->with('arrImg', $arrImg)
+                                ->with('data_hdsv', $data_hdsv);
         $this->sliderPartnerBottom();
         $this->footer();
     }

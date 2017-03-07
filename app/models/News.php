@@ -197,4 +197,10 @@ class News extends Eloquent
     		throw new PDOException();
     	}
     }
+
+    public static function getPostInCategoryParent($arrCat=''){
+        if($arrCat != ''){
+
+        }
+    }
 }

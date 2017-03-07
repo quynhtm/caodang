@@ -104,4 +104,30 @@ class BaseSiteController extends BaseController{
         }
         return $arrBannerShow;
     }
+    public function getCategoryAndPostByKeyword($cat_keyword='', $limit_post=0){
+        $result = array();
+        if($cat_keyword != '' && $limit_post>0){
+            $result_cat = Info::getItemByKeyword($cat_keyword);
+            if(sizeof($result_cat) > 0){
+                $catid = (int)strip_tags(stripslashes($result_cat->info_content));
+                if($catid > 0){
+
+                    $dataCat = Category::getByID($catid);
+                    if(sizeof($dataCat) > 0){
+                        //Data Category
+                        $result['cat'] = array(
+                                            'category_id'=>$dataCat->category_id,
+                                            'category_name'=>$dataCat->category_name,
+                                            );
+                        //Data Post In Category
+
+                    }
+
+
+                }
+            }
+        }
+        FunctionLib::debug($result);
+        return $result;
+    }
 }
