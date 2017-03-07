@@ -14,7 +14,8 @@ Route::match(['GET','POST'],'lien-he.html',array('as' => 'site.pageContact','use
 
 //Category
 Route::get('{name}-{id}.html',array('as' => 'site.pageCategory','uses' =>'SiteHomeController@pageCategory'))->where('name', '[A-Z0-9a-z_\-]+')->where('id', '[0-9]+');
-
+Route::get('{catname}/{news_title}-{new_id}.html',array('as' => 'Site.pageDetailNew','uses' =>'SiteHomeController@pageDetailNew'))->where('catname', '[A-Z0-9a-z_\-]+')->where('news_title', '[A-Z0-9a-z_\-]+')->where('new_id', '[0-9]+');
+Route::match(['GET','POST'],'tim-kiem.html',array('as' => 'site.pageSearch','uses' =>'SiteHomeController@pageSearch'));
 //Video
 Route::match(['GET','POST'],'video.html',array('as' => 'site.pageVideo','uses' =>'SiteHomeController@pageVideo'));
 Route::match(['GET','POST'],'thu-vien-video/chi-tiet/{video_title}-{video_id}.html',array('as' => 'site.pageVideoDetail','uses' =>'SiteHomeController@pageVideoDetail'))->where('video_title', '[A-Z0-9a-z_\-]+')->where('video_id', '[0-9]+');

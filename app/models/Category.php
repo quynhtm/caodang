@@ -308,4 +308,36 @@ class Category extends Eloquent
         }
     }
 
+    //Make List Category
+    public static function makeListCatId($catid=0, $level=0, &$arrCat){
+        $listcat = explode(',', $catid);
+        if(!empty($listcat)){
+            $query = Category::where('category_status', '=', CGlobal::status_show);
+            foreach($listcat as $cat){
+                if($cat != end($listcat)){
+                    $query->orWhere('category_parent_id',$cat);
+                }else{
+                    $query->where('category_parent_id', $cat);
+                }
+            }
+            $result = $query->get();
+        }
+        if ($result != null){
+            foreach ($result as $k => $v){
+                array_push($arrCat, $v->category_id);
+                self::makeListCatId($v->category_id, $level+1, $arrCat);
+            }
+        }
+        return true;
+    }
+	public static function getNameCategory($id) {
+        $category_name = '';
+        if($id > 0){
+            $category = Category::getByID($id);
+            if (sizeof($category) != 0) {
+                $category_name = $category->category_name;
+            }
+        }
+        return $category_name;
+    }
 }
