@@ -66,7 +66,7 @@
                                     [<b>{{ $item->video_id }}</b>] {{ $item->video_name }}
                                 </td>
                                 <td>
-                                    {{$item->video_content}}
+                                    {{FunctionLib::substring($item->video_content,300)}}
                                 </td>
 
                                 <td class="text-center text-middle">

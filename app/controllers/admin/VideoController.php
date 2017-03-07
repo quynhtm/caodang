@@ -13,6 +13,7 @@ class VideoController extends BaseAdminController
     private $permission_edit = 'video_edit';
     private $arrStatus = array(-1 => '--Chọn trạng thái--', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
     private $error = array();
+    private $arrTypeNew = array();
     public function __construct()
     {
         parent::__construct();
@@ -28,6 +29,8 @@ class VideoController extends BaseAdminController
             'lib/ckeditor/config.js',
             'js/common.js',
         ));
+
+        $this->arrTypeNew = CGlobal::$arrTypeNew;
     }
 
     public function view() {
@@ -80,12 +83,13 @@ class VideoController extends BaseAdminController
         }
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['banner_status'])? $data['banner_status']: CGlobal::status_show);
         $optionLanguage = FunctionLib::getOption(CGlobal::$arrLanguage, isset($data['type_language'])? $data['type_language'] : CGlobal::TYPE_LANGUAGE_VIET);
-
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($data['video_hot'])? $data['video_hot'] : CGlobal::NEW_TYPE_TIN_TUC);
         $this->layout->content = View::make('admin.Video.add')
             ->with('id', $id)
             ->with('data', $data)
             ->with('optionStatus', $optionStatus)
             ->with('optionLanguage', $optionLanguage)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('arrStatus', $this->arrStatus);
     }
 
@@ -99,6 +103,7 @@ class VideoController extends BaseAdminController
         $data['video_link'] = addslashes(Request::get('video_link'));//ảnh chính
         $data['type_language'] = (int)Request::get('type_language', 1);
         $data['video_status'] = (int)Request::get('video_status', 0);
+        $data['video_hot'] = (int)Request::get('video_hot', CGlobal::NEW_TYPE_TIN_TUC);
         $id_hiden = (int)Request::get('id_hiden', 0);
 
         //FunctionLib::debug($data);
@@ -120,12 +125,14 @@ class VideoController extends BaseAdminController
         }
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['video_status'])? $data['video_status']: CGlobal::status_show);
         $optionLanguage = FunctionLib::getOption(CGlobal::$arrLanguage, isset($data['type_language'])? $data['type_language'] : CGlobal::TYPE_LANGUAGE_VIET);
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($data['video_hot'])? $data['video_hot'] : CGlobal::NEW_TYPE_TIN_TUC);
         $this->layout->content =  View::make('admin.Video.add')
             ->with('id', $id)
             ->with('error', $this->error)
             ->with('data', $data)
             ->with('optionStatus', $optionStatus)
             ->with('optionLanguage', $optionLanguage)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('arrStatus', $this->arrStatus);
     }
 

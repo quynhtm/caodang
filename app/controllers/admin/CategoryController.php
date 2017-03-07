@@ -126,15 +126,31 @@ class CategoryController extends BaseAdminController
         $dataSave['category_show_center'] = (int)Request::get('category_show_center', CGlobal::status_hide);
         $dataSave['category_link'] = addslashes(Request::get('category_link', ''));
 
-        /*$file = Input::file('image');
+        $file = Input::file('image');
         if($file){
             $filename = $file->getClientOriginalName();
             $destinationPath = Config::get('config.DIR_ROOT').'/uploads/'.CGlobal::FOLDER_CATEGORY.'/'. $id;
             $upload  = Input::file('image')->move($destinationPath, $filename);
-            $dataSave['category_image_background'] = $filename;
+            //xóa ảnh cũ
+            if($filename != ''){
+                $category_image_old = Request::get('category_image_old', '');
+                if($category_image_old != '')
+                {
+                    //xoa anh upload
+                    FunctionLib::deleteFileUpload($category_image_old,$id,CGlobal::FOLDER_CATEGORY);
+
+                    //xóa anh thumb
+                    $arrSizeThumb = CGlobal::$arrSizeImage;
+                    foreach($arrSizeThumb as $k=>$size){
+                        $sizeThumb = $size['w'].'x'.$size['h'];
+                        FunctionLib::deleteFileThumb($category_image_old,$id,CGlobal::FOLDER_CATEGORY,$sizeThumb);
+                    }
+                }
+            }
+            $dataSave['category_image'] = $filename;
         }else{
-            $dataSave['category_image_background'] = Request::get('category_image_background', '');
-        }*/
+            $dataSave['category_image'] = Request::get('category_image', '');
+        }
 
         if($this->valid($dataSave) && empty($this->error)) {
             if($id > 0) {

@@ -11,7 +11,7 @@ class Category extends Eloquent
 
     //cac truong trong DB
     protected $fillable = array('category_id','category_name', 'category_depart_id','category_parent_id',
-        'category_show_top', 'category_show_left', 'category_show_right', 'category_show_center',
+        'category_show_top', 'category_show_left', 'category_show_right', 'category_show_center','category_image',
         'category_status', 'category_order', 'category_date_creater', 'category_user_id_creater', 'category_user_name_creater',
         'category_date_update', 'category_user_id_update', 'category_user_name_update', 'category_link');
 
@@ -270,6 +270,7 @@ class Category extends Eloquent
                     'category_show_center'=>$value->category_show_center,
                     'category_order'=>$value->category_order,
                     'category_status'=>$value->category_status,
+                    'category_image'=>$value->category_image,
                     'category_name'=>$value->category_name,
                     'category_link'=>$value->category_link);
             }
@@ -298,7 +299,7 @@ class Category extends Eloquent
         if($cat_id <= $max) {
             foreach ($aryDataInput as $chk => $chval) {
                 if($chval['category_parent_id'] == $cat_id) {
-                    $chval['padding_left'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                    $chval['padding_left'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
                     $chval['category_parent_name'] = $cat_name;
                     $aryData[] = $chval;
                     self::showSubCategory($chval['category_id'],$chval['category_name'], $max, $aryDataInput, $aryData);

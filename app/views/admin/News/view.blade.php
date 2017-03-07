@@ -69,7 +69,10 @@
                                 <td>
                                     [<b>{{ $item['news_id'] }}</b>]<a href="#" target="_blank">{{ $item['news_title'] }}</a>
                                 </td>
-                                <td>@if(isset($arrCategoryNew[$item['news_category_id']])){{ $arrCategoryNew[$item['news_category_id']] }}@else --- @endif</td>
+                                <td>
+                                    @if(isset($arrCategoryNew[$item['news_category_id']])){{ $arrCategoryNew[$item['news_category_id']] }}@else --- @endif
+                                    @if(isset($arrTypeNew[$item['news_type']]))<br/><i class="red">{{ $arrTypeNew[$item['news_type']] }}</i>@endif
+                                </td>
                                 <td>@if(isset($arrDepart[$item['news_depart_id']])){{ $arrDepart[$item['news_depart_id']] }}@else --- @endif</td>
                                 <td class="text-center">
                                     @if($item['news_status'] == 1)

@@ -75,6 +75,7 @@ class NewsController extends BaseAdminController
             ->with('search', $search)
             ->with('optionStatus', $optionStatus)
             ->with('arrDepart', $this->arrDepart)
+            ->with('arrTypeNew', $this->arrTypeNew)
             ->with('arrCategoryNew', $this->arrCategoryNew)
 
             ->with('is_root', $this->is_root)//dùng common
@@ -113,6 +114,7 @@ class NewsController extends BaseAdminController
         $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($data['news_depart_id'])? $data['news_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['news_status'])? $data['news_status'] : CGlobal::status_show);
         $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($data['news_common_page'])? $data['news_common_page'] : CGlobal::status_hide);
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($data['news_type'])? $data['news_type'] : CGlobal::NEW_TYPE_TIN_TUC);
 
         $arrCategory = (isset($data->news_depart_id))? $this->buildOptionCategoryNew($data->news_depart_id):array();
         $arrCategory = !empty($arrCategory)? $arrCategory :array(0=>'----Chọn danh mục tin----');
@@ -128,6 +130,7 @@ class NewsController extends BaseAdminController
             ->with('optionDepart', $optionDepart)
             ->with('optionCommonPage', $optionCommonPage)
             ->with('optionStatus', $optionStatus)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('optionCategory', $optionCategory)
             ->with('optionCategoryShow', $optionCategoryShow)
             ->with('arrStatus', $this->arrStatus);
@@ -139,7 +142,7 @@ class NewsController extends BaseAdminController
         $dataSave['news_title'] = addslashes(Request::get('news_title'));
         $dataSave['news_desc_sort'] = addslashes(Request::get('news_desc_sort'));
         $dataSave['news_content'] = FunctionLib::strReplace(Request::get('news_content'), '\r\n', '');
-        $dataSave['news_type'] = addslashes(Request::get('news_type'));
+        $dataSave['news_type'] = addslashes(Request::get('news_type',CGlobal::NEW_TYPE_TIN_TUC));
         $dataSave['news_status'] = (int)Request::get('news_status', 0);
         $dataSave['news_order'] = (int)Request::get('news_order', 1);
         $dataSave['news_common_page'] = (int)Request::get('news_common_page', CGlobal::status_hide);
@@ -183,11 +186,13 @@ class NewsController extends BaseAdminController
         $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($dataSave['news_depart_id'])? $dataSave['news_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
         $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($dataSave['news_common_page'])? $dataSave['news_common_page'] : CGlobal::status_hide);
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($dataSave['news_type'])? $dataSave['news_type'] : CGlobal::NEW_TYPE_TIN_TUC);
         $this->layout->content =  View::make('admin.News.add')
             ->with('id', $id)
             ->with('data', $dataSave)
             ->with('optionStatus', $optionStatus)
             ->with('optionDepart', $optionDepart)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('optionCommonPage', $optionCommonPage)
             ->with('error', $this->error)
             ->with('arrStatus', $this->arrStatus);

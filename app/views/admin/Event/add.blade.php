@@ -45,13 +45,8 @@
                         </div>
                     </div>
 
+
                     <div class="clearfix"></div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="name" class="control-label">Thứ tự hiển thị</label>
-                            <input type="text" id="event_order" name="event_order"  class="form-control input-sm" value="@if(isset($data['event_order'])){{$data['event_order']}}@endif">
-                        </div>
-                    </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="name" class="control-label">Trạng thái</label>
@@ -60,6 +55,23 @@
                                     {{$optionStatus}}
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Kiểu tin</label>
+                            <div class="form-group">
+                                <select name="event_type" id="event_type" class="form-control input-sm">
+                                    {{$optionTypeNew}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Thứ tự hiển thị</label>
+                            <input type="text" id="event_order" name="event_order"  class="form-control input-sm" value="@if(isset($data['event_order'])){{$data['event_order']}}@endif">
                         </div>
                     </div>
                 </div>

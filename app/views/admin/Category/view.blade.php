@@ -56,9 +56,10 @@
                         <thead class="thin-border-bottom">
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
+                            <th width="8%"class="text-center">Ảnh</th>
                             <!--<th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>-->
                             <th width="35%" class="td_list">Tên danh mục</th>
-                            <th width="20%" class="td_list">Danh mục cha</th>
+                            <th width="15%" class="td_list">Danh mục cha</th>
                             <!---<th width="15%" class="td_list">Khoa - trung tâm</th>-->
                             <th width="5%" class="text-center">Thứ tự</th>
 
@@ -74,6 +75,11 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
+                                <td class="text-center">
+                                    @if($item['category_image'] !='')
+                                    <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_CATEGORY, $item['category_id'], $item['category_image'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="50" height="50">
+                                    @endif
+                                </td>
                                 <!--<td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['category_id']}}"></td>-->
                                 <td>
                                    @if($is_boss)[<b>{{ $item['category_id'] }}</b>]@endif
@@ -125,10 +131,10 @@
                                     <span class="img_loading" id="img_loading_{{$item['category_id']}}"></span>
 
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-                                       &nbsp;&nbsp;&nbsp;<a href="{{URL::route('admin.category_edit',array('id' => $item['category_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                       &nbsp;&nbsp;<a href="{{URL::route('admin.category_edit',array('id' => $item['category_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root || $permission_full ==1 || $permission_delete == 1)
-                                       &nbsp;&nbsp;&nbsp;
+                                       &nbsp;&nbsp;
                                        <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['category_id']}},10)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>

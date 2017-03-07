@@ -70,12 +70,22 @@
                     </div>
 
                     <div class="clearfix"></div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <label for="name" class="control-label">Loại tin</label>
                             <div class="form-group">
                                 <select class="form-control input-sm" name="news_common_page">
                                         {{$optionCommonPage}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Kiểu tin</label>
+                            <div class="form-group">
+                                <select class="form-control input-sm" name="news_type">
+                                        {{$optionTypeNew}}
                                 </select>
                             </div>
                         </div>

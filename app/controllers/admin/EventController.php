@@ -12,7 +12,7 @@ class EventController extends BaseAdminController
     private $permission_create = 'event_create';
     private $permission_edit = 'event_edit';
     private $arrStatus = array(CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-    private $arrCommonPage = array(CGlobal::status_hide => 'Tin tức riêng', CGlobal::status_show => 'Tin tức chung');
+
     private $error = array();
     private $arrCategoryNew = array();
     private $arrTypeNew = array();
@@ -66,6 +66,7 @@ class EventController extends BaseAdminController
 
         //FunctionLib::debug($dataSearch);
         $optionStatus = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrStatus, $search['event_status']);
+
         $this->layout->content = View::make('admin.Event.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -74,6 +75,7 @@ class EventController extends BaseAdminController
             ->with('data', $dataSearch)
             ->with('search', $search)
             ->with('optionStatus', $optionStatus)
+
             ->with('arrDepart', $this->arrDepart)
             ->with('arrCategoryNew', $this->arrCategoryNew)
 
@@ -112,7 +114,7 @@ class EventController extends BaseAdminController
 
         $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($data['event_depart_id'])? $data['event_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['event_status'])? $data['event_status'] : CGlobal::status_show);
-
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($data['event_type'])? $data['event_type'] : CGlobal::NEW_TYPE_TIN_TUC);
         $this->layout->content = View::make('admin.Event.add')
             ->with('id', $id)
             ->with('data', $data)
@@ -120,6 +122,7 @@ class EventController extends BaseAdminController
             ->with('urlImageOrigin', $urlImageOrigin)
             ->with('arrViewImgOther', $arrViewImgOther)
             ->with('optionDepart', $optionDepart)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('optionStatus', $optionStatus)
             ->with('arrStatus', $this->arrStatus);
     }
@@ -133,6 +136,7 @@ class EventController extends BaseAdminController
 
         $dataSave['event_status'] = (int)Request::get('event_status', 0);
         $dataSave['event_order'] = (int)Request::get('event_order', 1);
+        $dataSave['event_type'] = (int)Request::get('event_type', CGlobal::NEW_TYPE_TIN_TUC);
 
         $dataSave['event_depart_id'] = (int)Request::get('event_depart_id', CGlobal::status_hide);
         $id_hiden = (int)Request::get('id_hiden', 0);
@@ -171,11 +175,13 @@ class EventController extends BaseAdminController
         }
         $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($dataSave['event_depart_id'])? $dataSave['event_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['event_status'])? $dataSave['event_status'] : -1);
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($dataSave['event_type'])? $dataSave['event_type'] : CGlobal::NEW_TYPE_TIN_TUC);
         $this->layout->content =  View::make('admin.Event.add')
             ->with('id', $id)
             ->with('data', $dataSave)
             ->with('optionStatus', $optionStatus)
             ->with('optionDepart', $optionDepart)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('error', $this->error)
             ->with('arrStatus', $this->arrStatus);
     }

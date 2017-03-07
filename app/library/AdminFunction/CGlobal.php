@@ -105,8 +105,7 @@ class CGlobal{
     const NEW_CATEGORY_QUANG_CAO = 3;
 
     const NEW_TYPE_TIN_TUC = 1;
-    const NEW_TYPE_GIOI_THIEU = 2;
-    const NEW_TYPE_QUANG_CAO = 3;
+    const NEW_TYPE_TIN_HOT = 2;
 
     public static $arrCategoryNew = array(-1 => '--- Chọn danh mục ---',
         self::NEW_CATEGORY_TIN_TUC_CHUNG => 'Tin tức chung',
@@ -114,9 +113,8 @@ class CGlobal{
         self::NEW_CATEGORY_QUANG_CAO => 'Tin quảng cáo',
     );
     public static $arrTypeNew = array(-1 => '--- Chọn kiểu tin ---',
-        self::NEW_TYPE_TIN_TUC => 'Tin tức chung',
-        self::NEW_TYPE_GIOI_THIEU => 'Tin Hỗ trợ',
-        self::NEW_TYPE_QUANG_CAO => 'Tin quảng cáo',
+        self::NEW_TYPE_TIN_TUC => 'Tin bình thường',
+        self::NEW_TYPE_TIN_HOT => 'Tin nổi bật',
     );
 
     const TYPE_LANGUAGE_VIET = 1;

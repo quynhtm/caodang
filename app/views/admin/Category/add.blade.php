@@ -124,6 +124,26 @@
                             </select>
                         </div>
                     </div>
+                    @if(isset($id) && $id > 0)
+                    <div class="clearfix"></div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <i>Ảnh đại diện</i>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <input name="image" type="file"/>
+                            <input name="category_image" type="hidden" id="category_image" @if(isset($data['category_image']))value="{{$data['category_image']}}"@else value="" @endif>
+                            <input name="category_image_old" type="hidden" id="category_image_old" @if(isset($data['category_image']))value="{{$data['category_image']}}"@else value="" @endif>
+                        </div>
+                        @if(isset($data['category_image']) && $data['category_image'] !='')
+                            <div class="form-group">
+                                <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_CATEGORY, $data['category_id'], $data['category_image'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}">
+                            </div>
+                        @endif
+                    </div>
+                    @endif
                 </div>
                 {{ Form::close() }}
             </div>
