@@ -20,35 +20,35 @@
 					<span>  Thời gian </span>
 					<strong> 22/12/2016</strong>
 				</div>
-				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <img src="{{URL::route('site.home')}}/assets/frontend/img/new.gif"></a>
+				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
 			</div>
 			<div class="event-item">
 				<div class="n-date">
 					<span>  Thời gian </span>
 					<strong> 11-13/11/2016</strong>
 				</div>
-				<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <img src="{{URL::route('site.home')}}/assets/frontend/img/new.gif"></a>
+				<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
 			</div>
 			<div class="event-item">
 				<div class="n-date">
 					<span>  Thời gian </span>
 					<strong> 22/12/2016</strong>
 				</div>
-				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <img src="{{URL::route('site.home')}}/assets/frontend/img/new.gif"></a>
+				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
 			</div>
 			<div class="event-item">
 				<div class="n-date">
 					<span>  Thời gian </span>
 					<strong> 11-13/11/2016</strong>
 				</div>
-				<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <img src="{{URL::route('site.home')}}/assets/frontend/img/new.gif"></a>
+				<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
 			</div>
 			<div class="event-item">
 				<div class="n-date">
 					<span>  Thời gian </span>
 					<strong> 22/12/2016</strong>
 				</div>
-				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <img src="{{URL::route('site.home')}}/assets/frontend/img/new.gif"></a>
+				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
 			</div>
 		</div>
 	</div>
@@ -66,7 +66,7 @@
 				<div class="cold45 mgl5p">
 					<h4 class="home-news-title">
 						<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-							“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<img style="width:25px;height:13px" src="{{URL::route('site.home')}}/assets/frontend/img/new.gif">
+							“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<i class="icon-new"></i>
 						</a>
 					</h4>
 					<div class="excerpt"><p>Vượt qua các đối thủ “nặng ký” trong vòng bình chọn quyết liệt của Game show “Vua bán hàng”, 18 sinh …</p></div>
@@ -80,7 +80,7 @@
 				<div class="cold45">
 					<h4 class="home-news-title">
 						<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-							“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<img style="width:25px;height:13px" src="{{URL::route('site.home')}}/assets/frontend/img/new.gif">
+							“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng” <i class="icon-new"></i>
 						</a>
 					</h4>
 					<div class="excerpt"><p>Vượt qua các đối thủ “nặng ký” trong vòng bình chọn quyết liệt của Game show “Vua bán hàng”, 18 sinh …</p></div>
@@ -105,7 +105,7 @@
 				</a>
 				<h4 class="home-news-title">
 					<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-						“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<img style="width:25px;height:13px" src="{{URL::route('site.home')}}/assets/frontend/img/new.gif">
+						“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<i class="icon-new"></i>
 					</a>
 				</h4>
 				<div class="excerpt"><p>Vượt qua các đối thủ “nặng ký” trong vòng bình chọn quyết liệt của Game show “Vua bán hàng”, 18 sinh …</p></div>

@@ -19,42 +19,43 @@
 				<span>  Thời gian </span>
 				<strong> 22/12/2016</strong>
 			</div>
-			<a href="" title="KẾ HOẠCH Tổ chức Hội thi " học="" sinh,="" sinh="" viên="" giỏi="" tin="" văn="" phòng”="" trường="" cao="" đẳng="" sư="" phạm="" trung="" ương="" năm="" 2016-2017"="">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <img src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/new.gif"></a>
+			<a href="" title="KẾ HOẠCH Tổ chức Hội thi">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
 		</div>
+
 		<div class="event-item">
 			<div class="n-date">
 				<span>  Thời gian </span>
 				<strong> 11-13/11/2016</strong>
 			</div>
-			<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <img src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/new.gif"></a>
+			<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
 		</div>
 		<div class="event-item">
 			<div class="n-date">
 				<span>  Thời gian </span>
 				<strong> 22/12/2016</strong>
 			</div>
-			<a href="" title="KẾ HOẠCH Tổ chức Hội thi " học="" sinh,="" sinh="" viên="" giỏi="" tin="" văn="" phòng”="" trường="" cao="" đẳng="" sư="" phạm="" trung="" ương="" năm="" 2016-2017"="">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <img src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/new.gif"></a>
+			<a href="" title="KẾ HOẠCH Tổ chức Hội thi " học="" sinh,="" sinh="" viên="" giỏi="" tin="" văn="" phòng”="" trường="" cao="" đẳng="" sư="" phạm="" trung="" ương="" năm="" 2016-2017"="">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
 		</div>
 		<div class="event-item">
 			<div class="n-date">
 				<span>  Thời gian </span>
 				<strong> 11-13/11/2016</strong>
 			</div>
-			<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <img src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/new.gif"></a>
+			<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
 		</div>
 		<div class="event-item">
 			<div class="n-date">
 				<span>  Thời gian </span>
 				<strong> 22/12/2016</strong>
 			</div>
-			<a href="" title="KẾ HOẠCH Tổ chức Hội thi " học="" sinh,="" sinh="" viên="" giỏi="" tin="" văn="" phòng”="" trường="" cao="" đẳng="" sư="" phạm="" trung="" ương="" năm="" 2016-2017"="">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <img src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/new.gif"></a>
+			<a href="" title="KẾ HOẠCH Tổ chức Hội thi " học="" sinh,="" sinh="" viên="" giỏi="" tin="" văn="" phòng”="" trường="" cao="" đẳng="" sư="" phạm="" trung="" ương="" năm="" 2016-2017"="">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
 		</div>
 		<div class="event-item">
 			<div class="n-date">
 				<span>  Thời gian </span>
 				<strong> 11-13/11/2016</strong>
 			</div>
-			<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <img src="http://project.vn/KHAC/cdsptw.edu.vn/assets/frontend/img/new.gif"></a>
+			<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
 		</div>
 	</div>
 	@if(sizeof($arrBannerLeft) > 0)
