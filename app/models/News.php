@@ -198,9 +198,48 @@ class News extends Eloquent
     	}
     }
 
-    public static function getPostInCategoryParent($arrCat=''){
-        if($arrCat != ''){
+    public static function getPostInCategoryParent($arrCat='', $limit=0){
+        $result = array();
+        if($arrCat != '' && $limit > 0){
+            $arrCat = explode(',',trim($arrCat));
+            $query = News::where('news_id','>',0);
+            /*
+            if($arrCat != ''){
+                $arrCats = array();
+                $arrCat = implode(',',$arrCat);
+                Category::makeListCatId($arrCat, 0, $arrCats);
+                if(is_array($arrCats) && !empty($arrCats)){
+                    $query->whereIn('news_category_id', $arrCats);
+                }
+            }
+            */
+            $query->whereIn('news_category_id', $arrCat);
+            $query->where('news_status', CGlobal::status_show);
+            $query->orderBy('news_id', 'desc');
+            $result = $query->take($limit)->get();
+        }
+        return $result;
+    }
+    public static function searchByConditionSite($dataSearch = array(), $limit =0, $offset=0, &$total){
+        try{
+            $query = News::where('news_id','>',0);
+            $query->where('news_status', CGlobal::status_show);
+            if (isset($dataSearch['news_category_id']) && $dataSearch['news_category_id'] > 0) {
+                $query->where('news_category_id', $dataSearch['news_category_id']);
+            }
+            $total = $query->count();
+            $query->orderBy('news_id', 'desc');
+            //get field can lay du lieu
+            $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
+            if(!empty($fields)){
+                $result = $query->take($limit)->skip($offset)->get($fields);
+            }else{
+                $result = $query->take($limit)->skip($offset)->get();
+            }
+            return $result;
 
+        }catch (PDOException $e){
+            throw new PDOException();
         }
     }
 }

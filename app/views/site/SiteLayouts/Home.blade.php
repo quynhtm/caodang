@@ -57,67 +57,118 @@
 			<a href="" title="Bản tin">Bản tin</a>
 		</h3>
 		<div class="home-news-list home-news-list-center">
-			<div class="home-news-first-item">
-				<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-					<img src="{{URL::route('site.home')}}/assets/frontend/img/1b.png"  alt="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”" id="" height="225" width="300">
-				</a>
-			</div>
 			<div class="line-center">
 				<div class="cold45 mgl5p">
-					<h4 class="home-news-title">
-						<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-							“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<i class="icon-new"></i>
-						</a>
-					</h4>
-					<div class="excerpt"><p>Vượt qua các đối thủ “nặng ký” trong vòng bình chọn quyết liệt của Game show “Vua bán hàng”, 18 sinh …</p></div>
-					<div class="home-news-item">
-						<a href="" title="NTU là 1 trong 6 trường có tỷ lệ sinh viên tham gia “Vua bán hàng” đông nhất"><i class="fa fa-circle"></i> NTU là 1 trong 6 trường có tỷ lệ sinh viên tham gia “Vua bán hàng” đông nhất</a>
-					</div>
-					<div class="home-news-item">
-						<a href="" title="Chọn Đại học hàn lâm lý thuyết hay Đại học ứng dụng?"><i class="fa fa-circle"></i> Chọn Đại học hàn lâm lý thuyết hay Đại học ứng dụng?</a>
-					</div>
+					@if(isset($data_ts_dt_csv['post']))
+						@foreach($data_ts_dt_csv['post'] as $k=>$item)
+							@if($k == 0)
+								<div class="home-news-first-item">
+									@if($item['news_image'] != '')
+										<a class="post-thumb" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+											<img alt="{{$item['news_title']}}"
+												 src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item['news_id'], $item['news_image'], CGlobal::sizeImage_500)}}">
+										</a>
+									@endif
+									<h4 class="home-news-title">
+										<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+											{{$item['news_title']}} <i class="icon-new"></i>
+										</a>
+									</h4>
+									<div class="excerpt">
+										@if($item['news_intro'] != '')
+											{{FunctionLib::substring($item['news_intro'], 200, '...') }}
+										@else
+											{{FunctionLib::substring($item['news_content'], 200, '...') }}
+										@endif</div>
+								</div>
+							@else
+								<div class="home-news-item">
+									<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+										<i class="fa fa-circle"></i> {{$item['news_title']}}
+									</a>
+								</div>
+							@endif
+						@endforeach
+					@endif
 				</div>
 				<div class="cold45">
-					<h4 class="home-news-title">
-						<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-							“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng” <i class="icon-new"></i>
-						</a>
-					</h4>
-					<div class="excerpt"><p>Vượt qua các đối thủ “nặng ký” trong vòng bình chọn quyết liệt của Game show “Vua bán hàng”, 18 sinh …</p></div>
-					<div class="home-news-item">
-						<a href="" title="NTU là 1 trong 6 trường có tỷ lệ sinh viên tham gia “Vua bán hàng” đông nhất"><i class="fa fa-circle"></i> NTU là 1 trong 6 trường có tỷ lệ sinh viên tham gia “Vua bán hàng” đông nhất</a>
-					</div>
-					<div class="home-news-item">
-						<a href="" title="Chọn Đại học hàn lâm lý thuyết hay Đại học ứng dụng?"><i class="fa fa-circle"></i> Chọn Đại học hàn lâm lý thuyết hay Đại học ứng dụng?</a>
-					</div>
+					@if(isset($data_khac['post']))
+						@foreach($data_khac['post'] as $k=>$item)
+							@if($k == 0)
+								<div class="home-news-first-item">
+									@if($item['news_image'] != '')
+										<a class="post-thumb" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+											<img alt="{{$item['news_title']}}"
+												 src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item['news_id'], $item['news_image'], CGlobal::sizeImage_500)}}">
+										</a>
+									@endif
+									<h4 class="home-news-title">
+										<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+											{{$item['news_title']}} <i class="icon-new"></i>
+										</a>
+									</h4>
+									<div class="excerpt">
+										@if($item['news_intro'] != '')
+											{{FunctionLib::substring($item['news_intro'], 200, '...') }}
+										@else
+											{{FunctionLib::substring($item['news_content'], 200, '...') }}
+										@endif</div>
+								</div>
+							@else
+								<div class="home-news-item">
+									<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+										<i class="fa fa-circle"></i> {{$item['news_title']}}
+									</a>
+								</div>
+							@endif
+						@endforeach
+					@endif
 				</div>
 			</div>
 		</div>
 	</div>
+	@if(sizeof($data_hdsv) > 0)
 	<div class="col-lg-3 col-md-3 col-sm-12">
+		@if(isset($data_hdsv['cat']))
 		<h3 class="heading-news">
-			<a href="" title="Hoạt động sinh viên">Hoạt động sinh viên</a>
+			<a @if(isset($data_hdsv['cat']['category_id']) && $data_hdsv['cat']['category_id'] > 0) href="{{FunctionLib::buildLinkCategory($data_hdsv['cat']['category_id'], $data_hdsv['cat']['category_name'])}}" @endif title="{{$data_hdsv['cat']['category_name']}}">{{$data_hdsv['cat']['category_name']}}</a>
 		</h3>
+		@endif
 		<div class="home-news-list">
-			<div class="home-news-first-item">
-				<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-					<img src="{{URL::route('site.home')}}/assets/frontend/img/1a.png"  alt="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”" id="" height="225" width="300">
-				</a>
-				<h4 class="home-news-title">
-					<a href="" title="“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”">
-						“Lộ diện” 10 gương mặt trong đội hình chính thức của Game show “Vua bán hàng”<i class="icon-new"></i>
-					</a>
-				</h4>
-				<div class="excerpt"><p>Vượt qua các đối thủ “nặng ký” trong vòng bình chọn quyết liệt của Game show “Vua bán hàng”, 18 sinh …</p></div>
-			</div>
-			<div class="home-news-item">
-				<a href="" title="NTU là 1 trong 6 trường có tỷ lệ sinh viên tham gia “Vua bán hàng” đông nhất"><i class="fa fa-circle"></i> NTU là 1 trong 6 trường có tỷ lệ sinh viên tham gia “Vua bán hàng” đông nhất</a>
-			</div>
-			<div class="home-news-item">
-				<a href="" title="Chọn Đại học hàn lâm lý thuyết hay Đại học ứng dụng?"><i class="fa fa-circle"></i> Chọn Đại học hàn lâm lý thuyết hay Đại học ứng dụng?</a>
-			</div>
+			@if(isset($data_hdsv['post']))
+				@foreach($data_hdsv['post'] as $k=>$item)
+				@if($k == 0)
+					<div class="home-news-first-item">
+						@if($item['news_image'] != '')
+							<a class="post-thumb" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+							<img alt="{{$item['news_title']}}"
+								 src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $item['news_id'], $item['news_image'], CGlobal::sizeImage_500)}}">
+							</a>
+						@endif
+					<h4 class="home-news-title">
+						<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+							{{$item['news_title']}} <i class="icon-new"></i>
+						</a>
+					</h4>
+					<div class="excerpt">
+						@if($item['news_intro'] != '')
+							{{FunctionLib::substring($item['news_intro'], 200, '...') }}
+						@else
+							{{FunctionLib::substring($item['news_content'], 200, '...') }}
+						@endif</div>
+					</div>
+				@else
+					<div class="home-news-item">
+						<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
+							<i class="fa fa-circle"></i> {{$item['news_title']}}
+						</a>
+					</div>
+				@endif
+				@endforeach
+			@endif
 		</div>
 	</div>
+	@endif
 </div>
 <div class="line bd2">
 	<div class="headingline">Ngành đào tạo</div>

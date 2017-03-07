@@ -232,16 +232,14 @@ h1, h2, h3, h4, h5, h6{
 }
 .home-news-list-center img {
     width: 100%;
-    height: 225px;
 }
 .line-center{
     width: 100%;
     display: inline-block;
-    margin-top: 10px;
     clear: both;
 }
 .cold45{
-    width:45%;
+    width:47.45%;
     display: inline-block;
     float: left;
 }
@@ -253,7 +251,6 @@ h1, h2, h3, h4, h5, h6{
 }
 .home-news-list img {
     width: 100%;
-    height: 225px;
 }
 .home-news-list .home-news-title {
     font-size: 12px;
@@ -716,4 +713,80 @@ h1, h2, h3, h4, h5, h6{
 #sliderPro .sp-layer{
     top:0!important;
     left:0!important;
+}
+.home-news-first-item .post-thumb {
+    display: inline-block;
+    height: 185px;
+    overflow: hidden;
+    margin-top: 5px;
+    width: 100%;
+}
+.home-news-first-item .post-thumb img{
+    height: 100%!important;
+}
+.home-news-first-item .post-thumb:hover img{
+    opacity: 0.8;
+}
+.item-post {
+    clear: both;
+    padding-bottom: 5px;
+    text-align: justify;
+    width: 100%;
+    display: inline-block;
+}
+.list-post .item-post {
+    border-bottom: 1px solid #e2e2e2;
+    border-top: medium none;
+    margin-bottom: 10px;
+    padding-top: 0;
+}
+.list-post .item-post.last{
+    border-bottom: none;
+}
+.list-post .title-list-item{
+    margin-bottom: 5px;
+}
+.list-post .title-list-item a.post-title{
+    text-transform: none;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+}
+.list-post .title-list-item a.post-title:hover{
+    color: #ff0000;
+}
+.list-post .item-post img {
+    float: left;
+    height: auto;
+    margin-right: 10px;
+    width: 120px;
+}
+list-post .item-post .post-intro {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    text-align: justify;
+    padding: 5px 0;
+}
+.date {
+    color: #555;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+}
+.icon-other {
+    background: rgba(0, 0, 0, 0) url("../img/icon-other.png") no-repeat scroll center center;
+    display: inline-block;
+    margin-right: 5px;
+}
+.icon-date {
+    background-position: -22px 0;
+    height: 12px;
+    width: 10px;
+}
+.list-post .item-post:last-child{
+    border-bottom: none;
+}
+.list-post .item-post:hover img{
+    opacity: 0.8;
 }

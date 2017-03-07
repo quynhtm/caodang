@@ -10,6 +10,7 @@ class BaseSiteController extends BaseController{
     protected $layout = 'site.BaseLayouts.index';
    
     public function __construct(){
+        FunctionLib::site_css('font-awesome/4.2.0/css/font-awesome.min.css', CGlobal::$POS_HEAD);
     	FunctionLib::site_js('frontend/js/site.js', CGlobal::$POS_END);
     }
     public function header(){
@@ -104,30 +105,30 @@ class BaseSiteController extends BaseController{
         }
         return $arrBannerShow;
     }
-    public function getCategoryAndPostByKeyword($cat_keyword='', $limit_post=0){
+    public function getCategoryAndPostByKeyword($cat_keyword='', $limit_post=0, $get_a_cat=0){
         $result = array();
         if($cat_keyword != '' && $limit_post>0){
             $result_cat = Info::getItemByKeyword($cat_keyword);
             if(sizeof($result_cat) > 0){
-                $catid = (int)strip_tags(stripslashes($result_cat->info_content));
-                if($catid > 0){
-
-                    $dataCat = Category::getByID($catid);
-                    if(sizeof($dataCat) > 0){
-                        //Data Category
-                        $result['cat'] = array(
-                                            'category_id'=>$dataCat->category_id,
-                                            'category_name'=>$dataCat->category_name,
-                                            );
-                        //Data Post In Category
-
+                $catid = strip_tags(stripslashes($result_cat->info_content));
+                if($catid != '') {
+                    if ($get_a_cat == 1){
+                        $dataCat = Category::getByID($catid);
+                        if (sizeof($dataCat) > 0) {
+                            //Data Category
+                            $result['cat'] = array(
+                                'category_id' => $dataCat->category_id,
+                                'category_name' => $dataCat->category_name,
+                                'category_link' => $dataCat->category_link,
+                            );
+                        }
                     }
-
-
+                    //Data Post In Category
+                    $arrPost = News::getPostInCategoryParent($catid, $limit_post);
+                    $result['post'] = $arrPost;
                 }
             }
         }
-        FunctionLib::debug($result);
         return $result;
     }
 }
