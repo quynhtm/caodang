@@ -110,6 +110,7 @@ class SiteHomeController extends BaseSiteController{
         $this->header();
         $this->slider();
         $this->left();
+        $this->sliderPartnerBottom();
         $this->right();
         $this->layout->content = View::make('site.SiteLayouts.pageContact')
                                 ->with('info', $info)
@@ -157,6 +158,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('arrItem', $data)
             ->with('paging', $paging);
         $this->right();
+        $this->sliderPartnerBottom();
         $this->footer();
     }
     public function pageVideoDetail($title='', $id=0){
@@ -181,6 +183,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('item', $item)
             ->with('newsSame', $newsSame);
         $this->right();
+        $this->sliderPartnerBottom();
         $this->footer();
     }
 
@@ -207,6 +210,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('arrItem', $data)
             ->with('paging', $paging);
         $this->right();
+        $this->sliderPartnerBottom();
         $this->footer();
     }
     public function pageLibraryDetail($title='', $id=0){
@@ -237,6 +241,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('item', $item)
             ->with('newsSame', $newsSame);
         $this->right();
+        $this->sliderPartnerBottom();
         $this->footer();
     }
 }
