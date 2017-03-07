@@ -28,11 +28,16 @@ class SiteHomeController extends BaseSiteController{
         //Banner Calendar Week
         $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
         $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
-
+		
+		//Video
+		$dataField['field_get'] = 'video_link';
+		$arrVideo = Video::getNewVideo($dataField='', 1, 0);
+		
     	$this->header();
         $this->slider();
         $this->layout->content = View::make('site.SiteLayouts.Home')
-                                ->with('arrBannerWeek', $arrBannerWeek);
+                                ->with('arrBannerWeek', $arrBannerWeek)
+                                ->with('arrVideo', $arrVideo);
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -129,4 +134,108 @@ class SiteHomeController extends BaseSiteController{
 		}
 		exit();
 	}
+
+    public function pageVideo(){
+        $meta_title = $meta_keywords = $meta_description = 'Video';
+        $meta_img= '';
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+
+        $pageNo = (int) Request::get('page_no',1);
+        $limit = CGlobal::number_show_20;
+        $offset = ($pageNo - 1) * $limit;
+        $search = $data = array();
+        $total = 0;
+        $search['video_status'] = CGlobal::status_show;
+        $data = Video::searchByCondition($search, 1, $offset,$total);
+        $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, 1, $search) : '';
+
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageVideo')
+            ->with('arrItem', $data)
+            ->with('paging', $paging);
+        $this->right();
+        $this->footer();
+    }
+    public function pageVideoDetail($title='', $id=0){
+        $item = array();
+        $newsSame = array();
+        $meta_title = $meta_keywords = $meta_description = 'Video';
+        $meta_img = '';
+        if($id > 0){
+            $item = Video::getById($id);
+            if(sizeof($item) > 0){
+                $meta_title = stripslashes($item->video_name);
+                $meta_keywords = stripslashes($item->video_meta_keyword);
+                $meta_description = stripslashes($item->video_meta_description);
+                $newsSame = Video::getSameVideo($dataField='', $item->video_id, CGlobal::number_show_8, 0);
+            }
+        }
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageVideoDetail')
+            ->with('item', $item)
+            ->with('newsSame', $newsSame);
+        $this->right();
+        $this->footer();
+    }
+
+    public function pageLibrary(){
+        $meta_title = $meta_keywords = $meta_description = 'Thư viện ảnh';
+        $meta_img= '';
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+
+        $pageNo = (int) Request::get('page_no',1);
+        $limit = CGlobal::number_show_40;
+        $offset = ($pageNo - 1) * $limit;
+        $search = $data = array();
+        $total = 0;
+
+        $search['image_status'] = CGlobal::status_show;
+
+        $data = LibraryImage::searchByCondition($search, $limit, $offset,$total);
+        $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
+
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageImages')
+            ->with('arrItem', $data)
+            ->with('paging', $paging);
+        $this->right();
+        $this->footer();
+    }
+    public function pageLibraryDetail($title='', $id=0){
+        FunctionLib::site_js('lib/slidermagnific/magnific-popup.min.js', CGlobal::$POS_END);
+        FunctionLib::site_css('lib/slidermagnific/magnific-popup.css', CGlobal::$POS_HEAD);
+
+        $item = array();
+        $newsSame = array();
+
+        $meta_title = $meta_keywords = $meta_description = 'Thư viện ảnh';
+        $meta_img = '';
+
+        if($id > 0){
+            $item = LibraryImage::getById($id);
+            if(sizeof($item) > 0){
+                $meta_title = stripslashes($item->news_title);
+                $meta_keywords = stripslashes($item->news_meta_keyword);
+                $meta_description = stripslashes($item->news_meta_description);
+                $newsSame = LibraryImage::getSameNews($dataField='', $item->image_id, CGlobal::number_show_8, 0);
+            }
+        }
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageImagesDetail')
+            ->with('item', $item)
+            ->with('newsSame', $newsSame);
+        $this->right();
+        $this->footer();
+    }
 }

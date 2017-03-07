@@ -196,6 +196,7 @@
 	<div class="headingline">Thư viện ảnh & Video</div>
 	<div class="home-gallery-video">
 		<div class="sp-image-container">
+			<h2 class="title-path-ext"><a href="{{URL::route('site.pageLibrary')}}" title="Hình ảnh">Hình ảnh</a></h2>
 			<div class="sliderimg">
 				<img class="sp-image" src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2016/11/IMG_9581.jpg">
 			</div>
@@ -204,7 +205,18 @@
 			</div>
 		</div>
 		<div class="home-video">
-			<iframe src="https://www.youtube.com/embed/Hil4b8lNC7s?feature=oembed" allowfullscreen="" height="350" frameborder="0" width="540"></iframe>
+			<h2 class="title-path-ext"><a href="{{URL::route('site.pageVideo')}}" title="Video">Video</a></h2>
+			@if(sizeof($arrVideo) > 0)
+				@foreach($arrVideo as $k=>$item)
+					@if($k == 0)
+                        <?php
+                        $_video = str_replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $item->video_link);
+                        $embed = '<iframe width="540" height="350" src="'.$_video.'?rel=0" frameborder="0" allowfullscreen></iframe>';
+                        echo $embed;
+                        ?>
+					@endif
+				@endforeach
+			@endif
 		</div>
 	</div>
 </div>

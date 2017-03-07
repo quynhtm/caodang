@@ -54,9 +54,11 @@
 							{{$right}}
 						@endif
 					</div>
-					@if(isset($sliderPartnerBottom))
-						{{$sliderPartnerBottom}}
-					@endif
+					<div class="line">
+						@if(isset($sliderPartnerBottom))
+							{{$sliderPartnerBottom}}
+						@endif
+					</div>
 				</div>
 			</div>
 		</div>

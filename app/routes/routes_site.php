@@ -15,6 +15,15 @@ Route::match(['GET','POST'],'lien-he.html',array('as' => 'site.pageContact','use
 //Category
 Route::get('{name}-{id}.html',array('as' => 'site.pageCategory','uses' =>'SiteHomeController@pageCategory'))->where('name', '[A-Z0-9a-z_\-]+')->where('id', '[0-9]+');
 
+//Video
+Route::match(['GET','POST'],'video.html',array('as' => 'site.pageVideo','uses' =>'SiteHomeController@pageVideo'));
+Route::match(['GET','POST'],'thu-vien-video/chi-tiet/{video_title}-{video_id}.html',array('as' => 'site.pageVideoDetail','uses' =>'SiteHomeController@pageVideoDetail'))->where('video_title', '[A-Z0-9a-z_\-]+')->where('video_id', '[0-9]+');
+
+//Hinh anh
+Route::match(['GET','POST'],'thu-vien-anh.html',array('as' => 'site.pageLibrary','uses' =>'SiteHomeController@pageLibrary'));
+Route::match(['GET','POST'],'thu-vien-anh/chi-tiet/{image_title}-{image_id}.html',array('as' => 'site.pageLibraryDetail','uses' =>'SiteHomeController@pageLibraryDetail'))->where('image_title', '[A-Z0-9a-z_\-]+')->where('image_id', '[0-9]+');
+
+
 //Captcha
 Route::match(['GET','POST'], 'captcha', array('as' => 'site.linkCaptcha','uses' =>'SiteHomeController@linkCaptcha'));
 Route::match(['GET','POST'], 'captchaCheckAjax', array('as' => 'site.captchaCheckAjax','uses' =>'SiteHomeController@captchaCheckAjax'));
