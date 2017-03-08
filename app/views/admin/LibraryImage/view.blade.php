@@ -63,6 +63,7 @@
                                 <td class="text-center"><img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $item['image_image'], CGlobal::sizeImage_100,  '', true, CGlobal::type_thumb_image_banner, false)}}"></td>
                                 <td>
                                     [<b>{{ $item['image_id'] }}</b>]<a href="#" target="_blank">{{ $item['image_title'] }}</a>
+                                    <br>@if(isset($arrTypeNew[$item['image_hot']]))<br/><i class="red">{{ $arrTypeNew[$item['image_hot']] }}</i>@endif
                                 </td>
                                 <td class="text-center">@if(isset($arrLanguage[$item['type_language']])){{$arrLanguage[$item['type_language']]}}@else -- @endif</td>
                                 <td class="text-center">

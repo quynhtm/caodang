@@ -65,7 +65,7 @@ class VideoController extends BaseAdminController
             ->with('optionLanguage', $optionLanguage)
             ->with('arrLanguage', CGlobal::$arrLanguage)
             ->with('arrStatus', $this->arrStatus)
-
+            ->with('arrTypeNew', $this->arrTypeNew)
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)//dùng common

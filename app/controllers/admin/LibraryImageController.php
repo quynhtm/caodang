@@ -15,6 +15,7 @@ class LibraryImageController extends BaseAdminController
 
     private $error = array();
     private $arrCategoryParent = array();
+    private $arrTypeNew = array();
 
     public function __construct()
     {
@@ -33,6 +34,8 @@ class LibraryImageController extends BaseAdminController
             'lib/ckeditor/config.js',
             'js/common.js',
         ));
+
+        $this->arrTypeNew = CGlobal::$arrTypeNew;
     }
 
     public function view() {
@@ -65,7 +68,7 @@ class LibraryImageController extends BaseAdminController
             ->with('arrLanguage', CGlobal::$arrLanguage)
             ->with('optionStatus', $optionStatus)
             ->with('arrStatus', $this->arrStatus)
-
+            ->with('arrTypeNew', $this->arrTypeNew)
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)//dùng common
@@ -101,6 +104,7 @@ class LibraryImageController extends BaseAdminController
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['news_status'])? $data['news_status'] : CGlobal::status_show);
         $optionLanguage = FunctionLib::getOption(CGlobal::$arrLanguage, isset($dataSave['type_language'])? $dataSave['type_language'] : CGlobal::TYPE_LANGUAGE_VIET);
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($data['image_hot'])? $data['image_hot'] : CGlobal::NEW_TYPE_TIN_TUC);
 
         $this->layout->content = View::make('admin.LibraryImage.add')
             ->with('id', $id)
@@ -110,6 +114,7 @@ class LibraryImageController extends BaseAdminController
             ->with('arrViewImgOther', $arrViewImgOther)
             ->with('optionStatus', $optionStatus)
             ->with('optionLanguage', $optionLanguage)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('arrStatus', $this->arrStatus);
     }
     public function postItem($id=0) {
@@ -120,6 +125,7 @@ class LibraryImageController extends BaseAdminController
         $dataSave['image_content'] = FunctionLib::strReplace(Request::get('image_content'), '\r\n', '');
         $dataSave['image_status'] = (int)Request::get('image_status', 0);
         $dataSave['type_language'] = (int)Request::get('type_language', CGlobal::TYPE_LANGUAGE_VIET);
+        $dataSave['image_hot'] = (int)Request::get('image_hot', CGlobal::NEW_TYPE_TIN_TUC);
         $id_hiden = (int)Request::get('id_hiden', 0);
 
         //ảnh chính
@@ -158,12 +164,13 @@ class LibraryImageController extends BaseAdminController
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['news_status'])? $dataSave['news_status'] : CGlobal::status_show);
         $optionLanguage = FunctionLib::getOption(CGlobal::$arrLanguage, isset($dataSave['type_language'])? $dataSave['type_language'] : CGlobal::TYPE_LANGUAGE_VIET);
-
+        $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($data['image_hot'])? $data['image_hot'] : CGlobal::NEW_TYPE_TIN_TUC);
         $this->layout->content =  View::make('admin.LibraryImage.add')
             ->with('id', $id)
             ->with('data', $dataSave)
             ->with('optionStatus', $optionStatus)
             ->with('optionLanguage', $optionLanguage)
+            ->with('optionTypeNew', $optionTypeNew)
             ->with('error', $this->error)
             ->with('arrStatus', $this->arrStatus);
     }

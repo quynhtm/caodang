@@ -2,6 +2,7 @@
 	<h1 class="title-path"><a href="{{FunctionLib::buildLinkCategory($arrCat->category_id, $arrCat->category_name)}}" title="{{$arrCat->category_name}}">{{$arrCat->category_name}}</a></h1>
 	<div class="list-library">
 		@if(isset($arrItem) && sizeof($arrItem) > 0)
+			@if(count($arrItem) > 1)
 			<div class="page-list-library list-post">
 				@foreach($arrItem as $item)
 					<div class="item-post">
@@ -27,6 +28,23 @@
 					</div>
 				@endforeach
 			</div>
+			@else
+				@foreach($arrItem as $item)
+					<h1 class="title-view">{{$item->news_title}}</h1>
+					<div class="date"><i class="icon-other icon-date"></i>{{date('h:i', $item['news_create'])}} ngày {{date('d/m/Y', $item['news_create'])}}</div>
+					@if($item->news_desc_sort != '')
+						<div class="library-intro">
+							<b>{{stripslashes($item['news_desc_sort'])}}</b>
+						</div>
+					@endif
+					@if($item->news_content != '')
+						<div class="library-intro">
+							{{stripslashes($item['news_content'])}}
+						</div>
+					@endif
+
+				@endforeach
+			@endif
 		@endif
 	</div>
 	<div class="show-box-paging" style="margin-top:20px; ">

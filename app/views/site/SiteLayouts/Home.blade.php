@@ -71,7 +71,10 @@
 									@endif
 									<h4 class="home-news-title">
 										<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
-											{{$item['news_title']}} <i class="icon-new"></i>
+											{{$item['news_title']}}
+											@if($item['news_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+											<i class="icon-new"></i>
+											@endif
 										</a>
 									</h4>
 									<div class="excerpt">
@@ -85,6 +88,9 @@
 								<div class="home-news-item">
 									<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
 										<i class="fa fa-circle"></i> {{$item['news_title']}}
+										@if($item['news_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+											<i class="icon-new"></i>
+										@endif
 									</a>
 								</div>
 							@endif
@@ -104,7 +110,10 @@
 									@endif
 									<h4 class="home-news-title">
 										<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
-											{{$item['news_title']}} <i class="icon-new"></i>
+											{{$item['news_title']}}
+											@if($item['news_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+												<i class="icon-new"></i>
+											@endif
 										</a>
 									</h4>
 									<div class="excerpt">
@@ -118,6 +127,9 @@
 								<div class="home-news-item">
 									<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
 										<i class="fa fa-circle"></i> {{$item['news_title']}}
+										@if($item['news_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+											<i class="icon-new"></i>
+										@endif
 									</a>
 								</div>
 							@endif
@@ -147,7 +159,10 @@
 						@endif
 					<h4 class="home-news-title">
 						<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
-							{{$item['news_title']}} <i class="icon-new"></i>
+							{{$item['news_title']}}
+							@if($item['news_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+								<i class="icon-new"></i>
+							@endif
 						</a>
 					</h4>
 					<div class="excerpt">
@@ -161,6 +176,9 @@
 					<div class="home-news-item">
 						<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
 							<i class="fa fa-circle"></i> {{$item['news_title']}}
+							@if($item['news_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+								<i class="icon-new"></i>
+							@endif
 						</a>
 					</div>
 				@endif
@@ -171,7 +189,7 @@
 	@endif
 </div>
 <div class="line bd2">
-	<div class="headingline">Ngành đào tạo</div>
+	<div class="headingline">Tuyển sinh và đào tạo</div>
 	<div class="tabLine" id="tabContaier">
 		<ul>
 			<li><h3><a href="#tab1" class="active">Các ngành đào tạo</a></h3></li>
@@ -278,22 +296,22 @@
 				@endforeach
 				</div>
 				<script type="text/javascript">
-					$( document ).ready(function( $ ) {
-						$( '#sliderPro' ).sliderPro({
-							width: 570,
-							height: 265,
-							fade: true,
-							arrows: true,
-							buttons: false,
-							fullScreen: true,
-							shuffle: true,
-							smallSize: 500,
-							mediumSize: 1000,
-							largeSize: 3000,
-							thumbnailArrows: true,
-							autoplay: false
-						});
-					});
+                    $( document ).ready(function( $ ) {
+                        $( '#sliderPro' ).sliderPro({
+                            width: 570,
+                            height: 265,
+                            fade: true,
+                            arrows: true,
+                            buttons: false,
+                            fullScreen: true,
+                            shuffle: true,
+                            smallSize: 500,
+                            mediumSize: 1000,
+                            largeSize: 3000,
+                            thumbnailArrows: true,
+                            autoplay: false
+                        });
+                    });
 				</script>
 			@endif
 		</div>

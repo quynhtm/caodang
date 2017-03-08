@@ -204,6 +204,10 @@ class LibraryImage extends Eloquent
     
     		if($limit>0){
     			$query = LibraryImage::where('image_status', CGlobal::status_show);
+
+    			if (isset($dataField['image_hot']) && $dataField['image_hot'] != '') {
+                    $query->where('image_hot', $dataField['image_hot']);
+                }
     			if($lang > 0){
     				$query->where('type_language', $lang);
     			}

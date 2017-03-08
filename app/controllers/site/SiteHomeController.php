@@ -6,9 +6,6 @@ class SiteHomeController extends BaseSiteController{
 
 	//Trang chu
     public function index(){
-        FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
-        FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
-
     	//Meta title
     	$meta_title='';
     	$meta_keywords='';
@@ -31,13 +28,19 @@ class SiteHomeController extends BaseSiteController{
         $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
 		
 		//Video
-		$dataField['field_get'] = 'video_link';
-		$arrVideo = Video::getNewVideo($dataField='', 1, 0);
+		$dataFieldVideo['video_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
+        $dataFieldVideo['field_get'] = 'video_id,video_name,video_link';
+		$arrVideo = Video::getNewVideo($dataFieldVideo, 1, 0);
 
 		//Images
-        $dataFieldImg['field_get'] = 'video_link';
-        $arrImg = LibraryImage::getNewImages($dataFieldImg='', 1, 0);
+        $dataFieldImg['image_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
+        $dataFieldImg['field_get'] = 'image_id,image_title,image_image_other';
+        $arrImg = LibraryImage::getNewImages($dataFieldImg, 1, 0);
 
+        if(sizeof($arrImg) > 0){
+            FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
+            FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
+        }
         //Danh mục trang chủ: thông tin hoạt động Đoàn thanh niên
         $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
         //Danh mục trang chủ: Tin tuyển sinh-Tin đào tạo- Tin về cựu sinh viên

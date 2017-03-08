@@ -64,6 +64,8 @@
                                 <td class="text-center text-middle">{{ $stt + $key+1 }}</td>
                                 <td>
                                     [<b>{{ $item->video_id }}</b>] {{ $item->video_name }}
+                                    <br>
+                                    @if(isset($arrTypeNew[$item['video_hot']]))<br/><i class="red">{{ $arrTypeNew[$item['video_hot']] }}</i>@endif
                                 </td>
                                 <td>
                                     {{FunctionLib::substring($item->video_content,300)}}

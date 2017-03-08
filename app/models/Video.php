@@ -12,7 +12,7 @@ class Video extends Eloquent
     //cac truong trong DB
     protected $fillable = array('video_id','video_name','video_content', 'video_link',
         'video_file', 'video_status', 'video_time_creater',
-        'type_language', 'video_time_update');
+        'type_language', 'video_time_update', 'video_hot');
 
     public static function getByID($id) {
         $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_VIDEO_ID.$id) : array();
@@ -173,6 +173,9 @@ class Video extends Eloquent
     
     		if($limit>0){
     			$query = Video::where('video_status', CGlobal::status_show);
+    			if (isset($dataField['video_hot']) && $dataField['video_hot'] != '') {
+                    $query->where('video_hot', $dataField['video_hot']);
+                }
     			if($lang > 0){
     				$query->where('type_language', $lang);
     			}

@@ -60,7 +60,21 @@
                         </select>
                     </div>
                 </div>
-
+                <div class="clearfix"></div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <i>Kiểu thư viện ảnh</i>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <select name="image_hot" id="image_hot" class="form-control input-sm">
+                                {{$optionTypeNew}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
                 <div class="col-sm-2">
                     <div class="form-group">

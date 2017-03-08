@@ -69,12 +69,14 @@ class BaseSiteController extends BaseController{
                                 ->with('arrBannerRight', $arrBannerRight);
     }
     public function sliderPartnerBottom(){
-        FunctionLib::site_js('lib/owl.carousel/owl.carousel.min.js', CGlobal::$POS_END);
-        FunctionLib::site_css('lib/owl.carousel/owl.carousel.css', CGlobal::$POS_HEAD);
 
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_PARTNER);
-
         $arrBannerPartner = $this->getBannerWithPosition($arrBanner);
+        if(sizeof($arrBannerPartner) > 0) {
+            FunctionLib::site_js('lib/owl.carousel/owl.carousel.min.js', CGlobal::$POS_END);
+            FunctionLib::site_css('lib/owl.carousel/owl.carousel.css', CGlobal::$POS_HEAD);
+        }
+
         $this->layout->sliderPartnerBottom = View::make("site.BaseLayouts.partnerBottom")
                                 ->with('arrBannerPartner', $arrBannerPartner);
     }
