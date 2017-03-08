@@ -121,7 +121,7 @@ class TabSub extends Eloquent
 
     public static function removeCache($id = 0){
         if($id > 0){
-            Cache::forget(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id);
+            //Cache::forget(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id);
         }
     }
 
