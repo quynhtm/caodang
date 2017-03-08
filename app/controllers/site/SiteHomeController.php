@@ -23,30 +23,40 @@ class SiteHomeController extends BaseSiteController{
     	}
     	FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
-        //Banner Calendar Week
+        //Banner lịch công tác tuần
         $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
         $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
 		
-		//Video
+		//Thư viện video
 		$dataFieldVideo['video_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
         $dataFieldVideo['field_get'] = 'video_id,video_name,video_link';
 		$arrVideo = Video::getNewVideo($dataFieldVideo, 1, 0);
 
-		//Images
+		//Thư viện ảnh
         $dataFieldImg['image_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
         $dataFieldImg['field_get'] = 'image_id,image_title,image_image_other';
         $arrImg = LibraryImage::getNewImages($dataFieldImg, 1, 0);
-
         if(sizeof($arrImg) > 0){
             FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
             FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
         }
+
         //Danh mục trang chủ: thông tin hoạt động Đoàn thanh niên
         $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
+
         //Danh mục trang chủ: Tin tuyển sinh-Tin đào tạo- Tin về cựu sinh viên
         $data_ts_dt_csv = $this->getCategoryAndPostByKeyword('SITE_CATID_TUYENSINH_DAOTAO_CUUSINHVIEN', 5);
-        //Khac
+
+        //Danh mục trang chủ: Hợp tác quốc tế - khac...
         $data_khac = $this->getCategoryAndPostByKeyword('SITE_CATID_HOPTACQUOCTE_KHAC', 5);
+
+        //Lịch sự kiện
+        $numEvent = 0;
+        $numEventShow = Info::getItemByKeyword('SITE_NUM_CALENDAR_HOME');
+        if(sizeof($numEventShow) > 0){
+            $numEvent = (int)strip_tags(stripslashes($numEventShow->info_content));
+        }
+        $arrEventNew = EventNew::getPostEventNew('', $numEvent);
 
     	$this->header();
         $this->slider();
@@ -56,7 +66,8 @@ class SiteHomeController extends BaseSiteController{
                                 ->with('arrImg', $arrImg)
                                 ->with('data_hdsv', $data_hdsv)
                                 ->with('data_ts_dt_csv', $data_ts_dt_csv)
-                                ->with('data_khac', $data_khac);
+                                ->with('data_khac', $data_khac)
+                                ->with('arrEventNew', $arrEventNew);
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -330,6 +341,59 @@ class SiteHomeController extends BaseSiteController{
         $this->slider();
         $this->left();
         $this->layout->content = View::make('site.SiteLayouts.pageImagesDetail')
+            ->with('item', $item)
+            ->with('newsSame', $newsSame);
+        $this->right();
+        $this->sliderPartnerBottom();
+        $this->footer();
+    }
+
+    public function pageEvent(){
+        $meta_title = $meta_keywords = $meta_description = 'Lịch sự kiện';
+        $meta_img= '';
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+
+        $pageNo = (int) Request::get('page_no',1);
+        $limit = CGlobal::number_show_20;
+        $offset = ($pageNo - 1) * $limit;
+        $search = $data = array();
+        $total = 0;
+        $search['event_status'] = CGlobal::status_show;
+
+        $data = EventNew::searchByCondition($search, $limit, $offset,$total);
+        $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
+
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageEvent')
+            ->with('arrItem', $data)
+            ->with('paging', $paging);
+        $this->right();
+        $this->sliderPartnerBottom();
+        $this->footer();
+    }
+    public function pageEventDetail($title='', $id=0){
+
+        $item = array();
+        $newsSame = array();
+        $meta_title = $meta_keywords = $meta_description = 'Lịch sự kiện';
+        $meta_img = '';
+
+        if($id > 0){
+            $item = EventNew::getById($id);
+            if(sizeof($item) > 0){
+                $meta_title = stripslashes($item->event_title);
+                $meta_keywords = stripslashes($item->event_title);
+                $meta_description = stripslashes($item->event_title);
+                $newsSame = EventNew::getSamePost($dataField='', $item->event_id, CGlobal::number_show_8, 0);
+            }
+        }
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageEventDetail')
             ->with('item', $item)
             ->with('newsSame', $newsSame);
         $this->right();

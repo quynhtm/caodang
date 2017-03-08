@@ -136,8 +136,8 @@ class CGlobal{
     const FOLDER_TAB_SUB = 'tabSub';
     const FOLDER_INFORSEO = 'inforSeo';
     const FOLDER_LIBRARY_IMAGE = 'libraryImage';
-	
 	const FOLDER_INFO = 'info';
+
     //shop
     const CUSTOMER_FREE = 1;
     const CUSTOMER_NOMAL = 2;
