@@ -109,6 +109,17 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('categoryDepart/deleteCategoryDepart', array('as' => 'admin.deltete_categoryDepart_post','uses' => 'CategoryDepartController@deleteCategoryDepart'));//ajax
     Route::post('categoryDepart/updateStatusCategoryDepart', array('as' => 'admin.status_categoryDepart_post','uses' => 'CategoryDepartController@updateStatusCategoryDepart'));//ajax
 
+    ///*Quản lý tab*/
+    Route::get('tab/view',array('as' => 'admin.tabView','uses' => 'TabDepartController@viewTab'));
+    Route::get('tab/tabEdit/{id?}', array('as' => 'admin.tabEdit','uses' => 'TabDepartController@getTab'))->where('id', '[0-9]+');
+    Route::post('tab/tabEdit/{id?}', array('as' => 'admin.tabEdit','uses' => 'TabDepartController@postTab'))->where('id', '[0-9]+');
+    Route::post('tab/updateStatusTab', array('as' => 'admin.tabStatus','uses' => 'TabDepartController@updateStatusTab'));//ajax
+    //tab sub
+    Route::get('tab/viewSub',array('as' => 'admin.tabSubView','uses' => 'TabDepartController@viewTabSub'));
+    Route::get('tab/tabSubEdit/{id?}', array('as' => 'admin.tabSubEdit','uses' => 'TabDepartController@getTabSub'))->where('id', '[0-9]+');
+    Route::post('tab/tabSubEdit/{id?}', array('as' => 'admin.tabSubEdit','uses' => 'TabDepartController@postTabSub'))->where('id', '[0-9]+');
+    Route::post('tab/updateStatusTabSub', array('as' => 'admin.tabSubStatus','uses' => 'TabDepartController@updateStatusTabSub'));//ajax
+
     /*Quản lý danh mục SP*/
     Route::get('category/view',array('as' => 'admin.category_list','uses' => 'CategoryController@view'));
     Route::get('category/edit/{id?}', array('as' => 'admin.category_edit','uses' => 'CategoryController@getItem'))->where('id', '[0-9]+');
