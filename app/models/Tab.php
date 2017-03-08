@@ -5,37 +5,41 @@
  */
 class Tab extends Eloquent
 {
-    protected $table = 'web_tag';
+    protected $table = 'web_tab';
     protected $primaryKey = 'tab_id';
     public $timestamps = false;
 
     //cac truong trong DB
     protected $fillable = array('tab_id','tab_name','tab_order','tab_status');
 
-    public static function getByID($id) {
-        $category = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id) : array();
-        if (sizeof($category) == 0) {
-            $category = CategoryDepart::where('tab_id','=', $id)->first();
-            if($category && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id, $category, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+    public static function getDepart(){
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_TAB) : array();
+        if (sizeof($data) == 0) {
+            $tab = Tab::where('tab_id', '>', 0)
+                ->where('tab_status',CGlobal::status_show)
+                ->orderBy('tab_order','asc')->get();
+            if($tab){
+                foreach($tab as $itm) {
+                    $data[$itm['tab_id']] = $itm['tab_name'];
+                }
+            }
+            if($data && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_ALL_TAB, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
             }
         }
-        return $category;
+        return $data;
     }
 
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{
-            $query = CategoryDepart::where('tab_id','>',0);
+            $query = Tab::where('tab_id','>',0);
             if (isset($dataSearch['tab_name']) && $dataSearch['tab_name'] != '') {
                 $query->where('tab_name','LIKE', '%' . $dataSearch['tab_name'] . '%');
             }
-            if (isset($dataSearch['category_depart_status']) && $dataSearch['category_depart_status'] != -1) {
-                $query->where('category_depart_status', $dataSearch['category_depart_status']);
+            if (isset($dataSearch['tab_status']) && $dataSearch['tab_status'] != -1) {
+                $query->where('tab_status', $dataSearch['tab_status']);
             }
-            if (isset($dataSearch['department_id']) && $dataSearch['department_id'] > 0) {
-                $query->where('department_id', $dataSearch['department_id']);
-            }
-            $query->orderBy('tab_id', 'desc');
+            $query->orderBy('tab_order', 'asc');
             $total = $query->count();
 
             //get field can lay du lieu
@@ -48,6 +52,7 @@ class Tab extends Eloquent
             return $result;
 
         }catch (PDOException $e){
+            return $e->getMessage();
             throw new PDOException();
         }
     }
@@ -62,7 +67,7 @@ class Tab extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $data = new CategoryDepart();
+            $data = new Tab();
             if (is_array($dataInput) && count($dataInput) > 0) {
                 foreach ($dataInput as $k => $v) {
                     $data->$k = $v;
@@ -94,7 +99,7 @@ class Tab extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = CategoryDepart::find($id);
+            $dataSave = Tab::find($id);
             if (!empty($dataInput)){
                 $dataSave->update($dataInput);
                 if(isset($dataSave->tab_id) && $dataSave->tab_id > 0){
@@ -119,7 +124,7 @@ class Tab extends Eloquent
     public static function deleteData($id){
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = CategoryDepart::find($id);
+            $dataSave = Tab::find($id);
             $dataSave->delete();
             if(isset($dataSave->tab_id) && $dataSave->tab_id > 0){
                 self::removeCache($dataSave->tab_id);
@@ -134,7 +139,7 @@ class Tab extends Eloquent
 
     public static function removeCache($id = 0){
         if($id > 0){
-            Cache::forget(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id);
+            Cache::forget(Memcache::CACHE_ALL_TAB);
         }
     }
 

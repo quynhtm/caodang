@@ -5,7 +5,7 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li class="active">Danh sách chuyên nghành</li>
+            <li class="active">Danh sách tab con của ngành đào tạo</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -17,18 +17,12 @@
                     {{ Form::open(array('method' => 'GET', 'role'=>'form')) }}
                     <div class="panel-body">
                         <div class="form-group col-lg-3">
-                            <label for="department_name">Tên chuyên nghành</label>
-                            <input type="text" class="form-control input-sm" id="category_depart_name" name="category_depart_name" placeholder="Tên khoa - trung tâm" @if(isset($search['category_depart_name']) && $search['category_depart_name'] != '')value="{{$search['category_depart_name']}}"@endif>
-                        </div>
-                        <div class="form-group col-lg-3">
-                            <label for="department_id">Thuộc khoa - Trung tâm</label>
-                            <select name="department_id" id="department_id" class="form-control input-sm">
-                                {{$optionDepart}}
-                            </select>
+                            <label for="department_name">Tên tab con</label>
+                            <input type="text" class="form-control input-sm" id="tab_sub_name" name="tab_sub_name" placeholder="Tên khoa - trung tâm" @if(isset($search['tab_sub_name']) && $search['tab_sub_name'] != '')value="{{$search['tab_sub_name']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="category_depart_status">Trạng thái</label>
-                            <select name="category_depart_status" id="category_depart_status" class="form-control input-sm">
+                            <select name="tab_sub_status" id="tab_sub_status" class="form-control input-sm">
                                 {{$optionStatus}}
                             </select>
                         </div>
@@ -37,7 +31,7 @@
                     <div class="panel-footer text-right">
                         @if($is_root || $permission_full ==1 || $permission_create == 1)
                         <span class="">
-                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.categoryDepart_edit')}}">
+                            <a class="btn btn-danger btn-sm" href="{{URL::route('admin.tabSubEdit')}}">
                                 <i class="ace-icon fa fa-plus-circle"></i>
                                 Thêm mới
                             </a>
@@ -57,8 +51,10 @@
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="50%" class="td_list">Tên chuyên ngành</th>
-                            <th width="20%" class="td_list">Thuộc khoa - trung tâm</th>
+                            <th width="10%" class="td_list">Ảnh</th>
+                            <th width="40%" class="td_list">Tên tab con</th>
+                            <th width="20%" class="td_list">Thuộc tab ngành</th>
+                            <th width="5%" class="text-center">Vị trí</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>
                         </tr>
@@ -67,30 +63,32 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['category_depart_id']}}"></td>
+                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['tab_sub_id']}}"></td>
                                 <td>
-                                    [<b>{{ $item['category_depart_id'] }}</b>] {{ $item['category_depart_name'] }}
+                                    @if($item['tab_sub_image'] !='')
+                                        <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_TAB_SUB, $item['tab_sub_id'], $item['tab_sub_image'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="80" height="80">
+                                    @endif
                                 </td>
-                                <td>
-                                    {{ $item['department_name'] }}
-                                </td>
+                                <td>[<b>{{ $item['tab_sub_id'] }}</b>] {{ $item['tab_sub_name'] }}</td>
+                                <td>@if(isset($arrTabParent[$item['tab_parent_id']])){{ $arrTabParent[$item['tab_parent_id']] }} @else Tab dưới @endif</td>
+                                <td class="text-center">{{ $item['tab_sub_order'] }}</td>
 
                                 <td class="text-center">
-                                    @if($item['category_depart_status'] == 1)
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['category_depart_id']}},{{$item['category_depart_status']}},3)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
+                                    @if($item['tab_sub_status'] == 1)
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['tab_sub_id']}},{{$item['tab_sub_status']}},8)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
                                     @else
-                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['category_depart_id']}},{{$item['category_depart_status']}},3)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
+                                        <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['tab_sub_id']}},{{$item['tab_sub_status']}},8)"style="color: red" title="Ẩn"><i class="fa fa-close fa-2x"></i></a>
                                     @endif
-                                    <span class="img_loading" id="img_loading_{{$item['category_depart_id']}}"></span>
+                                    <span class="img_loading" id="img_loading_{{$item['tab_sub_id']}}"></span>
                                 </td>
 
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-                                        <a href="{{URL::route('admin.categoryDepart_edit',array('id' => $item['category_depart_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
+                                        <a href="{{URL::route('admin.tabSubEdit',array('id' => $item['tab_sub_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                     @endif
                                     @if($is_root)
                                        &nbsp;&nbsp;&nbsp;
-                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['category_depart_id']}},4)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
+                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['tab_sub_id']}},4)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>
                             </tr>

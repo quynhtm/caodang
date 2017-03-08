@@ -150,6 +150,10 @@ var Admin = {
                 var url_ajax = WEB_ROOT + '/admin/news/updateStatusNew';
             }else if(type == 6){
                 var url_ajax = WEB_ROOT + '/admin/event/updateStatusEvent';
+            }else if(type == 7){
+                var url_ajax = WEB_ROOT + '/admin/tab/updateStatusTab';
+            }else if(type == 8){
+                var url_ajax = WEB_ROOT + '/admin/tab/updateStatusTabSub';
             }
             $.ajax({
                 type: "post",

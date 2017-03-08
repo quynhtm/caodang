@@ -26,6 +26,9 @@ class Memcache{
     const CACHE_DEPARTMENT_ID    = 'cache_department_id_';
     const CACHE_ALL_DEPARTMENT    = 'cache_all_department';
 
+    //tab
+    const CACHE_ALL_TAB    = 'cache_all_tab';
+
     //depart
     const CACHE_TYPE_SETTING_ID    = 'cache_type_setting_id_';
     const CACHE_GROUP_TYPE_SETTING    = 'cache_group_type_setting_';

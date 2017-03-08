@@ -12,28 +12,14 @@ class TabSub extends Eloquent
     //cac truong trong DB
     protected $fillable = array('tab_sub_id','tab_sub_name','tab_parent_id','tab_sub_link','tab_sub_image', 'tab_sub_order', 'tab_sub_status');
 
-    public static function getByID($id) {
-        $category = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id) : array();
-        if (sizeof($category) == 0) {
-            $category = CategoryDepart::where('tab_sub_id','=', $id)->first();
-            if($category && Memcache::CACHE_ON){
-                Cache::put(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id, $category, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
-            }
-        }
-        return $category;
-    }
-
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{
-            $query = CategoryDepart::where('tab_sub_id','>',0);
+            $query = TabSub::where('tab_sub_id','>',0);
             if (isset($dataSearch['tab_sub_name']) && $dataSearch['tab_sub_name'] != '') {
                 $query->where('tab_sub_name','LIKE', '%' . $dataSearch['tab_sub_name'] . '%');
             }
-            if (isset($dataSearch['category_depart_status']) && $dataSearch['category_depart_status'] != -1) {
-                $query->where('category_depart_status', $dataSearch['category_depart_status']);
-            }
-            if (isset($dataSearch['department_id']) && $dataSearch['department_id'] > 0) {
-                $query->where('department_id', $dataSearch['department_id']);
+            if (isset($dataSearch['tab_sub_status']) && $dataSearch['tab_sub_status'] != -1) {
+                $query->where('tab_sub_status', $dataSearch['tab_sub_status']);
             }
             $query->orderBy('tab_sub_id', 'desc');
             $total = $query->count();
@@ -48,6 +34,7 @@ class TabSub extends Eloquent
             return $result;
 
         }catch (PDOException $e){
+            return $e->getMessage();
             throw new PDOException();
         }
     }
@@ -62,7 +49,7 @@ class TabSub extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $data = new CategoryDepart();
+            $data = new TabSub();
             if (is_array($dataInput) && count($dataInput) > 0) {
                 foreach ($dataInput as $k => $v) {
                     $data->$k = $v;
@@ -94,7 +81,7 @@ class TabSub extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = CategoryDepart::find($id);
+            $dataSave = TabSub::find($id);
             if (!empty($dataInput)){
                 $dataSave->update($dataInput);
                 if(isset($dataSave->tab_sub_id) && $dataSave->tab_sub_id > 0){
@@ -119,7 +106,7 @@ class TabSub extends Eloquent
     public static function deleteData($id){
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = CategoryDepart::find($id);
+            $dataSave = TabSub::find($id);
             $dataSave->delete();
             if(isset($dataSave->tab_sub_id) && $dataSave->tab_sub_id > 0){
                 self::removeCache($dataSave->tab_sub_id);
