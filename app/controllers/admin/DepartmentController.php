@@ -105,6 +105,32 @@ class DepartmentController extends BaseAdminController
         $dataSave['department_type'] = Request::get('department_type', '');
         $dataSave['department_layouts'] = Request::get('department_layouts', '');
 
+        $file = Input::file('image');
+        if($file){
+            $filename = $file->getClientOriginalName();
+            $destinationPath = Config::get('config.DIR_ROOT').'/uploads/'.CGlobal::FOLDER_DEPART_LOGO.'/'. $id;
+            $upload  = Input::file('image')->move($destinationPath, $filename);
+            //xóa ảnh cũ
+            if($filename != ''){
+                $department_logo_old = Request::get('department_logo_old', '');
+                if($department_logo_old != '')
+                {
+                    //xoa anh upload
+                    FunctionLib::deleteFileUpload($department_logo_old,$id,CGlobal::FOLDER_DEPART_LOGO);
+
+                    //xóa anh thumb
+                    $arrSizeThumb = CGlobal::$arrSizeImage;
+                    foreach($arrSizeThumb as $k=>$size){
+                        $sizeThumb = $size['w'].'x'.$size['h'];
+                        FunctionLib::deleteFileThumb($department_logo_old,$id,CGlobal::FOLDER_DEPART_LOGO,$sizeThumb);
+                    }
+                }
+            }
+            $dataSave['department_logo'] = $filename;
+        }else{
+            $dataSave['department_logo'] = Request::get('department_logo', '');
+        }
+
         if($this->valid($dataSave) && empty($this->error)) {
             $dataSave['department_alias'] = strtolower(FunctionLib::stringTitle($dataSave['department_name']));
             if($id > 0) {

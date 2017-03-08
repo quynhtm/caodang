@@ -51,7 +51,8 @@
                             <th width="2%" class="text-center">TT</th>
                             <th width="8%" class="text-center">Ảnh</th>
                             <th width="43%">Tên sự kiện</th>
-                            <th width="25%">Thuộc khoa - trung tâm</th>
+                            <th width="20%">Thuộc khoa - trung tâm</th>
+                            <th width="8%" class="text-center">Ngày chạy</th>
                             <th width="8%" class="text-center">Trạng thái</th>
                             <th width="10%" class="text-center">Thao tác</th>
                         </tr>
@@ -70,6 +71,10 @@
                                 </td>
                                 <td>@if(isset($arrDepart[$item['event_depart_id']])){{ $arrDepart[$item['event_depart_id']] }}@else --- @endif</td>
                                 <td class="text-center">
+                                    @if($item->event_time_start > 0)<i class="green">{{date('d-m-Y',$item->event_time_start)}}</i> <br/>@endif
+                                    @if($item->event_time_end > 0)<i class="red">{{date('d-m-Y',$item->event_time_end)}}</i>@endif
+                                </td>
+                                <td class="text-center">
                                     @if($item['event_status'] == 1)
                                         <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['event_id']}},{{$item['event_status']}},6)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>
                                     @else
@@ -77,6 +82,7 @@
                                     @endif
                                     <span class="img_loading" id="img_loading_{{$item['event_id']}}"></span>
                                 </td>
+
                                 <td class="text-center">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
                                         <a href="{{URL::route('admin.eventEdit',array('id' => $item['event_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>

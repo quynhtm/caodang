@@ -68,6 +68,24 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Ngày bắt đầu</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="event_time_start" name="event_time_start"  data-date-format="dd-mm-yyyy" value="@if(isset($data['event_time_start']) && $data['event_time_start'] > 0){{date('d-m-Y',$data['event_time_start'])}}@endif">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Ngày kết thúc</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="event_time_end" name="event_time_end"  data-date-format="dd-mm-yyyy" value="@if(isset($data['event_time_end']) && $data['event_time_end'] > 0){{date('d-m-Y',$data['event_time_end'])}}@endif">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="name" class="control-label">Thứ tự hiển thị</label>
@@ -214,6 +232,10 @@
 </div>
 <!-- chen anh vào noi dung-->
 <script>
+    $(document).ready(function(){
+        var checkin = $('#event_time_start').datepicker({ });
+        var checkout = $('#event_time_end').datepicker({ });
+    });
     CKEDITOR.replace('event_content', {height:800});
     /*CKEDITOR.replace(
             'news_content',

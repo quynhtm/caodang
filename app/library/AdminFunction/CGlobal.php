@@ -132,6 +132,7 @@ class CGlobal{
     const FOLDER_BANNER = 'banner';
     const FOLDER_PRODUCT = 'product';
     const FOLDER_CATEGORY = 'category';
+    const FOLDER_DEPART_LOGO = 'departLogo';
     const FOLDER_INFORSEO = 'inforSeo';
     const FOLDER_LIBRARY_IMAGE = 'libraryImage';
 	

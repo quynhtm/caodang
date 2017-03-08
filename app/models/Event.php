@@ -12,7 +12,7 @@ class EventNew extends Eloquent
     //cac truong trong DB
     protected $fillable = array('event_id','event_title', 'event_desc_sort','event_depart_id',
         'event_content', 'event_image', 'event_image_other','event_create','event_order','event_common_page','event_show_cate_id',
-        'event_type', 'event_category_id','event_category_name', 'event_status');
+        'event_type', 'event_category_id','event_category_name', 'event_status', 'event_time_start', 'event_time_end');
 
     public static function getByID($id) {
         $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_EVENT_ID.$id) : array();

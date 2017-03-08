@@ -62,6 +62,7 @@
                         <thead class="thin-border-bottom">
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
+                            <th width="5%"class="text-center">Logo</th>
                             <!--<th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>-->
                             <th width="35%" class="td_list">Tên khoa - trung tâm</th>
                             <th width="20%" class="td_list">Kiểu</th>
@@ -74,6 +75,11 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center">{{ $key+1 }}</td>
+                                <td class="text-center">
+                                    @if($item['department_logo'] !='')
+                                        <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $item['department_id'], $item['department_logo'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="50" height="50">
+                                    @endif
+                                </td>
                                 <!---<td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['department_id']}}"></td>-->
                                 <td>
                                     [<b>{{ $item['department_id'] }}</b>] {{ $item['department_name'] }}

@@ -137,6 +137,8 @@ class EventController extends BaseAdminController
         $dataSave['event_status'] = (int)Request::get('event_status', 0);
         $dataSave['event_order'] = (int)Request::get('event_order', 1);
         $dataSave['event_type'] = (int)Request::get('event_type', CGlobal::NEW_TYPE_TIN_TUC);
+        $dataSave['event_time_start'] = Request::get('event_time_start');
+        $dataSave['event_time_end'] = Request::get('event_time_end');
 
         $dataSave['event_depart_id'] = (int)Request::get('event_depart_id', CGlobal::status_hide);
         $id_hiden = (int)Request::get('id_hiden', 0);
@@ -161,7 +163,9 @@ class EventController extends BaseAdminController
         //FunctionLib::debug($dataSave);
         if($this->valid($dataSave) && empty($this->error)) {
             $id = ($id == 0)?$id_hiden: $id;
-            if($id > 0) {
+            $dataSave['event_time_start'] = ($dataSave['event_time_start'] != '')?strtotime($dataSave['event_time_start']):0;
+            $dataSave['event_time_end'] = ($dataSave['event_time_end'] != '')?strtotime($dataSave['event_time_end']):0;
+            if($id > 0){
                 //cap nhat
                 if(EventNew::updateData($id, $dataSave)) {
                     return Redirect::route('admin.eventView');
@@ -176,6 +180,8 @@ class EventController extends BaseAdminController
         $optionDepart = FunctionLib::getOption(array(0=>'----Chọn khoa - trung tâm----')+$this->arrDepart, isset($dataSave['event_depart_id'])? $dataSave['event_depart_id'] : CGlobal::status_hide);
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['event_status'])? $dataSave['event_status'] : -1);
         $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($dataSave['event_type'])? $dataSave['event_type'] : CGlobal::NEW_TYPE_TIN_TUC);
+        $dataSave['event_time_start'] = strtotime($dataSave['event_time_start']);
+        $dataSave['event_time_end'] = strtotime($dataSave['event_time_end']);
         $this->layout->content =  View::make('admin.Event.add')
             ->with('id', $id)
             ->with('data', $dataSave)

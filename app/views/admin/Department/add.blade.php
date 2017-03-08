@@ -30,6 +30,27 @@
                             <input type="text" placeholder="Tên khoa - trung tâm" id="department_name" name="department_name"  class="form-control input-sm" value="@if(isset($data['department_name'])){{$data['department_name']}}@endif">
                         </div>
                     </div>
+                    @if(isset($id) && $id > 0)
+                        <div class="clearfix"></div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <i>Ảnh Logo Depart</i>
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <input name="image" type="file"/>
+                                <input name="department_logo" type="hidden" id="department_logo" @if(isset($data['department_logo']))value="{{$data['department_logo']}}"@else value="" @endif>
+                                <input name="department_logo_old" type="hidden" id="department_logo_old" @if(isset($data['department_logo']))value="{{$data['department_logo']}}"@else value="" @endif>
+                            </div>
+                            @if(isset($data['department_logo']) && $data['department_logo'] !='')
+                                <div class="form-group">
+                                    <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $data['department_id'], $data['department_logo'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}">
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+
                     @if($id > 0)
                     <div class="col-sm-10">
                         <div class="form-group">
