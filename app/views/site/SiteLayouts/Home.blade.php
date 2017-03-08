@@ -1,7 +1,7 @@
 <div class="line bd2">
 	<div class="col-lg-3 col-md-3 col-sm-12">
 		<h3 class="heading-news">
-			<a href="" title="Lịch sự kiện">Lịch sự kiện</a>
+			<a href="{{URL::route('site.pageEvent')}}" title="Lịch sự kiện">Lịch sự kiện</a>
 		</h3>
 		<div class="event-list">
 			<div class="banner-week">
@@ -15,41 +15,31 @@
 					@endforeach
 				@endif
 			</div>
-			<div class="event-item">
-				<div class="n-date">
-					<span>  Thời gian </span>
-					<strong> 22/12/2016</strong>
+			@if(sizeof($arrEventNew) > 0)
+				<?php $eventTotal = count($arrEventNew); ?>
+				@foreach($arrEventNew as $k=>$item)
+				<div class="event-item @if($eventTotal == $k+1) last @endif">
+					<div class="n-date">
+						<span>Thời gian </span>
+						<strong>
+						@if((int)$item->event_time_start > 0)
+							{{date('d',(int)$item->event_time_start)}}-
+						@endif
+						@if((int)$item->event_time_end > 0)
+							{{date('d/m/Y',(int)$item->event_time_end)}}
+						@endif
+						</strong>
+					</div>
+					<a title="{{$item->event_title}}" href="{{FunctionLib::buildLinkDetailEvent($item->event_title, $item->event_id)}}">
+						@if($item['event_title'] != '')
+							{{FunctionLib::substring($item['event_title'], 100, '...') }}
+						@endif
+						@if($item['event_type'] == CGlobal::NEW_TYPE_TIN_HOT)
+							<i class="icon-new"></i>
+						@endif
 				</div>
-				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
-			</div>
-			<div class="event-item">
-				<div class="n-date">
-					<span>  Thời gian </span>
-					<strong> 11-13/11/2016</strong>
-				</div>
-				<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
-			</div>
-			<div class="event-item">
-				<div class="n-date">
-					<span>  Thời gian </span>
-					<strong> 22/12/2016</strong>
-				</div>
-				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
-			</div>
-			<div class="event-item">
-				<div class="n-date">
-					<span>  Thời gian </span>
-					<strong> 11-13/11/2016</strong>
-				</div>
-				<a href="" title="Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện - Nâng cao chất lượng công tác hoạt động tình nguyện hè tại địa phương">Hoạt động ngoại khóa kết hợp với Thanh niên tình nguyện <i class="icon-new"></i></a>
-			</div>
-			<div class="event-item">
-				<div class="n-date">
-					<span>  Thời gian </span>
-					<strong> 22/12/2016</strong>
-				</div>
-				<a href="" title="KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin học Văn phòng” Trường Cao đẳng Sư phạm Trung ương năm học 2016-2017">KẾ HOẠCH Tổ chức Hội thi "Học sinh, sinh viên giỏi Tin VP” Trường CDSPTW năm học 2016-2017 <i class="icon-new"></i></a>
-			</div>
+				@endforeach
+			@endif
 		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">

@@ -173,4 +173,49 @@ class EventNew extends Eloquent
             Cache::forget(Memcache::CACHE_EVENT_ID.$id);
         }
     }
+
+    public static function getPostEventNew($dataField='', $limit=10){
+        try{
+            $result = array();
+            if($limit>0){
+                $query = EventNew::where('event_id','>', 0);
+                $query->where('event_title', '<>', '');
+                $query->where('event_status', CGlobal::status_show);
+                $query->orderBy('event_time_end', 'desc');
+
+                $fields = (isset($dataField['field_get']) && trim($dataField['field_get']) != '') ? explode(',',trim($dataField['field_get'])): array();
+                if(!empty($fields)){
+                    $result = $query->take($limit)->get($fields);
+                }else{
+                    $result = $query->take($limit)->get();
+                }
+            }
+            return $result;
+
+        }catch (PDOException $e){
+            throw new PDOException();
+        }
+    }
+    public static function getSamePost($dataField='', $id=0, $limit=10, $lang){
+        try{
+            $result = array();
+            if($id>0 && $limit>0){
+                $query = EventNew::where('event_id','<>', $id);
+                $query->where('event_status', CGlobal::status_show);
+                if($lang > 0){
+                    $query->where('type_language', $lang);
+                }
+                $query->orderBy('event_id', 'desc');
+                $fields = (isset($dataField['field_get']) && trim($dataField['field_get']) != '') ? explode(',',trim($dataField['field_get'])): array();
+                if(!empty($fields)){
+                    $result = $query->take($limit)->get($fields);
+                }else{
+                    $result = $query->take($limit)->get();
+                }
+            }
+            return $result;
+        }catch (PDOException $e){
+            throw new PDOException();
+        }
+    }
 }
