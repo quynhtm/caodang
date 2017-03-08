@@ -99,8 +99,15 @@ class SiteHomeController extends BaseSiteController{
             $search = $data = array();
             $total = 0;
             $search['news_category_name'] = $catname;
-            $search['news_category_id'] = (int)$caid;
-
+            if($caid > 0){
+                $arrCats[0] = $caid;
+                Category::makeListCatId($caid, 0, $arrCats);
+                if(!empty($arrCats)){
+                    $search['news_category_id'] = $arrCats;
+                }
+            }else{
+                $search['news_category_id'] = (int)$caid;
+            }
             $arrItem = News::searchByConditionSite($search, $limit, $offset,$total);
             $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
         }
