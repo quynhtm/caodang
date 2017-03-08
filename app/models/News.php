@@ -225,7 +225,11 @@ class News extends Eloquent
             $query = News::where('news_id','>',0);
             $query->where('news_status', CGlobal::status_show);
             if (isset($dataSearch['news_category_id']) && $dataSearch['news_category_id'] > 0) {
-                $query->where('news_category_id', $dataSearch['news_category_id']);
+                if(is_array($dataSearch['news_category_id']) && !empty($dataSearch['news_category_id'])){
+                    $query->whereIn('news_category_id', $dataSearch['news_category_id']);
+                }else{
+                    $query->where('news_category_id', $dataSearch['news_category_id']);
+                }
             }
             $total = $query->count();
             $query->orderBy('news_id', 'desc');

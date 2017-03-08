@@ -815,3 +815,7 @@ list-post .item-post .post-intro {
 .list ul li:hover a{
     text-decoration: underline;
 }
+.library-intro img {
+    max-width: 100% !important;
+    height: auto !important;
+}
