@@ -18,7 +18,7 @@
 	<div class="line">
 		@if(isset($newsSame) && sizeof($newsSame) > 0)
 		<div class="title-same">Bài viết khác</div>
-			<ul>
+			<ul class="list-same">
 				@foreach($newsSame as $k=>$item)
 					<li><a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">{{$item['news_title']}}</a></li>
 				@endforeach
