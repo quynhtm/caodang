@@ -71,6 +71,7 @@ class TabDepartController extends BaseAdminController
         }
 
         $dataSave['tab_name'] = addslashes(Request::get('tab_name'));
+        $dataSave['tab_link'] = addslashes(Request::get('tab_link'));
         $dataSave['tab_status'] = (int)Request::get('tab_status', CGlobal::status_show);
         $dataSave['tab_order'] = (int)Request::get('tab_order', 1);
 

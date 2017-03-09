@@ -30,6 +30,12 @@
                             <input type="text" placeholder="Tên tab" id="tab_name" name="tab_name"  class="form-control input-sm" value="@if(isset($data['tab_name'])){{$data['tab_name']}}@endif">
                         </div>
                     </div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Tên liên kết</label>
+                            <input type="text" placeholder="Tab liên kết" id="tab_link" name="tab_link"  class="form-control input-sm" value="@if(isset($data['tab_link'])){{$data['tab_link']}}@endif">
+                        </div>
+                    </div>
 
                     <div class="clearfix"></div>
                     <div class="col-sm-10">

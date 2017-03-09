@@ -182,73 +182,51 @@
 	<div class="headingline">Tuyển sinh và đào tạo</div>
 	<div class="tabLine" id="tabContaier">
 		<ul>
-			<li><h3><a href="#tab1" class="active">Các ngành đào tạo</a></h3></li>
-			<li><h3><a href="#tab2">Cao đẳng chính quy</a></h3></li>
-			<li><h3><a href="#tab3">Chương trình quốc tế</a></h3></li>
-			<li><h3><a href="#tab4">Liên thông</a></h3></li>
-			<li><h3><a href="#tab5">Khóa ngắn hạn</a></h3></li>
-			<li><h3><a href="#tab16" class="cl-red">Đăng ký học trực tuyến</a></h3></li>
+			@if(sizeof($arrTab) > 0)
+				@foreach($arrTab as $k=>$item)
+					<li><h3><a @if($item->tab_link=='')href="javascript:void(0)" data="tab{{$k}}" @else href="{{$item->tab_link}}" data="" @endif @if($k==0)class="active"@endif >{{$item->tab_name}}</a></h3></li>
+				@endforeach
+			@endif
 		</ul>
 	</div>
 	<div class="tabDetails">
-		<div class="tabContents">
-			<div class="box-brand ">
-				<a href="">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2016/12/20161216_094344.jpg" alt="Ngành Tài chính - Ngân hàng">
-				</a>
-				<h4><a href="">Ngành Tài chính - Ngân hàng</a></h4>
+		@if(sizeof($arrTab) > 0)
+			@foreach($arrTab as $k=>$item)
+			<?php $arrTabSub = TabSub::searchSubTabLimitAsc($item->tab_id, 4);?>
+			<div @if($item->tab_link=='')id="tab{{$k}}"@endif class="tabContents @if($k==0)active @endif">
+				@if(sizeof($arrTabSub) > 0)
+					<?php $totals = count($arrTabSub); ?>
+					@foreach($arrTabSub as $s=>$sub)
+					<div class="box-brand @if($totals == $s+1) box-brand-last @endif">
+						<a href="{{$sub->tab_sub_link}}">
+							<span class="transit mask"></span>
+							@if($sub['tab_sub_image'] != '')
+							<img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_TAB_SUB, $sub['tab_sub_id'], $sub['tab_sub_image'], CGlobal::sizeImage_600, '', true, CGlobal::type_thumb_image_product, false)}}" alt="{{$sub->tab_sub_name}}">
+							@endif
+						</a>
+						<h4>{{$sub->tab_sub_name}}</h4>
+					</div>
+					@endforeach
+				@endif
 			</div>
-			<div class="box-brand ">
-				<a href="">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2016/05/Untitled-1-1.jpg" alt="Quy trình đào tạo - Đại học Ứng Dụng">
-				</a>
-				<h4><a href="">Quy trình đào tạo - Đại học Ứng Dụng</a></h4>
-			</div>
-			<div class="box-brand ">
-				<a href="">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2017/02/P_20161223_143752.jpg" alt="Ngành Quản trị kinh doanh">
-				</a>
-				<h4><a href="">Ngành Quản trị kinh doanh</a></h4>
-			</div>
-			<div class="box-brand box-brand-last">
-				<a href="h">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2017/02/IMG20170116111146-1.jpg" alt="Ngành Kế toán">
-				</a>
-				<h4><a href="">Ngành Kế toán</a></h4>
-			</div>
-			<div class="box-brand ">
-				<a href="">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2017/02/P_20161223_143752.jpg" alt="Ngành Quản trị kinh doanh">
-				</a>
-				<h4><a href="">Ngành Quản trị kinh doanh</a></h4>
-			</div>
-			<div class="box-brand ">
-				<a href="h">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2017/02/IMG20170116111146-1.jpg" alt="Ngành Kế toán">
-				</a>
-				<h4><a href="">Ngành Kế toán</a></h4>
-			</div>
-			<div class="box-brand ">
-				<a href="">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2016/05/Untitled-1-1.jpg" alt="Quy trình đào tạo - Đại học Ứng Dụng">
-				</a>
-				<h4><a href="">Quy trình đào tạo - Đại học Ứng Dụng</a></h4>
-			</div>
-			<div class="box-brand box-brand-last">
-				<a href="">
-					<span class="transit mask"></span>
-					<img src="http://daihocnguyentrai.edu.vn/wp-content/uploads/2016/12/20161216_094344.jpg" alt="Ngành Tài chính - Ngân hàng">
-				</a>
-				<h4><a href="">Ngành Tài chính - Ngân hàng</a></h4>
-			</div>
-		</div>
+			@endforeach
+		@endif
+		<!--Tab fix cứng-->
+        <?php $arrTabSubFix = TabSub::searchSubTabLimitAsc($catTabFix, 4);?>
+		@if(sizeof($arrTabSubFix) > 0)
+			<?php $totals = count($arrTabSubFix); ?>
+			@foreach($arrTabSubFix as $s=>$sub)
+				<div class="box-brand @if($totals == $s+1) box-brand-last @endif">
+					<a href="{{$sub->tab_sub_link}}">
+						<span class="transit mask"></span>
+						@if($sub['tab_sub_image'] != '')
+							<img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_TAB_SUB, $sub['tab_sub_id'], $sub['tab_sub_image'], CGlobal::sizeImage_600, '', true, CGlobal::type_thumb_image_product, false)}}" alt="{{$sub->tab_sub_name}}">
+						@endif
+					</a>
+					<h4>{{$sub->tab_sub_name}}</h4>
+				</div>
+			@endforeach
+		@endif
 	</div>
 </div>
 <div class="line">

@@ -314,13 +314,13 @@ h1, h2, h3, h4, h5, h6{
     height: 42px;
 }
 #tabContaier ul li h3 a:hover,
-#tabContaier ul li h3 a.active {
+#tabContaier ul li h3 a.active{
     color: #222;
     background: rgba(202,202,202,.58);
 }
 #tabContaier ul li h3 a {
     display: block;
-    padding: 0 15px;
+    padding: 0 8px;
     position: relative;
 }
 #tabContaier ul li h3 a::after {
@@ -343,6 +343,12 @@ h1, h2, h3, h4, h5, h6{
 }
 .tabDetails {
     padding: 0 20px;
+}
+.tabContents{
+    display: none;
+}
+.tabContents.active{
+    display: block;
 }
 .box-brand {
     float: left;

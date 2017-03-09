@@ -52,6 +52,7 @@
                             <th width="2%"class="text-center">STT</th>
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
                             <th width="50%" class="td_list">Tên tab</th>
+                            <th width="10%" class="td_list">Liên kết</th>
                             <th width="5%" class="text-center">Thứ tự</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>
@@ -65,6 +66,7 @@
                                 <td>
                                     [<b>{{ $item['tab_id'] }}</b>] {{ $item['tab_name'] }}
                                 </td>
+                                <td>{{ $item['tab_link'] }}</td>
                                 <td class="text-center">{{ $item['tab_order'] }}</td>
                                 <td class="text-center">
                                     @if($item['tab_status'] == 1)

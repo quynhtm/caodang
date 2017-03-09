@@ -2,6 +2,7 @@ jQuery(document).ready(function($){
 	SITE.backTop();
 	SITE.contact();
 	SITE.captchaCheckAjax();
+	SITE.tabEdu();
 });
 
 SITE={
@@ -92,4 +93,15 @@ SITE={
 			});
 		}
 	},
+    tabEdu:function(){
+		$('#tabContaier ul li a').click(function(){
+            $('#tabContaier ul li a').removeClass('active');
+			$(this).addClass('active')
+			var data = $(this).attr('data');
+			if(data != ''){
+				$('.tabContents').removeClass('active');
+				$('#'+data).addClass('active');
+			}
+		});
+	}
 }
