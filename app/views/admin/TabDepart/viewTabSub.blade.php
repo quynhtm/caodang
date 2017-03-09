@@ -51,7 +51,7 @@
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="10%" class="td_list">Ảnh</th>
+                            <th width="5%" class="td_list">Ảnh</th>
                             <th width="40%" class="td_list">Tên tab con</th>
                             <th width="20%" class="td_list">Thuộc tab</th>
                             <th width="5%" class="text-center">Vị trí</th>
@@ -66,7 +66,7 @@
                                 <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['tab_sub_id']}}"></td>
                                 <td>
                                     @if($item['tab_sub_image'] !='')
-                                        <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_TAB_SUB, $item['tab_sub_id'], $item['tab_sub_image'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="80" height="80">
+                                        <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_TAB_SUB, $item['tab_sub_id'], $item['tab_sub_image'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="50">
                                     @endif
                                 </td>
                                 <td>[<b>{{ $item['tab_sub_id'] }}</b>] {{ $item['tab_sub_name'] }}</td>

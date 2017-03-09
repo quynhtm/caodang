@@ -77,7 +77,7 @@
                                 <td class="text-center">{{ $key+1 }}</td>
                                 <td class="text-center">
                                     @if($item['department_logo'] !='')
-                                        <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $item['department_id'], $item['department_logo'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="50" height="50">
+                                        <img src="{{ ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $item['department_id'], $item['department_logo'], CGlobal::sizeImage_100, '', true, CGlobal::type_thumb_image_banner, false)}}" width="50">
                                     @endif
                                 </td>
                                 <!---<td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['department_id']}}"></td>-->

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2017-03-09 12:46:55
+Date: 2017-03-09 15:48:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -362,7 +362,7 @@ INSERT INTO `web_department` VALUES ('1', 'Khoa âm nhạc', 'khoaamnhac', 'type
 INSERT INTO `web_department` VALUES ('2', 'Trung tâm tiếng anh', 'trungtamtienganh', 'type_trung tâm', 'layouts_khoa', null, '1', '2');
 INSERT INTO `web_department` VALUES ('3', 'Khoa cơ bản', 'khoacoban', 'type_khoa', 'layouts_home', null, '1', '3');
 INSERT INTO `web_department` VALUES ('4', 'Khoa Giáo dục đặc biệt', 'khoagiaoducdacbiet', 'type_khoa', 'layouts_home', null, '1', '4');
-INSERT INTO `web_department` VALUES ('5', 'Khoa Giáo dục mầm non', 'khoagiaoducmamnon', 'type_khoa', 'layouts_home', null, '1', '5');
+INSERT INTO `web_department` VALUES ('5', 'Khoa Giáo dục mầm non', 'khoagiaoducmamnon', 'type_khoa', 'layouts_home', '1487058142-1.png', '1', '5');
 INSERT INTO `web_department` VALUES ('6', 'Khoa Mỹ thuật', 'khoamythuat', 'type_khoa', 'layouts_home', null, '1', '6');
 INSERT INTO `web_department` VALUES ('7', 'Khoa Công Nghệ Thông Tin', 'khoacongnghethongtin', 'type_khoa', 'layouts_home', null, '1', '7');
 INSERT INTO `web_department` VALUES ('8', 'Khoa Quản lý - Văn thư', 'khoaquanlyvanthu', 'type_khoa', 'layouts_home', null, '1', '8');
@@ -549,30 +549,30 @@ CREATE TABLE `web_tab_sub` (
 -- ----------------------------
 -- Records of web_tab_sub
 -- ----------------------------
-INSERT INTO `web_tab_sub` VALUES ('1', 'Trình độ Cao đẳng', '1', 'http://cdsptw.edu.vn', '1.jpg', '1', '1');
-INSERT INTO `web_tab_sub` VALUES ('2', 'Trình độ trung cấp', '1', 'http://cdsptw.edu.vn', '2.jpg', '2', '1');
-INSERT INTO `web_tab_sub` VALUES ('3', 'Các ngành đào tạo cao đẳng', '1', 'http://cdsptw.edu.vn', '3.jpg', '3', '1');
-INSERT INTO `web_tab_sub` VALUES ('4', 'Các ngành đào tạo trung cấp', '1', 'http://cdsptw.edu.vn', '4.jpg', '4', '1');
-INSERT INTO `web_tab_sub` VALUES ('5', 'Trình độ cao đẳng', '2', 'http://cdsptw.edu.vn', '5.jpg', '1', '1');
-INSERT INTO `web_tab_sub` VALUES ('6', 'Trình độ trung cấp', '2', 'http://cdsptw.edu.vn', '6.jpg', '2', '1');
-INSERT INTO `web_tab_sub` VALUES ('7', 'Các khóa ngắn hạn', '2', 'http://cdsptw.edu.vn', '11.jpg', '3', '1');
-INSERT INTO `web_tab_sub` VALUES ('8', 'Văn bản pháp quy', '2', 'http://cdsptw.edu.vn', '7.jpg', '4', '1');
-INSERT INTO `web_tab_sub` VALUES ('9', 'Tin hoạt động', '3', 'http://cdsptw.edu.vn', '8.jpg', '1', '1');
-INSERT INTO `web_tab_sub` VALUES ('10', 'Hội thảo khoa học', '3', 'http://cdsptw.edu.vn', '8.jpg', '2', '1');
-INSERT INTO `web_tab_sub` VALUES ('11', 'Các đề tài đã nghiệm thu', '3', 'http://cdsptw.edu.vn', '3.jpg', '3', '1');
-INSERT INTO `web_tab_sub` VALUES ('12', 'Quy định, Văn bản mẫu', '3', 'http://cdsptw.edu.vn', '6.jpg', '4', '1');
-INSERT INTO `web_tab_sub` VALUES ('13', 'Hoạt động của cô và cháu', '4', 'http://cdsptw.edu.vn', '6.jpg', '1', '1');
-INSERT INTO `web_tab_sub` VALUES ('14', 'Trường MNTH Hoa Thủy Tiên', '4', 'http://cdsptw.edu.vn', '6.jpg', '2', '1');
-INSERT INTO `web_tab_sub` VALUES ('15', 'Trường MNTH Hoa Sen', '4', 'http://cdsptw.edu.vn', '4.jpg', '3', '1');
-INSERT INTO `web_tab_sub` VALUES ('16', 'Trường MNTH Hoa Hồng', '4', 'http://cdsptw.edu.vn', '3.jpg', '4', '1');
-INSERT INTO `web_tab_sub` VALUES ('17', 'Cơ hội việc làm', '5', 'http://cdsptw.edu.vn', '2.jpg', '1', '1');
-INSERT INTO `web_tab_sub` VALUES ('18', 'Cơ hội học tập nâng cao trình độ', '5', 'http://cdsptw.edu.vn', '1.jpg', '2', '1');
-INSERT INTO `web_tab_sub` VALUES ('19', 'Khảo sát tình trạng việc làm của sinh viên tốt nghiệp', '5', 'http://cdsptw.edu.vn', '4.jpg', '3', '1');
-INSERT INTO `web_tab_sub` VALUES ('20', 'Tra cứu văn bằng, chứng chỉ', '5', 'http://cdsptw.edu.vn', '8.jpg', '4', '1');
-INSERT INTO `web_tab_sub` VALUES ('21', 'Tra cứu điểm tuyển sinh', '7', 'http://cdsptw.edu.vn', '6.jpg', '1', '1');
-INSERT INTO `web_tab_sub` VALUES ('22', 'Kí túc xá', '7', 'http://cdsptw.edu.vn', '3.jpg', '2', '1');
-INSERT INTO `web_tab_sub` VALUES ('23', 'Hoạt động Đoàn Thanh niên', '7', 'http://cdsptw.edu.vn', '4.jpg', '3', '1');
-INSERT INTO `web_tab_sub` VALUES ('24', 'Phần mềm QLĐT', '7', 'http://cdsptw.edu.vn', '8.jpg', '4', '1');
+INSERT INTO `web_tab_sub` VALUES ('1', 'Trình độ Cao đẳng', '1', 'http://cdsptw.edu.vn', '1.png', '1', '1');
+INSERT INTO `web_tab_sub` VALUES ('2', 'Trình độ trung cấp', '1', 'http://cdsptw.edu.vn', '2.png', '2', '1');
+INSERT INTO `web_tab_sub` VALUES ('3', 'Các ngành đào tạo cao đẳng', '1', 'http://cdsptw.edu.vn', '3.png', '3', '1');
+INSERT INTO `web_tab_sub` VALUES ('4', 'Các ngành đào tạo trung cấp', '1', 'http://cdsptw.edu.vn', '4.png', '4', '1');
+INSERT INTO `web_tab_sub` VALUES ('5', 'Trình độ cao đẳng', '2', 'http://cdsptw.edu.vn', '1.png', '1', '1');
+INSERT INTO `web_tab_sub` VALUES ('6', 'Trình độ trung cấp', '2', 'http://cdsptw.edu.vn', '2.png', '2', '1');
+INSERT INTO `web_tab_sub` VALUES ('7', 'Các khóa ngắn hạn', '2', 'http://cdsptw.edu.vn', '3.png', '3', '1');
+INSERT INTO `web_tab_sub` VALUES ('8', 'Văn bản pháp quy', '2', 'http://cdsptw.edu.vn', '4.png', '4', '1');
+INSERT INTO `web_tab_sub` VALUES ('9', 'Tin hoạt động', '3', 'http://cdsptw.edu.vn', '1.png', '1', '1');
+INSERT INTO `web_tab_sub` VALUES ('10', 'Hội thảo khoa học', '3', 'http://cdsptw.edu.vn', '2.png', '2', '1');
+INSERT INTO `web_tab_sub` VALUES ('11', 'Các đề tài đã nghiệm thu', '3', 'http://cdsptw.edu.vn', '3.png', '3', '1');
+INSERT INTO `web_tab_sub` VALUES ('12', 'Quy định, Văn bản mẫu', '3', 'http://cdsptw.edu.vn', '4.png', '4', '1');
+INSERT INTO `web_tab_sub` VALUES ('13', 'Hoạt động của cô và cháu', '4', 'http://cdsptw.edu.vn', '4.png', '1', '1');
+INSERT INTO `web_tab_sub` VALUES ('14', 'Trường MNTH Hoa Thủy Tiên', '4', 'http://cdsptw.edu.vn', '3.png', '2', '1');
+INSERT INTO `web_tab_sub` VALUES ('15', 'Trường MNTH Hoa Sen', '4', 'http://cdsptw.edu.vn', '2.png', '3', '1');
+INSERT INTO `web_tab_sub` VALUES ('16', 'Trường MNTH Hoa Hồng', '4', 'http://cdsptw.edu.vn', '1.png', '4', '1');
+INSERT INTO `web_tab_sub` VALUES ('17', 'Cơ hội việc làm', '5', 'http://cdsptw.edu.vn', '1.png', '1', '1');
+INSERT INTO `web_tab_sub` VALUES ('18', 'Cơ hội học tập nâng cao trình độ', '5', 'http://cdsptw.edu.vn', '2.png', '2', '1');
+INSERT INTO `web_tab_sub` VALUES ('19', 'Khảo sát tình trạng việc làm của sinh viên tốt nghiệp', '5', 'http://cdsptw.edu.vn', '3.png', '3', '1');
+INSERT INTO `web_tab_sub` VALUES ('20', 'Tra cứu văn bằng, chứng chỉ', '5', 'http://cdsptw.edu.vn', '4.png', '4', '1');
+INSERT INTO `web_tab_sub` VALUES ('21', 'Tra cứu điểm tuyển sinh', '7', 'http://cdsptw.edu.vn', '5.png', '1', '1');
+INSERT INTO `web_tab_sub` VALUES ('22', 'Kí túc xá', '7', 'http://cdsptw.edu.vn', '6.png', '2', '1');
+INSERT INTO `web_tab_sub` VALUES ('23', 'Hoạt động Đoàn Thanh niên', '7', 'http://cdsptw.edu.vn', '7.png', '3', '1');
+INSERT INTO `web_tab_sub` VALUES ('24', 'Phần mềm QLĐT', '7', 'http://cdsptw.edu.vn', '8.png', '4', '1');
 
 -- ----------------------------
 -- Table structure for web_type_setting
