@@ -26,8 +26,14 @@
                 <div style="float: left; width: 50%">
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label for="name" class="control-label">Tên tab ngành<span class="red"> (*) </span></label>
-                            <input type="text" placeholder="Tên tab ngành" id="tab_name" name="tab_name"  class="form-control input-sm" value="@if(isset($data['tab_name'])){{$data['tab_name']}}@endif">
+                            <label for="name" class="control-label">Tên tab<span class="red"> (*) </span></label>
+                            <input type="text" placeholder="Tên tab" id="tab_name" name="tab_name"  class="form-control input-sm" value="@if(isset($data['tab_name'])){{$data['tab_name']}}@endif">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Tên liên kết</label>
+                            <input type="text" placeholder="Tab liên kết" id="tab_link" name="tab_link"  class="form-control input-sm" value="@if(isset($data['tab_link'])){{$data['tab_link']}}@endif">
                         </div>
                     </div>
 

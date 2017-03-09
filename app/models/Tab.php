@@ -10,7 +10,7 @@ class Tab extends Eloquent
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('tab_id','tab_name','tab_order','tab_status');
+    protected $fillable = array('tab_id','tab_name', 'tab_link', 'tab_order','tab_status');
 
     public static function getDepart(){
         $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_TAB) : array();
@@ -140,7 +140,25 @@ class Tab extends Eloquent
     public static function removeCache($id = 0){
         if($id > 0){
             Cache::forget(Memcache::CACHE_ALL_TAB);
+            Cache::forget(Memcache::CACHE_ALL_TAB_LINK);
         }
     }
 
+    public static function searchTabLimitAsc($limit =0){
+
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_TAB_LINK) : array();
+        if (sizeof($data) == 0) {
+            $query = Tab::where('tab_id', '>', 0);
+            $query->where('tab_status',CGlobal::status_show);
+            if($limit > 0){
+                $query->take($limit);
+            }
+            $data = $query->orderBy('tab_order','asc')->get();
+
+            if($data && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_ALL_TAB_LINK, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $data;
+    }
 }

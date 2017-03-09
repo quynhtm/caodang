@@ -59,6 +59,7 @@ class TabSub extends Eloquent
                 DB::connection()->getPdo()->commit();
                 if(isset($data->tab_sub_id) && $data->tab_sub_id > 0){
                     self::removeCache($data->tab_sub_id);
+                    self::removeCacheTabParent($data->tab_parent_id);
                 }
                 return $data->tab_sub_id;
             }
@@ -86,6 +87,7 @@ class TabSub extends Eloquent
                 $dataSave->update($dataInput);
                 if(isset($dataSave->tab_sub_id) && $dataSave->tab_sub_id > 0){
                     self::removeCache($dataSave->tab_sub_id);
+                    self::removeCacheTabParent($dataSave->tab_parent_id);
                 }
             }
             DB::connection()->getPdo()->commit();
@@ -110,6 +112,7 @@ class TabSub extends Eloquent
             $dataSave->delete();
             if(isset($dataSave->tab_sub_id) && $dataSave->tab_sub_id > 0){
                 self::removeCache($dataSave->tab_sub_id);
+                self::removeCacheTabParent($dataSave->tab_parent_id);
             }
             DB::connection()->getPdo()->commit();
             return true;
@@ -124,5 +127,26 @@ class TabSub extends Eloquent
             //Cache::forget(Memcache::CACHE_CATEGORY_DEPARTMENT_ID.$id);
         }
     }
+    public static function removeCacheTabParent($parent_id = 0){
+        if($parent_id > 0){
+            Cache::forget(Memcache::CACHE_ALL_SUB_TAB_PARENT.$parent_id);
+        }
+    }
+    public static function searchSubTabLimitAsc($parent_id=0, $limit =0){
 
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_ALL_SUB_TAB_PARENT . $parent_id) : array();
+        if (sizeof($data) == 0) {
+            $query = TabSub::where('tab_sub_id', '>', 0);
+            $query->where('tab_parent_id',$parent_id);
+            $query->where('tab_sub_status',CGlobal::status_show);
+            if($limit > 0){
+                $query->take($limit);
+            }
+            $data = $query->orderBy('tab_sub_id','asc')->get();
+            if($data && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_ALL_SUB_TAB_PARENT . $parent_id, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $data;
+    }
 }

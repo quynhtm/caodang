@@ -28,6 +28,8 @@ class Memcache{
 
     //tab
     const CACHE_ALL_TAB    = 'cache_all_tab';
+    const CACHE_ALL_TAB_LINK    = 'cache_all_tab_link';
+    const CACHE_ALL_SUB_TAB_PARENT    = 'cache_all_sub_tab_parent_';
 
     //depart
     const CACHE_TYPE_SETTING_ID    = 'cache_type_setting_id_';

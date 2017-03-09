@@ -41,7 +41,7 @@ class SiteHomeController extends BaseSiteController{
             FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
         }
 
-        //Danh mục trang chủ: thông tin hoạt động Đoàn thanh niên
+        //Danh mục trang chủ: Thông tin hoạt động Đoàn thanh niên
         $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
 
         //Danh mục trang chủ: Tin tuyển sinh-Tin đào tạo- Tin về cựu sinh viên
@@ -58,6 +58,20 @@ class SiteHomeController extends BaseSiteController{
         }
         $arrEventNew = EventNew::getPostEventNew('', $numEvent);
 
+        //Tab: Tuyển sinh và đào tạo
+        $numTab = 0;
+        $numTabShow = Info::getItemByKeyword('SITE_NUM_TAB_EDU_HOME');
+        if(sizeof($numTabShow) > 0){
+            $numTab = (int)strip_tags(stripslashes($numTabShow->info_content));
+        }
+        $arrTab = Tab::searchTabLimitAsc($numTab);
+
+        $catTabFix = 0;
+        $arrTabFixShow = Info::getItemByKeyword('SITE_CATID_TUYENSINH_DAOTAO_FIX_CUNG');
+        if(sizeof($arrTabFixShow) > 0){
+            $catTabFix = (int)strip_tags(stripslashes($arrTabFixShow->info_content));
+        }
+
     	$this->header();
         $this->slider();
         $this->layout->content = View::make('site.SiteLayouts.Home')
@@ -67,15 +81,13 @@ class SiteHomeController extends BaseSiteController{
                                 ->with('data_hdsv', $data_hdsv)
                                 ->with('data_ts_dt_csv', $data_ts_dt_csv)
                                 ->with('data_khac', $data_khac)
-                                ->with('arrEventNew', $arrEventNew);
+                                ->with('arrEventNew', $arrEventNew)
+                                ->with('arrTab', $arrTab)
+                                ->with('catTabFix', $catTabFix);
         $this->sliderPartnerBottom();
         $this->footer();
     }
-    /*
-	public function pageCategory(){
-		return Redirect::route('site.home');
-	}
-    */
+
     public function pageCategory($catname='', $caid=0){
         $arrCat = array(
             'category_id'=>0,
