@@ -13,6 +13,7 @@ class BaseSiteController extends BaseController{
         FunctionLib::site_css('font-awesome/4.2.0/css/font-awesome.min.css', CGlobal::$POS_HEAD);
     	FunctionLib::site_js('frontend/js/site.js', CGlobal::$POS_END);
     }
+
     public function header(){
         //Banner Header
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP);
@@ -68,8 +69,44 @@ class BaseSiteController extends BaseController{
         $this->layout->right = View::make("site.BaseLayouts.right")
                                 ->with('arrBannerRight', $arrBannerRight);
     }
-    public function sliderPartnerBottom(){
+    public function eduBottom(){
+        //Tab: Tuyển sinh và đào tạo
+        $numTab = 0;
+        $numTabShow = Info::getItemByKeyword('SITE_NUM_TAB_EDU_HOME');
+        if(sizeof($numTabShow) > 0){
+            $numTab = (int)strip_tags(stripslashes($numTabShow->info_content));
+        }
+        $arrTab = Tab::searchTabLimitAsc($numTab);
+        //Tab fix
+        $catTabFix = 0;
+        $arrTabFixShow = Info::getItemByKeyword('SITE_CATID_TUYENSINH_DAOTAO_FIX_CUNG');
+        if(sizeof($arrTabFixShow) > 0){
+            $catTabFix = (int)strip_tags(stripslashes($arrTabFixShow->info_content));
+        }
+        $this->layout->eduBottom = View::make("site.BaseLayouts.eduBottom")
+                                ->with('arrTab', $arrTab)
+                                ->with('catTabFix', $catTabFix);
+    }
+    public function imagesVideoBottom(){
+        //Thư viện video
+        $dataFieldVideo['video_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
+        $dataFieldVideo['field_get'] = 'video_id,video_name,video_link';
+        $arrVideo = Video::getNewVideo($dataFieldVideo, 1, 0);
 
+        //Thư viện ảnh
+        $dataFieldImg['image_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
+        $dataFieldImg['field_get'] = 'image_id,image_title,image_image_other';
+        $arrImg = LibraryImage::getNewImages($dataFieldImg, 1, 0);
+        if(sizeof($arrImg) > 0){
+            FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
+            FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
+        }
+
+        $this->layout->imagesVideoBottom = View::make("site.BaseLayouts.imagesVideoBottom")
+                                            ->with('arrVideo', $arrVideo)
+                                            ->with('arrImg', $arrImg);
+    }
+    public function sliderPartnerBottom(){
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_PARTNER);
         $arrBannerPartner = $this->getBannerWithPosition($arrBanner);
         if(sizeof($arrBannerPartner) > 0) {

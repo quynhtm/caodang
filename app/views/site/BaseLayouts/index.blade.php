@@ -54,11 +54,21 @@
 							{{$right}}
 						@endif
 					</div>
+					@if(isset($eduBottom))
 					<div class="line">
-						@if(isset($sliderPartnerBottom))
-							{{$sliderPartnerBottom}}
-						@endif
+						{{$eduBottom}}
 					</div>
+					@endif
+					@if(isset($imagesVideoBottom))
+					<div class="line">
+						{{$imagesVideoBottom}}
+					</div>
+					@endif
+					@if(isset($sliderPartnerBottom))
+					<div class="line">
+						{{$sliderPartnerBottom}}
+					</div>
+					@endif
 				</div>
 			</div>
 		</div>

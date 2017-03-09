@@ -26,20 +26,14 @@ class SiteHomeController extends BaseSiteController{
         //Banner lịch công tác tuần
         $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
         $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
-		
-		//Thư viện video
-		$dataFieldVideo['video_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
-        $dataFieldVideo['field_get'] = 'video_id,video_name,video_link';
-		$arrVideo = Video::getNewVideo($dataFieldVideo, 1, 0);
 
-		//Thư viện ảnh
-        $dataFieldImg['image_hot'] = CGlobal::NEW_TYPE_TIN_HOT;
-        $dataFieldImg['field_get'] = 'image_id,image_title,image_image_other';
-        $arrImg = LibraryImage::getNewImages($dataFieldImg, 1, 0);
-        if(sizeof($arrImg) > 0){
-            FunctionLib::site_css('lib/slider-pro/slider-pro.min.css', CGlobal::$POS_HEAD);
-            FunctionLib::site_js('lib/slider-pro/jquery.sliderPro.min.js', CGlobal::$POS_END);
+        //Lịch sự kiện
+        $numEvent = 0;
+        $numEventShow = Info::getItemByKeyword('SITE_NUM_CALENDAR_HOME');
+        if(sizeof($numEventShow) > 0){
+            $numEvent = (int)strip_tags(stripslashes($numEventShow->info_content));
         }
+        $arrEventNew = EventNew::getPostEventNew('', $numEvent);
 
         //Danh mục trang chủ: Thông tin hoạt động Đoàn thanh niên
         $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
@@ -50,40 +44,16 @@ class SiteHomeController extends BaseSiteController{
         //Danh mục trang chủ: Hợp tác quốc tế - khac...
         $data_khac = $this->getCategoryAndPostByKeyword('SITE_CATID_HOPTACQUOCTE_KHAC', 5);
 
-        //Lịch sự kiện
-        $numEvent = 0;
-        $numEventShow = Info::getItemByKeyword('SITE_NUM_CALENDAR_HOME');
-        if(sizeof($numEventShow) > 0){
-            $numEvent = (int)strip_tags(stripslashes($numEventShow->info_content));
-        }
-        $arrEventNew = EventNew::getPostEventNew('', $numEvent);
-
-        //Tab: Tuyển sinh và đào tạo
-        $numTab = 0;
-        $numTabShow = Info::getItemByKeyword('SITE_NUM_TAB_EDU_HOME');
-        if(sizeof($numTabShow) > 0){
-            $numTab = (int)strip_tags(stripslashes($numTabShow->info_content));
-        }
-        $arrTab = Tab::searchTabLimitAsc($numTab);
-
-        $catTabFix = 0;
-        $arrTabFixShow = Info::getItemByKeyword('SITE_CATID_TUYENSINH_DAOTAO_FIX_CUNG');
-        if(sizeof($arrTabFixShow) > 0){
-            $catTabFix = (int)strip_tags(stripslashes($arrTabFixShow->info_content));
-        }
-
     	$this->header();
         $this->slider();
         $this->layout->content = View::make('site.SiteLayouts.Home')
                                 ->with('arrBannerWeek', $arrBannerWeek)
-                                ->with('arrVideo', $arrVideo)
-                                ->with('arrImg', $arrImg)
+                                ->with('arrEventNew', $arrEventNew)
                                 ->with('data_hdsv', $data_hdsv)
                                 ->with('data_ts_dt_csv', $data_ts_dt_csv)
-                                ->with('data_khac', $data_khac)
-                                ->with('arrEventNew', $arrEventNew)
-                                ->with('arrTab', $arrTab)
-                                ->with('catTabFix', $catTabFix);
+                                ->with('data_khac', $data_khac);
+        $this->eduBottom();
+        $this->imagesVideoBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -129,12 +99,13 @@ class SiteHomeController extends BaseSiteController{
         $this->header();
         $this->slider();
         $this->left();
-        $this->sliderPartnerBottom();
         $this->right();
         $this->layout->content = View::make('site.SiteLayouts.pageNews')
                                 ->with('arrItem', $arrItem)
                                 ->with('arrCat', $arrCat)
                                 ->with('paging', $paging);
+        $this->eduBottom();
+        $this->sliderPartnerBottom();
         $this->footer();
     }
     public function pageDetailNew($catname='', $title='', $id=0){
@@ -163,6 +134,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('arrCat', $arrCat)
             ->with('newsSame', $newsSame);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -233,11 +205,12 @@ class SiteHomeController extends BaseSiteController{
         $this->header();
         $this->slider();
         $this->left();
-        $this->sliderPartnerBottom();
         $this->right();
         $this->layout->content = View::make('site.SiteLayouts.pageContact')
                                 ->with('info', $info)
                                 ->with('messages', $messages);
+        $this->eduBottom();
+        $this->sliderPartnerBottom();
         $this->footer();
     }
 	public function linkCaptcha(){
@@ -280,6 +253,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('arrItem', $data)
             ->with('paging', $paging);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -305,6 +279,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('item', $item)
             ->with('newsSame', $newsSame);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -332,6 +307,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('arrItem', $data)
             ->with('paging', $paging);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -363,6 +339,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('item', $item)
             ->with('newsSame', $newsSame);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -389,6 +366,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('arrItem', $data)
             ->with('paging', $paging);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
@@ -416,6 +394,7 @@ class SiteHomeController extends BaseSiteController{
             ->with('item', $item)
             ->with('newsSame', $newsSame);
         $this->right();
+        $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
     }
