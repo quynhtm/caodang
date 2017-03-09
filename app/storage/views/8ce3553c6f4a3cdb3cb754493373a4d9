@@ -1,0 +1,69 @@
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
+	<h1 class="title-path"><a href="<?php echo URL::route('site.pageEvent'); ?>" title="Lịch sự kiện">Lịch sự kiện</a></h1>
+	<div class="list-library">
+		<?php if(isset($arrItem) && sizeof($arrItem) > 0): ?>
+			<?php if(count($arrItem) > 1): ?>
+			<div class="page-list-library list-post">
+				<?php foreach($arrItem as $item): ?>
+					<div class="item-post">
+						<?php if($item['event_image'] != ''): ?>
+							<a class="post-title" title="<?php echo $item->event_title; ?>" href="<?php echo FunctionLib::buildLinkDetailEvent($item->event_title, $item->event_id); ?>">
+							<img alt="<?php echo $item['event_title']; ?>"
+								 src="<?php echo ThumbImg::getImageThumb(CGlobal::FOLDER_EVENT, $item['event_id'], $item['event_image'], CGlobal::sizeImage_500); ?>">
+							</a>
+						<?php endif; ?>
+						<div class="title-list-item">
+							<a class="post-title" title="<?php echo $item['event_title']; ?>" href="<?php echo FunctionLib::buildLinkDetailEvent($item->event_title, $item->event_id); ?>">
+								<?php echo $item['event_title']; ?>
+
+							</a>
+						</div>
+						<div class="date"><i class="icon-other icon-date"></i>
+							<?php if((int)$item->event_time_start > 0): ?>
+							Ngày bắt đầu <?php echo date('d/m/Y', $item['event_time_start']); ?>
+
+							<?php endif; ?>
+							<?php if((int)$item->event_time_end > 0): ?>
+							Ngày kết thúc <?php echo date('d/m/Y', $item['event_time_end']); ?>
+
+							<?php endif; ?>
+						</div>
+						<div class="post-intro">
+							<?php if($item['event_desc_sort'] != ''): ?>
+								<?php echo FunctionLib::substring($item['event_desc_sort'], 200, '...'); ?>
+
+							<?php else: ?>
+								<?php echo FunctionLib::substring($item['event_content'], 200, '...'); ?>
+
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+			<?php else: ?>
+				<?php foreach($arrItem as $item): ?>
+					<h1 class="title-view"><?php echo $item->news_title; ?></h1>
+					<div class="date"><i class="icon-other icon-date"></i><?php echo date('h:i', $item['news_create']); ?> ngày <?php echo date('d/m/Y', $item['news_create']); ?></div>
+					<?php if($item->news_desc_sort != ''): ?>
+						<div class="library-intro">
+							<b><?php echo stripslashes($item['news_desc_sort']); ?></b>
+						</div>
+					<?php endif; ?>
+					<?php if($item->news_content != ''): ?>
+						<div class="library-intro">
+							<?php echo stripslashes($item['news_content']); ?>
+
+						</div>
+					<?php endif; ?>
+
+				<?php endforeach; ?>
+			<?php endif; ?>
+		<?php endif; ?>
+	</div>
+	<div class="show-box-paging" style="margin-top:20px; ">
+		<div class="showListPage">
+			<?php echo $paging; ?>
+
+		</div>
+	</div>
+</div>

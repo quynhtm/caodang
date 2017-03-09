@@ -84,9 +84,10 @@
                                 <td>
                                    @if($is_boss)[<b>{{ $item['category_id'] }}</b>]@endif
                                        @if($item['category_parent_id']==0)
-                                           <b>{{ $item['padding_left'].$item['category_name'] }}</b>
+                                           <b><a target="_blank" @if($item['category_link'] != '')href="{{$item['category_link']}}" @else href="{{FunctionLib::buildLinkCategory($item['category_id'], $item['category_name'])}}" @endif >
+                                       {{ $item['padding_left'].$item['category_name'] }}</a></b>
                                        @else
-                                            {{ $item['padding_left'].$item['category_name'] }}
+                                           {{$item['padding_left']}}<a target="_blank" @if($item['category_link'] != '')href="{{$item['category_link']}}" @else href="{{FunctionLib::buildLinkCategory($item['category_id'], $item['category_name'])}}" @endif >{{$item['category_name'] }}</a>
                                        @endif
                                 </td>
                                 <td>@if(isset($arrCategoryParent[$item['category_parent_id']])){{$arrCategoryParent[$item['category_parent_id']]}}@else --- @endif</td>

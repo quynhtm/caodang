@@ -1,0 +1,66 @@
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
+	<h2 class="title-path"><a href="<?php echo URL::route('site.pageLibrary'); ?>" title="Thư viện ảnh">Thư viện ảnh</a></h2>
+	<h1 class="title-view"><?php echo $item->image_title; ?></h1>
+	<div class="list-library-ext">
+		<?php if(isset($item) && sizeof($item) > 0): ?>
+			<div class="page-list-library row" id="gallery">
+				<?php if(isset($item) && sizeof($item) > 0): ?>
+                    <?php $image_image_other = unserialize($item->image_image_other); ?>
+						<?php foreach($image_image_other as $k=>$img): ?>
+							<div class="col-lg-6 col-sm-6 item-library-detail">
+								<a title="<?php echo $item->image_title; ?>" href="<?php echo ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $img, CGlobal::sizeImage_1000); ?>">
+									<div class="thumbLDetail">
+										<img src="<?php echo ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $img, CGlobal::sizeImage_1000); ?>" />
+									</div>
+								</a>
+							</div>
+						<?php endforeach; ?>
+				<?php endif; ?>
+			</div>
+			<?php if($item->image_content != ''): ?>
+				<div class="library-intro">
+					<?php echo stripslashes($item->image_content); ?>
+
+				</div>
+			<?php endif; ?>
+		<?php endif; ?>
+	</div>
+	<div class="line">
+		<div class="title-same">Thư viện ảnh khác</div>
+		<?php if(isset($newsSame) && sizeof($newsSame) > 0): ?>
+			<div class="row page-list-same">
+				<?php foreach($newsSame as $k=>$aitem): ?>
+					<div class="col-lg-6 col-sm-6 item-video">
+						<a title="<?php echo $aitem->image_title; ?>" href="<?php echo FunctionLib::buildLinkDetailLibrary($aitem->image_title, $aitem->image_id); ?>">
+							<div class="thumbL">
+								<img src="<?php echo ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $aitem['image_id'], $aitem['image_image'], CGlobal::sizeImage_500); ?>" />
+							</div>
+							<div class="titleL"><?php echo $aitem->image_title; ?></div>
+						</a>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        jQuery('#gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1],
+            },
+            image: {
+                tError: 'Not load image!',
+                titleSrc: function(item) {
+                    return item.el.attr('title') + '<small><?php echo CGlobal::web_name; ?></small>';
+                }
+            }
+        });
+    });
+</script>

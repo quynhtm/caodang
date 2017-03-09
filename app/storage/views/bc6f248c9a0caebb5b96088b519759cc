@@ -1,0 +1,40 @@
+<div class="head-banner">
+	<div class="container">
+		<div class="flash">
+	        <?php if(sizeof($arrBannerHead) > 0): ?>
+				<?php $i=0; ?>
+				<?php foreach($arrBannerHead as $item): ?>
+					<?php $i++; ?>
+					<?php if($i == 1): ?>
+						<?php if($item->banner_image != ''): ?>
+								<img src="<?php echo ThumbImg::thumbImageBannerNormal($item->banner_id,$item->banner_parent_id, $item->banner_image, CGlobal::sizeImage_1000,CGlobal::sizeImage_200, $item->banner_name,true,true); ?>" alt="<?php echo $item->banner_name; ?>" />
+						<?php endif; ?>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			<div class="language">
+				<a class="vi class=" href="?lang=vi"></a>
+				<a class="en class=" href="?lang=en"></a>
+			</div>
+	    </div>
+		<div class="bg-menu">
+			<div class="container">
+				<ul class="menu">
+					<li><a class="aline" href="<?php echo URL::route('site.home'); ?>">Trang chủ</a></li>
+					<?php if(!empty($menuCategoriessAll)): ?>
+                        <?php $i=1; ?>
+						<?php foreach($menuCategoriessAll as $cat): ?>
+							<?php if($i <= $numCategory): ?>
+								<?php if($cat['category_show_top'] == CGlobal::status_show): ?>
+                                    <?php $i++; ?>
+									<li><a class="aline <?php if(isset($catid) && $catid == $cat['category_id']): ?> act <?php endif; ?>" <?php if($cat['category_link'] != ''): ?>href="<?php echo $cat['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name']); ?>" <?php endif; ?> title="<?php echo $cat['category_name']; ?>"><?php echo $cat['category_name']; ?></a></li>
+								<?php endif; ?>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endif; ?>
+					<li><a href="<?php echo URL::route('site.pageContact'); ?>" title="Liên hệ">Liên hệ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
