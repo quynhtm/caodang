@@ -17,7 +17,7 @@
                     {{ Form::open(array('method' => 'GET', 'role'=>'form')) }}
                     <div class="panel-body">
                         <div class="form-group col-lg-3">
-                            <label for="department_name">Tên tab ngành đào tạo</label>
+                            <label for="department_name">Tên tab</label>
                             <input type="text" class="form-control input-sm" id="tab_name" name="tab_name" placeholder="Tên tab ngành đào tạo" @if(isset($search['tab_name']) && $search['tab_name'] != '')value="{{$search['tab_name']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
@@ -51,7 +51,7 @@
                         <tr class="">
                             <th width="2%"class="text-center">STT</th>
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="50%" class="td_list">Tên tab ngành</th>
+                            <th width="50%" class="td_list">Tên tab</th>
                             <th width="5%" class="text-center">Thứ tự</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>

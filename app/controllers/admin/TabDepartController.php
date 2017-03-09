@@ -152,7 +152,7 @@ class TabDepartController extends BaseAdminController
             $data = TabSub::find($id);
         }
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['tab_sub_status'])? $data['tab_sub_status'] : CGlobal::status_show);
-        $optionTabParent = FunctionLib::getOption(array(0=>'Tab dưới')+$this->arrTabParent, isset($data['tab_parent_id'])? $data['tab_parent_id'] : 0);
+        $optionTabParent = FunctionLib::getOption(array(0=>'--Chọn tab cha--')+$this->arrTabParent, isset($data['tab_parent_id'])? $data['tab_parent_id'] : 0);
         $this->layout->content = View::make('admin.TabDepart.addTabSub')
             ->with('id', $id)
             ->with('data', $data)

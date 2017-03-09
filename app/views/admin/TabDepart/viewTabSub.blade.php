@@ -53,7 +53,7 @@
                             <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
                             <th width="10%" class="td_list">Ảnh</th>
                             <th width="40%" class="td_list">Tên tab con</th>
-                            <th width="20%" class="td_list">Thuộc tab ngành</th>
+                            <th width="20%" class="td_list">Thuộc tab</th>
                             <th width="5%" class="text-center">Vị trí</th>
                             <th width="5%" class="text-center">Status</th>
                             <th width="10%" class="text-center">Action</th>

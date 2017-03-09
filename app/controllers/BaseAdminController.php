@@ -82,8 +82,8 @@ class BaseAdminController extends BaseController
             'sub'=>array(
                 array('name'=>'Khoa - Trung tâm', 'RouteName'=>'admin.department_list', 'icon'=>'fa fa-users icon-4x', 'showcontent'=>1, 'showMenu'=>1,'permission'=>'department_full'),
                 array('name'=>'Danh mục tin', 'RouteName'=>'admin.category_list', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'category_full'),
-                array('name'=>'Ngành đào tạo', 'RouteName'=>'admin.tabView', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'tab_full'),
-                array('name'=>'Tab sub ngành đào tạo', 'RouteName'=>'admin.tabSubView', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'tab_full'),
+                array('name'=>'Tab tuyển sinh-đào tạo', 'RouteName'=>'admin.tabView', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'tab_full'),
+                array('name'=>'Tab sub tuyển sinh-đào tạo', 'RouteName'=>'admin.tabSubView', 'icon'=>'fa fa-indent icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'tab_full'),
             ),
         );
 
