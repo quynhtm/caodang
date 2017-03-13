@@ -2,46 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eea837e0-6974-47e7-a82a-b5c05406f6c4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/34/0a/340afe587fa1feb6b19bc4a672ac98f2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/b4/f7/b4f7fb1a059abca1c4bfe57f21800491" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/be/82/be8209ccfec69a2bd9a06184dec3c104" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/ec/64/ec64c2dbd81cd6291b501db0582f86ca" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/18/29/182952d1d3ebef44ec2c41219848eacf" afterPath="$PROJECT_DIR$/app/storage/cache/18/29/182952d1d3ebef44ec2c41219848eacf" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/79/3c/793c0f775326a66c53097f389fbb22ee" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/19/4d/194d57be2ba5e3dafd1a5e701090fb46" afterPath="$PROJECT_DIR$/app/storage/cache/19/4d/194d57be2ba5e3dafd1a5e701090fb46" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/1c/ad/1cadb58ec2645c412a7befcd5257be73" afterPath="$PROJECT_DIR$/app/storage/cache/1c/ad/1cadb58ec2645c412a7befcd5257be73" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/28/c4/28c468ec49abb9569a8a6511e4129234" afterPath="$PROJECT_DIR$/app/storage/cache/28/c4/28c468ec49abb9569a8a6511e4129234" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/34/35/3435973182cf53fb5df557fe32ef7388" afterPath="$PROJECT_DIR$/app/storage/cache/34/35/3435973182cf53fb5df557fe32ef7388" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/42/3c/423c099e946dd13808e4976a40d46d65" afterPath="$PROJECT_DIR$/app/storage/cache/42/3c/423c099e946dd13808e4976a40d46d65" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/44/46/44467ca9b75deceee61fe6a443805283" afterPath="$PROJECT_DIR$/app/storage/cache/44/46/44467ca9b75deceee61fe6a443805283" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/44/fe/44fe92180779cd503957ea22746ab812" afterPath="$PROJECT_DIR$/app/storage/cache/44/fe/44fe92180779cd503957ea22746ab812" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/62/ae/62ae189a4f38f337dec44a7bcb3b9fb3" afterPath="$PROJECT_DIR$/app/storage/cache/62/ae/62ae189a4f38f337dec44a7bcb3b9fb3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/71/8a/718aefa19f1dc78584cea0ea99cf152b" afterPath="$PROJECT_DIR$/app/storage/cache/71/8a/718aefa19f1dc78584cea0ea99cf152b" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/79/3c/793c0f775326a66c53097f389fbb22ee" afterPath="$PROJECT_DIR$/app/storage/cache/79/3c/793c0f775326a66c53097f389fbb22ee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" afterPath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7e/34/7e3464f13a73ca389b078fed2212214f" afterPath="$PROJECT_DIR$/app/storage/cache/7e/34/7e3464f13a73ca389b078fed2212214f" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/82/8b/828b6110506aaa60eb0377ab436af589" afterPath="$PROJECT_DIR$/app/storage/cache/82/8b/828b6110506aaa60eb0377ab436af589" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/84/80/84802a0cc5b909b0fd6d43c4ebad8086" afterPath="$PROJECT_DIR$/app/storage/cache/84/80/84802a0cc5b909b0fd6d43c4ebad8086" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/87/94/8794265af966c5bd4f26a53885c14a12" afterPath="$PROJECT_DIR$/app/storage/cache/87/94/8794265af966c5bd4f26a53885c14a12" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/95/86/958626a1861035b5cd136ae8c723f7e2" afterPath="$PROJECT_DIR$/app/storage/cache/95/86/958626a1861035b5cd136ae8c723f7e2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/97/40/9740aa2b9ec2f5d7baa59340f034d6c0" afterPath="$PROJECT_DIR$/app/storage/cache/97/40/9740aa2b9ec2f5d7baa59340f034d6c0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ab/27/ab278d2f7ead3af063191aa57e14ca74" afterPath="$PROJECT_DIR$/app/storage/cache/ab/27/ab278d2f7ead3af063191aa57e14ca74" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/b2/a1/b2a16d6e09633241ec326fbd195c0e59" afterPath="$PROJECT_DIR$/app/storage/cache/b2/a1/b2a16d6e09633241ec326fbd195c0e59" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/be/e2/bee2473b8b56a07d1fe58e725c1adb53" afterPath="$PROJECT_DIR$/app/storage/cache/be/e2/bee2473b8b56a07d1fe58e725c1adb53" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/bf/ed/bfedb7dbc1d5d977dc2520d4e6fddda5" afterPath="$PROJECT_DIR$/app/storage/cache/bf/ed/bfedb7dbc1d5d977dc2520d4e6fddda5" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/c8/32/c832c9b351ef91c8410c6c9eb9f8a84c" afterPath="$PROJECT_DIR$/app/storage/cache/c8/32/c832c9b351ef91c8410c6c9eb9f8a84c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d0/93/d0934ae3bd01b5b5e01d27de897c052e" afterPath="$PROJECT_DIR$/app/storage/cache/d0/93/d0934ae3bd01b5b5e01d27de897c052e" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d3/20/d32024e7510efc484954ca3500ab0f10" afterPath="$PROJECT_DIR$/app/storage/cache/d3/20/d32024e7510efc484954ca3500ab0f10" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d7/1e/d71e1d360087697a87566f0a13eb9976" afterPath="$PROJECT_DIR$/app/storage/cache/d7/1e/d71e1d360087697a87566f0a13eb9976" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ec/75/ec75879716cdb1e8c4b4d4af45e72e57" afterPath="$PROJECT_DIR$/app/storage/cache/ec/75/ec75879716cdb1e8c4b4d4af45e72e57" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/f6/a2/f6a236bcc7c1f73576440141c961c46f" afterPath="$PROJECT_DIR$/app/storage/cache/f6/a2/f6a236bcc7c1f73576440141c961c46f" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/f8/49/f849855260339ee815287befe790127e" afterPath="$PROJECT_DIR$/app/storage/cache/f8/49/f849855260339ee815287befe790127e" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/BaseSiteController.php" afterPath="$PROJECT_DIR$/app/controllers/BaseSiteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/02/1f/021f69b2878ff6b302c56bb3c0bcd9ff" afterPath="$PROJECT_DIR$/app/storage/cache/02/1f/021f69b2878ff6b302c56bb3c0bcd9ff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/52/94/52944948d67871b6c329b34508f55885" afterPath="$PROJECT_DIR$/app/storage/cache/52/94/52944948d67871b6c329b34508f55885" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d1/90/d1902671272f100e9a9682d0af728ee0" afterPath="$PROJECT_DIR$/app/storage/cache/d1/90/d1902671272f100e9a9682d0af728ee0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/views/a064bb84f29f8729c9b159c621aea6f9" afterPath="$PROJECT_DIR$/app/storage/views/a064bb84f29f8729c9b159c621aea6f9" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" afterPath="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/frontend/css/site.css" afterPath="$PROJECT_DIR$/assets/frontend/css/site.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -423,15 +386,15 @@
       <workItem from="1488939289997" duration="16284000" />
       <workItem from="1489029096669" duration="13517000" />
       <workItem from="1489130276781" duration="267000" />
-      <workItem from="1489375918622" duration="5268000" />
+      <workItem from="1489375918622" duration="5855000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121773000" />
+    <option name="totallyTimeSpent" value="122360000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.102118" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
