@@ -25,9 +25,17 @@
                         <?php $i=1; ?>
 						<?php foreach($menuCategoriessAll as $cat): ?>
 							<?php if($i <= $numCategory): ?>
-								<?php if($cat['category_show_top'] == CGlobal::status_show): ?>
+								<?php if($cat['category_show_top'] == CGlobal::status_show && $cat['category_parent_id'] == CGlobal::status_hide): ?>
                                     <?php $i++; ?>
-									<li><a class="aline <?php if(isset($catid) && $catid == $cat['category_id']): ?> act <?php endif; ?>" <?php if($cat['category_link'] != ''): ?>href="<?php echo $cat['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name']); ?>" <?php endif; ?> title="<?php echo $cat['category_name']; ?>"><?php echo $cat['category_name']; ?></a></li>
+									<li><a class="aline <?php if(isset($catid) && $catid == $cat['category_id']): ?> act <?php endif; ?>" <?php if($cat['category_link'] != ''): ?>href="<?php echo $cat['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name']); ?>" <?php endif; ?> title="<?php echo $cat['category_name']; ?>"><?php echo $cat['category_name']; ?></a>
+										<ul class="menu-sub">
+											<?php foreach($menuCategoriessAll as $sub): ?>
+												<?php if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show): ?>
+													<li><a <?php if($sub['category_link'] != ''): ?>href="<?php echo $sub['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($sub['category_id'], $sub['category_name']); ?>" <?php endif; ?> title="<?php echo $sub['category_name']; ?>"><?php echo $sub['category_name']; ?></a></a></li>
+												<?php endif; ?>
+											<?php endforeach; ?>
+										</ul>
+									</li>
 								<?php endif; ?>
 							<?php endif; ?>
 						<?php endforeach; ?>

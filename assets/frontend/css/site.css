@@ -147,6 +147,8 @@ h1, h2, h3, h4, h5, h6{
     float: left;
     line-height: 40px;
     display: inline-block;
+    position: relative;
+    z-index: 30;
 }
 .menu li a {
     color: #fff;
@@ -164,6 +166,27 @@ h1, h2, h3, h4, h5, h6{
 }
 .menu li a:hover {
     background: #707070;
+}
+.menu-sub {
+    position: absolute;
+    width: 250px;
+    top: 40px;
+    background: #7d7d7d;
+    display: none;
+    left: 0;
+}
+.menu li:hover .menu-sub{
+    display: inline-block;
+}
+.menu-sub li {
+    clear: both;
+    display: inline-block;
+    width: 100%;
+    float: none;
+}
+.menu-sub li a{
+    text-transform: none;
+    font-weight: normal;
 }
 /*Content*/
 .wraps {
