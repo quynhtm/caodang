@@ -359,6 +359,7 @@ h1, h2, h3, h4, h5, h6{
     height: 225px;
     position: relative;
     border: 1px solid #fafafa;
+    overflow: hidden;
 }
 .box-brand span.mask {
     position: absolute;
@@ -368,7 +369,8 @@ h1, h2, h3, h4, h5, h6{
     top: 0;
 }
 .box-brand img {
-    width: 100%;
+    min-width: 100%;
+    max-width: none;
     height: 100%;
 }
 .box-brand h4 {
