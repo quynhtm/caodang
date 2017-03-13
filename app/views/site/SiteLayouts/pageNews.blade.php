@@ -24,6 +24,8 @@
 							@else
 								{{FunctionLib::substring($item['news_content'], 200, '...') }}
 							@endif
+
+								<a class="arrow-more" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}"><span>Chi Tiết</span></a>
 						</div>
 					</div>
 				@endforeach

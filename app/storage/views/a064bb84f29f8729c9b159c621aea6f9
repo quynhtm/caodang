@@ -1,32 +1,24 @@
 <div class="col-lg-3 col-md-3 col-sm-12 col-right">
+	<?php if(sizeof($arrType) > 0): ?>
 	<div class="item-box">
 		<div class="donvi-khoa-trungtam">
 			<div class="h2">CÁC ĐƠN VỊ TRỰC THUỘC</div>
 			<div class="navigation">
 				<ul>
-					<li class="dot"><a href="">Khoa</a>
+					<?php foreach($arrType as $type): ?>
+					<li class="dot"><a href="javascript:void(0)"><?php echo $type; ?></a>
 						<ul>
 							<li><a href="">Khoa Xã hội - Nhân văn</a></li>
 							<li><a href="">Khoa Quản lý - Văn thư</a></li>
 							<li><a href="">Khoa Công Nghệ Thông Tin</a></li>
 						</ul>
 					</li>
-					<li class="dot"><a href="">Phòng ban</a>
-						<ul>
-							<li><a href="">Phòng đào tạo</a></li>
-							<li><a href="">Phòng hành chính</a></li>
-						</ul>
-					</li>
-					<li class="dot"><a href="">Trung tâm</a>
-						<ul>
-							<li><a href="">Trung tâm tiếng anh</a></li>
-						</ul>
-
-					</li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<?php endif; ?>
 	<?php if(!empty($menuCategoriessAll)): ?>
 		<?php foreach($menuCategoriessAll as $cat): ?>
 			<?php if($cat['category_show_right'] == CGlobal::status_show): ?>

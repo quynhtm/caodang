@@ -35,14 +35,14 @@ class SiteHomeController extends BaseSiteController{
         }
         $arrEventNew = EventNew::getPostEventNew('', $numEvent);
 
-        //Danh mục trang chủ: Thông tin hoạt động Đoàn thanh niên
-        $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
-
         //Danh mục trang chủ: Tin tuyển sinh-Tin đào tạo- Tin về cựu sinh viên
         $data_ts_dt_csv = $this->getCategoryAndPostByKeyword('SITE_CATID_TUYENSINH_DAOTAO_CUUSINHVIEN', 5);
 
         //Danh mục trang chủ: Hợp tác quốc tế - khac...
         $data_khac = $this->getCategoryAndPostByKeyword('SITE_CATID_HOPTACQUOCTE_KHAC', 5);
+
+        //Danh mục trang chủ: Thông tin hoạt động Đoàn thanh niên
+        $data_hdsv = $this->getCategoryAndPostByKeyword('SITE_CATID_DOANTHANHNIEN_HOISINHVIEN', 5, 1);
 
     	$this->header();
         $this->slider();

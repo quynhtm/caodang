@@ -829,7 +829,7 @@ list-post .item-post .post-intro {
 }
 .list-post .post-intro {
     margin-top: 5px;
-    height: 38px;
+    min-height: 38px;
     overflow: hidden;
 }
 .list-same {
@@ -934,4 +934,20 @@ list-post .item-post .post-intro {
 }
 .navigation ul li:hover > ul {
     display: block;
+}
+
+.arrow-more {
+    background: url("../img/more-right.png") no-repeat scroll right center #C1C1C1;
+    border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+    float: right;
+    font-size: 12px;
+    height: 21px;
+    padding: 0 34px 0 15px;
+    margin-top: 10px;
+}
+.arrow-more span {
+    color: #FFFFFF;
+    position: relative;
+    top: 1px;
 }

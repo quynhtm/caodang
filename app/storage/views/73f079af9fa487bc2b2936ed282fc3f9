@@ -27,6 +27,8 @@
 								<?php echo FunctionLib::substring($item['news_content'], 200, '...'); ?>
 
 							<?php endif; ?>
+
+								<a class="arrow-more" href="<?php echo FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id']); ?>"><span>Chi Tiết</span></a>
 						</div>
 					</div>
 				<?php endforeach; ?>

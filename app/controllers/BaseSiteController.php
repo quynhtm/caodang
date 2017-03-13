@@ -52,6 +52,8 @@ class BaseSiteController extends BaseController{
                                 ->with('arrBannerSlider', $arrBannerSlider);
     }
     public function left(){
+        //List category right
+        $menuCategoriessAll = Category::getCategoriessAll();
         //Banner Calendar Week
         $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
         $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
@@ -59,16 +61,20 @@ class BaseSiteController extends BaseController{
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_LEFT);
         $arrBannerLeft = $this->getBannerWithPosition($arrBanner);
         $this->layout->left = View::make("site.BaseLayouts.left")
+                                ->with('menuCategoriessAll', $menuCategoriessAll)
                                 ->with('arrBannerLeft', $arrBannerLeft)
                                 ->with('arrBannerWeek', $arrBannerWeek);
     }
     public function right(){
+        //List type khoa-phongban-trungtam
+        $arrType = TypeSetting::getTypeSettingWithGroup('group_type');
+
         //List category right
         $menuCategoriessAll = Category::getCategoriessAll();
-
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT);
         $arrBannerRight = $this->getBannerWithPosition($arrBanner);
         $this->layout->right = View::make("site.BaseLayouts.right")
+                                ->with('arrType', $arrType)
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
                                 ->with('arrBannerRight', $arrBannerRight);
     }
