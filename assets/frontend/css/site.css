@@ -827,3 +827,86 @@ list-post .item-post .post-intro {
     max-width: 100% !important;
     height: auto !important;
 }
+.donvi-khoa-trungtam{
+    background: #4795d1;
+    color: #fff;
+    padding: 6px 15px 6px 15px;
+}
+.donvi-khoa-trungtam .h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.navigation {
+    height: 40px;
+    color: #fff;
+    margin: 0 auto;
+    height: 100px;
+}
+.donvi-khoa-trungtam ul {
+    list-style: none;
+    list-style-type: none;
+}
+.navigation {
+    height: 40px;
+    color: #fff;
+    background: #4795d1;
+    margin: 0 auto;
+    height: 100px;
+}
+.navigation ul {
+    padding: 0;
+    margin: 0;
+}
+.navigation ul li {
+    border-bottom: 1px solid #3c8ac6;
+    font-size: 12px;
+    line-height: 30px;
+    list-style: none;
+    padding-left: 15px;
+    position: relative;
+}
+.navigation ul li:last-child{
+    border-bottom: none;
+}
+.dot {
+    background: url("../img/dot.jpg") no-repeat scroll left center transparent;
+}
+.navigation ul li a {
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+.navigation ul li:hover {
+    background-color: #4795d1;
+    color: #c3b8ff;
+    text-decoration: none;
+}
+.navigation ul li ul {
+    display: none;
+    position: absolute;
+    background-color: #4795d1;
+    margin-left: -250px;
+    top: 0px;
+    z-index: 152;
+    width: 250px;
+}
+.navigation ul li ul li {
+    float: none;
+    padding-left: 20px;
+    margin: 0;
+    width: 200px;
+    color: #fff;
+    text-decoration: none;
+    z-index: 100;
+}
+.navigation ul li ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+.navigation ul li ul li a:hover {
+    color: #fff;
+}
+.navigation ul li:hover > ul {
+    display: block;
+}

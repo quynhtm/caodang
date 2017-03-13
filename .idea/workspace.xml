@@ -2,21 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eea837e0-6974-47e7-a82a-b5c05406f6c4" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/34/0a/340afe587fa1feb6b19bc4a672ac98f2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/b4/f7/b4f7fb1a059abca1c4bfe57f21800491" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/be/82/be8209ccfec69a2bd9a06184dec3c104" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/storage/cache/ec/64/ec64c2dbd81cd6291b501db0582f86ca" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/18/29/182952d1d3ebef44ec2c41219848eacf" afterPath="$PROJECT_DIR$/app/storage/cache/18/29/182952d1d3ebef44ec2c41219848eacf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/34/0a/340afe587fa1feb6b19bc4a672ac98f2" afterPath="$PROJECT_DIR$/app/storage/cache/34/0a/340afe587fa1feb6b19bc4a672ac98f2" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/19/4d/194d57be2ba5e3dafd1a5e701090fb46" afterPath="$PROJECT_DIR$/app/storage/cache/19/4d/194d57be2ba5e3dafd1a5e701090fb46" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/1c/ad/1cadb58ec2645c412a7befcd5257be73" afterPath="$PROJECT_DIR$/app/storage/cache/1c/ad/1cadb58ec2645c412a7befcd5257be73" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/28/c4/28c468ec49abb9569a8a6511e4129234" afterPath="$PROJECT_DIR$/app/storage/cache/28/c4/28c468ec49abb9569a8a6511e4129234" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/34/35/3435973182cf53fb5df557fe32ef7388" afterPath="$PROJECT_DIR$/app/storage/cache/34/35/3435973182cf53fb5df557fe32ef7388" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/42/3c/423c099e946dd13808e4976a40d46d65" afterPath="$PROJECT_DIR$/app/storage/cache/42/3c/423c099e946dd13808e4976a40d46d65" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/44/46/44467ca9b75deceee61fe6a443805283" afterPath="$PROJECT_DIR$/app/storage/cache/44/46/44467ca9b75deceee61fe6a443805283" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/44/fe/44fe92180779cd503957ea22746ab812" afterPath="$PROJECT_DIR$/app/storage/cache/44/fe/44fe92180779cd503957ea22746ab812" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/62/ae/62ae189a4f38f337dec44a7bcb3b9fb3" afterPath="$PROJECT_DIR$/app/storage/cache/62/ae/62ae189a4f38f337dec44a7bcb3b9fb3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/71/8a/718aefa19f1dc78584cea0ea99cf152b" afterPath="$PROJECT_DIR$/app/storage/cache/71/8a/718aefa19f1dc78584cea0ea99cf152b" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/79/3c/793c0f775326a66c53097f389fbb22ee" afterPath="$PROJECT_DIR$/app/storage/cache/79/3c/793c0f775326a66c53097f389fbb22ee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" afterPath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7e/34/7e3464f13a73ca389b078fed2212214f" afterPath="$PROJECT_DIR$/app/storage/cache/7e/34/7e3464f13a73ca389b078fed2212214f" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/82/8b/828b6110506aaa60eb0377ab436af589" afterPath="$PROJECT_DIR$/app/storage/cache/82/8b/828b6110506aaa60eb0377ab436af589" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/84/80/84802a0cc5b909b0fd6d43c4ebad8086" afterPath="$PROJECT_DIR$/app/storage/cache/84/80/84802a0cc5b909b0fd6d43c4ebad8086" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/87/94/8794265af966c5bd4f26a53885c14a12" afterPath="$PROJECT_DIR$/app/storage/cache/87/94/8794265af966c5bd4f26a53885c14a12" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/95/86/958626a1861035b5cd136ae8c723f7e2" afterPath="$PROJECT_DIR$/app/storage/cache/95/86/958626a1861035b5cd136ae8c723f7e2" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/97/40/9740aa2b9ec2f5d7baa59340f034d6c0" afterPath="$PROJECT_DIR$/app/storage/cache/97/40/9740aa2b9ec2f5d7baa59340f034d6c0" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ab/27/ab278d2f7ead3af063191aa57e14ca74" afterPath="$PROJECT_DIR$/app/storage/cache/ab/27/ab278d2f7ead3af063191aa57e14ca74" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/b2/a1/b2a16d6e09633241ec326fbd195c0e59" afterPath="$PROJECT_DIR$/app/storage/cache/b2/a1/b2a16d6e09633241ec326fbd195c0e59" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/be/e2/bee2473b8b56a07d1fe58e725c1adb53" afterPath="$PROJECT_DIR$/app/storage/cache/be/e2/bee2473b8b56a07d1fe58e725c1adb53" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/bf/ed/bfedb7dbc1d5d977dc2520d4e6fddda5" afterPath="$PROJECT_DIR$/app/storage/cache/bf/ed/bfedb7dbc1d5d977dc2520d4e6fddda5" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/c8/32/c832c9b351ef91c8410c6c9eb9f8a84c" afterPath="$PROJECT_DIR$/app/storage/cache/c8/32/c832c9b351ef91c8410c6c9eb9f8a84c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d0/93/d0934ae3bd01b5b5e01d27de897c052e" afterPath="$PROJECT_DIR$/app/storage/cache/d0/93/d0934ae3bd01b5b5e01d27de897c052e" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d3/20/d32024e7510efc484954ca3500ab0f10" afterPath="$PROJECT_DIR$/app/storage/cache/d3/20/d32024e7510efc484954ca3500ab0f10" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d7/1e/d71e1d360087697a87566f0a13eb9976" afterPath="$PROJECT_DIR$/app/storage/cache/d7/1e/d71e1d360087697a87566f0a13eb9976" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ec/75/ec75879716cdb1e8c4b4d4af45e72e57" afterPath="$PROJECT_DIR$/app/storage/cache/ec/75/ec75879716cdb1e8c4b4d4af45e72e57" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/f6/a2/f6a236bcc7c1f73576440141c961c46f" afterPath="$PROJECT_DIR$/app/storage/cache/f6/a2/f6a236bcc7c1f73576440141c961c46f" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/b4/f7/b4f7fb1a059abca1c4bfe57f21800491" afterPath="$PROJECT_DIR$/app/storage/cache/b4/f7/b4f7fb1a059abca1c4bfe57f21800491" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ec/64/ec64c2dbd81cd6291b501db0582f86ca" afterPath="$PROJECT_DIR$/app/storage/cache/ec/64/ec64c2dbd81cd6291b501db0582f86ca" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/views/37b923b9d224d965c8b36163f1368b3b" afterPath="$PROJECT_DIR$/app/storage/views/37b923b9d224d965c8b36163f1368b3b" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/Event/view.blade.php" afterPath="$PROJECT_DIR$/app/views/admin/Event/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/f8/49/f849855260339ee815287befe790127e" afterPath="$PROJECT_DIR$/app/storage/cache/f8/49/f849855260339ee815287befe790127e" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/BaseSiteController.php" afterPath="$PROJECT_DIR$/app/controllers/BaseSiteController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/02/1f/021f69b2878ff6b302c56bb3c0bcd9ff" afterPath="$PROJECT_DIR$/app/storage/cache/02/1f/021f69b2878ff6b302c56bb3c0bcd9ff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/52/94/52944948d67871b6c329b34508f55885" afterPath="$PROJECT_DIR$/app/storage/cache/52/94/52944948d67871b6c329b34508f55885" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d1/90/d1902671272f100e9a9682d0af728ee0" afterPath="$PROJECT_DIR$/app/storage/cache/d1/90/d1902671272f100e9a9682d0af728ee0" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/views/a064bb84f29f8729c9b159c621aea6f9" afterPath="$PROJECT_DIR$/app/storage/views/a064bb84f29f8729c9b159c621aea6f9" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" afterPath="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/frontend/css/site.css" afterPath="$PROJECT_DIR$/assets/frontend/css/site.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,7 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>item-box</find>
       <find>pager</find>
       <find>title-path</find>
       <find>.list-library</find>
@@ -69,6 +92,7 @@
       <find>item-library</find>
       <find>title-same</find>
       <find>post-title</find>
+      <find>$optionTypeDepart</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,7 +105,6 @@
         <option value="$PROJECT_DIR$/app/views/admin/News/view.blade.php" />
         <option value="$PROJECT_DIR$/assets/lib/skitter-master/skitter.css" />
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/footer.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" />
         <option value="$PROJECT_DIR$/app/models/Info.php" />
         <option value="$PROJECT_DIR$/app/controllers/admin/BannerController.php" />
         <option value="$PROJECT_DIR$/app/controllers/admin/CategoryController.php" />
@@ -122,12 +145,13 @@
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/eduBottom.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/imagesVideoBottom.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/SiteLayouts/Home.blade.php" />
-        <option value="$PROJECT_DIR$/app/controllers/BaseSiteController.php" />
         <option value="$PROJECT_DIR$/app/controllers/site/SiteHomeController.php" />
         <option value="$PROJECT_DIR$/app/views/admin/TabDepart/viewTabSub.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/Department/view.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/Category/view.blade.php" />
         <option value="$PROJECT_DIR$/assets/frontend/css/site.css" />
+        <option value="$PROJECT_DIR$/app/controllers/BaseSiteController.php" />
+        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" />
       </list>
     </option>
   </component>
@@ -195,33 +219,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -236,6 +234,58 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SiteLayouts" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -254,6 +304,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -351,18 +423,18 @@
       <workItem from="1488939289997" duration="16284000" />
       <workItem from="1489029096669" duration="13517000" />
       <workItem from="1489130276781" duration="267000" />
-      <workItem from="1489375918622" duration="335000" />
+      <workItem from="1489375918622" duration="5268000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116840000" />
+    <option name="totallyTimeSpent" value="121773000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1301059" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.102118" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -408,39 +480,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/admin/BannerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="32" column="73" lean-forward="false" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/Category/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="54" column="77" lean-forward="false" selection-start-line="54" selection-start-column="77" selection-end-line="54" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/admin/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="126" column="32" lean-forward="false" selection-start-line="126" selection-start-column="19" selection-end-line="126" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/site/SiteLayouts/pageContact.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -567,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/site/SiteLayouts/pageNews.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="25" column="34" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="25" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/site/SiteLayouts/pageImages.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -599,20 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/News.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="209" column="62" lean-forward="true" selection-start-line="207" selection-start-column="15" selection-end-line="209" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="312" column="29" lean-forward="false" selection-start-line="312" selection-start-column="29" selection-end-line="312" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -700,20 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/BaseSiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/site/SiteHomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2567">
-          <caret line="397" column="37" lean-forward="false" selection-start-line="397" selection-start-column="37" selection-end-line="397" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/TabDepart/viewTab.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -749,13 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="120" lean-forward="false" selection-start-line="29" selection-start-column="120" selection-end-line="29" selection-end-column="299" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/Category/view.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -763,11 +765,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/Department/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="67" column="51" lean-forward="false" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/TypeSetting.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-323">
+          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/admin/DepartmentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/frontend/css/site.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="199" column="24" lean-forward="false" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="24" />
+        <state relative-caret-position="252">
+          <caret line="842" column="16" lean-forward="false" selection-start-line="842" selection-start-column="16" selection-end-line="842" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="33" column="26" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="33" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/site/SiteHomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="92" column="39" lean-forward="false" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/News.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="200" column="58" lean-forward="false" selection-start-line="200" selection-start-column="51" selection-end-line="200" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="311" column="27" lean-forward="false" selection-start-line="311" selection-start-column="27" selection-end-line="311" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/site/SiteLayouts/pageNews.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="194" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="194" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/BaseSiteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="24" />
+          <folding>
+            <element signature="n#eduBottom#0;n#BaseSiteController#0;n#!!top" expanded="false" />
+            <element signature="n#imagesVideoBottom#0;n#BaseSiteController#0;n#!!top" expanded="false" />
+            <element signature="n#sliderPartnerBottom#0;n#BaseSiteController#0;n#!!top" expanded="false" />
+            <element signature="n#getBannerWithPosition#0;n#BaseSiteController#0;n#!!top" expanded="false" />
+            <element signature="n#getCategoryAndPostByKeyword#0;n#BaseSiteController#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

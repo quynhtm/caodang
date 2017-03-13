@@ -63,10 +63,13 @@ class BaseSiteController extends BaseController{
                                 ->with('arrBannerWeek', $arrBannerWeek);
     }
     public function right(){
+        //List category right
+        $menuCategoriessAll = Category::getCategoriessAll();
 
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT);
         $arrBannerRight = $this->getBannerWithPosition($arrBanner);
         $this->layout->right = View::make("site.BaseLayouts.right")
+                                ->with('menuCategoriessAll', $menuCategoriessAll)
                                 ->with('arrBannerRight', $arrBannerRight);
     }
     public function eduBottom(){
@@ -166,6 +169,20 @@ class BaseSiteController extends BaseController{
                     $arrPost = News::getPostInCategoryParent($catid, $limit_post);
                     $result['post'] = $arrPost;
                 }
+            }
+        }
+        return $result;
+    }
+    public static function getPostInCategoryId($cat_id=0, $limit_post=0){
+        $result = array();
+        if($cat_id > 0 && $limit_post > 0){
+            $arrCats = array();
+            Category::makeListCatId($cat_id, 0, $arrCats);
+            $arrCats[] = $cat_id;
+            if(sizeof($arrCats) > 0){
+                $arrCat = implode(',', $arrCats);
+                $arrPost = News::getPostInCategoryParent($arrCat, $limit_post);
+                $result = $arrPost;
             }
         }
         return $result;
