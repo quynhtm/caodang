@@ -863,12 +863,6 @@ list-post .item-post .post-intro {
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.navigation {
-    height: 40px;
-    color: #fff;
-    margin: 0 auto;
-    height: 100px;
-}
 .donvi-khoa-trungtam ul {
     list-style: none;
     list-style-type: none;
@@ -878,7 +872,7 @@ list-post .item-post .post-intro {
     color: #fff;
     background: #4795d1;
     margin: 0 auto;
-    height: 100px;
+    display: inline-block;
 }
 .navigation ul {
     padding: 0;
@@ -928,6 +922,7 @@ list-post .item-post .post-intro {
 .navigation ul li ul li a {
     color: #fff;
     text-decoration: none;
+    text-transform: none;
 }
 .navigation ul li ul li a:hover {
     color: #fff;

@@ -399,6 +399,27 @@ class SiteHomeController extends BaseSiteController{
         $this->footer();
     }
     public function pageDepartment($department_alias='', $department_title='', $department_id=0){
-        echo 'pageDepartment';die;
+        $item = array();
+        $meta_title = $meta_keywords = $meta_description = '';
+        $meta_img = '';
+
+        if($department_id > 0){
+            $item = Department::getById($department_id);
+            if(sizeof($item) > 0){
+                $meta_title = stripslashes($item->department_name);
+                $meta_keywords = stripslashes($item->department_name);
+                $meta_description = stripslashes($item->department_name);
+            }
+        }
+        FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
+        $this->header();
+        $this->slider();
+        $this->left();
+        $this->layout->content = View::make('site.SiteLayouts.pageDepartment')
+                                ->with('item', $item);
+        $this->right();
+        $this->eduBottom();
+        $this->sliderPartnerBottom();
+        $this->footer();
     }
 }
