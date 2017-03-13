@@ -68,13 +68,14 @@ class BaseSiteController extends BaseController{
     public function right(){
         //List type khoa-phongban-trungtam
         $arrType = TypeSetting::getTypeSettingWithGroup('group_type');
-
+        $arrDepartment = Department::getFullDepart();
         //List category right
         $menuCategoriessAll = Category::getCategoriessAll();
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT);
         $arrBannerRight = $this->getBannerWithPosition($arrBanner);
         $this->layout->right = View::make("site.BaseLayouts.right")
                                 ->with('arrType', $arrType)
+                                ->with('arrDepartment', $arrDepartment)
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
                                 ->with('arrBannerRight', $arrBannerRight);
     }

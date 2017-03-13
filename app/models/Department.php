@@ -40,6 +40,18 @@ class Department extends Eloquent
         }
         return $data;
     }
+    public static function getFullDepart(){
+        $data = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_LIST_DEPARTMENT) : array();
+        if (sizeof($data) == 0) {
+            $data = Department::where('department_id', '>', 0)
+                    ->where('department_status',CGlobal::status_show)
+                    ->orderBy('department_order','asc')->get();
+            if($data && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_LIST_DEPARTMENT, $data, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $data;
+    }
     public static function getDepartWithUser($userDepar = array(),$is_root = false){
         $arrDepart = self::getDepart();
         if($is_root) return $arrDepart;
@@ -173,5 +185,24 @@ class Department extends Eloquent
             Cache::forget(Memcache::CACHE_DEPARTMENT_ID.$id);
         }
         Cache::forget(Memcache::CACHE_ALL_DEPARTMENT);
+        Cache::forget(Memcache::CACHE_LIST_DEPARTMENT);
     }
+
+    public static function getItemByType($department_type='', $limit=0){
+        try{
+            $result = array();
+            if($department_type != '' && $limit > 0){
+                $query = News::where('department_id','>', 0);
+                $query->where('department_type', $department_type);
+                $query->where('news_status', CGlobal::status_show);
+                $query->orderBy('department_order', 'asc');
+                $result = $query->take($limit)->get();
+            }
+            return $result;
+
+        }catch (PDOException $e){
+            throw new PDOException();
+        }
+    }
+
 }

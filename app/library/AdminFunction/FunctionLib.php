@@ -495,6 +495,13 @@ class FunctionLib {
         }
         return '#';
     }
+
+    static function buildLinkCategoryDepartment($news_alias= '', $news_title = '', $new_id = 0){
+        if($new_id > 0){
+            return URL::route('site.pageDepartment', array('news_alias'=>$news_alias, 'department_title'=>strtolower(FunctionLib::safe_title($news_title)), 'department_id'=>$new_id));
+        }
+        return '#';
+    }
     /**
      * @param string $file_name
      * @param int $id

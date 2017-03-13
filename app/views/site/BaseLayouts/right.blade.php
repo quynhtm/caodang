@@ -5,13 +5,17 @@
 			<div class="h2">CÁC ĐƠN VỊ TRỰC THUỘC</div>
 			<div class="navigation">
 				<ul>
-					@foreach($arrType as $type)
+					@foreach($arrType as $key=>$type)
 					<li class="dot"><a href="javascript:void(0)">{{$type}}</a>
+						@if(sizeof($arrDepartment) > 0)
 						<ul>
-							<li><a href="">Khoa Xã hội - Nhân văn</a></li>
-							<li><a href="">Khoa Quản lý - Văn thư</a></li>
-							<li><a href="">Khoa Công Nghệ Thông Tin</a></li>
+							@foreach($arrDepartment as $item)
+								@if($key == $item->department_type)
+								<li><a title="{{$item['department_name']}}" href="{{FunctionLib::buildLinkCategoryDepartment($item['department_alias'], $item['department_name'], $item['department_id'])}}">{{$item->department_name}}</a></li>
+								@endif
+							@endforeach
 						</ul>
+						@endif
 					</li>
 					@endforeach
 				</ul>

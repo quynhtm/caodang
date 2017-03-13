@@ -398,4 +398,7 @@ class SiteHomeController extends BaseSiteController{
         $this->sliderPartnerBottom();
         $this->footer();
     }
+    public function pageDepartment($department_alias='', $department_title='', $department_id=0){
+        echo 'pageDepartment';die;
+    }
 }

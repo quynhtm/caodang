@@ -5,13 +5,17 @@
 			<div class="h2">CÁC ĐƠN VỊ TRỰC THUỘC</div>
 			<div class="navigation">
 				<ul>
-					<?php foreach($arrType as $type): ?>
+					<?php foreach($arrType as $key=>$type): ?>
 					<li class="dot"><a href="javascript:void(0)"><?php echo $type; ?></a>
+						<?php if(sizeof($arrDepartment) > 0): ?>
 						<ul>
-							<li><a href="">Khoa Xã hội - Nhân văn</a></li>
-							<li><a href="">Khoa Quản lý - Văn thư</a></li>
-							<li><a href="">Khoa Công Nghệ Thông Tin</a></li>
+							<?php foreach($arrDepartment as $item): ?>
+								<?php if($key == $item->department_type): ?>
+								<li><a title="<?php echo $item['department_name']; ?>" href="<?php echo FunctionLib::buildLinkCategoryDepartment($item['department_alias'], $item['department_name'], $item['department_id']); ?>"><?php echo $item->department_name; ?></a></li>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</ul>
+						<?php endif; ?>
 					</li>
 					<?php endforeach; ?>
 				</ul>

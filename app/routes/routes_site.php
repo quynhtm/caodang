@@ -24,10 +24,13 @@ Route::match(['GET','POST'],'thu-vien-video/chi-tiet/{video_title}-{video_id}.ht
 Route::match(['GET','POST'],'thu-vien-anh.html',array('as' => 'site.pageLibrary','uses' =>'SiteHomeController@pageLibrary'));
 Route::match(['GET','POST'],'thu-vien-anh/chi-tiet/{image_title}-{image_id}.html',array('as' => 'site.pageLibraryDetail','uses' =>'SiteHomeController@pageLibraryDetail'))->where('image_title', '[A-Z0-9a-z_\-]+')->where('image_id', '[0-9]+');
 
-//lich su kien
+//Lich su kien
 Route::match(['GET','POST'],'lich-su-kien.html',array('as' => 'site.pageEvent','uses' =>'SiteHomeController@pageEvent'));
 Route::match(['GET','POST'],'lich-su-kien/chi-tiet/{event_title}-{event_id}.html',array('as' => 'site.pageEventDetail','uses' =>'SiteHomeController@pageEventDetail'))->where('event_title', '[A-Z0-9a-z_\-]+')->where('event_id', '[0-9]+');
 
+//Phong ban trung tam
+Route::match(['GET','POST'],'don-vi-truc-thuoc/{department_alias}/{department_title}-{department_id}.html',array('as' => 'site.pageDepartment','uses' =>'SiteHomeController@pageDepartment'))->where('department_alias', '[A-Z0-9a-z_\-]+')->where('department_title', '[A-Z0-9a-z_\-]+')->where('department_id', '[0-9]+');
+Route::match(['GET','POST'],'don-vi-truc-thuoc/chi-tiet/{department_title}-{department_id}.html',array('as' => 'site.pageDepartmentDetail','uses' =>'SiteHomeController@pageDepartmentDetail'))->where('department_title', '[A-Z0-9a-z_\-]+')->where('department_id', '[0-9]+');
 
 //Captcha
 Route::match(['GET','POST'], 'captcha', array('as' => 'site.linkCaptcha','uses' =>'SiteHomeController@linkCaptcha'));
