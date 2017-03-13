@@ -70,7 +70,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    [<b><?php echo $item['event_id']; ?></b>]<a href="#" target="_blank"><?php echo $item['event_title']; ?></a>
+                                    [<b><?php echo $item['event_id']; ?></b>]<a href="<?php echo FunctionLib::buildLinkDetailEvent($item->event_title, $item->event_id); ?>" target="_blank"><?php echo $item['event_title']; ?></a>
                                 </td>
                                 <td><?php if(isset($arrDepart[$item['event_depart_id']])): ?><?php echo $arrDepart[$item['event_depart_id']]; ?><?php else: ?> --- <?php endif; ?></td>
                                 <td class="text-center">

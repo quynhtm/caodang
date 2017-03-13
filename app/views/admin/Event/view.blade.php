@@ -67,7 +67,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    [<b>{{ $item['event_id'] }}</b>]<a href="#" target="_blank">{{ $item['event_title'] }}</a>
+                                    [<b>{{ $item['event_id'] }}</b>]<a href="{{FunctionLib::buildLinkDetailEvent($item->event_title, $item->event_id)}}" target="_blank">{{ $item['event_title'] }}</a>
                                 </td>
                                 <td>@if(isset($arrDepart[$item['event_depart_id']])){{ $arrDepart[$item['event_depart_id']] }}@else --- @endif</td>
                                 <td class="text-center">

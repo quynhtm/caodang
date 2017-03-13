@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eea837e0-6974-47e7-a82a-b5c05406f6c4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/18/29/182952d1d3ebef44ec2c41219848eacf" afterPath="$PROJECT_DIR$/app/storage/cache/18/29/182952d1d3ebef44ec2c41219848eacf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/34/0a/340afe587fa1feb6b19bc4a672ac98f2" afterPath="$PROJECT_DIR$/app/storage/cache/34/0a/340afe587fa1feb6b19bc4a672ac98f2" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/44/fe/44fe92180779cd503957ea22746ab812" afterPath="$PROJECT_DIR$/app/storage/cache/44/fe/44fe92180779cd503957ea22746ab812" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" afterPath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7e/34/7e3464f13a73ca389b078fed2212214f" afterPath="$PROJECT_DIR$/app/storage/cache/7e/34/7e3464f13a73ca389b078fed2212214f" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/97/40/9740aa2b9ec2f5d7baa59340f034d6c0" afterPath="$PROJECT_DIR$/app/storage/cache/97/40/9740aa2b9ec2f5d7baa59340f034d6c0" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/bf/ed/bfedb7dbc1d5d977dc2520d4e6fddda5" afterPath="$PROJECT_DIR$/app/storage/cache/bf/ed/bfedb7dbc1d5d977dc2520d4e6fddda5" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/d3/20/d32024e7510efc484954ca3500ab0f10" afterPath="$PROJECT_DIR$/app/storage/cache/d3/20/d32024e7510efc484954ca3500ab0f10" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ec/75/ec75879716cdb1e8c4b4d4af45e72e57" afterPath="$PROJECT_DIR$/app/storage/cache/ec/75/ec75879716cdb1e8c4b4d4af45e72e57" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/f6/a2/f6a236bcc7c1f73576440141c961c46f" afterPath="$PROJECT_DIR$/app/storage/cache/f6/a2/f6a236bcc7c1f73576440141c961c46f" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/b4/f7/b4f7fb1a059abca1c4bfe57f21800491" afterPath="$PROJECT_DIR$/app/storage/cache/b4/f7/b4f7fb1a059abca1c4bfe57f21800491" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/ec/64/ec64c2dbd81cd6291b501db0582f86ca" afterPath="$PROJECT_DIR$/app/storage/cache/ec/64/ec64c2dbd81cd6291b501db0582f86ca" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/views/37b923b9d224d965c8b36163f1368b3b" afterPath="$PROJECT_DIR$/app/storage/views/37b923b9d224d965c8b36163f1368b3b" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/Event/view.blade.php" afterPath="$PROJECT_DIR$/app/views/admin/Event/view.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/frontend/css/site.css" afterPath="$PROJECT_DIR$/assets/frontend/css/site.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -111,8 +126,8 @@
         <option value="$PROJECT_DIR$/app/controllers/site/SiteHomeController.php" />
         <option value="$PROJECT_DIR$/app/views/admin/TabDepart/viewTabSub.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/Department/view.blade.php" />
-        <option value="$PROJECT_DIR$/assets/frontend/css/site.css" />
         <option value="$PROJECT_DIR$/app/views/admin/Category/view.blade.php" />
+        <option value="$PROJECT_DIR$/assets/frontend/css/site.css" />
       </list>
     </option>
   </component>
@@ -144,8 +159,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -168,7 +181,47 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -183,58 +236,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Category" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -258,11 +259,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vinasugar1.com.vn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -348,17 +351,18 @@
       <workItem from="1488939289997" duration="16284000" />
       <workItem from="1489029096669" duration="13517000" />
       <workItem from="1489130276781" duration="267000" />
+      <workItem from="1489375918622" duration="335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116505000" />
+    <option name="totallyTimeSpent" value="116840000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.009077156" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1301059" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -738,13 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/frontend/css/site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="319" column="1" lean-forward="false" selection-start-line="319" selection-start-column="1" selection-end-line="319" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/left.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
@@ -763,6 +760,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="89" column="256" lean-forward="false" selection-start-line="89" selection-start-column="256" selection-end-line="89" selection-end-column="256" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/frontend/css/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="199" column="24" lean-forward="false" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
