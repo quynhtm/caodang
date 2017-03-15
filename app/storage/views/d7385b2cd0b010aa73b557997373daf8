@@ -11,6 +11,7 @@
 								<a title="<?php echo $item->image_title; ?>" href="<?php echo ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $img, CGlobal::sizeImage_1000); ?>">
 									<div class="thumbLDetail">
 										<img src="<?php echo ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $img, CGlobal::sizeImage_1000); ?>" />
+										<i class="fa fa-search-plus iconzoom"></i>
 									</div>
 								</a>
 							</div>
