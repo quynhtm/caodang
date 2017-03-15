@@ -3452,6 +3452,7 @@ return array(
     'TrashController' => $baseDir . '/app/controllers/admin/TrashController.php',
     'TypeSetting' => $baseDir . '/app/models/TypeSetting.php',
     'Upload' => $baseDir . '/app/library/AdminFunction/Upload.php',
+    'UploadExcelController' => $baseDir . '/app/controllers/admin/UploadExcelController.php',
     'User' => $baseDir . '/app/models/User.php',
     'UserController' => $baseDir . '/app/controllers/admin/UserController.php',
     'UserCustomer' => $baseDir . '/app/models/UserCustomer.php',
