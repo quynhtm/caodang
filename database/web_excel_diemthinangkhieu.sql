@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-03-15 15:12:59
+Date: 2017-03-15 16:27:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `web_excel_diemthinangkhieu`;
 CREATE TABLE `web_excel_diemthinangkhieu` (
-  `nangkhieu_id` int(11) NOT NULL,
+  `nangkhieu_id` int(11) NOT NULL AUTO_INCREMENT,
   `nangkhieu_sobaodanh` varchar(200) DEFAULT NULL,
   `nangkhieu_hoten` varchar(255) DEFAULT NULL,
   `nangkhieu_ngaysinh` int(12) DEFAULT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `web_excel_tuyensinh` (
 -- ----------------------------
 DROP TABLE IF EXISTS `web_excel_vanbangchungchi`;
 CREATE TABLE `web_excel_vanbangchungchi` (
-  `vanbang_id` int(11) NOT NULL,
+  `vanbang_id` int(11) NOT NULL AUTO_INCREMENT,
   `vanbang_hoten` varchar(255) DEFAULT NULL,
   `vanbang_ngaysinh` int(12) DEFAULT NULL,
   `vanbang_noisinh` varchar(255) DEFAULT NULL,
