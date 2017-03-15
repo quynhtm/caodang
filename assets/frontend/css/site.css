@@ -729,6 +729,7 @@ h1, h2, h3, h4, h5, h6{
 .item-library-detail .thumbLDetail {
     height: 180px;
     overflow: hidden;
+	position: relative;
 }
 #gallery img {
     cursor: pointer;
@@ -945,4 +946,10 @@ list-post .item-post .post-intro {
     color: #FFFFFF;
     position: relative;
     top: 1px;
+}
+.iconzoom{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #fff;
 }
