@@ -17,32 +17,47 @@
 				<a class="en class=" href="?lang=en"></a>
 			</div>
 	    </div>
-		<div class="bg-menu">
+		<nav class="navbar navbar-inverse">
 			<div class="container">
-				<ul class="menu">
-					<li><a class="aline" href="<?php echo URL::route('site.home'); ?>">Trang chủ</a></li>
-					<?php if(!empty($menuCategoriessAll)): ?>
-                        <?php $i=1; ?>
-						<?php foreach($menuCategoriessAll as $cat): ?>
-							<?php if($i <= $numCategory): ?>
-								<?php if($cat['category_show_top'] == CGlobal::status_show && $cat['category_parent_id'] == CGlobal::status_hide): ?>
-                                    <?php $i++; ?>
-									<li><a class="aline <?php if(isset($catid) && $catid == $cat['category_id']): ?> act <?php endif; ?>" <?php if($cat['category_link'] != ''): ?>href="<?php echo $cat['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name']); ?>" <?php endif; ?> title="<?php echo $cat['category_name']; ?>"><?php echo $cat['category_name']; ?></a>
-										<ul class="menu-sub">
-											<?php foreach($menuCategoriessAll as $sub): ?>
-												<?php if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show): ?>
-													<li><a <?php if($sub['category_link'] != ''): ?>href="<?php echo $sub['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($sub['category_id'], $sub['category_name']); ?>" <?php endif; ?> title="<?php echo $sub['category_name']; ?>"><?php echo $sub['category_name']; ?></a></a></li>
-												<?php endif; ?>
-											<?php endforeach; ?>
-										</ul>
-									</li>
-								<?php endif; ?>
-							<?php endif; ?>
-						<?php endforeach; ?>
-					<?php endif; ?>
-					<li><a href="<?php echo URL::route('site.pageContact'); ?>" title="Liên hệ">Liên hệ</a></li>
-				</ul>
+				<div class="top-header-button">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+								data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Menu icon</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+				</div>
 			</div>
-		</div>
+			<div class="bg-menu">
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="menu nav navbar-nav menu-header ">
+						<li><a class="aline" href="<?php echo URL::route('site.home'); ?>">Trang chủ</a></li>
+						<?php if(!empty($menuCategoriessAll)): ?>
+                            <?php $i=1; ?>
+							<?php foreach($menuCategoriessAll as $cat): ?>
+								<?php if($i <= $numCategory): ?>
+									<?php if($cat['category_show_top'] == CGlobal::status_show && $cat['category_parent_id'] == CGlobal::status_hide): ?>
+                                        <?php $i++; ?>
+										<li><a class="aline <?php if(isset($catid) && $catid == $cat['category_id']): ?> act <?php endif; ?>" <?php if($cat['category_link'] != ''): ?>href="<?php echo $cat['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name']); ?>" <?php endif; ?> title="<?php echo $cat['category_name']; ?>"><?php echo $cat['category_name']; ?></a>
+											<ul class="menu-sub">
+												<?php foreach($menuCategoriessAll as $sub): ?>
+													<?php if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show): ?>
+														<li><a <?php if($sub['category_link'] != ''): ?>href="<?php echo $sub['category_link']; ?>" target="_blank" <?php else: ?> href="<?php echo FunctionLib::buildLinkCategory($sub['category_id'], $sub['category_name']); ?>" <?php endif; ?> title="<?php echo $sub['category_name']; ?>"><?php echo $sub['category_name']; ?></a></a></li>
+													<?php endif; ?>
+												<?php endforeach; ?>
+											</ul>
+										</li>
+									<?php endif; ?>
+								<?php endif; ?>
+							<?php endforeach; ?>
+						<?php endif; ?>
+						<li><a href="<?php echo URL::route('site.pageContact'); ?>" title="Liên hệ">Liên hệ</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 	</div>
 </div>
