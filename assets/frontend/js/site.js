@@ -69,10 +69,6 @@ SITE={
 			return valid;
 		});
 	},
-	refreshCaptcha:function(){
-		var img = document.images['imageCaptchar'];
-		img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.round(1000*Math.random());
-	},
 	captchaCheckAjax:function(){
 		var captcha = jQuery('#securityCode').val();
 		if(captcha != ''){
@@ -84,7 +80,10 @@ SITE={
 				success: function(data){
 					if(data == 0){
 						jQuery('#securityCode').addClass('error');
-						SITE.refreshCaptcha();
+                        var img = document.images['imageCaptchar'];
+                        if(img != undefined) {
+                            img.src = img.src.substring(0, img.src.lastIndexOf("?")) + "?rand=" + Math.round(1000 * Math.random());
+                        }
 					}else{
 						jQuery('#securityCode').removeClass('error');
 					}
