@@ -109,6 +109,10 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('categoryDepart/deleteCategoryDepart', array('as' => 'admin.deltete_categoryDepart_post','uses' => 'CategoryDepartController@deleteCategoryDepart'));//ajax
     Route::post('categoryDepart/updateStatusCategoryDepart', array('as' => 'admin.status_categoryDepart_post','uses' => 'CategoryDepartController@updateStatusCategoryDepart'));//ajax
 
+    //quan ly Excel điểm thi
+    Route::get('upload/uploadExcel',array('as'=>'admin.uploadExcel','uses'=>'UploadExcelController@getInputExcel'));
+    Route::post('upload/uploadExcel',array('as'=>'admin.uploadExcel','uses'=>'UploadExcelController@postInputExcel'));
+
     ///*Quản lý tab*/
     Route::get('tab/view',array('as' => 'admin.tabView','uses' => 'TabDepartController@viewTab'));
     Route::get('tab/tabEdit/{id?}', array('as' => 'admin.tabEdit','uses' => 'TabDepartController@getTab'))->where('id', '[0-9]+');
