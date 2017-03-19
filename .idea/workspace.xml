@@ -4,6 +4,12 @@
     <list default="true" id="eea837e0-6974-47e7-a82a-b5c05406f6c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" afterPath="$PROJECT_DIR$/app/storage/cache/7b/68/7b685cd45a6528e5ae6d508ba33110a0" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/views/0ccc203ba8cb9a087dbb8118dd2451cb" afterPath="$PROJECT_DIR$/app/storage/views/0ccc203ba8cb9a087dbb8118dd2451cb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/storage/views/bc6f248c9a0caebb5b96088b519759cc" afterPath="$PROJECT_DIR$/app/storage/views/bc6f248c9a0caebb5b96088b519759cc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php" afterPath="$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/site/BaseLayouts/index.blade.php" afterPath="$PROJECT_DIR$/app/views/site/BaseLayouts/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/frontend/css/media.css" afterPath="$PROJECT_DIR$/assets/frontend/css/media.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/frontend/css/site.css" afterPath="$PROJECT_DIR$/assets/frontend/css/site.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,9 +31,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ayVietnamese as</find>
-      <find>buildLink</find>
-      <find>.item-library .titleL</find>
       <find>sizeImage_750</find>
       <find>aitem</find>
       <find>link-breadcrumb</find>
@@ -55,6 +58,9 @@
       <find>.box-brand img</find>
       <find>.list-post .post-intro</find>
       <find>CACHE_ALL_DEPARTMENT</find>
+      <find>.menu</find>
+      <find>menu li</find>
+      <find>.menu li</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -63,7 +69,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/footer.blade.php" />
         <option value="$PROJECT_DIR$/app/models/Info.php" />
         <option value="$PROJECT_DIR$/app/controllers/admin/BannerController.php" />
         <option value="$PROJECT_DIR$/app/controllers/admin/CategoryController.php" />
@@ -94,13 +99,11 @@
         <option value="$PROJECT_DIR$/app/views/admin/TabDepart/viewTab.blade.php" />
         <option value="$PROJECT_DIR$/app/models/TabSub.php" />
         <option value="$PROJECT_DIR$/assets/frontend/js/site.js" />
-        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/eduBottom.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/imagesVideoBottom.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/SiteLayouts/Home.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/TabDepart/viewTabSub.blade.php" />
         <option value="$PROJECT_DIR$/app/views/admin/Category/view.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/SiteLayouts/pageNews.blade.php" />
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/left.blade.php" />
         <option value="$PROJECT_DIR$/assets/admin/js/admin.js" />
@@ -113,7 +116,10 @@
         <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/right.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/site/SiteHomeController.php" />
         <option value="$PROJECT_DIR$/app/views/site/SiteLayouts/pageDepartment.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php" />
         <option value="$PROJECT_DIR$/assets/frontend/css/site.css" />
+        <option value="$PROJECT_DIR$/assets/frontend/css/media.css" />
       </list>
     </option>
   </component>
@@ -146,6 +152,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -182,6 +189,46 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdsptw.edu.vn" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -200,36 +247,17 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdsptw.edu.vn" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vinasugar1.com.vn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -317,17 +345,18 @@
       <workItem from="1489130276781" duration="267000" />
       <workItem from="1489375918622" duration="18273000" />
       <workItem from="1489411522433" duration="609000" />
+      <workItem from="1489902212940" duration="3982000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135387000" />
+    <option name="totallyTimeSpent" value="139369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24205749" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13313162" sideWeight="0.6977124" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -378,20 +407,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/admin/LibraryImage/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="77" column="44" lean-forward="false" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/Video/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="76" column="22" lean-forward="true" selection-start-line="67" selection-start-column="16" selection-end-line="76" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/LibraryImage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
@@ -539,13 +554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="61" column="48" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/eduBottom.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -606,13 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="32" column="146" lean-forward="false" selection-start-line="32" selection-start-column="146" selection-end-line="32" selection-end-column="146" />
         </state>
       </provider>
     </entry>
@@ -737,10 +738,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/debug.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/site/BaseLayouts/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/frontend/css/media.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/frontend/css/site.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="925" column="1" lean-forward="false" selection-start-line="925" selection-start-column="1" selection-end-line="925" selection-end-column="1" />
+        <state relative-caret-position="-453">
+          <caret line="148" column="23" lean-forward="false" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
