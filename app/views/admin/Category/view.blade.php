@@ -60,7 +60,7 @@
                             <!--<th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>-->
                             <th width="35%" class="td_list">Tên danh mục</th>
                             <th width="15%" class="td_list">Danh mục cha</th>
-                            <!---<th width="15%" class="td_list">Khoa - trung tâm</th>-->
+                            <th width="15%" class="td_list">Khoa - trung tâm</th>
                             <th width="5%" class="text-center">Thứ tự</th>
 
                             <th width="5%" class="text-center">Show header</th>
@@ -91,7 +91,7 @@
                                        @endif
                                 </td>
                                 <td>@if(isset($arrCategoryParent[$item['category_parent_id']])){{$arrCategoryParent[$item['category_parent_id']]}}@else --- @endif</td>
-                                <!--<td>@if(isset($arrCategoryDepart[$item['category_depart_id']])){{$arrCategoryDepart[$item['category_depart_id']]}}@else --- @endif</td>-->
+                                <td>@if(isset($arrCategoryDepart[$item['category_depart_id']])){{$arrCategoryDepart[$item['category_depart_id']]}}@else --- @endif</td>
                                 <td class="text-center">{{$item['category_order']}}</td>
 
                                 <td class="text-center">

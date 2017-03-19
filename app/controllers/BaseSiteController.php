@@ -14,7 +14,7 @@ class BaseSiteController extends BaseController{
     	FunctionLib::site_js('frontend/js/site.js', CGlobal::$POS_END);
     }
 
-    public function header(){
+    public function header($logo='', $departmentId = -1){
         //Banner Header
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP);
         $arrBannerHead = $this->getBannerWithPosition($arrBanner);
@@ -28,6 +28,8 @@ class BaseSiteController extends BaseController{
         }
 
         $this->layout->header = View::make("site.BaseLayouts.header")
+                                ->with('logo', $logo)
+                                ->with('departmentId', $departmentId)
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
                                 ->with('numCategory', $numCategory)
                                 ->with('arrBannerHead', $arrBannerHead);

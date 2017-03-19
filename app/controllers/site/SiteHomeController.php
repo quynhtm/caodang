@@ -66,10 +66,21 @@ class SiteHomeController extends BaseSiteController{
         $arrItem = array();
         $meta_title = $meta_keywords = $meta_description = '';
         $meta_img = '';
+        $logo = '';
+        $department_id = -1;
         if($caid > 0){
             //GetCat
             $arrCat = Category::getByID($caid);
             if(sizeof($arrCat) > 0){
+                $department_id = $arrCat->category_depart_id;
+                if($department_id > 0){
+                    $itemDepart = Department::getById($department_id);
+                    if(sizeof($itemDepart) > 0) {
+                        if ($itemDepart->department_logo != '') {
+                            $logo = ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $itemDepart->department_id, $itemDepart->department_logo, CGlobal::sizeImage_1000, '', true, CGlobal::type_thumb_image_banner, false);
+                        }
+                    }
+                }
                 $meta_title = stripslashes($arrCat->category_name);
                 $meta_keywords = stripslashes($arrCat->category_meta_keywords);
                 $meta_description = stripslashes($arrCat->category_meta_description);
@@ -96,7 +107,7 @@ class SiteHomeController extends BaseSiteController{
 
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
-        $this->header();
+        $this->header($logo, $department_id);
         $this->slider();
         $this->left();
         $this->right();
@@ -402,21 +413,25 @@ class SiteHomeController extends BaseSiteController{
         $item = array();
         $meta_title = $meta_keywords = $meta_description = '';
         $meta_img = '';
-
+        $logo = '';
         if($department_id > 0){
-            $item = Department::getById($department_id);
-            if(sizeof($item) > 0){
-                $meta_title = stripslashes($item->department_name);
-                $meta_keywords = stripslashes($item->department_name);
-                $meta_description = stripslashes($item->department_name);
+            $itemDepart = Department::getById($department_id);
+            if(sizeof($itemDepart) > 0) {
+                if ($itemDepart->department_logo != ''){
+                    $logo = ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $itemDepart->department_id, $itemDepart->department_logo, CGlobal::sizeImage_1000, '', true, CGlobal::type_thumb_image_banner, false);
+                }
+                $meta_title = stripslashes($itemDepart->department_name);
+                $meta_keywords = stripslashes($itemDepart->department_name);
+                $meta_description = stripslashes($itemDepart->department_name);
             }
         }
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
-        $this->header();
+
+        $this->header($logo, $department_id);
         $this->slider();
         $this->left();
         $this->layout->content = View::make('site.SiteLayouts.pageDepartment')
-                                ->with('item', $item);
+                                ->with('item', $itemDepart);
         $this->right();
         $this->eduBottom();
         $this->sliderPartnerBottom();

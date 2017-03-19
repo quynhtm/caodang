@@ -14,6 +14,13 @@ class BaseAdminController extends BaseController
             Redirect::route('admin.login',array('url'=>self::buildUrlEncode(URL::current())))->send();
         }
 
+        FunctionLib::link_js(array(
+            'lib/jAlert/jquery.alerts.js',
+        ));
+        FunctionLib::link_css(array(
+            'lib/jAlert/jquery.alerts.css',
+        ));
+
         $this->user = User::user_login();
         if($this->user){
             if(sizeof($this->user['user_permission']) > 0) {

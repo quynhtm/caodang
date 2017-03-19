@@ -1,11 +1,26 @@
 @media (min-width: 1200px){
-	
+    .menu > li{
+        z-index: 90;
+    }
+    .menu > li > ul > li{
+        z-index: 91;
+    }
 }
 @media (min-width: 992px) and (max-width: 1200px) {
-	
+    .menu > li{
+        z-index: 90;
+    }
+    .menu > li > ul > li{
+        z-index: 91;
+    }
 }
 @media (min-width: 768px) and (max-width: 992px) {
-	
+    .menu > li{
+        z-index: 90;
+    }
+    .menu > li > ul > li{
+        z-index: 91;
+    }
 }
 @media (max-width: 768px) {
 	.container{
