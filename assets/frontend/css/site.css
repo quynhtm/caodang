@@ -132,9 +132,11 @@ h1, h2, h3, h4, h5, h6{
 .flash .banner-img{
     z-index: 2;
 }
-.bg-menu{
+.bg-menu {
     background: #7d7d7d;
     width: 100%;
+    display: inline-block;
+    float: left;
 }
 .menu{
     width: 100%;
@@ -887,6 +889,8 @@ list-post .item-post .post-intro {
     list-style: none;
     padding-left: 15px;
     position: relative;
+    display: inline-block;
+    width: 100%;
 }
 .navigation ul li:last-child{
     border-bottom: none;
@@ -974,4 +978,67 @@ list-post .item-post .post-intro {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     line-height: 40px;
+}
+.icon-home {
+    font-size: 20px !important;
+    position: relative;
+    top: 2px;
+}
+.item-main {
+    margin: 0px 0px;
+    width: 100%;
+}
+.title-main {
+    font-size: 13px;
+    font-weight: bold;
+    color: #387414;
+}
+.intro-main{
+    color: #000;
+    font-size: 14px;
+    margin-top: 10px;
+    text-decoration: none;
+    text-align: justify;
+    line-height: 150%;
+}
+.intro-main img {
+    padding: 1px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+.list-main {
+    padding: 0px 0px;
+    margin-top: 10px;
+    clear: both;
+    display:inline-block;
+    width:100%;
+}
+.list-main ul li {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: #999;
+    background: url("../img/icon-sq.jpg") no-repeat scroll left 14px rgba(0, 0, 0, 0);
+}
+.list-main ul li a{
+    color: #387414;
+    text-decoration: none;
+}
+.list-main ul li a:hover{
+    text-decoration: underline;
+}
+.box-item{
+    padding-bottom:10px;
+    margin-bottom:20px;
+    display:inline-block;
+    width:100%;
+}
+.box-item-ext{
+    border-bottom:1px dotted #ddd;
+}
+.selectLink{
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 3px 0px;
+    margin-bottom: 10px;
 }

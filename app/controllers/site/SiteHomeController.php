@@ -68,6 +68,7 @@ class SiteHomeController extends BaseSiteController{
         $meta_img = '';
         $logo = '';
         $department_id = -1;
+        $itemDepart = array();
         if($caid > 0){
             //GetCat
             $arrCat = Category::getByID($caid);
@@ -81,6 +82,7 @@ class SiteHomeController extends BaseSiteController{
                         }
                     }
                 }
+
                 $meta_title = stripslashes($arrCat->category_name);
                 $meta_keywords = stripslashes($arrCat->category_meta_keywords);
                 $meta_description = stripslashes($arrCat->category_meta_description);
@@ -107,7 +109,7 @@ class SiteHomeController extends BaseSiteController{
 
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
-        $this->header($logo, $department_id);
+        $this->header($logo, $department_id, $itemDepart);
         $this->slider();
         $this->left();
         $this->right();
@@ -414,6 +416,7 @@ class SiteHomeController extends BaseSiteController{
         $meta_title = $meta_keywords = $meta_description = '';
         $meta_img = '';
         $logo = '';
+        $itemDepart = array();
         if($department_id > 0){
             $itemDepart = Department::getById($department_id);
             if(sizeof($itemDepart) > 0) {
@@ -427,7 +430,7 @@ class SiteHomeController extends BaseSiteController{
         }
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
-        $this->header($logo, $department_id);
+        $this->header($logo, $department_id, $itemDepart);
         $this->slider();
         $this->left();
         $this->layout->content = View::make('site.SiteLayouts.pageDepartment')

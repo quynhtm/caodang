@@ -40,7 +40,7 @@
     }
     .menu li .menu-sub {
         width: 100%;
-        background: #ddd;
+        background: #474747;
         z-index: 40;
     }
     .mgl5p {
@@ -116,5 +116,18 @@
     }
     .navigation ul li a {
         padding: 0 10px;
+    }
+    .menu li a.aline {
+        background: none;
+        float: none;
+    }
+    .box-item-ext .intro-main img {
+        padding: 1px;
+        border: 1px solid #ddd;
+        margin-right: 0px;
+        width: 100%;
+        margin-bottom: 5px;
+        clear: both;
+        display: inline-block;
     }
 }
