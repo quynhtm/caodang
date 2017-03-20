@@ -53,31 +53,78 @@ class UploadExcelController extends BaseAdminController
         if(!empty($rowsExcel)){
             /**
              * cac tên file
-             *  [A] => ID sản phẩm
-            [B] => Giá trị đóng gói
-            [C] => Kiểu đóng gói
-            [D] => Kiểu sản phẩm
-            [E] => Giá bán niêm yết
-            [F] => Giá thị trường
-            [G] => Giá bán trên site
-            [H] => Giá NCC thu về
-            [I] => Số lượng mua tối thiểu
+             *  [A] => Stt
+                [B] => Họ và tên người học
+                [C] => Ngày tháng năm sinh
+                [D] => Nơi sinh
+                [E] => Giới tính
+                [F] => Dân tộc
+                [G] => Ngành đào tạo
+                [H] => Năm tốt nghiệp
+                [I] => Xếp loại tốt nghiệp
+                [J] => Số hiệu văn bằng, chứng chỉ
+                [K] => Vào sổ cấp văn bằng, chứng chỉ số
+                [L] => Khóa học
+                [M] => Trình độ
+                [N] => Hình thức đào tạo
+                [O] => Số Quyết định tốt nghiệp
+                [P] => Ngày QĐ tốt nghiệp
              */
             if(empty($rowsExcel))
                 return true;
 
-            FunctionLib::debug($rowsExcel);
-
-            $arrColsExcel = array();
+            //FunctionLib::debug($rowsExcel);
+            /*$arrColsExcel = array();
             foreach ($rowsExcel[1] as $col => $title_col) {
                 $arrColsExcel[trim($title_col)] = $col;
-            }
+            }*/
             unset($rowsExcel[1]);
+            unset($rowsExcel[2]);
 
-            $idxUpdate = 0;
-            $arrProductId = array();
+            $idxUpdate = $idxCreate = 0;
+            $arrMaChungChi = array();
             $arrDataInput = array();
-            foreach ($rowsExcel as $val) {
+            if(!empty($rowsExcel)){
+                foreach($rowsExcel as $key => $val){
+                    if(isset($val['J']) && trim($val['J']) !=''){
+                        $maChungChi = trim($val['J']);
+                        $arrMaChungChi[] = $maChungChi;
+                        //Họ và tên người học
+                        if(isset($val['B']) && trim($val['B']) !=''){$arrDataInput[$maChungChi]['vanbang_hoten'] = trim($val['B']);}
+                        //vanbang_ngaysinh
+                        if(isset($val['C']) && trim($val['C']) !=''){$arrDataInput[$maChungChi]['vanbang_ngaysinh'] = trim($val['C']);}
+                        //vanbang_noisinh
+                        if(isset($val['D']) && trim($val['D']) !=''){$arrDataInput[$maChungChi]['vanbang_noisinh'] = trim($val['D']);}
+                        //Họ và tên người học
+                        if(isset($val['E']) && trim($val['E']) !=''){$arrDataInput[$maChungChi]['vanbang_gioitinh'] = trim($val['E']);}
+                        //Họ và tên người học
+                        if(isset($val['F']) && trim($val['F']) !=''){$arrDataInput[$maChungChi]['vanbang_dantoc'] = trim($val['F']);}
+                        //Họ và tên người học
+                        if(isset($val['G']) && trim($val['G']) !=''){$arrDataInput[$maChungChi]['vanbang_nganhdaotao'] = trim($val['G']);}
+                        //Họ và tên người học
+                        if(isset($val['H']) && trim($val['H']) !=''){$arrDataInput[$maChungChi]['vanbang_namtotnghiep'] = trim($val['H']);}
+                        //Họ và tên người học
+                        if(isset($val['I']) && trim($val['I']) !=''){$arrDataInput[$maChungChi]['vanbang_xeploai'] = trim($val['I']);}
+                        //Họ và tên người học
+                        if(isset($val['J']) && trim($val['J']) !=''){$arrDataInput[$maChungChi]['vanbang_machungchi'] = trim($val['J']);}
+                        //Họ và tên người học
+                        if(isset($val['K']) && trim($val['K']) !=''){$arrDataInput[$maChungChi]['vanbang_chungchiso'] = trim($val['K']);}
+                        //Họ và tên người học
+                        if(isset($val['L']) && trim($val['L']) !=''){$arrDataInput[$maChungChi]['vanbang_khoahoc'] = trim($val['L']);}
+                        //Họ và tên người học
+                        if(isset($val['M']) && trim($val['M']) !=''){$arrDataInput[$maChungChi]['vanbang_trinhdo'] = trim($val['M']);}
+                        //Họ và tên người học
+                        if(isset($val['N']) && trim($val['N']) !=''){$arrDataInput[$maChungChi]['vanbang_htdaotao'] = trim($val['N']);}
+                        //Họ và tên người học
+                        if(isset($val['O']) && trim($val['O']) !=''){$arrDataInput[$maChungChi]['vanbang_sototnghiep'] = trim($val['O']);}
+                        //Họ và tên người học
+                        if(isset($val['P']) && trim($val['P']) !=''){$arrDataInput[$maChungChi]['vanbang_ngaytotnghiep'] = trim($val['P']);}
+                    }
+                }
+            }
+            //$product_price = (isset($arrColsExcel['Giá bán niêm yết']) && trim($val[$arrColsExcel['Giá bán niêm yết']]) != '' )? (int)str_replace(',','',trim(preg_replace('/[^0-9\,]/','', trim($val[$arrColsExcel['Giá bán niêm yết']])))) : 0;
+            //FunctionLib::debug($arrDataInput);
+            /*foreach ($rowsExcel as $val) {
                 if (isset($arrColsExcel['ID sản phẩm']) && (int)trim($val[$arrColsExcel['ID sản phẩm']]) > 0) {
                     $product_id = trim($val[$arrColsExcel['ID sản phẩm']]);
                     $arrProductId[] = $product_id;
@@ -118,12 +165,19 @@ class UploadExcelController extends BaseAdminController
                     $arrDataInput[$product_id]['product_percent'] = $product_percent_discount;// % giảm giá
                     $arrDataInput[$product_id]['product_price_discount'] = ($product_price > 0 && $product_sell_price > 0 ) ? abs($product_price - $product_sell_price): 0;//số tiền giảm
                 }
-            }
+            }*/
             //FunctionLib::debug($arrDataInput);
-            if(!empty($arrProductId)) {
-
+            if(!empty($arrMaChungChi)) {
+                foreach ($arrDataInput as $pro_id => $dataSave) {
+                    if(sizeof($dataSave) > 0){
+                        $dataSave['vanbang_ngaytao'] =time();
+                        $dataSave['vanbang_ngaytao'] = $this->user['user_full_name'];
+                        ExcelVanbang::addData($dataSave);
+                        $idxCreate++;
+                    }
+                }
                 //foreach để cập nhật
-                if(!empty($arrDataInput)) {
+                /*if(!empty($arrDataInput)) {
                     foreach ($arrDataInput as $pro_id => $val_input) {
                         if ((int)$pro_id > 0) {//
                             $dataSave = array();
@@ -176,9 +230,9 @@ class UploadExcelController extends BaseAdminController
                             }
                         }
                     }
-                }
+                }*/
             }
-            echo 'Da cap nhat: '.$idxUpdate.' san pham';
+            echo 'Da cap nhat: '.$idxCreate.' san pham';
             die(' Ok done');
         }
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcel')
