@@ -532,7 +532,7 @@ var Admin = {
     },
     getCategoryWithDepart:function(){
         var news_depart_id = $('#news_depart_id').val();
-        if(parseInt(news_depart_id) > 0){
+        if(parseInt(news_depart_id) > -1){
             $('#news_category_id').html('');
             $('#news_show_cate_id').html('');
             jQuery.ajax({
@@ -544,6 +544,25 @@ var Admin = {
                     if(res.isIntOk === 1){
                         $('#news_category_id').html(res.html_option);
                         $('#news_show_cate_id').html(res.html_option);
+                    }else{
+                        jAlert(res.msg, 'Thông báo');
+                    }
+                }
+            });
+        }
+    },
+    getCategoryParentWithDepart:function(){
+        var category_depart_id = $('#category_depart_id').val();
+        if(parseInt(category_depart_id) > -1){
+            $('#category_parent_id').html('');
+            jQuery.ajax({
+                type: "POST",
+                url: WEB_ROOT + '/admin/category/getCategoryParentWithDepart',
+                data: {category_depart_id : category_depart_id},
+                dataType: 'json',
+                success: function(res) {
+                    if(res.isIntOk === 1){
+                        $('#category_parent_id').html(res.html_option);
                     }else{
                         jAlert(res.msg, 'Thông báo');
                     }

@@ -131,6 +131,7 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('category/deleteCategory', array('as' => 'admin.deltete_category_post','uses' => 'CategoryController@deleteCategory'));//ajax
     Route::post('category/updateStatusCategory', array('as' => 'admin.status_category_post','uses' => 'CategoryController@updateStatusCategory'));//ajax
     Route::post('category/updatePositionStatusCategory', array('as' => 'admin.status_category_position','uses' => 'CategoryController@updatePositionStatusCategory'));//ajax
+    Route::post('category/getCategoryParentWithDepart',array('as' => 'admin.getCategoryParentWithDepart','uses' =>'CategoryController@getCategoryParentWithDepart'));
 
     /*Quản lý danh sách khách hàng đăng tin*/
     Route::get('customer/view',array('as' => 'admin.customerView','uses' => 'UserCustomerController@view'));

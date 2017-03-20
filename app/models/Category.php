@@ -49,7 +49,7 @@ class Category extends Eloquent
 
     public static function getCategoryByDepartId($depart_id = 0) {
         $data = array();
-        if($depart_id > 0){
+        if($depart_id > -1){
             $category = Category::where('category_depart_id',$depart_id)->orderBy('category_id','asc')->get();
             foreach($category as $itm) {
                 $data[$itm['category_id']] = $itm['category_name'];

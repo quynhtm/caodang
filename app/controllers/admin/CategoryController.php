@@ -51,12 +51,12 @@ class CategoryController extends BaseAdminController
         $search['category_id'] = addslashes(Request::get('category_id',''));
         $search['category_name'] = addslashes(Request::get('category_name',''));
         $search['category_status'] = (int)Request::get('category_status',-1);
-        $search['category_depart_id'] = (int)Request::get('category_depart_id',-1);
+        $search['category_depart_id'] = (int)Request::get('category_depart_id',0);
         if(!$this->is_root){
             $search['string_depart_id'] = $this->user_group_depart;
         }
         
-        $dataSearch = ($search['category_depart_id'] > 0)?Category::searchByCondition($search, 500, $offset,$total): array();
+        $dataSearch = Category::searchByCondition($search, 500, $offset,$total);
         $paging = '';
         if(!empty($dataSearch)){
             if($search['category_status'] == -1 && $search['category_name'] == '' ){
@@ -68,7 +68,7 @@ class CategoryController extends BaseAdminController
 
         //FunctionLib::debug($dataSearch);
         $optionStatus = FunctionLib::getOption($this->arrStatus, $search['category_status']);
-        $optionCategoryDepart = FunctionLib::getOption(array(-1=>'--- Chọn khoa-trung tâm ---')+$this->arrCategoryDepart, $search['category_depart_id']);
+        $optionCategoryDepart = FunctionLib::getOption(array(0 =>'--- Chọn khoa-trung tâm (Trang chủ)---')+$this->arrCategoryDepart, $search['category_depart_id']);
         $this->layout->content = View::make('admin.Category.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -100,7 +100,7 @@ class CategoryController extends BaseAdminController
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['category_status'])? $data['category_status'] : -1);
         $optionCategoryParent = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryParent, isset($data['category_parent_id'])? $data['category_parent_id'] : -1);
-        $optionCategoryDepart = FunctionLib::getOption(array(-1=>'--- Chọn khoa-trung tâm ---')+$this->arrCategoryDepart, isset($data['category_depart_id'])? $data['category_depart_id'] : -1);
+        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn khoa-trung tâm (Trang chủ) ---')+$this->arrCategoryDepart, isset($data['category_depart_id'])? $data['category_depart_id'] : 0);
         $this->layout->content = View::make('admin.Category.add')
             ->with('id', $id)
             ->with('data', $data)
@@ -173,7 +173,7 @@ class CategoryController extends BaseAdminController
         }
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
         $optionCategoryParent = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryParent, isset($dataSave['category_parent_id'])? $dataSave['category_parent_id'] : -1);
-        $optionCategoryDepart = FunctionLib::getOption(array(-1=>'--- Chọn khoa-trung tâm ---')+$this->arrCategoryDepart, isset($dataSave['category_depart_id'])? $dataSave['category_depart_id'] : -1);
+        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn khoa-trung tâm (Trang chủ)---')+$this->arrCategoryDepart, isset($dataSave['category_depart_id'])? $dataSave['category_depart_id'] : 0);
 
         $this->layout->content =  View::make('admin.Category.add')
             ->with('id', $id)
@@ -266,6 +266,23 @@ class CategoryController extends BaseAdminController
             }
         }
         return Response::json($result);
+    }
+
+    public function getCategoryParentWithDepart(){
+        $data = array('isIntOk' => 0,'msg' => 'Không lấy được thông tin danh mục');
+        $category_depart_id = (int)Request::get('category_depart_id', -1);
+        if ($category_depart_id > -1) {
+            $category = Category::getCategoryByDepartId($category_depart_id);
+            if(!empty($category)){
+                $str_option = '<option value="">---Chọn danh mục---</option>';
+                foreach($category as $dis_id =>$dis_name){
+                    $str_option .='<option value="'.$dis_id.'">'.$dis_name.'</option>';
+                }
+                $data['html_option'] = $str_option;
+                $data['isIntOk'] = 1;
+            }
+        }
+        return Response::json($data);
     }
 
 }

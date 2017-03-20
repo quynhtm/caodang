@@ -34,7 +34,7 @@
                     <div class="col-sm-10">
                         <div class="form-group">
                             <label for="name" class="control-label">Thuộc Khoa - trung tâm</label>
-                            <select name="category_depart_id" id="category_depart_id" class="form-control input-sm">
+                            <select name="category_depart_id" id="category_depart_id" class="form-control input-sm" onchange="Admin.getCategoryParentWithDepart();">
                                 {{$optionCategoryDepart}}
                             </select>
                         </div>
