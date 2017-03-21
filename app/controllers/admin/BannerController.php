@@ -143,7 +143,7 @@ class BannerController extends BaseAdminController
         $optionRunTime = FunctionLib::getOption($this->arrRunTime, isset($data['banner_is_run_time'])? $data['banner_is_run_time']: CGlobal::BANNER_NOT_RUN_TIME);
 
         $optionTypeBanner = FunctionLib::getOption($this->arrTypeBanner, isset($data['banner_type'])? $data['banner_type']: -1);
-        $optionPage = FunctionLib::getOption(array(0 => '-- Chọn page --')+$this->arrPage, isset($data['banner_page'])? $data['banner_page']: 0);
+        $optionPage = FunctionLib::getOption(array(0 => '--- Chọn khoa-trung tâm (Trang chủ) ---')+$this->arrPage, isset($data['banner_page'])? $data['banner_page']: 0);
         $optionTarget = FunctionLib::getOption($this->arrTarget, isset($data['banner_is_target'])? $data['banner_is_target']: CGlobal::BANNER_TARGET_BLANK);
         $optionCategory = FunctionLib::getOption(array(0=>'--- Chọn danh mục quảng cáo ---')+$this->arrCategoryParent, isset($data['banner_category_id'])? $data['banner_category_id']: 0);
         $optionRel = FunctionLib::getOption($this->arrRel, isset($data['banner_is_rel'])? $data['banner_is_rel']: CGlobal::LINK_NOFOLLOW);
@@ -213,7 +213,7 @@ class BannerController extends BaseAdminController
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['banner_status'])? $data['banner_status']: CGlobal::STASTUS_HIDE);
         $optionRunTime = FunctionLib::getOption($this->arrRunTime, isset($data['banner_is_run_time'])? $data['banner_is_run_time']: CGlobal::BANNER_NOT_RUN_TIME);
         $optionTypeBanner = FunctionLib::getOption($this->arrTypeBanner, isset($data['banner_type'])? $data['banner_type']: -1);
-        $optionPage = FunctionLib::getOption(array(0 => '-- Chọn page --')+$this->arrPage, isset($data['banner_page'])? $data['banner_page']: -1);
+        $optionPage = FunctionLib::getOption(array(0 => '--- Chọn khoa-trung tâm (Trang chủ) ---')+$this->arrPage, isset($data['banner_page'])? $data['banner_page']: -1);
         $optionTarget = FunctionLib::getOption($this->arrTarget, isset($data['banner_is_target'])? $data['banner_is_target']: CGlobal::BANNER_TARGET_BLANK);
         $optionCategory = FunctionLib::getOption(array(0=>'--- Chọn danh mục quảng cáo ---')+$this->arrCategoryParent, isset($data['banner_category_id'])? $data['banner_category_id']: 0);
         $optionRel = FunctionLib::getOption($this->arrRel, isset($data['banner_is_rel'])? $data['banner_is_rel']: CGlobal::LINK_NOFOLLOW);
