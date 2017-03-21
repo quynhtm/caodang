@@ -109,9 +109,17 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('categoryDepart/deleteCategoryDepart', array('as' => 'admin.deltete_categoryDepart_post','uses' => 'CategoryDepartController@deleteCategoryDepart'));//ajax
     Route::post('categoryDepart/updateStatusCategoryDepart', array('as' => 'admin.status_categoryDepart_post','uses' => 'CategoryDepartController@updateStatusCategoryDepart'));//ajax
 
-    //quan ly Excel điểm thi
-    Route::get('upload/uploadExcel',array('as'=>'admin.uploadExcel','uses'=>'UploadExcelController@getInputExcel'));
-    Route::post('upload/uploadExcel',array('as'=>'admin.uploadExcel','uses'=>'UploadExcelController@postInputExcel'));
+    //quan ly Excel văn bằng chứng chỉ
+    Route::get('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@getInputExcelVanbang'));
+    Route::post('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@postInputExcelVanbang'));
+
+    //quan ly Excel Nang khieu
+    Route::get('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@getInputExcelNangkhieu'));
+    Route::post('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@postInputExcelNangkhieu'));
+
+    //quan ly Excel Tuyển sinh
+    Route::get('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@getInputExcelTuyensinh'));
+    Route::post('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@postInputExcelTuyensinh'));
 
     ///*Quản lý tab*/
     Route::get('tab/view',array('as' => 'admin.tabView','uses' => 'TabDepartController@viewTab'));

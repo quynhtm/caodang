@@ -13,13 +13,24 @@
             </div>
             <div class="form-group col-lg-4">
                 <label for="seo_key_file">Kiểu inport</label>
-                <select id="type_inport" name="type_inport" class="form-control input-sm" onchange="onchangeTypeInport();">{{$optionTypeInport}}</select>
+                <select id="type_inport" name="type_inport" class="form-control input-sm">
+                    <option value="1">Cập nhật điểm thi năng khiếu</option>
+                </select>
                 <div id="show_mess_inport" class="padding-top-2" style="display: none; color: red">
-                    <p>[A] => ID sản phẩm
-                        <br/>[B] => Giá bán niêm yết (product_price)
-                        <br/>[C] => Giá bán trên site (product_sell_price)
-                        <br/>[D] => Giá NCC thu về (product_price_supplier_get)
-                        <br/>[E] => Giá thị trường (product_market_price)</p>
+                    <p> [A] => Stt
+                        <br/>[B] => Số BD
+                        <br/>[C] => Họ và tên
+                        <br/>[D] => Ngày sinh
+                        <br/>[E] => Số CMND
+                        <br/>[F] => Số phách
+                        <br/>[G] => NK1
+                        <br/>[H] => NK2
+                        <br/>[I] => NK3
+                        <br/>[J] => NK4
+                        <br/>[K] => NK5
+                        <br/>[L] => Nk6
+                        <br/>[M] => Đợt thi
+                    </p>
                 </div>
             </div>
             <input type="hidden" name="sheet" value="{{$sheet}}">
@@ -47,16 +58,6 @@
             $('#show_mess_inport').hide();
             $('#show_mess_inport_3').hide();
             $('#show_mess_inport_4').hide();
-         }else if(type == 3){
-             $('#show_mess_inport_3').show();
-             $('#show_mess_inport').hide();
-             $('#show_mess_inport_2').hide();
-             $('#show_mess_inport_4').hide();
-         }else if(type == 4){
-             $('#show_mess_inport_4').show();
-             $('#show_mess_inport').hide();
-             $('#show_mess_inport_2').hide();
-             $('#show_mess_inport_3').hide();
          }
     }
 </script>

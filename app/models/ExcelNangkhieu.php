@@ -3,7 +3,7 @@
  * Created by JetBrains PhpStorm.
  * User: Quynhtm
  */
-class ExcelTuyensinh extends Eloquent
+class ExcelNangkhieu extends Eloquent
 {
     protected $table = 'web_excel_diemthinangkhieu';
     protected $primaryKey = 'nangkhieu_id';
@@ -17,7 +17,7 @@ class ExcelTuyensinh extends Eloquent
 
     public static function searchByCondition($dataSearch = array(), $limit =0, $offset=0, &$total){
         try{
-            $query = ExcelTuyensinh::where('nangkhieu_id','>',0);
+            $query = ExcelNangkhieu::where('nangkhieu_id','>',0);
             if (isset($dataSearch['nangkhieu_hoten']) && $dataSearch['nangkhieu_hoten'] != '') {
                 $query->where('nangkhieu_hoten','LIKE', '%' . $dataSearch['nangkhieu_hoten'] . '%');
             }
@@ -49,7 +49,7 @@ class ExcelTuyensinh extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $data = new ExcelTuyensinh();
+            $data = new ExcelNangkhieu();
             if (is_array($dataInput) && count($dataInput) > 0) {
                 foreach ($dataInput as $k => $v) {
                     $data->$k = $v;
@@ -81,7 +81,7 @@ class ExcelTuyensinh extends Eloquent
     {
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = ExcelTuyensinh::find($id);
+            $dataSave = ExcelNangkhieu::find($id);
             if (!empty($dataInput)){
                 $dataSave->update($dataInput);
                 if(isset($dataSave->nangkhieu_id) && $dataSave->nangkhieu_id > 0){
@@ -106,7 +106,7 @@ class ExcelTuyensinh extends Eloquent
     public static function deleteData($id){
         try {
             DB::connection()->getPdo()->beginTransaction();
-            $dataSave = ExcelTuyensinh::find($id);
+            $dataSave = ExcelNangkhieu::find($id);
             $dataSave->delete();
             if(isset($dataSave->nangkhieu_id) && $dataSave->nangkhieu_id > 0){
                 self::removeCache($dataSave->nangkhieu_id);
