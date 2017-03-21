@@ -67,7 +67,7 @@ class SiteHomeController extends BaseSiteController{
         $meta_title = $meta_keywords = $meta_description = '';
         $meta_img = '';
         $logo = '';
-        $department_id = -1;
+        $department_id = CGlobal::status_cat_department_home;
         $itemDepart = array();
         if($caid > 0){
             //GetCat
@@ -110,9 +110,9 @@ class SiteHomeController extends BaseSiteController{
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
         $this->header($logo, $department_id, $itemDepart);
-        $this->slider();
-        $this->left();
-        $this->right();
+        $this->slider($department_id, $itemDepart);
+        $this->left($department_id, $itemDepart);
+        $this->right($department_id, $itemDepart);
         $this->layout->content = View::make('site.SiteLayouts.pageNews')
                                 ->with('arrItem', $arrItem)
                                 ->with('arrCat', $arrCat)
@@ -127,9 +127,20 @@ class SiteHomeController extends BaseSiteController{
         $meta_title = $meta_keywords = $meta_description = '';
         $meta_img = '';
         $newsSame = array();
+        $logo = '';
+        $department_id = CGlobal::status_cat_department_home;
+        $itemDepart = array();
+
         if($id > 0){
             $item = News::getNewByID($id);
             if(sizeof($item) > 0){
+                $itemDepart = Department::getByID($item->news_depart_id);
+                if(sizeof($itemDepart) > 0){
+                    $department_id = $itemDepart->department_id;
+                    if ($itemDepart->department_logo != ''){
+                        $logo = ThumbImg::getImageThumb(CGlobal::FOLDER_DEPART_LOGO, $itemDepart->department_id, $itemDepart->department_logo, CGlobal::sizeImage_1000, '', true, CGlobal::type_thumb_image_banner, false);
+                    }
+                }
                 $arrCat = Category::getByID($item->news_category);
                 $meta_title = stripslashes($item->news_title);
                 $meta_keywords = stripslashes($item->news_title);
@@ -139,14 +150,15 @@ class SiteHomeController extends BaseSiteController{
         }
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
-        $this->header();
-        $this->slider();
-        $this->left();
+        $this->header($logo, $department_id, $itemDepart);
+        $this->slider($department_id, $itemDepart);
+        $this->left($department_id, $itemDepart);
+        $this->right($department_id, $itemDepart);
         $this->layout->content = View::make('site.SiteLayouts.pageNewsDetail')
             ->with('item', $item)
             ->with('arrCat', $arrCat)
             ->with('newsSame', $newsSame);
-        $this->right();
+
         $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
@@ -430,12 +442,18 @@ class SiteHomeController extends BaseSiteController{
         }
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
+        //List Category
+        $menuCategoriessAll = Category::getCategoriessAll();
+
         $this->header($logo, $department_id, $itemDepart);
-        $this->slider();
-        $this->left();
+        $this->slider($department_id, $itemDepart);
+        $this->left($department_id, $itemDepart);
+        $this->right($department_id, $itemDepart);
+
         $this->layout->content = View::make('site.SiteLayouts.pageDepartment')
+                                ->with('menuCategoriessAll', $menuCategoriessAll)
+                                ->with('departmentId', $department_id)
                                 ->with('item', $itemDepart);
-        $this->right();
         $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();

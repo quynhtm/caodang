@@ -58,7 +58,7 @@
                             <th width="2%"class="text-center">STT</th>
                             <th width="8%"class="text-center">Ảnh</th>
                             <!--<th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>-->
-                            <th width="35%" class="td_list">Tên danh mục</th>
+                            <th width="25%" class="td_list">Tên danh mục</th>
                             <th width="15%" class="td_list">Danh mục cha</th>
                             <th width="15%" class="td_list">Khoa - trung tâm</th>
                             <th width="5%" class="text-center">Thứ tự</th>

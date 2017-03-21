@@ -14,7 +14,7 @@ class BaseSiteController extends BaseController{
     	FunctionLib::site_js('frontend/js/site.js', CGlobal::$POS_END);
     }
 
-    public function header($logo='', $departmentId = -1, $itemDepartment=array()){
+    public function header($logo='', $departmentId = CGlobal::status_cat_department_home, $itemDepartment=array()){
         //Banner Header
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_TOP);
         $arrBannerHead = $this->getBannerWithPosition($arrBanner);
@@ -43,40 +43,46 @@ class BaseSiteController extends BaseController{
         }
 		$this->layout->footer = View::make("site.BaseLayouts.footer")->with('footer', $footer);
 	}
-    public function slider(){
+    public function slider($departmentId = CGlobal::status_cat_department_home, $itemDepartment=array()){
 
         FunctionLib::site_css('lib/skitter-master/skitter.css', CGlobal::$POS_HEAD);
         FunctionLib::site_js('lib/skitter-master/jquery.easing.1.3.js', CGlobal::$POS_END);
         FunctionLib::site_js('lib/skitter-master/jquery.skitter.min.js', CGlobal::$POS_END);
 
-        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_SLIDE);
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_SLIDE, $departmentId);
         $arrBannerSlider = $this->getBannerWithPosition($arrBanner);
         $this->layout->slider = View::make("site.BaseLayouts.slider")
+                                ->with('departmentId', $departmentId)
+                                ->with('itemDepartment', $itemDepartment)
                                 ->with('arrBannerSlider', $arrBannerSlider);
     }
-    public function left(){
+    public function left($departmentId = CGlobal::status_cat_department_home, $itemDepartment=array()){
         //List category right
         $menuCategoriessAll = Category::getCategoriessAll();
         //Banner Calendar Week
         $arrBannerWeeks = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_CALENDAR_WEEK);
         $arrBannerWeek = $this->getBannerWithPosition($arrBannerWeeks);
         //Banner Bottom
-        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_LEFT);
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_LEFT, $departmentId);
         $arrBannerLeft = $this->getBannerWithPosition($arrBanner);
         $this->layout->left = View::make("site.BaseLayouts.left")
+                                ->with('departmentId', $departmentId)
+                                ->with('itemDepartment', $itemDepartment)
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
                                 ->with('arrBannerLeft', $arrBannerLeft)
                                 ->with('arrBannerWeek', $arrBannerWeek);
     }
-    public function right(){
+    public function right($departmentId = CGlobal::status_cat_department_home, $itemDepartment=array()){
         //List type khoa-phongban-trungtam
         $arrType = TypeSetting::getTypeSettingWithGroup('group_type');
         $arrDepartment = Department::getFullDepart();
         //List category right
         $menuCategoriessAll = Category::getCategoriessAll();
-        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT);
+        $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT, $departmentId);
         $arrBannerRight = $this->getBannerWithPosition($arrBanner);
         $this->layout->right = View::make("site.BaseLayouts.right")
+                                ->with('departmentId', $departmentId)
+                                ->with('itemDepartment', $itemDepartment)
                                 ->with('arrType', $arrType)
                                 ->with('arrDepartment', $arrDepartment)
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
