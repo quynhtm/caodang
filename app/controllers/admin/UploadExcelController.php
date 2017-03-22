@@ -6,11 +6,11 @@
  */
 class UploadExcelController extends BaseAdminController
 {
-    private $permission_full = 'tab_full';
-    private $permission_view = 'tab_view';
-    private $permission_delete = 'tab_delete';
-    private $permission_create = 'tab_create';
-    private $permission_edit = 'tab_edit';
+    private $permission_full = 'excel_full';
+    private $permission_view = 'excel_view';
+    private $permission_delete = 'excel_delete';
+    private $permission_create = 'excel_create';
+    private $permission_edit = 'excel_edit';
     private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
     private $arrTabParent = array();
     private $error = array();
@@ -153,18 +153,18 @@ class UploadExcelController extends BaseAdminController
         $search = $data = $treeCategroy = array();
         $total = 0;
 
-        $search['tab_name'] = addslashes(Request::get('tab_name',''));
-        $search['tab_status'] = (int)Request::get('tab_status',-1);
-        $dataSearch = Tab::searchByCondition($search, $limit, $offset,$total);
+        $search['vanbang_hoten'] = trim(Request::get('vanbang_hoten',''));
+        $search['vanbang_machungchi'] = trim(Request::get('vanbang_machungchi',''));
+        $dataSearch = ExcelVanbang::searchByCondition($search, $limit, $offset,$total);
         $paging = '';
-        $optionStatus = FunctionLib::getOption($this->arrStatus, $search['tab_status']);
-        $this->layout->content = View::make('admin.UploadExcel.viewTab')
+        //FunctionLib::debug($dataSearch);
+
+        $this->layout->content = View::make('admin.UploadExcel.viewVanbang')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
             ->with('total', $total)
             ->with('data', $dataSearch)
             ->with('search', $search)
-            ->with('optionStatus', $optionStatus)
 
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common

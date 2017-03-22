@@ -110,6 +110,7 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('categoryDepart/updateStatusCategoryDepart', array('as' => 'admin.status_categoryDepart_post','uses' => 'CategoryDepartController@updateStatusCategoryDepart'));//ajax
 
     //quan ly Excel văn bằng chứng chỉ
+    Route::get('viewVanbang',array('as'=>'admin.viewVanbang','uses'=>'UploadExcelController@viewVanbang'));
     Route::get('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@getInputExcelVanbang'));
     Route::post('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@postInputExcelVanbang'));
 
