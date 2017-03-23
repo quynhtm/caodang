@@ -583,7 +583,7 @@ class UploadExcelController extends BaseAdminController
         $total = 0;
 
         $search['tuyensinh_hoten'] = trim(Request::get('tuyensinh_hoten',''));
-        $search['vanbang_machungchi'] = trim(Request::get('vanbang_machungchi',''));
+        $search['tuyensinh_sobaodanh'] = trim(Request::get('tuyensinh_sobaodanh',''));
         $dataSearch = ExcelTuyensinh::searchByCondition($search, $limit, $offset,$total);
         $paging = '';
         //FunctionLib::debug($dataSearch);

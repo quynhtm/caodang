@@ -46,36 +46,51 @@
                     <table class="table table-bordered table-hover">
                         <thead class="thin-border-bottom">
                         <tr class="">
-                            <th width="2%"class="text-center">STT</th>
-                            <th width="1%" class="text-center"><input type="checkbox" id="checkAll"/></th>
-                            <th width="30%" class="td_list">Thông tin học viên</th>
-                            <th width="30%" class="td_list">Thông tin ngành học</th>
-                            <th width="30%" class="text-td_list">Thông tin văn bằng</th>
-                            <th width="7%" class="text-center">Action</th>
+                            <th width="2%"class="text-center">STT<br/><input type="checkbox" id="checkAll"/></th>
+                            <th width="18%" class="td_list">Thông tin học viên</th>
+                            <th width="20%" class="td_list">Thông tin khu vực</th>
+                            <th width="15%" class="td_list">Thông tin môn thi</th>
+                            <th width="20%" class="text-td_list">Thông tin điểm UT</th>
+                            <th width="20%" class="text-td_list">Thông tin thêm</th>
+                            <th width="5%" class="text-center"></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($data as $key => $item)
                             <tr>
-                                <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['vanbang_id']}}"></td>
-                                <td>
-                                    <b>Tên: </b>{{ $item['vanbang_hoten'] }}
-                                    <br/><b>Sinh: </b>{{ $item['vanbang_ngaysinh'] }}
-                                    <br/><b>DChi: </b>{{ $item['vanbang_noisinh'] }}
-                                    <br/><b>Giới tính: </b>{{ $item['vanbang_gioitinh'] }} @if($item['vanbang_dantoc'] !=''),<b>Dân tộc: </b>{{ $item['vanbang_dantoc'] }}@endif
+                                <td class="text-center text-middle">
+                                    {{ $key+1 }}<br/><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['vanbang_id']}}">
                                 </td>
                                 <td>
-                                    <b>Ngành: </b>{{ $item['vanbang_nganhdaotao'] }}
-                                    <br/><b>Tốt nghiệp: </b>{{ $item['vanbang_namtotnghiep'] }} @if($item['vanbang_xeploai'] !=''),<b>Xếp loại: </b>{{ $item['vanbang_xeploai'] }}@endif
+                                    <b>Tên: </b>{{ $item['tuyensinh_hoten'] }}
+                                    <br/><b>CMT: </b>{{ $item['tuyensinh_cmt'] }}
+                                    <br/><b>Giới tính: </b>{{ $item['tuyensinh_gioitinh'] }}
+                                    @if($item['tuyensinh_ngaysinh'] !='')<br/> <b>Ngày sinh: </b>{{ $item['tuyensinh_ngaysinh'] }}@endif
+                                </td>
+                                <td>
+                                    <b>Khu vực UT: </b>{{ $item['tuyensinh_diem_uutien'] }} @if($item['tuyensinh_diem_uutien'] !=''),<b>Điểm UT: </b>{{ $item['tuyensinh_diem_uutien'] }}@endif
+                                    <br/><b>ĐC: </b>{{ $item['tuyensinh_quanhuyen'] }} @if($item['tuyensinh_tinhthanh'] !=''),{{ $item['tuyensinh_tinhthanh'] }}@endif
                                     <br/><b>Khóa: </b>{{ $item['vanbang_khoahoc'] }}
                                     <br/><b>Hình thức: </b> {{ $item['vanbang_trinhdo'] }} - {{ $item['vanbang_htdaotao'] }}
                                 </td>
                                 <td>
-                                    <b>Sô hiệu: </b>{{ $item['vanbang_machungchi'] }}
-                                    <br/><b>Chứng chỉ: </b>{{ $item['vanbang_chungchiso'] }}
-                                    <br/><b>Số tốt nghiệp: </b>{{ $item['vanbang_sototnghiep'] }}
-                                    <br/><b>Ngày tốt nghiệp: </b>{{ $item['vanbang_ngaytotnghiep'] }}
+                                    SBD: <b>{{ $item['tuyensinh_sobaodanh'] }}</b>
+                                    <br/>Môn 1: <b>{{ $item['tuyensinh_monthi_mot'] }}</b>: <b>{{ $item['tuyensinh_diem_monthimot'] }}</b>
+                                    <br/>Môn 2: <b>{{ $item['tuyensinh_monthi_hai'] }}</b>: <b>{{ $item['tuyensinh_diem_monthihai'] }}</b>
+                                    <br/>Môn 3: <b>{{ $item['tuyensinh_monthi_ba'] }}</b>: <b>{{ $item['tuyensinh_diem_monthiba'] }}</b>
+
+                                </td>
+                                <td>
+                                    Tổng điểm chưa UT: <b>{{ $item['tuyensinh_tongdiemchua_uutien'] }}</b>
+                                    <br/>Tổng điểm có UT: <b>{{ $item['tuyensinh_tongdiemco_uutien'] }}</b>
+                                    <br/>Điểm lệch: <b>{{ $item['tuyensinh_diemlech'] }}</b>
+                                    <br/>Điểm UT quy đổi: <b>{{ $item['tuyensinh_diem_uutien_quydoi'] }}</b>
+                                </td>
+                                <td>
+                                    <b>{{ $item['tuyensinh_nganhtrungtuyen'] }}</b>
+                                    </br/>Hồ sơ<b>{{ $item['tuyensinh_sohoso'] }}</b>
+                                    <br/>Xét tuyển: <b>{{ $item['tuyensinh_dotxettuyen'] }}</b>
+                                    <br/>Trình độ: <b>{{ $item['tuyensinh_trinhdo'] }}</b>
                                 </td>
 
                                 <td class="text-center">

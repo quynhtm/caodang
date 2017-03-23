@@ -57,8 +57,8 @@
                         <tbody>
                         @foreach ($data as $key => $item)
                             <tr>
-                                <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['vanbang_id']}}"></td>
+                                <td class="text-center text-middle">{{ $key+1 }}</td>
+                                <td class="text-center text-middle"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['vanbang_id']}}"></td>
                                 <td>
                                     <b>Tên: </b>{{ $item['vanbang_hoten'] }}
                                     <br/><b>Sinh: </b>{{ $item['vanbang_ngaysinh'] }}

@@ -63,8 +63,8 @@
                         <tbody>
                         @foreach ($data as $key => $item)
                             <tr>
-                                <td class="text-center">{{ $key+1 }}</td>
-                                <td class="text-center"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['nangkhieu_id']}}"></td>
+                                <td class="text-center text-middle">{{ $key+1 }}</td>
+                                <td class="text-center text-middle"><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['nangkhieu_id']}}"></td>
                                 <td>
                                     <b>Tên: </b>{{ $item['nangkhieu_hoten'] }}
                                     @if($item['nangkhieu_ngaysinh'] != '')<br/><b>Ngày sinh: </b>{{ $item['nangkhieu_ngaysinh'] }}@endif
