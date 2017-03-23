@@ -115,10 +115,12 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@postInputExcelVanbang'));
 
     //quan ly Excel Nang khieu
+    Route::get('viewNangkhieu',array('as'=>'admin.viewNangkhieu','uses'=>'UploadExcelController@viewNangkhieu'));
     Route::get('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@getInputExcelNangkhieu'));
     Route::post('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@postInputExcelNangkhieu'));
 
     //quan ly Excel Tuyển sinh
+    Route::get('viewTuyensinh',array('as'=>'admin.viewTuyensinh','uses'=>'UploadExcelController@viewTuyensinh'));
     Route::get('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@getInputExcelTuyensinh'));
     Route::post('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@postInputExcelTuyensinh'));
 

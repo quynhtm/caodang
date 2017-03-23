@@ -111,11 +111,11 @@ class BaseAdminController extends BaseController
             'name'=>'Hệ thống upload Excel',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-file-excel-o',
-            'arr_link_sub'=>array('admin.viewVanbang',),
+            'arr_link_sub'=>array('admin.viewVanbang','admin.viewNangkhieu','admin.viewTuyensinh',),
             'sub'=>array(
                 array('name'=>'Văn bằng chứng chỉ', 'RouteName'=>'admin.viewVanbang', 'icon'=>'fa fa-file-excel-o icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'excel_full'),
-                array('name'=>'Điểm thi năng khiếu', 'RouteName'=>'admin.viewVanbang', 'icon'=>'fa fa-file-excel-o icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'excel_full'),
-                array('name'=>'Xét tuyển sinh', 'RouteName'=>'admin.viewVanbang', 'icon'=>'fa fa-file-excel-o icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'excel_full'),
+                array('name'=>'Điểm thi năng khiếu', 'RouteName'=>'admin.viewNangkhieu', 'icon'=>'fa fa-file-excel-o icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'excel_full'),
+                array('name'=>'Xét tuyển sinh', 'RouteName'=>'admin.viewTuyensinh', 'icon'=>'fa fa-file-excel-o icon-4x', 'showcontent'=>1,'showMenu'=>1, 'permission'=>'excel_full'),
                 ),
         );
         return $menu;

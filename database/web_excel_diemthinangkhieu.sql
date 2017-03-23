@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-03-21 16:35:07
+Date: 2017-03-23 11:51:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,22 +27,26 @@ CREATE TABLE `web_excel_diemthinangkhieu` (
   `nangkhieu_cmt` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `nangkhieu_sophach` int(11) DEFAULT NULL,
   `nangkhieu_monthi_mot` float(3,0) DEFAULT NULL,
-  `nangkhieu_monthi_hai` float(3,0) DEFAULT NULL,
-  `nangkhieu_monthi_ba` float(3,0) DEFAULT NULL,
-  `nangkhieu_monthi_bon` float(3,0) DEFAULT NULL,
-  `nangkhieu_monthi_nam` float(3,0) DEFAULT NULL,
-  `nangkhieu_monthi_sau` float(3,0) DEFAULT NULL,
+  `nangkhieu_monthi_hai` float(3,2) DEFAULT NULL,
+  `nangkhieu_monthi_ba` float(3,2) DEFAULT NULL,
+  `nangkhieu_monthi_bon` float(3,2) DEFAULT NULL,
+  `nangkhieu_monthi_nam` float(3,2) DEFAULT NULL,
+  `nangkhieu_monthi_sau` float(3,2) DEFAULT NULL,
   `nangkhieu_ngaythi` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `nangkhieu_ngaytao` int(11) DEFAULT NULL,
   `nangkhieu_nguoitao` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `nangkhieu_ngaycapnhat` int(11) DEFAULT NULL,
   `nangkhieu_nguoicapnhat` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`nangkhieu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of web_excel_diemthinangkhieu
 -- ----------------------------
+INSERT INTO `web_excel_diemthinangkhieu` VALUES ('1', 'M.00013', 'LỆNH THU AN', '29/09/1998', '017432460', '677', '8', null, null, null, null, null, '07-08-17', '1490240320', 'Admin', '1490243684', 'Admin');
+INSERT INTO `web_excel_diemthinangkhieu` VALUES ('2', 'N.0002', 'DOÃN THỊ MINH ANH', '10-24-98', '174746580', '700', null, '8.25', '7.00', '8.00', null, '8.25', '09-12-17', '1490240320', 'Admin', '1490243684', 'Admin');
+INSERT INTO `web_excel_diemthinangkhieu` VALUES ('3', 'H.0003', '§ç ThÞ QuÕ Anh', '09-21-98', '017494431', '679', null, '7.50', null, '7.50', null, '7.50', '10-10-17', '1490240321', 'Admin', '1490243684', 'Admin');
+INSERT INTO `web_excel_diemthinangkhieu` VALUES ('4', 'H1.0001', 'B¹ch ThÞ V©n Anh', '10-20-98', '152200018', '680', '8', '7.75', null, null, null, null, '10-10-17', '1490240321', 'Admin', '1490243684', 'Admin');
 
 -- ----------------------------
 -- Table structure for web_excel_tuyensinh
@@ -57,19 +61,19 @@ CREATE TABLE `web_excel_tuyensinh` (
   `tuyensinh_gioitinh` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `tuyensinh_cmt` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `tuyensinh_khuvuc_uutien` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `tuyensinh_diem_uutien` float(5,0) DEFAULT NULL,
+  `tuyensinh_diem_uutien` float(5,2) DEFAULT NULL,
   `tuyensinh_tinhthanh` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `tuyensinh_quanhuyen` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `tuyensinh_monthi_mot` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `tuyensinh_diem_monthimot` float(3,0) DEFAULT NULL,
+  `tuyensinh_diem_monthimot` float(3,2) DEFAULT NULL,
   `tuyensinh_monthi_hai` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `tuyensinh_diem_monthihai` float(3,0) DEFAULT NULL,
+  `tuyensinh_diem_monthihai` float(3,2) DEFAULT NULL,
   `tuyensinh_monthi_ba` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `tuyensinh_diem_monthiba` float(3,0) DEFAULT NULL,
-  `tuyensinh_diemlech` float(3,0) DEFAULT NULL,
-  `tuyensinh_tongdiemchua_uutien` float(3,0) DEFAULT NULL,
-  `tuyensinh_diem_uutien_quydoi` float(3,0) DEFAULT NULL,
-  `tuyensinh_tongdiemco_uutien` float(3,0) DEFAULT NULL,
+  `tuyensinh_diem_monthiba` float(3,2) DEFAULT NULL,
+  `tuyensinh_diemlech` float(3,2) DEFAULT NULL,
+  `tuyensinh_tongdiemchua_uutien` float(3,2) DEFAULT NULL,
+  `tuyensinh_diem_uutien_quydoi` float(3,2) DEFAULT NULL,
+  `tuyensinh_tongdiemco_uutien` float(3,2) DEFAULT NULL,
   `tuyensinh_nganhtrungtuyen` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `tuyensinh_dotxettuyen` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `tuyensinh_trinhdo` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
@@ -79,11 +83,13 @@ CREATE TABLE `web_excel_tuyensinh` (
   `tuyensinh_ngaycapnhat` int(12) DEFAULT NULL,
   `tuyensinh_nguoicapnhat` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`tuyensinh_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of web_excel_tuyensinh
 -- ----------------------------
+INSERT INTO `web_excel_tuyensinh` VALUES ('1', '404', 'DTS000002', 'LỆNH THU AN', '29/09/1998', 'Nữ', '073500939', '1', '1.00', 'Hà Giang', 'Huyện Quản Bạ', 'TO', '4.50', 'VA', '5.50', 'NK1', '8.75', null, '9.99', '3.50', '9.99', 'Giáo dục Mầm non CLC', 'Nguyện vọng 1', 'Cao đẳng', 'Học bạ', '1490244693', 'Admin', null, null);
+INSERT INTO `web_excel_tuyensinh` VALUES ('2', '106', 'HDT000134', 'DOÃN THỊ MINH ANH', '27/10/1998', 'Nữ', '175002531', '2NT', null, 'Thanh Hoá', 'Huyện Triệu Sơn', 'TO', '5.50', 'VA', '7.25', 'NK1', '7.75', null, '9.99', '1.00', '9.99', 'Giáo dục Mầm non CLC', 'Nguyện vọng bổ sung 1', 'Trung cấp', 'Thi THPT', '1490244693', 'Admin', null, null);
 
 -- ----------------------------
 -- Table structure for web_excel_vanbangchungchi

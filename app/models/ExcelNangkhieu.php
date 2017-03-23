@@ -21,6 +21,9 @@ class ExcelNangkhieu extends Eloquent
             if (isset($dataSearch['nangkhieu_hoten']) && $dataSearch['nangkhieu_hoten'] != '') {
                 $query->where('nangkhieu_hoten','LIKE', '%' . $dataSearch['nangkhieu_hoten'] . '%');
             }
+            if (isset($dataSearch['nangkhieu_sobaodanh']) && $dataSearch['nangkhieu_sobaodanh'] != '') {
+                $query->where('nangkhieu_sobaodanh', $dataSearch['nangkhieu_sobaodanh']);
+            }
             $query->orderBy('nangkhieu_id', 'asc');
             $total = $query->count();
 
