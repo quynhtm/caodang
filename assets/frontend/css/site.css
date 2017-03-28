@@ -1045,3 +1045,10 @@ list-post .item-post .post-intro {
     padding: 3px 0px;
     margin-bottom: 10px;
 }
+table {
+    width: 100%!important;
+}
+table th, table td{
+	border:1px solid #ddd;
+	padding:5px;
+}
