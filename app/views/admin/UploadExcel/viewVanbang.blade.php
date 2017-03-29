@@ -72,7 +72,7 @@
                                     <br/><b>Hình thức: </b> {{ $item['vanbang_trinhdo'] }} - {{ $item['vanbang_htdaotao'] }}
                                 </td>
                                 <td>
-                                    <b>Sô hiệu: </b>{{ $item['vanbang_machungchi'] }}
+                                    <b>Số hiệu: </b>{{ $item['vanbang_machungchi'] }}
                                     <br/><b>Chứng chỉ: </b>{{ $item['vanbang_chungchiso'] }}
                                     <br/><b>Số tốt nghiệp: </b>{{ $item['vanbang_sototnghiep'] }}
                                     <br/><b>Ngày tốt nghiệp: </b>{{ $item['vanbang_ngaytotnghiep'] }}

@@ -1063,7 +1063,8 @@ table th, table td{
     display: inline-block;
     width: 100%;
     color: #707070;
-    font-weight: 400;
+    font-weight: bold;
+    font-size: 14px;
     background: #F2F2F2;
     background-image: -webkit-linear-gradient(top, #f8f8f8 0, #ececec 100%);
     background-image: -o-linear-gradient(top, #f8f8f8 0, #ececec 100%);
@@ -1076,4 +1077,47 @@ table th, table td{
     padding: 10px;
     border-top: 1px solid #ddd;
     min-height: 300px;
+}
+.input-ext{
+    margin: 0 -15px;
+    position: relative;
+}
+.line-equal{
+    width: 100%;
+    display: inline-block;
+    border-top: 1px solid #ddd;
+    padding: 10px 0px;
+}
+.input-ext label{
+    width: 100%;
+    display: inline-block;
+}
+.input-ext input{
+    border-radius: 0;
+}
+.title-equal{
+    color: #222;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.line-equal-item {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0px;
+    margin: 0 -15px;
+}
+.line-equal-item label .normal{
+    font-weight: normal;
+}
+.loading {
+    background: url("../img/loading.gif") no-repeat scroll center center;
+    display: none;
+    height: 24px;
+    position: absolute;
+    top: 28px;
+    width: 24px;
+    z-index: 2;
+    opacity: .4;
+    right: 0;
 }
