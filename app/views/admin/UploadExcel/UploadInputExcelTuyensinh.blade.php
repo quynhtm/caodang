@@ -47,8 +47,9 @@
             </div>
             <input type="hidden" name="sheet" value="{{$sheet}}">
             <div class="form-group padding-top-2">
-                <div class="col-lg-2">
-                  <button class="btn btn-primary" id="sys_button_submit">Inport</button>
+                <div class="col-lg-2 marginTop10">
+                    <button class="btn btn-primary" id="sys_button_submit">Inport</button>
+                    <a class="btn btn-warning" href="{{URL::route('admin.viewTuyensinh')}}"><i class="fa fa-reply"></i> Trở lại</a>
                 </div>
             </div>
     </div>

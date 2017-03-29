@@ -24,6 +24,9 @@ class ExcelTuyensinh extends Eloquent
             if (isset($dataSearch['tuyensinh_hoten']) && $dataSearch['tuyensinh_hoten'] != '') {
                 $query->where('tuyensinh_hoten','LIKE', '%' . $dataSearch['tuyensinh_hoten'] . '%');
             }
+            if (isset($dataSearch['tuyensinh_sobaodanh']) && $dataSearch['tuyensinh_sobaodanh'] != '') {
+                $query->where('tuyensinh_sobaodanh',$dataSearch['tuyensinh_sobaodanh']);
+            }
             $query->orderBy('tuyensinh_id', 'asc');
             $total = $query->count();
 
