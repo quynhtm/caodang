@@ -13,19 +13,34 @@
             </div>
             <div class="form-group col-lg-4">
                 <label for="seo_key_file">Kiểu inport</label>
-                <select id="type_inport" name="type_inport" class="form-control input-sm" onchange="onchangeTypeInport();">{{$optionTypeInport}}</select>
+                <select id="type_inport" name="type_inport" class="form-control input-sm">
+                    <option value="1">Cập nhật Văn bằng chứng chỉ</option>
+                </select>
                 <div id="show_mess_inport" class="padding-top-2" style="display: none; color: red">
-                    <p>[A] => ID sản phẩm
-                        <br/>[B] => Giá bán niêm yết (product_price)
-                        <br/>[C] => Giá bán trên site (product_sell_price)
-                        <br/>[D] => Giá NCC thu về (product_price_supplier_get)
-                        <br/>[E] => Giá thị trường (product_market_price)</p>
+                    <p> [A] => Stt
+                        <br/>[B] => Họ và tên người học
+                        <br/>[C] => Ngày tháng năm sinh
+                        <br/>[D] => Nơi sinh
+                        <br/>[E] => Giới tính
+                        <br/>[F] => Dân tộc
+                        <br/>[G] => Ngành đào tạo
+                        <br/>[H] => Năm tốt nghiệp
+                        <br/>[I] => Xếp loại tốt nghiệp
+                        <br/>[J] => Số hiệu văn bằng, chứng chỉ
+                        <br/>[K] => Vào sổ cấp văn bằng, chứng chỉ số
+                        <br/>[L] => Khóa học
+                        <br/>[M] => Trình độ
+                        <br/>[N] => Hình thức đào tạo
+                        <br/>[O] => Số Quyết định tốt nghiệp
+                        <br/>[P] => Ngày QĐ tốt nghiệp
+                    </p>
                 </div>
             </div>
             <input type="hidden" name="sheet" value="{{$sheet}}">
             <div class="form-group padding-top-2">
-                <div class="col-lg-2">
+                <div class="col-lg-2 marginTop10">
                   <button class="btn btn-primary" id="sys_button_submit">Inport</button>
+                  <a class="btn btn-warning" href="{{URL::route('admin.viewVanbang')}}"><i class="fa fa-reply"></i> Trở lại</a>
                 </div>
             </div>
     </div>
@@ -47,16 +62,6 @@
             $('#show_mess_inport').hide();
             $('#show_mess_inport_3').hide();
             $('#show_mess_inport_4').hide();
-         }else if(type == 3){
-             $('#show_mess_inport_3').show();
-             $('#show_mess_inport').hide();
-             $('#show_mess_inport_2').hide();
-             $('#show_mess_inport_4').hide();
-         }else if(type == 4){
-             $('#show_mess_inport_4').show();
-             $('#show_mess_inport').hide();
-             $('#show_mess_inport_2').hide();
-             $('#show_mess_inport_3').hide();
          }
     }
 </script>

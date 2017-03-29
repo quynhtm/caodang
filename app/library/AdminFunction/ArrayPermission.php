@@ -70,6 +70,35 @@ class ArrayPermission{
         'user_customer_create' => array('name_permit'=>'Tạo khách hàng','group_permit'=>'Quyền khách hàng'),
         'user_customer_edit' => array('name_permit'=>'Sửa khách hàng','group_permit'=>'Quyền khách hàng'),
 
+        'event_full' => array('name_permit'=>'Full sự kiện','group_permit'=>'Quyền sự kiện'),
+        'event_view' => array('name_permit'=>'Xem sự kiện','group_permit'=>'Quyền sự kiện'),
+        'event_create' => array('name_permit'=>'Tạo sự kiện','group_permit'=>'Quyền sự kiện'),
+        'event_edit' => array('name_permit'=>'Sửa sự kiện','group_permit'=>'Quyền sự kiện'),
+        'event_delete' => array('name_permit'=>'Xóa sự kiện','group_permit'=>'Quyền sự kiện'),
+
+        'infor_full' => array('name_permit'=>'Full thông tin','group_permit'=>'Quyền thông tin'),
+        'infor_view' => array('name_permit'=>'Xem thông tin','group_permit'=>'Quyền thông tin'),
+        'infor_create' => array('name_permit'=>'Tạo thông tin','group_permit'=>'Quyền thông tin'),
+        'infor_edit' => array('name_permit'=>'Sửa thông tin','group_permit'=>'Quyền thông tin'),
+        'infor_delete' => array('name_permit'=>'Xóa thông tin','group_permit'=>'Quyền thông tin'),
+
+        'libraryImage_full' => array('name_permit'=>'Full thư viện ảnh','group_permit'=>'Quyền thư viện ảnh'),
+        'libraryImage_view' => array('name_permit'=>'Full thư viện ảnh','group_permit'=>'Quyền thư viện ảnh'),
+        'libraryImage_create' => array('name_permit'=>'Full thư viện ảnh','group_permit'=>'Quyền thư viện ảnh'),
+        'libraryImage_edit' => array('name_permit'=>'Full thư viện ảnh','group_permit'=>'Quyền thư viện ảnh'),
+        'libraryImage_delete' => array('name_permit'=>'Full thư viện ảnh','group_permit'=>'Quyền thư viện ảnh'),
+
+        'tab_full' => array('name_permit'=>'Full','group_permit'=>'Quyền danh mục tab'),
+        'tab_view' => array('name_permit'=>'Xem danh mục tab','group_permit'=>'Quyền danh mục tab'),
+        'tab_create' => array('name_permit'=>'Tạo danh mục tab','group_permit'=>'Quyền danh mục tab'),
+        'tab_edit' => array('name_permit'=>'Sửa danh mục tab','group_permit'=>'Quyền danh mục tab'),
+        'tab_delete' => array('name_permit'=>'Xóa danh mục tab','group_permit'=>'Quyền danh mục tab'),
+
+        'video_full' => array('name_permit'=>'Full video','group_permit'=>'Quyền video'),
+        'video_view' => array('name_permit'=>'Xem video','group_permit'=>'Quyền video'),
+        'video_create' => array('name_permit'=>'Tạo video','group_permit'=>'Quyền video'),
+        'video_edit' => array('name_permit'=>'Sửa video','group_permit'=>'Quyền video'),
+        'video_delete' => array('name_permit'=>'Xóa video','group_permit'=>'Quyền video'),
     );
 
 }

@@ -109,9 +109,20 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('categoryDepart/deleteCategoryDepart', array('as' => 'admin.deltete_categoryDepart_post','uses' => 'CategoryDepartController@deleteCategoryDepart'));//ajax
     Route::post('categoryDepart/updateStatusCategoryDepart', array('as' => 'admin.status_categoryDepart_post','uses' => 'CategoryDepartController@updateStatusCategoryDepart'));//ajax
 
-    //quan ly Excel điểm thi
-    Route::get('upload/uploadExcel',array('as'=>'admin.uploadExcel','uses'=>'UploadExcelController@getInputExcel'));
-    Route::post('upload/uploadExcel',array('as'=>'admin.uploadExcel','uses'=>'UploadExcelController@postInputExcel'));
+    //quan ly Excel văn bằng chứng chỉ
+    Route::get('viewVanbang',array('as'=>'admin.viewVanbang','uses'=>'UploadExcelController@viewVanbang'));
+    Route::get('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@getInputExcelVanbang'));
+    Route::post('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@postInputExcelVanbang'));
+
+    //quan ly Excel Nang khieu
+    Route::get('viewNangkhieu',array('as'=>'admin.viewNangkhieu','uses'=>'UploadExcelController@viewNangkhieu'));
+    Route::get('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@getInputExcelNangkhieu'));
+    Route::post('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@postInputExcelNangkhieu'));
+
+    //quan ly Excel Tuyển sinh
+    Route::get('viewTuyensinh',array('as'=>'admin.viewTuyensinh','uses'=>'UploadExcelController@viewTuyensinh'));
+    Route::get('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@getInputExcelTuyensinh'));
+    Route::post('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@postInputExcelTuyensinh'));
 
     ///*Quản lý tab*/
     Route::get('tab/view',array('as' => 'admin.tabView','uses' => 'TabDepartController@viewTab'));
@@ -211,8 +222,7 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('video/deleteVideo', array('as' => 'admin.deleteVideo','uses' => 'VideoController@deleteVideo'));//ajax
 
     Route::get('toolsCommon/addPermit',array('as' => 'admin.addPermit','uses' => 'ToolsCommonController@addPermit'));
-    //Tools quản lý các page khác nhau
-    Route::get('toolsCommon/viewClickShare',array('as' => 'admin.viewClickShare','uses' => 'ToolsCommonController@viewClickShare'));
+
     //quan ly noi dung gui email
     Route::get('toolsCommon/viewContentSendEmail',array('as' => 'admin.contentSendEmail_list','uses' => 'ToolsCommonController@viewContentSendEmail'));
     Route::get('toolsCommon/edit/{id?}', array('as' => 'admin.contentSendEmail_edit','uses' => 'ToolsCommonController@getContentSendEmail'))->where('id', '[0-9]+');

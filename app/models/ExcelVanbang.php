@@ -22,6 +22,9 @@ class ExcelVanbang extends Eloquent
             if (isset($dataSearch['vanbang_hoten']) && $dataSearch['vanbang_hoten'] != '') {
                 $query->where('vanbang_hoten','LIKE', '%' . $dataSearch['vanbang_hoten'] . '%');
             }
+            if (isset($dataSearch['vanbang_machungchi']) && $dataSearch['vanbang_machungchi'] != '') {
+                $query->where('vanbang_machungchi', $dataSearch['vanbang_machungchi']);
+            }
             $query->orderBy('vanbang_id', 'asc');
             $total = $query->count();
 
