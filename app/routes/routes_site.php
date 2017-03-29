@@ -37,4 +37,7 @@ Route::match(['GET','POST'], 'captcha', array('as' => 'site.linkCaptcha','uses' 
 Route::match(['GET','POST'], 'captchaCheckAjax', array('as' => 'site.captchaCheckAjax','uses' =>'SiteHomeController@captchaCheckAjax'));
 
 
+//Tra cuu
+Route::match(['GET','POST'], 'tra-cuu-van-bang-chung-chi.html', array('as' => 'tracuu.traCuuVanBangChungChi','uses' =>'TraCuuController@traCuuVanBangChungChi'));
+
 
