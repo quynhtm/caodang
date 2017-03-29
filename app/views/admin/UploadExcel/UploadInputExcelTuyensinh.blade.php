@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
     <li class="active">
-         <a href="javascript:void(0);" style="font-weight:bold;color:#970000">Inport Excel</a>
+         <a href="javascript:void(0);" style="font-weight:bold;color:#970000">Import Excel</a>
     </li>
 </ul>
 <div class="dark" style="border: 1px solid #ddd; border-top: none; padding: 20px;margin-bottom: 160px;">
@@ -11,8 +11,8 @@
                 <input id="seo_key_file" name="seo_key_file" type="file">
                 <p class="help-block">xls,xlsx only</p>
             </div>
-            <div class="form-group col-lg-4">
-                <label for="seo_key_file">Kiểu inport</label>
+            <div class="form-group col-lg-3">
+                <label for="seo_key_file">Kiểu Import</label>
                 <select id="type_inport" name="type_inport" class="form-control input-sm">
                     <option value="1">Cập nhật xét tuyển sinh</option>
                 </select>
@@ -47,8 +47,8 @@
             </div>
             <input type="hidden" name="sheet" value="{{$sheet}}">
             <div class="form-group padding-top-2">
-                <div class="col-lg-2 marginTop10">
-                    <button class="btn btn-primary" id="sys_button_submit">Inport</button>
+                <div class="col-lg-3 marginTop14">
+                    <button class="btn btn-primary" id="sys_button_submit">Import</button>
                     <a class="btn btn-warning" href="{{URL::route('admin.viewTuyensinh')}}"><i class="fa fa-reply"></i> Trở lại</a>
                 </div>
             </div>

@@ -136,9 +136,10 @@ class UploadExcelController extends BaseAdminController
 
                 }
             }
-            echo 'Da cap nhat: '.$idxUpdate.' và tao moi: '.$idxCreate. ' thành viên';
-            echo '<br/><a href="'.URL::route('admin.viewVanbang').'">Trở lại trang danh sách</a>';
-            die(' Ok done');
+            echo '<div class="import-done">Da cap nhat: '.$idxUpdate.' và tao moi: '.$idxCreate. ' thành viên';
+            echo '<br/><a href="'.URL::route('admin.viewVanbang').'">Trở lại trang danh sách</a>. Ok done.</div>';
+            echo '<style>.import-done{text-align: center; line-height: 50px;width: 100%; height: 100%; background: #fafafa;border: 1px solid #ddd; font-family: Tahoma; font-size: 14px;}</style>';
+            die;
         }
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcelVanbang')
             ->with('create_product', in_array($this->permission_create, $this->permission) ? 1 : 0);
@@ -322,9 +323,11 @@ class UploadExcelController extends BaseAdminController
 
                 }
             }
-            echo 'Da cap nhat: '.$idxUpdate.' và tao moi: '.$idxCreate. ' thành viên';
-            echo '<br/><a href="'.URL::route('admin.viewNangkhieu').'">Trở lại trang danh sách</a>';
+            echo '<div class="import-done">Da cap nhat: '.$idxUpdate.' và tao moi: '.$idxCreate. ' thành viên';
+            echo '<br/><a href="'.URL::route('admin.viewNangkhieu').'">Trở lại trang danh sách</a>. OK done.</div>';
+            echo '<style>.import-done{text-align: center; line-height: 50px;width: 100%; height: 100%; background: #fafafa;border: 1px solid #ddd; font-family: Tahoma; font-size: 14px;}</style>';
             die();
+
         }
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcelNangkhieu')->with('create_product', in_array($this->permission_create, $this->permission) ? 1 : 0);
     }
@@ -565,9 +568,10 @@ class UploadExcelController extends BaseAdminController
 
                 }
             }
-            echo 'Da cap nhat: '.$idxUpdate.' và tao moi: '.$idxCreate. ' thành viên';
-            echo '<br/><a href="'.URL::route('admin.viewTuyensinh').'">Trở lại trang danh sách</a>';
-            die(' Ok done');
+            echo '<div class="import-done">Da cap nhat: '.$idxUpdate.' và tao moi: '.$idxCreate. ' thành viên';
+            echo '<br/><a href="'.URL::route('admin.viewTuyensinh').'">Trở lại trang danh sách</a>. OK done.</div>';
+            echo '<style>.import-done{text-align: center; line-height: 50px;width: 100%; height: 100%; background: #fafafa;border: 1px solid #ddd; font-family: Tahoma; font-size: 14px;}</style>';
+            die();
         }
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcelTuyensinh')->with('create_product', in_array($this->permission_create, $this->permission) ? 1 : 0);
     }
