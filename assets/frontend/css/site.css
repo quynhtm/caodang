@@ -1050,7 +1050,30 @@ table {
     width: 100%!important;
 }
 table th, table td{
-	 border: 1px solid #fbfbfb;
+    border: 1px solid #fbfbfb;
     padding: 5px;
 	vertical-align: top;
+}
+.box-check {
+    border: 1px solid #ddd;
+    margin: 5px;
+}
+.title-box-check{
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+    color: #707070;
+    font-weight: 400;
+    background: #F2F2F2;
+    background-image: -webkit-linear-gradient(top, #f8f8f8 0, #ececec 100%);
+    background-image: -o-linear-gradient(top, #f8f8f8 0, #ececec 100%);
+    background-image: linear-gradient(to bottom, #f8f8f8 0, #ececec 100%);
+    background-repeat: repeat-x;
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8', endColorstr='#ffececec', GradientType=0)
+}
+.content-box-check{
+    background: #F2F2F2;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    min-height: 300px;
 }
