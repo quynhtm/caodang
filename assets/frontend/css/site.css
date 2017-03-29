@@ -855,6 +855,7 @@ list-post .item-post .post-intro {
 .library-intro img {
     max-width: 100% !important;
     height: auto !important;
+    min-width: 80%!important;
 }
 .donvi-khoa-trungtam{
     background: #4795d1;
@@ -1044,4 +1045,13 @@ list-post .item-post .post-intro {
     width: 100%;
     padding: 3px 0px;
     margin-bottom: 10px;
+}
+.library-intro  table{
+	width:100%!important;
+}
+.library-intro  table th,
+.library-intro  table td {
+    border: 1px solid #fbfbfb;
+    padding: 5px;
+	vertical-align: top;
 }
