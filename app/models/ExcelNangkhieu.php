@@ -134,8 +134,8 @@ class ExcelNangkhieu extends Eloquent
             if (isset($dataSearch['nangkhieu_cmt']) && $dataSearch['nangkhieu_cmt'] != '') {
                 $query->where('nangkhieu_cmt', $dataSearch['nangkhieu_cmt']);
             }
-            if (isset($dataSearch['nangkhieu_sobaodanh']) && $dataSearch['nangkhieu_sobaodanh'] != '') {
-                $query->where('nangkhieu_sobaodanh', $dataSearch['nangkhieu_sobaodanh']);
+            if (isset($dataSearch['nangkhieu_hoten']) && $dataSearch['nangkhieu_hoten'] != '') {
+                $query->where('nangkhieu_hoten', $dataSearch['nangkhieu_hoten']);
             }
             $query->orderBy('nangkhieu_id', 'asc');
 

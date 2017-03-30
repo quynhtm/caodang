@@ -3,16 +3,10 @@
 	<div class="content-box-check">
 		<div class="input-ext" id="boxTraCuuVanBangChungChi">
 			{{Form::open(array('method' => 'POST', 'id'=>'formTraCuu', 'class'=>'formTraCuu', 'name'=>'formTraCuu'))}}
-			<div class="col-lg-2 col-md-2 col-sm-12">
+			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="form-group">
-					<label class="control-label">Số hiệu</label>
-					<input id="ipSoHieu" name="ipSoHieu" class="form-control" type="text" placeholder="- Số hiệu văn bằng -">
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12">
-				<div class="form-group">
-					<label class="control-label">Chứng chỉ</label>
-					<input id="ipChungChi" name="ipChungChi" class="form-control" type="text" placeholder="- Chứng chỉ -">
+					<label class="control-label">Số hiệu văn bằng, chứng chỉ</label>
+					<input id="ipVanBang" name="ipVanBang" class="form-control" type="text" placeholder="- Số hiệu văn bằng, chứng chỉ -">
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-12">
@@ -27,7 +21,7 @@
 		<div class="line-equal">
 			<div class="title-equal"><span>Thông tin văn bằng chứng chỉ</span></div>
 			<div class="box-list-equal">
-				<div class="inputInfo">Vui lòng nhập số hiệu bằng.</div>
+				<div class="inputInfo">Nhập số hiệu văn bằng hoặc chứng chỉ.</div>
 			</div>
 		</div>
 	</div>

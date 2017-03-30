@@ -88,7 +88,7 @@
                                 </td>
                                 <td>
                                     <b>{{ $item['tuyensinh_nganhtrungtuyen'] }}</b>
-                                    </br/>Hồ sơ<b>{{ $item['tuyensinh_sohoso'] }}</b>
+                                    </br/>Hồ sơ: <b>{{ $item['tuyensinh_sohoso'] }}</b>
                                     <br/>Xét tuyển: <b>{{ $item['tuyensinh_dotxettuyen'] }}</b>
                                     <br/>Trình độ: <b>{{ $item['tuyensinh_trinhdo'] }}</b>
                                 </td>

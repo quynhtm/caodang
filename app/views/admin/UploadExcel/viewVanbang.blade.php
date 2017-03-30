@@ -73,7 +73,7 @@
                                 </td>
                                 <td>
                                     <b>Số hiệu: </b>{{ $item['vanbang_machungchi'] }}
-                                    <br/><b>Chứng chỉ: </b>{{ $item['vanbang_chungchiso'] }}
+                                    <br/><b>Vào sổ: </b>{{ $item['vanbang_chungchiso'] }}
                                     <br/><b>Số tốt nghiệp: </b>{{ $item['vanbang_sototnghiep'] }}
                                     <br/><b>Ngày tốt nghiệp: </b>{{ $item['vanbang_ngaytotnghiep'] }}
                                 </td>

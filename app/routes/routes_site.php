@@ -44,8 +44,8 @@ Route::match(['GET','POST'], 'ajax-tra-cuu-van-bang-chung-chi', array('as' => 't
 Route::match(['GET','POST'], 'tra-cuu-diem-thi-nang-khieu.html', array('as' => 'tracuu.traCuuDiemThiNangKhieu','uses' =>'TraCuuController@traCuuDiemThiNangKhieu'));
 Route::match(['GET','POST'], 'ajax-tra-cuu-diem-thi-nang-khieu', array('as' => 'tracuu.ajaxTraCuuDiemThiNangKhieu','uses' =>'TraCuuController@ajaxTraCuuDiemThiNangKhieu'));
 
-Route::match(['GET','POST'], 'tra-cuu-xet-tuyen-sinh.html', array('as' => 'tracuu.traCuuXetTuyenSinh','uses' =>'TraCuuController@traCuuXetTuyenSinh'));
-Route::match(['GET','POST'], 'ajax-tra-cuu-xet-tuyen-sinh', array('as' => 'tracuu.ajaxTraCuuXetTuyenSinh','uses' =>'TraCuuController@ajaxTraCuuXetTuyenSinh'));
+Route::match(['GET','POST'], 'tra-cuu-ket-qua-tuyen-sinh.html', array('as' => 'tracuu.traCuuXetTuyenSinh','uses' =>'TraCuuController@traCuuXetTuyenSinh'));
+Route::match(['GET','POST'], 'ajax-tra-cuu-ket-qua-tuyen-sinh', array('as' => 'tracuu.ajaxTraCuuXetTuyenSinh','uses' =>'TraCuuController@ajaxTraCuuXetTuyenSinh'));
 
 
 

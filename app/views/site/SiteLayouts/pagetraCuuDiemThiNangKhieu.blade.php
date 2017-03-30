@@ -5,14 +5,14 @@
 			{{Form::open(array('method' => 'POST', 'id'=>'formTraCuu', 'class'=>'formTraCuu', 'name'=>'formTraCuu'))}}
 			<div class="col-lg-2 col-md-2 col-sm-12">
 				<div class="form-group">
-					<label class="control-label">Số chứng minh thư</label>
-					<input id="ipSCMT" name="ipSCMT" class="form-control" type="text" placeholder="- Số CMND -">
+					<label class="control-label">Số CMND</label>
+					<input id="ipCMND" name="ipCMND" class="form-control" type="text" placeholder="- Số CMND -">
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-12">
 				<div class="form-group">
-					<label class="control-label">Số báo danh</label>
-					<input id="ipSoBaoDanh" name="ipSoBaoDanh" class="form-control" type="text" placeholder="- Số báo danh -">
+					<label class="control-label">Họ và tên</label>
+					<input id="ipHoVaTen" name="ipHoVaTen" class="form-control" type="text" placeholder="- Họ và tên -">
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-12">
@@ -27,7 +27,7 @@
 		<div class="line-equal">
 			<div class="title-equal"><span>Thông tin điểm thi năng khiếu</span></div>
 			<div class="box-list-equal">
-				<div class="inputInfo">Vui lòng nhập số chứng minh thư và số báo danh.</div>
+				<div class="inputInfo">Nhập số CMND, họ và tên.</div>
 			</div>
 		</div>
 	</div>

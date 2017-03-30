@@ -30,11 +30,10 @@ class TraCuuController extends BaseSiteController{
         $this->footer();
 	}
     public function ajaxTraCuuVanBangChungChi(){
-        $dataSearch['vanbang_machungchi'] = trim(stripslashes(Request::get('ipSoHieu','')));
-        $dataSearch['vanbang_chungchiso'] = trim(stripslashes(Request::get('ipChungChi','')));
+        $dataSearch['vanbang_machungchi'] = trim(stripslashes(Request::get('ipVanBang','')));
         $token = trim(stripslashes(Request::get('_token', '')));
         if(Session::token() === $token){
-            if($dataSearch['vanbang_machungchi'] != '' && $dataSearch['vanbang_chungchiso'] != ''){
+            if($dataSearch['vanbang_machungchi'] != ''){
                 $result = ExcelVanbang::searchSiteByCondition($dataSearch, 1);
                 $arrItem = array();
                 if(sizeof($result) > 0){
@@ -91,11 +90,11 @@ class TraCuuController extends BaseSiteController{
         $this->footer();
 	}
     public function ajaxTraCuuDiemThiNangKhieu(){
-        $dataSearch['nangkhieu_cmt'] = trim(stripslashes(Request::get('ipSCMT','')));
-        $dataSearch['nangkhieu_sobaodanh'] = trim(stripslashes(Request::get('ipSoBaoDanh','')));
+        $dataSearch['nangkhieu_cmt'] = trim(stripslashes(Request::get('ipCMND','')));
+        $dataSearch['nangkhieu_hoten'] = trim(stripslashes(Request::get('ipHoVaTen','')));
         $token = trim(stripslashes(Request::get('_token', '')));
         if(Session::token() === $token){
-            if($dataSearch['nangkhieu_cmt'] != '' && $dataSearch['nangkhieu_sobaodanh'] != ''){
+            if($dataSearch['nangkhieu_cmt'] != '' || $dataSearch['nangkhieu_hoten'] != ''){
                 $result = ExcelNangkhieu::searchSiteByCondition($dataSearch, 1);
                 $arrItem = array();
                 if(sizeof($result) > 0){
@@ -150,7 +149,8 @@ class TraCuuController extends BaseSiteController{
         $this->footer();
 	}
 	public function ajaxTraCuuXetTuyenSinh(){
-        $dataSearch['tuyensinh_cmt'] = trim(stripslashes(Request::get('ipSCMT','')));
+        $dataSearch['tuyensinh_cmt'] = trim(stripslashes(Request::get('ipCMND','')));
+        $dataSearch['tuyensinh_hoten'] = trim(stripslashes(Request::get('ipHoVaTen','')));
         $dataSearch['tuyensinh_trinhdo'] = trim(stripslashes(Request::get('ipTrinhDo','')));
         $token = trim(stripslashes(Request::get('_token', '')));
         if(Session::token() === $token){
@@ -164,7 +164,7 @@ class TraCuuController extends BaseSiteController{
                 $dataSearch['tuyensinh_trinhdo'] = '';
             }
 
-            if($dataSearch['tuyensinh_cmt'] != '' && $dataSearch['tuyensinh_trinhdo'] != ''){
+            if(($dataSearch['tuyensinh_cmt'] != '' || $dataSearch['tuyensinh_hoten']) && $dataSearch['tuyensinh_trinhdo'] != ''){
                 $result = ExcelTuyensinh::searchSiteByCondition($dataSearch, 1);
                 $arrItem = array();
                 if(sizeof($result) > 0){

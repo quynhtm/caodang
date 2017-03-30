@@ -137,6 +137,9 @@ class ExcelTuyensinh extends Eloquent
             if (isset($dataSearch['tuyensinh_cmt']) && $dataSearch['tuyensinh_cmt'] != '') {
                 $query->where('tuyensinh_cmt', $dataSearch['tuyensinh_cmt']);
             }
+            if (isset($dataSearch['tuyensinh_hoten']) && $dataSearch['tuyensinh_hoten'] != '') {
+                $query->where('tuyensinh_hoten', $dataSearch['tuyensinh_hoten']);
+            }
             if (isset($dataSearch['tuyensinh_trinhdo']) && $dataSearch['tuyensinh_trinhdo'] != '') {
                 $query->where('tuyensinh_trinhdo', $dataSearch['tuyensinh_trinhdo']);
             }

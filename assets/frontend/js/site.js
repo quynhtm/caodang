@@ -108,11 +108,10 @@ SITE={
 	},
     boxTraCuuVanBangChungChi:function(){
     	$('#submitTraCuuVanBangChungChi').click(function(){
-    		var ipSoHieu = $('#ipSoHieu').val(),
-                ipChungChi = $('#ipChungChi').val(),
+    		var ipVanBang = $('#ipVanBang').val(),
                 _token = $('#formTraCuu input[name="_token"]').val();
-    		if(ipSoHieu == '' && ipChungChi == ''){
-               jAlert('Vui lòng nhập số hiệu văn bằng hoặc chứng chỉ', 'Cảnh báo');
+    		if(ipVanBang == ''){
+               jAlert('Nhập văn bằng hoặc chứng chỉ', 'Cảnh báo');
 			}else{
                 if(_token != '') {
                     $('.loading').show();
@@ -120,12 +119,12 @@ SITE={
                     jQuery.ajax({
                         type: "POST",
                         url: url,
-                        data: "ipSoHieu=" + encodeURI(ipSoHieu) + "&ipChungChi=" + encodeURI(ipChungChi) + "&_token=" + encodeURI(_token),
+                        data: "ipVanBang=" + encodeURI(ipVanBang) + "&_token=" + encodeURI(_token),
                         success: function (data) {
                             $('.loading').hide();
                             $('.box-list-equal').html('');
                             if (data == '0') {
-                                jAlert('Vui lòng nhập số hiệu văn bằng hoặc chứng chỉ', 'Cảnh báo');
+                                jAlert('Nhập văn bằng hoặc chứng chỉ', 'Cảnh báo');
                             } else if (data == '1') {
                                 $('.box-list-equal').append('<div class="noResult">Không có kết quả nào phù hợp.</div>');
                             } else {
@@ -148,11 +147,12 @@ SITE={
 	},
     boxTraCuuDiemThiNangKhieu:function(){
         $('#submitTraCuuDiemThiNangKhieu').click(function(){
-            var ipSCMT = $('#ipSCMT').val(),
-                ipSoBaoDanh = $('#ipSoBaoDanh').val(),
+            var ipCMND = $('#ipCMND').val(),
+                ipHoVaTen = $('#ipHoVaTen').val(),
                 _token = $('#formTraCuu input[name="_token"]').val();
-            if(ipSCMT == '' && ipSoPhach == ''){
-                jAlert('Vui lòng nhập số CMTND và số phách', 'Cảnh báo');
+
+            if(ipCMND == '' && ipHoVaTen == ''){
+                jAlert('Nhập số CMND hoặc Họ và tên', 'Cảnh báo');
             }else{
                 if(_token != '') {
                     $('.loading').show();
@@ -160,19 +160,19 @@ SITE={
                     jQuery.ajax({
                         type: "POST",
                         url: url,
-                        data: "ipSCMT=" + encodeURI(ipSCMT) + "&ipSoBaoDanh=" + encodeURI(ipSoBaoDanh) + "&_token=" + encodeURI(_token),
+                        data: "ipCMND=" + encodeURI(ipCMND) + "&ipHoVaTen=" + encodeURI(ipHoVaTen) + "&_token=" + encodeURI(_token),
                         success: function (data) {
                             $('.loading').hide();
                             $('.box-list-equal').html('');
                             if (data == '0') {
-                                jAlert('Vui lòng nhập số CMTND và số phách', 'Cảnh báo');
+                                jAlert('Nhập số CMND hoặc Họ và tên', 'Cảnh báo');
                             } else if (data == '1') {
                                 $('.box-list-equal').append('<div class="noResult">Không có kết quả nào phù hợp.</div>');
                             } else {
                                 var jsonData = jQuery.parseJSON(data);
                                 var str = '';
 								str += '<table class="tblNangKhieu">';
-                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMTND</td><td>NK1</td><td>NK2</td><td>NK3</td><td>NK4</td><td>NK5</td><td>NK6</td><td>Đợt thi</td></tr>';
+                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMND</td><td>NK1</td><td>NK2</td><td>NK3</td><td>NK4</td><td>NK5</td><td>NK6</td><td>Đợt thi</td></tr>';
                                 for (var i = 0; i < jsonData.length; i++) {
                                     str += '<tr><td>'+jsonData[i].nangkhieu_hoten+'</td><td>'+ jsonData[i].nangkhieu_ngaysinh +'</td><td>'+ jsonData[i].nangkhieu_cmt +'</td><td>'+ jsonData[i].nangkhieu_monthi_mot +'</td><td>'+ jsonData[i].nangkhieu_monthi_hai +'</td><td>'+ jsonData[i].nangkhieu_monthi_ba +'</td><td>'+ jsonData[i].nangkhieu_monthi_bon +'</td><td>'+ jsonData[i].nangkhieu_monthi_nam +'</td><td>'+ jsonData[i].nangkhieu_monthi_sau +'</td><td>'+ jsonData[i].nangkhieu_ngaythi +'</td></tr>';
                                 }
@@ -188,31 +188,32 @@ SITE={
     },
     boxTraCuuXetTuyenSinh:function(){
         $('#submitTraCuuXetTuyenSinh').click(function(){
-            var ipSCMT = $('#ipSCMT').val(),
+            var ipCMND = $('#ipCMND').val(),
+                ipHoVaTen = $('#ipHoVaTen').val(),
                 ipTrinhDo = $('#ipTrinhDo').val(),
                 _token = $('#formTraCuu input[name="_token"]').val();
-            if(ipSCMT == '' && ipTrinhDo == ''){
-                jAlert('Vui lòng nhập số CMTND và trình độ', 'Cảnh báo');
+            if((ipCMND == '' || ipHoVaTen) == '' && ipTrinhDo == ''){
+                jAlert('Nhập số CMND hoặc Họ và tên', 'Cảnh báo');
             }else{
                 if(_token != '') {
                     $('.loading').show();
-                    var url = WEB_ROOT + '/ajax-tra-cuu-xet-tuyen-sinh';
+                    var url = WEB_ROOT + '/ajax-tra-cuu-ket-qua-tuyen-sinh';
                     jQuery.ajax({
                         type: "POST",
                         url: url,
-                        data: "ipSCMT=" + encodeURI(ipSCMT) + "&ipTrinhDo=" + encodeURI(ipTrinhDo) + "&_token=" + encodeURI(_token),
+                        data: "ipCMND=" + encodeURI(ipCMND) + "&ipHoVaTen=" + encodeURI(ipHoVaTen) + "&ipTrinhDo=" + encodeURI(ipTrinhDo) + "&_token=" + encodeURI(_token),
                         success: function (data) {
                             $('.loading').hide();
                             $('.box-list-equal').html('');
                             if (data == '0') {
-                                jAlert('Vui lòng nhập số CMTND và trình độ', 'Cảnh báo');
+                                jAlert('Nhập số CMND hoặc Họ và tên', 'Cảnh báo');
                             } else if (data == '1') {
                                 $('.box-list-equal').append('<div class="noResult">Không có kết quả nào phù hợp.</div>');
                             } else {
                                 var jsonData = jQuery.parseJSON(data);
                                 var str = '';
                                 str += '<table class="tblNangKhieu">';
-                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMTND</td><td>Khu vực</td><td>Đối tượng</td><td>Hình thức xét tuyển</td><td>Tổng điểm có ƯT</td><td>Ngành trúng tuyển</td><td>Đợt xét tuyển</td></tr>';
+                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMND</td><td>Khu vực</td><td>Đối tượng</td><td>Hình thức xét tuyển</td><td>Tổng điểm có ƯT</td><td>Ngành trúng tuyển</td><td>Đợt xét tuyển</td></tr>';
                                 for (var i = 0; i < jsonData.length; i++) {
                                     str += '<tr><td>'+jsonData[i].tuyensinh_hoten+'</td><td>'+ jsonData[i].tuyensinh_ngaysinh +'</td><td>'+ jsonData[i].tuyensinh_cmt +'</td><td>'+ jsonData[i].tuyensinh_khuvuc_uutien +'</td><td>'+ jsonData[i].tuyensinh_diem_uutien +'</td><td>'+ jsonData[i].tuyensinh_hinhthucxettuyen +'</td><td>'+ jsonData[i].tuyensinh_tongdiemco_uutien +'</td><td>'+ jsonData[i].tuyensinh_nganhtrungtuyen +'</td><td></td></tr>';
                                 }
