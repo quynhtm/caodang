@@ -1137,8 +1137,19 @@ table th, table td{
     font-size: 15px;
 }
 .inputInfo{
-    color: #333;
+    color: #555;
     font-size: 15px;
-    font-weight: bold;
     padding: 20px 0px;
+}
+.tblNangKhieu{
+    margin-bottom: 10px;
+    width: 100%;
+}
+.tblNangKhieu .head td{
+    font-weight: bold;
+    color: #333;
+    background: #f2f2f2;
+}
+.tblNangKhieu td{
+    border: 1px solid #ddd;
 }

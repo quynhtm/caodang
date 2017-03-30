@@ -41,4 +41,11 @@ Route::match(['GET','POST'], 'captchaCheckAjax', array('as' => 'site.captchaChec
 Route::match(['GET','POST'], 'tra-cuu-van-bang-chung-chi.html', array('as' => 'tracuu.traCuuVanBangChungChi','uses' =>'TraCuuController@traCuuVanBangChungChi'));
 Route::match(['GET','POST'], 'ajax-tra-cuu-van-bang-chung-chi', array('as' => 'tracuu.ajaxTraCuuVanBangChungChi','uses' =>'TraCuuController@ajaxTraCuuVanBangChungChi'));
 
+Route::match(['GET','POST'], 'tra-cuu-diem-thi-nang-khieu.html', array('as' => 'tracuu.traCuuDiemThiNangKhieu','uses' =>'TraCuuController@traCuuDiemThiNangKhieu'));
+Route::match(['GET','POST'], 'ajax-tra-cuu-diem-thi-nang-khieu', array('as' => 'tracuu.ajaxTraCuuDiemThiNangKhieu','uses' =>'TraCuuController@ajaxTraCuuDiemThiNangKhieu'));
+
+Route::match(['GET','POST'], 'tra-cuu-xet-tuyen-sinh.html', array('as' => 'tracuu.traCuuXetTuyenSinh','uses' =>'TraCuuController@traCuuXetTuyenSinh'));
+Route::match(['GET','POST'], 'ajax-tra-cuu-xet-tuyen-sinh', array('as' => 'tracuu.ajaxTraCuuXetTuyenSinh','uses' =>'TraCuuController@ajaxTraCuuXetTuyenSinh'));
+
+
 
