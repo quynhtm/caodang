@@ -1073,7 +1073,7 @@ table th, table td{
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff8f8f8', endColorstr='#ffececec', GradientType=0)
 }
 .content-box-check{
-    background: #F2F2F2;
+    background: #fff;
     padding: 10px;
     border-top: 1px solid #ddd;
     min-height: 300px;
@@ -1085,7 +1085,6 @@ table th, table td{
 .line-equal{
     width: 100%;
     display: inline-block;
-    border-top: 1px solid #ddd;
     padding: 10px 0px;
 }
 .input-ext label{
@@ -1100,6 +1099,17 @@ table th, table td{
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+.title-equal span {
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    background: #fff url("../img/tabc.png") repeat-x 0 0;
+    padding: 7px 10px;
+    position: relative;
+    margin-left: 5px;
+    color: #bc0700;
 }
 .line-equal-item {
     display: inline-block;
@@ -1120,4 +1130,15 @@ table th, table td{
     z-index: 2;
     opacity: .4;
     right: 0;
+}
+.noResult{
+    padding: 20px 0px;
+    color: #ff0000;
+    font-size: 15px;
+}
+.inputInfo{
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px 0px;
 }

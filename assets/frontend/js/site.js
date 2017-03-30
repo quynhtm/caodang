@@ -3,6 +3,7 @@ jQuery(document).ready(function($){
 	SITE.contact();
 	SITE.captchaCheckAjax();
 	SITE.tabEdu();
+	SITE.boxTraCuuVanBangChungChi();
 });
 
 SITE={
@@ -100,6 +101,43 @@ SITE={
 			if(data != ''){
 				$('.tabContents').removeClass('active');
 				$('#'+data).addClass('active');
+			}
+		});
+	},
+    boxTraCuuVanBangChungChi:function(){
+    	$('#submitTraCuuVanBangChungChi').click(function(){
+    		var ipSoHieu = $('#ipSoHieu').val(),
+                ipChungChi = $('#ipChungChi').val();
+    		if(ipSoHieu == '' && ipChungChi == ''){
+               jAlert('Vui lòng nhập số hiệu văn bằng hoặc chứng chỉ', 'Cảnh báo');
+			}else{
+                $('.loading').show();
+    			var url = WEB_ROOT + '/ajax-tra-cuu-van-bang-chung-chi';
+                jQuery.ajax({
+                    type: "POST",
+                    url: url,
+                    data: "ipSoHieu="+encodeURI(ipSoHieu) + "&ipChungChi="+encodeURI(ipChungChi),
+                    success: function(data){
+                        $('.loading').hide();
+                        $('.box-list-equal').html('');
+                        if(data == '0'){
+                            jAlert('Vui lòng nhập số hiệu văn bằng hoặc chứng chỉ', 'Cảnh báo');
+						}else if(data == '1') {
+							$('.box-list-equal').append('<div class="noResult">Kết quả tìm kiếm rỗng.</div>');
+                        }else{
+                            var jsonData = jQuery.parseJSON(data);
+                            var str = '';
+                            for (var i = 0; i < jsonData.length; i++) {
+								str += '<div class="item-result">';
+									str += '<div class="line-equal-item"><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Họ tên: <span class="normal">'+jsonData[i].vanbang_hoten+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Ngày sinh: <span class="normal">'+jsonData[i].vanbang_ngaysinh+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Giới tính: <span class="normal">'+jsonData[i].vanbang_gioitinh+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Dân tộc: <span class="normal">'+jsonData[i].vanbang_dantoc+'</span></label></div></div><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Địa chỉ: <span class="normal">'+jsonData[i].vanbang_noisinh+'</span></label></div></div></div></div>';
+                                	str += '<div class="line-equal-item"><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Ngành: <span class="normal">'+jsonData[i].vanbang_nganhdaotao+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Số hiệu: <span class="normal">'+jsonData[i].vanbang_machungchi+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Chứng chỉ: <span class="normal">'+jsonData[i].vanbang_chungchiso+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Số tốt nghiệp: <span class="normal">'+jsonData[i].vanbang_sototnghiep+'</span></label></div></div><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Hình thức: <span class="normal">'+jsonData[i].vanbang_htdaotao+'</span></label></div></div></div>';
+                                str += '<div class="line-equal-item"><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Ngày tốt nghiệp: <span class="normal">'+jsonData[i].vanbang_ngaytotnghiep+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Năm tốt nghiệp: <span class="normal">'+jsonData[i].vanbang_namtotnghiep+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Khóa: <span class="normal">'+jsonData[i].vanbang_khoahoc+'</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Xếp loại: <span class="normal">'+jsonData[i].vanbang_xeploai+'</span></label></div></div></div>';
+								str += '</div>';
+                                $('.box-list-equal').append(str);
+							}
+						}
+                    }
+                });
 			}
 		});
 	}

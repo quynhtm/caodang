@@ -129,4 +129,30 @@ class ExcelVanbang extends Eloquent
             //Cache::forget(Memcache::CACHE_ALL_TAB_LINK);
         }
     }
+
+    public static function searchSiteByCondition($dataSearch = array(), $limit =0){
+        try{
+            $query = ExcelVanbang::where('vanbang_id','>',0);
+            if (isset($dataSearch['vanbang_machungchi']) && $dataSearch['vanbang_machungchi'] != '') {
+                $query->where('vanbang_machungchi', $dataSearch['vanbang_machungchi']);
+            }
+            if (isset($dataSearch['vanbang_chungchiso']) && $dataSearch['vanbang_chungchiso'] != '') {
+                $query->where('vanbang_chungchiso', $dataSearch['vanbang_chungchiso']);
+            }
+            $query->orderBy('vanbang_id', 'asc');
+
+            //get field can lay du lieu
+            $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
+            if(!empty($fields)){
+                $result = $query->take($limit)->get($fields);
+            }else{
+                $result = $query->take($limit)->get();
+            }
+            return $result;
+
+        }catch (PDOException $e){
+            return $e->getMessage();
+            throw new PDOException();
+        }
+    }
 }
