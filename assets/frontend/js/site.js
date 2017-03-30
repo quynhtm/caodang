@@ -5,6 +5,7 @@ jQuery(document).ready(function($){
 	SITE.tabEdu();
 	SITE.boxTraCuuVanBangChungChi();
 	SITE.boxTraCuuDiemThiNangKhieu();
+	SITE.boxTraCuuXetTuyenSinh();
 });
 
 SITE={
@@ -184,5 +185,44 @@ SITE={
                 }
             }
         });
-    }
+    },
+    boxTraCuuXetTuyenSinh:function(){
+        $('#submitTraCuuXetTuyenSinh').click(function(){
+            var ipSCMT = $('#ipSCMT').val(),
+                ipTrinhDo = $('#ipTrinhDo').val(),
+                _token = $('#formTraCuu input[name="_token"]').val();
+            if(ipSCMT == '' && ipTrinhDo == ''){
+                jAlert('Vui lòng nhập số CMTND và trình độ', 'Cảnh báo');
+            }else{
+                if(_token != '') {
+                    $('.loading').show();
+                    var url = WEB_ROOT + '/ajax-tra-cuu-xet-tuyen-sinh';
+                    jQuery.ajax({
+                        type: "POST",
+                        url: url,
+                        data: "ipSCMT=" + encodeURI(ipSCMT) + "&ipTrinhDo=" + encodeURI(ipTrinhDo) + "&_token=" + encodeURI(_token),
+                        success: function (data) {
+                            $('.loading').hide();
+                            $('.box-list-equal').html('');
+                            if (data == '0') {
+                                jAlert('Vui lòng nhập số CMTND và trình độ', 'Cảnh báo');
+                            } else if (data == '1') {
+                                $('.box-list-equal').append('<div class="noResult">Không có kết quả nào phù hợp.</div>');
+                            } else {
+                                var jsonData = jQuery.parseJSON(data);
+                                var str = '';
+                                str += '<table class="tblNangKhieu">';
+                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMTND</td><td>Khu vực</td><td>Đối tượng</td><td>Hình thức xét tuyển</td><td>Tổng điểm có ƯT</td><td>Ngành trúng tuyển</td><td>Đợt xét tuyển</td></tr>';
+                                for (var i = 0; i < jsonData.length; i++) {
+                                    str += '<tr><td>'+jsonData[i].tuyensinh_hoten+'</td><td>'+ jsonData[i].tuyensinh_ngaysinh +'</td><td>'+ jsonData[i].tuyensinh_cmt +'</td><td>'+ jsonData[i].tuyensinh_khuvuc_uutien +'</td><td>'+ jsonData[i].tuyensinh_diem_uutien +'</td><td>'+ jsonData[i].tuyensinh_hinhthucxettuyen +'</td><td>'+ jsonData[i].tuyensinh_tongdiemco_uutien +'</td><td>'+ jsonData[i].tuyensinh_nganhtrungtuyen +'</td><td></td></tr>';
+                                }
+                                str += '</table>';
+                                $('.box-list-equal').append(str);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    },
 }

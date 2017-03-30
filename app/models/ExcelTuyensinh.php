@@ -131,4 +131,29 @@ class ExcelTuyensinh extends Eloquent
             //Cache::forget(Memcache::CACHE_ALL_TAB_LINK);
         }
     }
+    public static function searchSiteByCondition($dataSearch = array(), $limit =0){
+        try{
+            $query = ExcelTuyensinh::where('tuyensinh_id','>',0);
+            if (isset($dataSearch['tuyensinh_cmt']) && $dataSearch['tuyensinh_cmt'] != '') {
+                $query->where('tuyensinh_cmt', $dataSearch['tuyensinh_cmt']);
+            }
+            if (isset($dataSearch['tuyensinh_trinhdo']) && $dataSearch['tuyensinh_trinhdo'] != '') {
+                $query->where('tuyensinh_trinhdo', $dataSearch['tuyensinh_trinhdo']);
+            }
+            $query->orderBy('tuyensinh_id', 'asc');
+
+            //get field can lay du lieu
+            $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
+            if(!empty($fields)){
+                $result = $query->take($limit)->get($fields);
+            }else{
+                $result = $query->take($limit)->get();
+            }
+            return $result;
+
+        }catch (PDOException $e){
+            return $e->getMessage();
+            throw new PDOException();
+        }
+    }
 }
