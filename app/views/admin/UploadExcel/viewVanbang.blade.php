@@ -78,9 +78,9 @@
                                     <br/><b>Ngày tốt nghiệp: </b>{{ $item['vanbang_ngaytotnghiep'] }}
                                 </td>
 
-                                <td class="text-center">
+                                <td class="text-center text-middle">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-
+                                       <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['vanbang_id']}},17)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>
                             </tr>

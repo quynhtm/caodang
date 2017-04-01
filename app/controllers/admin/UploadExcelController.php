@@ -96,7 +96,10 @@ class UploadExcelController extends BaseAdminController
                         if(isset($val['G']) && trim($val['G']) !=''){$arrDataInput[$maChungChi]['vanbang_nganhdaotao'] = trim($val['G']);}
                         if(isset($val['H']) && trim($val['H']) !=''){$arrDataInput[$maChungChi]['vanbang_namtotnghiep'] = trim($val['H']);}
                         if(isset($val['I']) && trim($val['I']) !=''){$arrDataInput[$maChungChi]['vanbang_xeploai'] = trim($val['I']);}
-                        if(isset($val['J']) && trim($val['J']) !=''){$arrDataInput[$maChungChi]['vanbang_machungchi'] = trim($val['J']);}
+                        if(isset($val['J']) && trim($val['J']) !=''){
+                            $arrDataInput[$maChungChi]['vanbang_machungchi'] = trim($val['J']);
+                            $arrDataInput[$maChungChi]['vanbang_machungchi_search'] = FunctionLib::stringTitle(trim($val['J']));
+                        }
                         if(isset($val['K']) && trim($val['K']) !=''){$arrDataInput[$maChungChi]['vanbang_chungchiso'] = trim($val['K']);}
                         if(isset($val['L']) && trim($val['L']) !=''){$arrDataInput[$maChungChi]['vanbang_khoahoc'] = trim($val['L']);}
                         if(isset($val['M']) && trim($val['M']) !=''){$arrDataInput[$maChungChi]['vanbang_trinhdo'] = trim($val['M']);}
@@ -174,49 +177,17 @@ class UploadExcelController extends BaseAdminController
             ->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0);//dùng common
     }
-    public function getVanbang($id=0) {
-        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
-            return Redirect::route('admin.dashboard',array('error'=>1));
+    public function deleteVanbang()
+    {
+        $data = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($data);
         }
-        $data = array();
-        if($id > 0) {
-            $data = Tab::find($id);
+        $id = (int)Request::get('id', 0);
+        if ($id > 0 && ExcelVanbang::deleteData($id)) {
+            $data['isIntOk'] = 1;
         }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['tab_status'])? $data['tab_status'] : CGlobal::status_show);
-        $this->layout->content = View::make('admin.UploadExcel.addTab')
-            ->with('id', $id)
-            ->with('data', $data)
-            ->with('optionStatus', $optionStatus);
-    }
-    public function postVanbang($id=0) {
-        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
-            return Redirect::route('admin.dashboard',array('error'=>1));
-        }
-
-        $dataSave['tab_name'] = addslashes(Request::get('tab_name'));
-        $dataSave['tab_link'] = addslashes(Request::get('tab_link'));
-        $dataSave['tab_status'] = (int)Request::get('tab_status', CGlobal::status_show);
-        $dataSave['tab_order'] = (int)Request::get('tab_order', 1);
-
-        if($this->valid($dataSave) && empty($this->error)) {
-            if($id > 0) {
-                //cap nhat
-                if(Tab::updateData($id, $dataSave)) {
-                    return Redirect::route('admin.tabView');
-                }
-            } else {
-                //them moi
-                if(Tab::addData($dataSave)) {
-                    return Redirect::route('admin.tabView');
-                }
-            }
-        }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['tab_status'])? $dataSave['tab_status'] : -1);
-        $this->layout->content =  View::make('admin.UploadExcel.addTab')
-            ->with('id', $id)
-            ->with('data', $dataSave)
-            ->with('optionStatus', $optionStatus)
-            ->with('error', $this->error);
+        return Response::json($data);
     }
 
     /**
@@ -278,7 +249,10 @@ class UploadExcelController extends BaseAdminController
                     if(isset($val['B']) && trim($val['B']) !=''){
                         $soBaoDanh = trim($val['B']);
                         $arrSoBaoDanh[] = $soBaoDanh;
-                        if(isset($val['B']) && trim($val['B']) !=''){$arrDataInput[$soBaoDanh]['nangkhieu_sobaodanh'] = trim($val['B']);}
+                        if(isset($val['B']) && trim($val['B']) !=''){
+                            $arrDataInput[$soBaoDanh]['nangkhieu_sobaodanh'] = trim($val['B']);
+                            $arrDataInput[$soBaoDanh]['nangkhieu_sobaodanh_search'] = FunctionLib::stringTitle(trim($val['B']));
+                        }
                         if(isset($val['C']) && trim($val['C']) !=''){$arrDataInput[$soBaoDanh]['nangkhieu_hoten'] = trim($val['C']);}
                         if(isset($val['D']) && trim($val['D']) !=''){$arrDataInput[$soBaoDanh]['nangkhieu_ngaysinh'] = trim($val['D']);}
                         if(isset($val['E']) && trim($val['E']) !=''){$arrDataInput[$soBaoDanh]['nangkhieu_cmt'] = trim($val['E']);}
@@ -361,80 +335,17 @@ class UploadExcelController extends BaseAdminController
             ->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0);//dùng common
     }
-    public function getNangkhieu($id=0) {
-        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
-            return Redirect::route('admin.dashboard',array('error'=>1));
+    public function deleteNangkhieu()
+    {
+        $data = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($data);
         }
-        $data = array();
-        if($id > 0) {
-            $data = TabSub::find($id);
+        $id = (int)Request::get('id', 0);
+        if ($id > 0 && ExcelNangkhieu::deleteData($id)) {
+            $data['isIntOk'] = 1;
         }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['tab_sub_status'])? $data['tab_sub_status'] : CGlobal::status_show);
-        $optionTabParent = FunctionLib::getOption(array(0=>'--Chọn tab cha--')+$this->arrTabParent, isset($data['tab_parent_id'])? $data['tab_parent_id'] : 0);
-        $this->layout->content = View::make('admin.UploadExcel.addTabSub')
-            ->with('id', $id)
-            ->with('data', $data)
-            ->with('optionTabParent', $optionTabParent)
-            ->with('optionStatus', $optionStatus);
-    }
-    public function postNangkhieu($id=0) {
-        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
-            return Redirect::route('admin.dashboard',array('error'=>1));
-        }
-
-        $dataSave['tab_sub_name'] = addslashes(Request::get('tab_sub_name'));
-        $dataSave['tab_sub_link'] = addslashes(Request::get('tab_sub_link'));
-        $dataSave['tab_sub_status'] = (int)Request::get('tab_sub_status', CGlobal::status_show);
-        $dataSave['tab_sub_order'] = (int)Request::get('tab_sub_order', 1);
-        $dataSave['tab_parent_id'] = (int)Request::get('tab_parent_id', 0);
-
-        $file = Input::file('image');
-        if($file){
-            $filename = $file->getClientOriginalName();
-            $destinationPath = Config::get('config.DIR_ROOT').'/uploads/'.CGlobal::FOLDER_TAB_SUB.'/'. $id;
-            $upload  = Input::file('image')->move($destinationPath, $filename);
-            //xóa ảnh cũ
-            if($filename != ''){
-                $tab_sub_image_old = Request::get('tab_sub_image_old', '');
-                if($tab_sub_image_old != '')
-                {
-                    //xoa anh upload
-                    FunctionLib::deleteFileUpload($tab_sub_image_old,$id,CGlobal::FOLDER_TAB_SUB);
-
-                    //xóa anh thumb
-                    $arrSizeThumb = CGlobal::$arrSizeImage;
-                    foreach($arrSizeThumb as $k=>$size){
-                        $sizeThumb = $size['w'].'x'.$size['h'];
-                        FunctionLib::deleteFileThumb($tab_sub_image_old,$id,CGlobal::FOLDER_TAB_SUB,$sizeThumb);
-                    }
-                }
-            }
-            $dataSave['tab_sub_image'] = $filename;
-        }else{
-            $dataSave['tab_sub_image'] = Request::get('tab_sub_image', '');
-        }
-
-        if($this->valid($dataSave) && empty($this->error)) {
-            if($id > 0) {
-                //cap nhat
-                if(TabSub::updateData($id, $dataSave)) {
-                    return Redirect::route('admin.tabSubView');
-                }
-            } else {
-                //them moi
-                if(TabSub::addData($dataSave)) {
-                    return Redirect::route('admin.tabSubView');
-                }
-            }
-        }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['tab_sub_status'])? $dataSave['tab_sub_status'] : -1);
-        $optionTabParent = FunctionLib::getOption(array(0=>'Tab dưới')+$this->arrTabParent, isset($dataSave['tab_parent_id'])? $dataSave['tab_parent_id'] : 0);
-        $this->layout->content =  View::make('admin.UploadExcel.addTabSub')
-            ->with('id', $id)
-            ->with('data', $dataSave)
-            ->with('optionStatus', $optionStatus)
-            ->with('optionTabParent', $optionTabParent)
-            ->with('error', $this->error);
+        return Response::json($data);
     }
     /**
      * ***********************************************************************************************************
@@ -508,7 +419,10 @@ class UploadExcelController extends BaseAdminController
                         $soBaoDanh = trim($val['C']);
                         $arrSoBaoDanh[] = $soBaoDanh;
                         if(isset($val['B']) && trim($val['B']) !=''){$arrDataInput[$soBaoDanh]['tuyensinh_sohoso'] = trim($val['B']);}
-                        if(isset($val['C']) && trim($val['C']) !=''){$arrDataInput[$soBaoDanh]['tuyensinh_sobaodanh'] = trim($val['C']);}
+                        if(isset($val['C']) && trim($val['C']) !=''){
+                            $arrDataInput[$soBaoDanh]['tuyensinh_sobaodanh'] = trim($val['C']);
+                            $arrDataInput[$soBaoDanh]['tuyensinh_sobaodanh_search'] = FunctionLib::stringTitle(trim($val['C']));
+                        }
                         if(isset($val['D']) && trim($val['D']) !=''){$arrDataInput[$soBaoDanh]['tuyensinh_hoten'] = trim($val['D']);}
                         if(isset($val['E']) && trim($val['E']) !=''){$arrDataInput[$soBaoDanh]['tuyensinh_ngaysinh'] = trim($val['E']);}
                         if(isset($val['F']) && trim($val['F']) !=''){$arrDataInput[$soBaoDanh]['tuyensinh_gioitinh'] = trim($val['F']);}
@@ -605,79 +519,16 @@ class UploadExcelController extends BaseAdminController
             ->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)//dùng common
             ->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0);//dùng common
     }
-    public function getTuyensinh($id=0) {
-        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
-            return Redirect::route('admin.dashboard',array('error'=>1));
+    public function deleteTuyensinh()
+    {
+        $data = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($data);
         }
-        $data = array();
-        if($id > 0) {
-            $data = TabSub::find($id);
+        $id = (int)Request::get('id', 0);
+        if ($id > 0 && ExcelTuyensinh::deleteData($id)) {
+            $data['isIntOk'] = 1;
         }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['tab_sub_status'])? $data['tab_sub_status'] : CGlobal::status_show);
-        $optionTabParent = FunctionLib::getOption(array(0=>'--Chọn tab cha--')+$this->arrTabParent, isset($data['tab_parent_id'])? $data['tab_parent_id'] : 0);
-        $this->layout->content = View::make('admin.UploadExcel.addTabSub')
-            ->with('id', $id)
-            ->with('data', $data)
-            ->with('optionTabParent', $optionTabParent)
-            ->with('optionStatus', $optionStatus);
-    }
-    public function postTuyensinh($id=0) {
-        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
-            return Redirect::route('admin.dashboard',array('error'=>1));
-        }
-
-        $dataSave['tab_sub_name'] = addslashes(Request::get('tab_sub_name'));
-        $dataSave['tab_sub_link'] = addslashes(Request::get('tab_sub_link'));
-        $dataSave['tab_sub_status'] = (int)Request::get('tab_sub_status', CGlobal::status_show);
-        $dataSave['tab_sub_order'] = (int)Request::get('tab_sub_order', 1);
-        $dataSave['tab_parent_id'] = (int)Request::get('tab_parent_id', 0);
-
-        $file = Input::file('image');
-        if($file){
-            $filename = $file->getClientOriginalName();
-            $destinationPath = Config::get('config.DIR_ROOT').'/uploads/'.CGlobal::FOLDER_TAB_SUB.'/'. $id;
-            $upload  = Input::file('image')->move($destinationPath, $filename);
-            //xóa ảnh cũ
-            if($filename != ''){
-                $tab_sub_image_old = Request::get('tab_sub_image_old', '');
-                if($tab_sub_image_old != '')
-                {
-                    //xoa anh upload
-                    FunctionLib::deleteFileUpload($tab_sub_image_old,$id,CGlobal::FOLDER_TAB_SUB);
-
-                    //xóa anh thumb
-                    $arrSizeThumb = CGlobal::$arrSizeImage;
-                    foreach($arrSizeThumb as $k=>$size){
-                        $sizeThumb = $size['w'].'x'.$size['h'];
-                        FunctionLib::deleteFileThumb($tab_sub_image_old,$id,CGlobal::FOLDER_TAB_SUB,$sizeThumb);
-                    }
-                }
-            }
-            $dataSave['tab_sub_image'] = $filename;
-        }else{
-            $dataSave['tab_sub_image'] = Request::get('tab_sub_image', '');
-        }
-
-        if($this->valid($dataSave) && empty($this->error)) {
-            if($id > 0) {
-                //cap nhat
-                if(TabSub::updateData($id, $dataSave)) {
-                    return Redirect::route('admin.tabSubView');
-                }
-            } else {
-                //them moi
-                if(TabSub::addData($dataSave)) {
-                    return Redirect::route('admin.tabSubView');
-                }
-            }
-        }
-        $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['tab_sub_status'])? $dataSave['tab_sub_status'] : -1);
-        $optionTabParent = FunctionLib::getOption(array(0=>'Tab dưới')+$this->arrTabParent, isset($dataSave['tab_parent_id'])? $dataSave['tab_parent_id'] : 0);
-        $this->layout->content =  View::make('admin.UploadExcel.addTabSub')
-            ->with('id', $id)
-            ->with('data', $dataSave)
-            ->with('optionStatus', $optionStatus)
-            ->with('optionTabParent', $optionTabParent)
-            ->with('error', $this->error);
+        return Response::json($data);
     }
 }

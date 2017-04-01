@@ -10,7 +10,8 @@ class ExcelNangkhieu extends Eloquent
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('nangkhieu_id','nangkhieu_sobaodanh', 'nangkhieu_hoten', 'nangkhieu_ngaysinh','nangkhieu_cmt' ,'nangkhieu_sophach'
+    protected $fillable = array('nangkhieu_id','nangkhieu_sobaodanh','nangkhieu_sobaodanh_search',
+        'nangkhieu_hoten', 'nangkhieu_ngaysinh','nangkhieu_cmt' ,'nangkhieu_sophach'
     ,'nangkhieu_monthi_mot', 'nangkhieu_monthi_hai', 'nangkhieu_monthi_ba','nangkhieu_monthi_bon', 'nangkhieu_monthi_nam','nangkhieu_monthi_sau'
     ,'nangkhieu_ngaythi', 'nangkhieu_ngaytao', 'nangkhieu_nguoitao','nangkhieu_ngaycapnhat', 'nangkhieu_nguoicapnhat');
 

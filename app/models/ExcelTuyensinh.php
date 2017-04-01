@@ -10,7 +10,9 @@ class ExcelTuyensinh extends Eloquent
     public $timestamps = false;
 
     //cac truong trong DB
-    protected $fillable = array('tuyensinh_id','tuyensinh_sohoso', 'tuyensinh_sobaodanh', 'tuyensinh_hoten','tuyensinh_ngaysinh'
+    protected $fillable = array('tuyensinh_id','tuyensinh_sohoso'
+    , 'tuyensinh_sobaodanh', 'tuyensinh_sobaodanh_search'
+    , 'tuyensinh_hoten','tuyensinh_ngaysinh'
     ,'tuyensinh_gioitinh','tuyensinh_cmt', 'tuyensinh_khuvuc_uutien', 'tuyensinh_diem_uutien','tuyensinh_tinhthanh','tuyensinh_quanhuyen'
     ,'tuyensinh_monthi_mot', 'tuyensinh_diem_monthimot', 'tuyensinh_monthi_hai','tuyensinh_diem_monthihai', 'tuyensinh_monthi_ba','tuyensinh_diem_monthiba'
     ,'tuyensinh_diemlech', 'tuyensinh_tongdiemchua_uutien', 'tuyensinh_diem_uutien_quydoi','tuyensinh_tongdiemco_uutien', 'tuyensinh_nganhtrungtuyen'

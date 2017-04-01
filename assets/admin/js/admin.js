@@ -32,6 +32,12 @@ var Admin = {
             	url_ajax = 'deleteVideo';
             }else if(type == 16){
             	url_ajax = 'deleteEvent';
+            }else if(type == 17){
+            	url_ajax = 'upload/deleteVanbang';
+            }else if(type == 18){
+            	url_ajax = 'upload/deleteNangkhieu';
+            }else if(type == 19){
+            	url_ajax = 'upload/deleteTuyensinh';
             }
             if(url_ajax != ''){
                 $.ajax({

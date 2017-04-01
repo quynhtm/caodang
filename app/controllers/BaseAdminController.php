@@ -108,7 +108,7 @@ class BaseAdminController extends BaseController
             ),
         );
         $menu[] = array(
-            'name'=>'Hệ thống upload Excel',
+            'name'=>'Upload Excel',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-file-excel-o',
             'arr_link_sub'=>array('admin.viewVanbang','admin.viewNangkhieu','admin.viewTuyensinh',),

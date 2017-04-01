@@ -12,7 +12,8 @@ class ExcelVanbang extends Eloquent
     //cac truong trong DB
     protected $fillable = array('vanbang_id','vanbang_hoten', 'vanbang_ngaysinh', 'vanbang_noisinh','vanbang_gioitinh'
     ,'vanbang_dantoc', 'vanbang_nganhdaotao', 'vanbang_namtotnghiep','vanbang_xeploai'
-    ,'vanbang_machungchi', 'vanbang_chungchiso', 'vanbang_khoahoc','vanbang_trinhdo'
+    ,'vanbang_machungchi','vanbang_machungchi_search'
+    ,'vanbang_chungchiso', 'vanbang_khoahoc','vanbang_trinhdo'
     ,'vanbang_htdaotao', 'vanbang_sototnghiep', 'vanbang_ngaytotnghiep'
     ,'vanbang_ngaytao', 'vanbang_nguoitao', 'vanbang_capnhat','vanbang_nguoicapnhat');
 

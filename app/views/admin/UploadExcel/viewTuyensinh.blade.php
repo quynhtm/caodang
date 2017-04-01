@@ -59,7 +59,7 @@
                         @foreach ($data as $key => $item)
                             <tr>
                                 <td class="text-center text-middle">
-                                    {{ $key+1 }}<br/><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['vanbang_id']}}">
+                                    {{ $key+1 }}<br/><input class="check" type="checkbox" name="checkItems[]" id="sys_checkItems" value="{{$item['tuyensinh_id']}}">
                                 </td>
                                 <td>
                                     <b>Tên: </b>{{ $item['tuyensinh_hoten'] }}
@@ -93,9 +93,9 @@
                                     <br/>Trình độ: <b>{{ $item['tuyensinh_trinhdo'] }}</b>
                                 </td>
 
-                                <td class="text-center">
+                                <td class="text-center text-middle">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
-
+                                        <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['tuyensinh_id']}},19)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>
                             </tr>
