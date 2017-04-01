@@ -12,7 +12,7 @@
 			<div class="col-lg-2 col-md-2 col-sm-12">
 				<div class="form-group">
 					<label class="control-label">&nbsp;</label>
-					<button type="button" id="submitTraCuuVanBangChungChi" class="btn btn-primary btn-ext">Tra cứu</button>
+					<span id="submitTraCuuVanBangChungChi" class="btn btn-primary btn-ext">Tra cứu</span>
 				</div>
 				<span class="loading"></span>
 			</div>

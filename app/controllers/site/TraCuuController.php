@@ -95,7 +95,7 @@ class TraCuuController extends BaseSiteController{
         $token = trim(stripslashes(Request::get('_token', '')));
         if(Session::token() === $token){
             if($dataSearch['nangkhieu_cmt'] != '' || $dataSearch['nangkhieu_hoten'] != ''){
-                $result = ExcelNangkhieu::searchSiteByCondition($dataSearch, 1);
+                $result = ExcelNangkhieu::searchSiteByCondition($dataSearch, 100000);
                 $arrItem = array();
                 if(sizeof($result) > 0){
                     foreach($result as $item){
@@ -165,7 +165,7 @@ class TraCuuController extends BaseSiteController{
             }
 
             if(($dataSearch['tuyensinh_cmt'] != '' || $dataSearch['tuyensinh_hoten']) && $dataSearch['tuyensinh_trinhdo'] != ''){
-                $result = ExcelTuyensinh::searchSiteByCondition($dataSearch, 1);
+                $result = ExcelTuyensinh::searchSiteByCondition($dataSearch, 100000);
                 $arrItem = array();
                 if(sizeof($result) > 0){
                     foreach($result as $item){
@@ -178,6 +178,7 @@ class TraCuuController extends BaseSiteController{
                             'tuyensinh_hinhthucxettuyen'=>(string)$item->tuyensinh_hinhthucxettuyen,
                             'tuyensinh_tongdiemco_uutien'=>(string)$item->tuyensinh_tongdiemco_uutien,
                             'tuyensinh_nganhtrungtuyen'=>(string)$item->tuyensinh_nganhtrungtuyen,
+                            'tuyensinh_dotxettuyen'=>(string)$item->tuyensinh_dotxettuyen,
 
                         );
                         array_push($arrItem, $tmp);

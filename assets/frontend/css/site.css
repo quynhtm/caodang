@@ -1144,6 +1144,7 @@ table th, table td{
 .tblNangKhieu{
     margin-bottom: 10px;
     width: 100%;
+	margin-top: 20px;
 }
 .tblNangKhieu .head td{
     font-weight: bold;

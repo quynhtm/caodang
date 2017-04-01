@@ -107,7 +107,13 @@ SITE={
 		});
 	},
     boxTraCuuVanBangChungChi:function(){
-    	$('#submitTraCuuVanBangChungChi').click(function(){
+        $(document).keypress(function(e) {
+            if((e.keyCode ? e.keyCode : e.which) == 13){
+                $('#submitTraCuuVanBangChungChi').click();
+                return false;
+            }
+        });
+        $('#submitTraCuuVanBangChungChi').click(function(){
     		var ipVanBang = $('#ipVanBang').val(),
                 _token = $('#formTraCuu input[name="_token"]').val();
     		if(ipVanBang == ''){
@@ -130,14 +136,12 @@ SITE={
                             } else {
                                 var jsonData = jQuery.parseJSON(data);
                                 var str = '';
-                                for (var i = 0; i < jsonData.length; i++) {
-                                    str += '<div class="item-result">';
-                                    str += '<div class="line-equal-item"><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Họ tên: <span class="normal">' + jsonData[i].vanbang_hoten + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Ngày sinh: <span class="normal">' + jsonData[i].vanbang_ngaysinh + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Giới tính: <span class="normal">' + jsonData[i].vanbang_gioitinh + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Dân tộc: <span class="normal">' + jsonData[i].vanbang_dantoc + '</span></label></div></div><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Địa chỉ: <span class="normal">' + jsonData[i].vanbang_noisinh + '</span></label></div></div></div></div>';
-                                    str += '<div class="line-equal-item"><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Ngành: <span class="normal">' + jsonData[i].vanbang_nganhdaotao + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Số hiệu: <span class="normal">' + jsonData[i].vanbang_machungchi + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Chứng chỉ: <span class="normal">' + jsonData[i].vanbang_chungchiso + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Số tốt nghiệp: <span class="normal">' + jsonData[i].vanbang_sototnghiep + '</span></label></div></div><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Hình thức: <span class="normal">' + jsonData[i].vanbang_htdaotao + '</span></label></div></div></div>';
-                                    str += '<div class="line-equal-item"><div class="col-lg-3 col-md-3 col-sm-12"><div class="item-form-group"> <label class="control-label">Ngày tốt nghiệp: <span class="normal">' + jsonData[i].vanbang_ngaytotnghiep + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Năm tốt nghiệp: <span class="normal">' + jsonData[i].vanbang_namtotnghiep + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Khóa: <span class="normal">' + jsonData[i].vanbang_khoahoc + '</span></label></div></div><div class="col-lg-2 col-md-2 col-sm-12"><div class="item-form-group"> <label class="control-label">Xếp loại: <span class="normal">' + jsonData[i].vanbang_xeploai + '</span></label></div></div></div>';
-                                    str += '</div>';
-                                    $('.box-list-equal').append(str);
+                                str += '<table class="tblNangKhieu">';
+								for (var i = 0; i < jsonData.length; i++) {
+                                    str += '<tr><td>Họ và tên: '+ jsonData[i].vanbang_hoten +'</td><td>Ngày sinh: ' + jsonData[i].vanbang_ngaysinh + '</td><td>Nơi sinh: ' + jsonData[i].vanbang_noisinh + '</td><td>Giới tính: ' + jsonData[i].vanbang_gioitinh + '</td><td>Dân tộc: ' + jsonData[i].vanbang_dantoc + '</td></tr><tr><td>Ngành đào tạo: ' + jsonData[i].vanbang_nganhdaotao + '</td><td>Khóa: ' + jsonData[i].vanbang_machungchi + '</td><td>Hình thức ĐT: ' + jsonData[i].vanbang_htdaotao + '</td><td>Năm TN: ' + jsonData[i].vanbang_namtotnghiep + '</td><td>Xếp loại: ' + jsonData[i].vanbang_xeploai + '</td></tr><tr><td>Số Quyết định: ' + jsonData[i].vanbang_sototnghiep + '</td><td>Ngày Quyết định: ' + jsonData[i].vanbang_ngaytotnghiep + '</td><td>Số hiệu VBCC: ' + jsonData[i].vanbang_machungchi + '</td><td>Số vào sổ: ' + jsonData[i].vanbang_chungchiso + '</td><td></td></tr>';
                                 }
+								str += '</table>';
+                                $('.box-list-equal').append(str);
                             }
                         }
                     });
@@ -146,6 +150,12 @@ SITE={
 		});
 	},
     boxTraCuuDiemThiNangKhieu:function(){
+        $(document).keypress(function(e) {
+            if((e.keyCode ? e.keyCode : e.which) == 13){
+                $('#submitTraCuuDiemThiNangKhieu').click();
+                return false;
+            }
+        });
         $('#submitTraCuuDiemThiNangKhieu').click(function(){
             var ipCMND = $('#ipCMND').val(),
                 ipHoVaTen = $('#ipHoVaTen').val(),
@@ -172,7 +182,7 @@ SITE={
                                 var jsonData = jQuery.parseJSON(data);
                                 var str = '';
 								str += '<table class="tblNangKhieu">';
-                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMND</td><td>NK1</td><td>NK2</td><td>NK3</td><td>NK4</td><td>NK5</td><td>NK6</td><td>Đợt thi</td></tr>';
+                                str += '<tr class="head"><td width="20%">Họ và tên</td><td width="10%">Ngày sinh</td><td width="10%">Số CMND</td><td width="10%">NK1</td><td width="10%">NK2</td><td width="10%">NK3</td><td width="10%">NK4</td><td width="10%">NK5</td><td width="10%">NK6</td><td width="10%">Đợt thi</td></tr>';
                                 for (var i = 0; i < jsonData.length; i++) {
                                     str += '<tr><td>'+jsonData[i].nangkhieu_hoten+'</td><td>'+ jsonData[i].nangkhieu_ngaysinh +'</td><td>'+ jsonData[i].nangkhieu_cmt +'</td><td>'+ jsonData[i].nangkhieu_monthi_mot +'</td><td>'+ jsonData[i].nangkhieu_monthi_hai +'</td><td>'+ jsonData[i].nangkhieu_monthi_ba +'</td><td>'+ jsonData[i].nangkhieu_monthi_bon +'</td><td>'+ jsonData[i].nangkhieu_monthi_nam +'</td><td>'+ jsonData[i].nangkhieu_monthi_sau +'</td><td>'+ jsonData[i].nangkhieu_ngaythi +'</td></tr>';
                                 }
@@ -187,6 +197,12 @@ SITE={
         });
     },
     boxTraCuuXetTuyenSinh:function(){
+        $(document).keypress(function(e) {
+            if((e.keyCode ? e.keyCode : e.which) == 13){
+                $('#submitTraCuuXetTuyenSinh').click();
+                return false;
+            }
+        });
         $('#submitTraCuuXetTuyenSinh').click(function(){
             var ipCMND = $('#ipCMND').val(),
                 ipHoVaTen = $('#ipHoVaTen').val(),
@@ -215,7 +231,7 @@ SITE={
                                 str += '<table class="tblNangKhieu">';
                                 str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMND</td><td>Khu vực</td><td>Đối tượng</td><td>Hình thức xét tuyển</td><td>Tổng điểm có ƯT</td><td>Ngành trúng tuyển</td><td>Đợt xét tuyển</td></tr>';
                                 for (var i = 0; i < jsonData.length; i++) {
-                                    str += '<tr><td>'+jsonData[i].tuyensinh_hoten+'</td><td>'+ jsonData[i].tuyensinh_ngaysinh +'</td><td>'+ jsonData[i].tuyensinh_cmt +'</td><td>'+ jsonData[i].tuyensinh_khuvuc_uutien +'</td><td>'+ jsonData[i].tuyensinh_diem_uutien +'</td><td>'+ jsonData[i].tuyensinh_hinhthucxettuyen +'</td><td>'+ jsonData[i].tuyensinh_tongdiemco_uutien +'</td><td>'+ jsonData[i].tuyensinh_nganhtrungtuyen +'</td><td></td></tr>';
+                                    str += '<tr><td>'+jsonData[i].tuyensinh_hoten+'</td><td>'+ jsonData[i].tuyensinh_ngaysinh +'</td><td>'+ jsonData[i].tuyensinh_cmt +'</td><td>'+ jsonData[i].tuyensinh_khuvuc_uutien +'</td><td>'+ jsonData[i].tuyensinh_diem_uutien +'</td><td>'+ jsonData[i].tuyensinh_hinhthucxettuyen +'</td><td>'+ jsonData[i].tuyensinh_tongdiemco_uutien +'</td><td>'+ jsonData[i].tuyensinh_nganhtrungtuyen +'</td><td>' + jsonData[i].tuyensinh_dotxettuyen + '</td></tr>';
                                 }
                                 str += '</table>';
                                 $('.box-list-equal').append(str);
