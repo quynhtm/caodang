@@ -48,7 +48,7 @@ class BaseAdminController extends BaseController
 
     public function menu(){
         $menu[] = array(
-            'name'=>'QL user Admin',
+            'name'=>'QL người dùng',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-user',
             'arr_link_sub'=>array('admin.user_view','admin.permission_view','admin.groupUser_view',),//dung de check menu left action
@@ -108,7 +108,7 @@ class BaseAdminController extends BaseController
             ),
         );
         $menu[] = array(
-            'name'=>'Hệ thống upload Excel',
+            'name'=>'QL upload excel',
             'link'=>'javascript:void(0)',
             'icon'=>'fa fa-file-excel-o',
             'arr_link_sub'=>array('admin.viewVanbang','admin.viewNangkhieu','admin.viewTuyensinh',),
