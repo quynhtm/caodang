@@ -135,15 +135,7 @@ class ExcelVanbang extends Eloquent
         try{
             $query = ExcelVanbang::where('vanbang_id','>',0);
             if (isset($dataSearch['vanbang_machungchi']) && $dataSearch['vanbang_machungchi'] != '') {
-                $arrEx = explode(' ', $dataSearch['vanbang_machungchi']);
-                if(count($arrEx) == 1){
-                    $arrEx1 =  substr($dataSearch['vanbang_machungchi'], 0, 1);
-                    $arrEx2 =  substr($dataSearch['vanbang_machungchi'], 1);
-                    if($arrEx1 != '' && $arrEx2 != ''){
-                        $dataSearch['vanbang_machungchi'] = $arrEx1.' '.$arrEx2;
-                    }
-                }
-                $query->where('vanbang_machungchi', $dataSearch['vanbang_machungchi']);
+                $query->where('vanbang_machungchi_search', $dataSearch['vanbang_machungchi']);
             }
             $query->orderBy('vanbang_id', 'asc');
 

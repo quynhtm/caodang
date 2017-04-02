@@ -30,11 +30,13 @@ class TraCuuController extends BaseSiteController{
         $this->footer();
 	}
     public function ajaxTraCuuVanBangChungChi(){
-        $dataSearch['vanbang_machungchi'] = trim(stripslashes(Request::get('ipVanBang','')));
+        $dataSearch['vanbang_machungchi'] = (string)trim(stripslashes(Request::get('ipVanBang','')));
         $token = trim(stripslashes(Request::get('_token', '')));
         if(Session::token() === $token){
             if($dataSearch['vanbang_machungchi'] != ''){
-                $result = ExcelVanbang::searchSiteByCondition($dataSearch, 1);
+                $tmp = str_replace(' ', '', $dataSearch['vanbang_machungchi']);
+				$dataSearch['vanbang_machungchi'] = $tmp;
+				$result = ExcelVanbang::searchSiteByCondition($dataSearch, 1);
                 $arrItem = array();
                 if(sizeof($result) > 0){
                     foreach($result as $item){
