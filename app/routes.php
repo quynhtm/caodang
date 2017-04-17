@@ -192,6 +192,12 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('info/edit/{id?}', array('as' => 'admin.infoEdit','uses' => 'InfoController@postItem'))->where('id', '[0-9]+');
     Route::post('info/deleteInfor', array('as' => 'admin.infoDelete','uses' => 'InfoController@deleteInfor'));
 
+    //Quản lý link liên kết
+    Route::get('attackLink/view', array('as' => 'admin.attackLinkView','uses' => 'AttackLinkController@view'));
+    Route::get('attackLink/edit/{id?}', array('as' => 'admin.editLink','uses' => 'AttackLinkController@getItem'))->where('id', '[0-9]+');
+    Route::post('attackLink/edit/{id?}', array('as' => 'admin.editLink','uses' => 'AttackLinkController@postItem'))->where('id', '[0-9]+');
+    Route::post('attackLink/deleteLink', array('as' => 'admin.deleteLink','uses' => 'AttackLinkController@deleteLink'));
+
     //Thung rac
     Route::get('trash', array('as' => 'admin.trash','uses' => 'TrashController@listView'));
     Route::get('trash/edit/{id?}', array('as' => 'admin.trash_edit','uses' => 'TrashController@getItem'))->where('id', '[0-9]+');

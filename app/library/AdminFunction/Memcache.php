@@ -71,6 +71,9 @@ class Memcache{
     //Thung rac
     const CACHE_TRASH_ID    = 'cache_trash_id_';
 
+    //attack link
+    const CACHE_ATTACK_LINK_ID    = 'cache_attack_link_id_';
+
     //Tinh thành
     const CACHE_ALL_PROVINCE = 'cache_all_province';
     const CACHE_PROVINCE_ID = 'cache_province_id_';
