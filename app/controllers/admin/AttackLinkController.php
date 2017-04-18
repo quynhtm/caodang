@@ -14,7 +14,11 @@ class AttackLinkController extends BaseAdminController{
 	private $permission_edit = 'infor_edit';
 	
 	private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
-	private $error = '';
+	private $arrType = array(-1 => 'Chọn loại liên kết',
+		CGlobal::TYPE_LINK_COQUAN => 'Cơ quan Đảng - nhà nước',
+		CGlobal::TYPE_LINK_TRUONG => 'Các trường đại học',
+		CGlobal::TYPE_LINK_WEBSITE => 'Các Website khác');
+	private $error = array();
 	public function __construct(){
 		parent::__construct();
 		FunctionLib::link_css(array(
@@ -73,11 +77,13 @@ class AttackLinkController extends BaseAdminController{
 			$data = AttackLink::getById($id);
 		}
 
-		$optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['info_status'])? $data['info_status'] : CGlobal::status_show);
+		$optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['link_status'])? $data['link_status'] : CGlobal::status_show);
+		$optionType = FunctionLib::getOption($this->arrType, isset($data['link_type'])? $data['link_type'] : CGlobal::TYPE_LINK_TRUONG);
 		$this->layout->content = View::make('admin.AttackLink.add')
 		->with('id', $id)
 		->with('data', $data)
 		->with('optionStatus', $optionStatus)
+		->with('optionType', $optionType)
 		->with('is_root', $this->is_root)
 		->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)
 		->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)
@@ -89,52 +95,56 @@ class AttackLinkController extends BaseAdminController{
 		if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
 			return Redirect::route('admin.dashboard',array('error'=>1));
 		}
-		$id_hiden = (int)Request::get('id_hiden', 0);
-		$data = array();
-		
-		$dataSave = array(
-				'info_title'=>array('value'=>addslashes(Request::get('info_title')), 'require'=>1, 'messages'=>'Tiêu đề không được trống!'),
-				'info_keyword'=>array('value'=>addslashes(Request::get('info_keyword')),'require'=>1, 'messages'=>'Từ khóa không được trống!'),
-				'info_intro'=>array('value'=>addslashes(Request::get('info_intro')),'require'=>0),
-				'info_content'=>array('value'=>addslashes(FunctionLib::strReplace(Request::get('info_content'), '\r\n', '')),'require'=>0),
-				'info_order_no'=>array('value'=>(int)addslashes(Request::get('info_order_no')),'require'=>0),
-				'info_created'=>array('value'=>time()),
-				'info_status'=>array('value'=>(int)Request::get('info_status', -1),'require'=>0),
-				
-				'info_img'=>array('value'=>addslashes(Request::get('image_primary')),'require'=>0),
-				'meta_title'=>array('value'=>addslashes(Request::get('meta_title')),'require'=>0),
-				'meta_keywords'=>array('value'=>addslashes(Request::get('meta_keywords')),'require'=>0),
-				'meta_description'=>array('value'=>addslashes(Request::get('meta_description')),'require'=>0),
-		);
-		
-		if($id > 0){
-			unset($dataSave['info_keyword']);
-			unset($dataSave['info_created']);
-		}
-		
-		$this->error = ValidForm::validInputData($dataSave);
-		if($this->error == ''){
-			$id = ($id == 0) ? $id_hiden : $id;
-			AttackLink::saveData($id, $dataSave);
-			return Redirect::route('admin.info');
-		}else{
-			foreach($dataSave as $key=>$val){
-				$data[$key] = $val['value'];
+
+		$dataSave['link_title'] = addslashes(Request::get('link_title'));
+		$dataSave['link_url'] = addslashes(Request::get('link_url'));
+		$dataSave['link_status'] = (int)Request::get('link_status', CGlobal::status_show);
+		$dataSave['link_order'] = (int)Request::get('link_order', 1);
+		$dataSave['link_type'] = (int)Request::get('link_type', 1);
+
+		if($this->valid($dataSave) && empty($this->error)) {
+			if($id > 0) {
+				//cap nhat
+				if(AttackLink::updateData($id, $dataSave)) {
+					return Redirect::route('admin.attackLinkView');
+				}
+			} else {
+				//them moi
+				if(AttackLink::addData($dataSave)) {
+					return Redirect::route('admin.attackLinkView');
+				}
 			}
 		}
-		
-		$optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['info_status'])? $data['info_status'] : -1);
-		$this->layout->content = View::make('admin.AttackLink.add')
-		->with('id', $id)
-		->with('data', $data)
-		->with('optionStatus', $optionStatus)
-		->with('is_root', $this->is_root)
-		->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)
-		->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)
-		->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)
-		->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0)
-		->with('error', $this->error);
+		$optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['link_status'])? $dataSave['link_status'] : -1);
+		$optionType = FunctionLib::getOption($this->arrType, isset($dataSave['link_type'])? $dataSave['link_type'] : -1);
+		$this->layout->content =  View::make('admin.AttackLink.add')
+			->with('id', $id)
+			->with('data', $dataSave)
+			->with('optionStatus', $optionStatus)
+			->with('optionType', $optionType)
+			->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)
+			->with('permission_create', in_array($this->permission_create, $this->permission) ? 1 : 0)
+			->with('permission_delete', in_array($this->permission_delete, $this->permission) ? 1 : 0)
+			->with('permission_edit', in_array($this->permission_edit, $this->permission) ? 1 : 0)
+			->with('error', $this->error);
 	}
+
+	private function valid($data=array()) {
+		if(!empty($data)) {
+			if(isset($data['category_depart_name']) && $data['category_depart_name'] == '') {
+				$this->error[] = 'Tên chuyên nghành không được bỏ trống';
+			}
+			if(isset($data['category_depart_status']) && $data['category_depart_status'] == -1) {
+				$this->error[] = 'Bạn chưa chọn trạng thái';
+			}
+			if(isset($data['department_id']) && $data['department_id'] < 0) {
+				$this->error[] = 'Bạn chưa chọn thuộc Khoa - Trung tâm nào';
+			}
+			return true;
+		}
+		return false;
+	}
+
 	public function deleteLink(){
 		$data = array('isIntOk' => 0);
 		if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){

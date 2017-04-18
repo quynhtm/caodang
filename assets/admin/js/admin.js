@@ -38,6 +38,8 @@ var Admin = {
             	url_ajax = 'upload/deleteNangkhieu';
             }else if(type == 19){
             	url_ajax = 'upload/deleteTuyensinh';
+            }else if(type == 20){
+            	url_ajax = 'deleteLink';
             }
             if(url_ajax != ''){
                 $.ajax({
