@@ -1,4 +1,11 @@
 @if(sizeof($arrBannerSlider) > 0)
+	<?php $check = 0;?>
+	@foreach($arrBannerSlider as $item)
+		@if($item->banner_page == $departmentId)
+			<?php $check++;?>
+		@endif
+	@endforeach
+@if($check > 0)
 <script type="text/javascript" language="javascript">
 	$(document).ready(function() {
 		$('._sliders').skitter({
@@ -7,6 +14,7 @@
 		});
 	});
 </script>
+@endif
 <?php $rands = array('cube', 'cubeRandom', 'block', 'cubeStop', 'showBars', 'horizontal', 'fadeFour', 'paralell', 'blind', 'directionTop', 'directionBottom', 'directionRight'); ?>
 <div class="line">
 	<div class="skitter-large-box">
