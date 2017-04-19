@@ -5,8 +5,8 @@
                 <i class="ace-icon fa fa-home home-icon"></i>
                 <a href="{{URL::route('admin.dashboard')}}">Home</a>
             </li>
-            <li><a href="{{URL::route('admin.info')}}"> Danh sách thông tin chung</a></li>
-            <li class="active">@if($id > 0)Cập nhật thông tin chung @else Tạo mới thông tin chung @endif</li>
+            <li><a href="{{URL::route('admin.attackLinkView')}}"> Danh sách liên kết link</a></li>
+            <li class="active">@if($id > 0)Cập nhật liên kết link @else Tạo mới liên kết link @endif</li>
         </ul><!-- /.breadcrumb -->
     </div>
 
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label for="name" class="control-label">URL liên kết</label>
+                            <label for="name" class="control-label">URL liên kết <span class="red"> (*) </span></label>
                             <input type="text" placeholder="URL liên kết" id="link_url" name="link_url"  class="form-control input-sm" value="@if(isset($data['link_url'])){{$data['link_url']}}@endif">
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="clearfix"></div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <label for="name" class="control-label">Thuộc loại liên kết</label>
+                            <label for="name" class="control-label">Thuộc loại liên kết <span class="red"> (*) </span></label>
                             <select name="link_type" id="link_type" class="form-control input-sm">
                                 {{$optionType}}
                             </select>

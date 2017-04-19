@@ -49,22 +49,23 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 						<tr>
-							<th width="2%" class="text-center">STT</th>
-							<th width="1%" class="text-center"><input id="checkAll" type="checkbox"></th>
+							<th width="5%" class="text-center">STT</th>
+							<!--<th width="1%" class="text-center"><input id="checkAll" type="checkbox"></th>-->
 							<th width="20%">Tiêu đề link</th>
-							<th width="10%">link url</th>
+							<th width="40%">link url</th>
+							<th width="15%">Thuộc kiểu liên kết</th>
 							<th width="5%" class="text-center">Thứ tự</th>
-							<th width="5%" class="text-center">Trạng thái</th>
-							<th width="5%">Action</th>
+							<th width="15%" class="text-center">Action</th>
 						</tr>
 						</thead>
 						<tbody>
 						@foreach($data as $k=>$item)
 							<tr>
 								<td class="text-center">{{$k+1}}</td>
-								<td class="text-center"><input class="checkItem" name="checkItem[]" value="{{$item['link_id']}}" type="checkbox"></td>
+								<!--<td class="text-center"><input class="checkItem" name="checkItem[]" value="{{$item['link_id']}}" type="checkbox"></td>-->
 								<td>{{$item['link_title']}}</td>
 								<td>{{$item['link_url']}}</td>
+								<td>@if(isset($arrType[$item['link_type']]) && $item['link_type'] > 0){{$arrType[$item['link_type']]}}@endif</td>
 								<td class="text-center">{{$item['link_order']}}</td>
 
 								<td class="text-center">
@@ -73,8 +74,7 @@
 									@else
 										<i class="fa fa-remove fa-admin fa-2x red"></i>
 									@endif
-								</td>
-								<td>
+									&nbsp;&nbsp;&nbsp;
 									<a href="{{URL::route('admin.editLink',array('id' => $item['link_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
 									@if($is_root || $permission_full ==1 || $permission_delete == 1)
 										&nbsp;&nbsp;&nbsp;

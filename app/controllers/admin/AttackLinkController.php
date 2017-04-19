@@ -59,6 +59,7 @@ class AttackLinkController extends BaseAdminController{
 								->with('total', $total)
 								->with('paging', $paging)
 								->with('arrStatus', $this->arrStatus)
+								->with('arrType', $this->arrType)
 								->with('optionStatus', $optionStatus)
 								->with('search', $search)
 								->with('is_root', $this->is_root)
@@ -131,14 +132,14 @@ class AttackLinkController extends BaseAdminController{
 
 	private function valid($data=array()) {
 		if(!empty($data)) {
-			if(isset($data['category_depart_name']) && $data['category_depart_name'] == '') {
-				$this->error[] = 'Tên chuyên nghành không được bỏ trống';
+			if(isset($data['link_title']) && $data['link_title'] == '') {
+				$this->error[] = 'Tên link liên kết chưa có.';
 			}
-			if(isset($data['category_depart_status']) && $data['category_depart_status'] == -1) {
-				$this->error[] = 'Bạn chưa chọn trạng thái';
+			if(isset($data['link_url']) && $data['link_url'] == '') {
+				$this->error[] = 'Bạn chưa nhập URL cho link liên kết';
 			}
-			if(isset($data['department_id']) && $data['department_id'] < 0) {
-				$this->error[] = 'Bạn chưa chọn thuộc Khoa - Trung tâm nào';
+			if(isset($data['link_type']) && $data['link_type'] == -1) {
+				$this->error[] = 'Bạn chưa chọn kiểu link liên kết';
 			}
 			return true;
 		}
