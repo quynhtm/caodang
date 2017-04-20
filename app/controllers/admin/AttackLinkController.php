@@ -15,9 +15,9 @@ class AttackLinkController extends BaseAdminController{
 	
 	private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
 	private $arrType = array(-1 => 'Chọn loại liên kết',
-		CGlobal::TYPE_LINK_COQUAN => 'Cơ quan Đảng - nhà nước',
-		CGlobal::TYPE_LINK_TRUONG => 'Các trường đại học',
-		CGlobal::TYPE_LINK_WEBSITE => 'Các Website khác');
+		CGlobal::TYPE_LINK_COQUAN => 'Cơ quan Đảng - Nhà nước',
+		CGlobal::TYPE_LINK_TRUONG => 'Các trường ĐH - CĐ',
+		CGlobal::TYPE_LINK_WEBSITE => 'Các website khác');
 	private $error = array();
 	public function __construct(){
 		parent::__construct();

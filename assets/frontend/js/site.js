@@ -6,6 +6,7 @@ jQuery(document).ready(function($){
 	SITE.boxTraCuuVanBangChungChi();
 	SITE.boxTraCuuDiemThiNangKhieu();
 	SITE.boxTraCuuXetTuyenSinh();
+    SITE.menuMobile();
 });
 
 SITE={
@@ -240,6 +241,16 @@ SITE={
                     });
                 }
             }
+        });
+    },
+    menuMobile:function(){
+        $('#toggle-menu').click(function(){
+            $('.bg-menu').addClass('act');
+            $('#toggle-menu').hide();
+        });
+        $('.icon-close').click(function(){
+            $('.bg-menu').removeClass('act');
+            $('#toggle-menu').show();
         });
     },
 }

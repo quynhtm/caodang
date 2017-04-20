@@ -126,4 +126,23 @@ class AttackLink extends Eloquent {
     }
 
     //SITE
+    public static function searchByConditionSite($dataSearch=array(), $limit=0){
+        try{
+
+            $query = AttackLink::where('link_id','>',0);
+            $query->where('link_status', CGlobal::status_show);
+            $query->orderBy('link_id', 'asc');
+
+            $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
+            if(!empty($fields)){
+                $result = $query->take($limit)->get($fields);
+            }else{
+                $result = $query->take($limit)->get();
+            }
+            return $result;
+
+        }catch (PDOException $e){
+            throw new PDOException();
+        }
+    }
 }

@@ -1,4 +1,4 @@
-<div class="line bd2">
+<div class="line bd2 mb">
 	<div class="col-lg-3 col-md-3 col-sm-12">
 		<h3 class="heading-news">
 			<a href="{{URL::route('site.pageEvent')}}" title="Lịch sự kiện">Lịch sự kiện</a>

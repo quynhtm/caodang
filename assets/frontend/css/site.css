@@ -1154,3 +1154,23 @@ table th, table td{
 .tblNangKhieu td{
     border: 1px solid #ddd;
 }
+.toggle-menu{
+    display: none;
+}
+.line-text-close{
+    display: none;
+}
+.icon-close {
+    position: fixed;
+    left: 20px;
+    top: 15px;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2044%2044%22%20width=%2244%22%20height=%2244%22%3E%3Cpath%20fill=%22%23B8C0C4%22%20d=%22M39.196%2043.3L1.154%205.256l3.89-3.89%2038.04%2038.043z%22/%3E%3Cpath%20fill=%22%23B8C0C4%22%20d=%22M.54%2039.413L38.58%201.37l3.89%203.89L4.428%2043.302z%22/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    text-indent: -9999em;
+    cursor: pointer;
+}

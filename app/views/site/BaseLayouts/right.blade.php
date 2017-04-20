@@ -44,7 +44,7 @@
 			@endif
 		@endforeach
 	@endif
-
+	@if(sizeof($arrLink) > 0 )
 	<div class="item-box">
 		<div class="top-title">
          <span>
@@ -53,25 +53,35 @@
 		</div>
 		<div class="list">
 			<div class="title-select">» Cơ quan Đảng - Nhà nước</div>
-			<select name="link" class="selectLink">
+			<select name="link" class="selectLink" onchange="window.open(this.options[this.selectedIndex].value,'_blank'); sites.options[0].selected=true">>
 				<option>--Liên kết---</option>
-				<option>ĐH QG Hà Nội</option>
-				<option>ĐH Bách Khoa</option>
+				@foreach($arrLink as $link)
+					@if($link->link_type == CGlobal::TYPE_LINK_COQUAN)
+					<option @if($link->link_url != '') value="{{$link->link_url}}" @endif>{{$link->link_title}}</option>
+					@endif
+				@endforeach
 			</select>
 			<div class="title-select">» Các trường Đại học</div>
-			<select name="link" class="selectLink">
+			<select name="link" class="selectLink" onchange="window.open(this.options[this.selectedIndex].value,'_blank'); sites.options[0].selected=true">>
 				<option>--Liên kết---</option>
-				<option>ĐH QG Hà Nội</option>
-				<option>ĐH Bách Khoa</option>
+				@foreach($arrLink as $link)
+					@if($link->link_type == CGlobal::TYPE_LINK_TRUONG)
+						<option @if($link->link_url != '') value="{{$link->link_url}}" @endif>{{$link->link_title}}</option>
+					@endif
+				@endforeach
 			</select>
 			<div class="title-select">» Các website khác</div>
-			<select name="link" class="selectLink">
+			<select name="link" class="selectLink" onchange="window.open(this.options[this.selectedIndex].value,'_blank'); sites.options[0].selected=true">>
 				<option>--Liên kết---</option>
-				<option>ĐH QG Hà Nội</option>
-				<option>ĐH Bách Khoa</option>
+				@foreach($arrLink as $link)
+					@if($link->link_type == CGlobal::TYPE_LINK_WEBSITE)
+						<option @if($link->link_url != '') value="{{$link->link_url}}" @endif>{{$link->link_title}}</option>
+					@endif
+				@endforeach
 			</select>
 		</div>
 	</div>
+	@endif
 	@if(sizeof($arrBannerRight) > 0)
 		@foreach($arrBannerRight as $item)
 			@if($item->banner_page == $departmentId)

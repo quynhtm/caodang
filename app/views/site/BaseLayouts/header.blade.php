@@ -19,9 +19,15 @@
 			<div class="language">
 				<a class="vi class=" href="?lang=vi"></a>
 				<a class="en class=" href="?lang=en"></a>
+				<div class="toggle-menu" id="toggle-menu">
+					<i class="fa fa-th-list"></i>
+				</div>
 			</div>
 	    </div>
 		<div class="bg-menu">
+			<div class="line-text-close">
+				<span class="icon-close">Close Menu</span>
+			</div>
 			<ul class="menu">
 				@if($departmentId > 0)
 					<li><a class="aline" href="{{URL::route('site.home')}}"><i class="fa fa-home icon-home"></i></a></li>

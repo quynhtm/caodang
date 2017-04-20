@@ -130,4 +130,44 @@
         clear: both;
         display: inline-block;
     }
+    .toggle-menu {
+        position: absolute;
+        top: 12px;
+        right: 0;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .toggle-menu .fa.fa-th-list {
+        font-size: 25px;
+        color: #adadad;
+    }
+    .language a{
+        display: none;
+    }
+    .flash {
+        position: relative;
+        min-height: 58px;
+    }
+    .bg-menu {
+        background: #7d7d7d;
+        width: 85%;
+        display: none;
+        float: left;
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        height: 100%;
+        min-height: 200%;
+        left: 0;
+        padding-top: 22px;
+    }
+    .bg-menu.act{
+        display: inline-block;
+    }
+    .bg-menu.act .menu {
+        border-top: 1px solid #ddd;
+    }
+    .bg-menu.act .line-text-close{
+        display: inline-block;
+    }
 }

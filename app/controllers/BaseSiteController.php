@@ -76,6 +76,9 @@ class BaseSiteController extends BaseController{
         //List type khoa-phongban-trungtam
         $arrType = TypeSetting::getTypeSettingWithGroup('group_type');
         $arrDepartment = Department::getFullDepart();
+        //Link
+        $arrLink = AttackLink::searchByConditionSite(array(), CGlobal::number_show_40);
+
         //List category right
         $menuCategoriessAll = Category::getCategoriessAll();
         $arrBanner = Banner::getBannerAdvanced(CGlobal::BANNER_TYPE_RIGHT, $departmentId);
@@ -86,7 +89,8 @@ class BaseSiteController extends BaseController{
                                 ->with('arrType', $arrType)
                                 ->with('arrDepartment', $arrDepartment)
                                 ->with('menuCategoriessAll', $menuCategoriessAll)
-                                ->with('arrBannerRight', $arrBannerRight);
+                                ->with('arrBannerRight', $arrBannerRight)
+                                ->with('arrLink', $arrLink);
     }
     public function eduBottom(){
         //Tab: Tuyển sinh và đào tạo

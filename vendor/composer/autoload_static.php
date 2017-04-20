@@ -240,6 +240,8 @@ class ComposerStaticInit4ced8e25c4bdafea3f841651eb64e1ed
         'Adobe_Font_Metrics' => __DIR__ . '/..' . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
         'AjaxCommonController' => __DIR__ . '/../..' . '/app/controllers/admin/AjaxCommonController.php',
         'ArrayPermission' => __DIR__ . '/../..' . '/app/library/AdminFunction/ArrayPermission.php',
+        'AttackLink' => __DIR__ . '/../..' . '/app/models/AttackLink.php',
+        'AttackLinkController' => __DIR__ . '/../..' . '/app/controllers/admin/AttackLinkController.php',
         'Attribute_Translator' => __DIR__ . '/..' . '/dompdf/dompdf/include/attribute_translator.cls.php',
         'Banner' => __DIR__ . '/../..' . '/app/models/Banner.php',
         'BannerController' => __DIR__ . '/../..' . '/app/controllers/admin/BannerController.php',
