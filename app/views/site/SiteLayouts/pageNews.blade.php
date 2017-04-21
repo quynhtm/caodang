@@ -17,7 +17,9 @@
 								{{stripslashes($item['news_title'])}}
 							</a>
 						</div>
+						@if($item['news_create'] != '')
 						<div class="date"><i class="icon-other icon-date"></i>{{date('h:i', $item['news_create'])}} ngày {{date('d/m/Y', $item['news_create'])}}</div>
+						@endif
 						<div class="post-intro">
 							@if($item['news_intro'] != '')
 								{{FunctionLib::substring(stripslashes($item['news_intro']), 200, '...') }}
@@ -33,7 +35,9 @@
 			@else
 				@foreach($arrItem as $item)
 					<h1 class="title-view">{{$item->news_title}}</h1>
+					@if($item['news_create'] != '')
 					<div class="date"><i class="icon-other icon-date"></i>{{date('h:i', $item['news_create'])}} ngày {{date('d/m/Y', $item['news_create'])}}</div>
+					@endif
 					@if($item->news_desc_sort != '')
 						<div class="library-intro">
 							<b>{{stripslashes($item['news_desc_sort'])}}</b>
