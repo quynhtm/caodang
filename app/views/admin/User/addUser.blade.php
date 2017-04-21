@@ -104,7 +104,7 @@
                     <input type="hidden" id="id_hiden" name="id_hiden" value="{{$id}}"/>
                 </div>
 
-                <div style="float: left; width: 50%;display: none">
+                <div style="float: left; width: 50%;">
                     <div id="show_category_sub_campaign" class="body">
                         <div class="form-group">
                             <label for="textDescrip" class="control-label col-lg-12 font2">Thuộc khoa, ngành</label>
