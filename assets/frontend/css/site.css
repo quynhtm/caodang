@@ -856,7 +856,7 @@ list-post .item-post .post-intro {
 .library-intro img {
     max-width: 100% !important;
     height: auto !important;
-    min-width: 80%!important;
+    min-width: auto%!important;
 }
 .donvi-khoa-trungtam{
     background: #4795d1;
