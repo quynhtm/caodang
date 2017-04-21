@@ -1,6 +1,6 @@
 <div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
 	<h2 class="title-path"><a href="{{URL::route('site.pageLibrary')}}" title="Thư viện ảnh">Thư viện ảnh</a></h2>
-	<h1 class="title-view">{{$item->image_title}}</h1>
+	<h1 class="title-view">{{stripslashes($item->image_title)}}</h1>
 	<div class="list-library-ext">
 		@if(isset($item) && sizeof($item) > 0)
 			<div class="page-list-library row" id="gallery">
@@ -35,7 +35,7 @@
 							<div class="thumbL">
 								<img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $aitem['image_id'], $aitem['image_image'], CGlobal::sizeImage_500)}}" />
 							</div>
-							<div class="titleL">{{$aitem->image_title}}</div>
+							<div class="titleL">{{stripslashes($aitem->image_title)}}</div>
 						</a>
 					</div>
 				@endforeach

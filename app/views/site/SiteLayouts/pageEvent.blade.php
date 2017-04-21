@@ -14,7 +14,7 @@
 						@endif
 						<div class="title-list-item">
 							<a class="post-title" title="{{$item['event_title']}}" href="{{FunctionLib::buildLinkDetailEvent($item->event_title, $item->event_id)}}">
-								{{$item['event_title']}}
+								{{stripslashes($item['event_title'])}}
 							</a>
 						</div>
 						<div class="date"><i class="icon-other icon-date"></i>
@@ -27,9 +27,9 @@
 						</div>
 						<div class="post-intro">
 							@if($item['event_desc_sort'] != '')
-								{{FunctionLib::substring($item['event_desc_sort'], 200, '...') }}
+								{{FunctionLib::substring(stripslashes($item['event_desc_sort']), 200, '...') }}
 							@else
-								{{FunctionLib::substring($item['event_content'], 200, '...') }}
+								{{FunctionLib::substring(stripslashes($item['event_content']), 200, '...') }}
 							@endif
 						</div>
 					</div>
@@ -37,7 +37,7 @@
 			</div>
 			@else
 				@foreach($arrItem as $item)
-					<h1 class="title-view">{{$item->news_title}}</h1>
+					<h1 class="title-view">{{stripslashes($item->news_title)}}</h1>
 					<div class="date"><i class="icon-other icon-date"></i>{{date('h:i', $item['news_create'])}} ngày {{date('d/m/Y', $item['news_create'])}}</div>
 					@if($item->news_desc_sort != '')
 						<div class="library-intro">
@@ -46,7 +46,7 @@
 					@endif
 					@if($item->news_content != '')
 						<div class="library-intro">
-							{{stripslashes($item['news_content'])}}
+							{{stripslashes(stripslashes($item['news_content']))}}
 						</div>
 					@endif
 

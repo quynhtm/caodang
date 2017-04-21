@@ -47,7 +47,7 @@
 									<li><a class="aline @if(isset($catid) && $catid == $cat['category_id']) act @endif" @if($cat['category_link'] != '')href="{{$cat['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name'])}}" @endif title="{{$cat['category_name']}}">{{$cat['category_name']}}</a>
 										<ul class="menu-sub">
 											@foreach($menuCategoriessAll as $sub)
-												@if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show)
+												@if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show && $sub['category_depart_id'] == $departmentId)
 													<li><a @if($sub['category_link'] != '')href="{{$sub['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($sub['category_id'], $sub['category_name'])}}" @endif title="{{$sub['category_name']}}">{{$sub['category_name']}}</a></li>
 												@endif
 											@endforeach

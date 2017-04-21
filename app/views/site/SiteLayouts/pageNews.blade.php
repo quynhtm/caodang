@@ -14,15 +14,15 @@
 						@endif
 						<div class="title-list-item">
 							<a class="post-title" title="{{$item['news_title']}}" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}">
-								{{$item['news_title']}}
+								{{stripslashes($item['news_title'])}}
 							</a>
 						</div>
 						<div class="date"><i class="icon-other icon-date"></i>{{date('h:i', $item['news_create'])}} ngày {{date('d/m/Y', $item['news_create'])}}</div>
 						<div class="post-intro">
 							@if($item['news_intro'] != '')
-								{{FunctionLib::substring($item['news_intro'], 200, '...') }}
+								{{FunctionLib::substring(stripslashes($item['news_intro']), 200, '...') }}
 							@else
-								{{FunctionLib::substring($item['news_content'], 200, '...') }}
+								{{FunctionLib::substring(stripslashes($item['news_content']), 200, '...') }}
 							@endif
 
 							<a class="arrow-more" href="{{FunctionLib::buildLinkDetailNews($item['news_category_name'], $item['news_title'], $item['news_id'])}}"><span>Chi Tiết</span></a>

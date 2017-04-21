@@ -1,6 +1,6 @@
 <div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
 	<h2 class="title-path"><a href="{{FunctionLib::buildLinkCategory($item->news_category_id, $item->news_category_name)}}" title="{{$item->news_category_name}}">{{$item->news_category_name}}</a></h2>
-	<h1 class="title-view">{{$item->news_title}}</h1>
+	<h1 class="title-view">{{stripslashes($item->news_title)}}</h1>
 	<div class="list-library-ext">
 		@if(isset($item) && sizeof($item) > 0)
 			@if($item->news_desc_sort != '')

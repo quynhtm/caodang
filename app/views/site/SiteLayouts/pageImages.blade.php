@@ -9,7 +9,7 @@
 							<div class="thumbL">
 								<img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $item['image_image'], CGlobal::sizeImage_500)}}" />
 							</div>
-							<div class="titleL">{{$item->image_title}}</div>
+							<div class="titleL">{{stripslashes($item->image_title)}}</div>
 						</a>
 					</div>
 				@endforeach

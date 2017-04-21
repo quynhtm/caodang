@@ -26,9 +26,9 @@
 									@endif
 									<span>
 										@if($item['news_intro'] != '')
-											{{FunctionLib::substring($item['news_intro'], 500, '...') }}
+											{{FunctionLib::substring(trim($item['news_intro']), 500, '...')}}
 										@else
-											{{FunctionLib::substring($item['news_content'], 500, '...') }}
+											{{FunctionLib::substring(trim($item['news_content']), 500, '...')}}
 										@endif
 									</span>
 								</div>

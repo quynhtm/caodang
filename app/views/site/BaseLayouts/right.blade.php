@@ -11,7 +11,7 @@
 						<ul>
 							@foreach($arrDepartment as $item)
 								@if($key == $item->department_type)
-								<li><a title="{{$item['department_name']}}" href="{{FunctionLib::buildLinkCategoryDepartment($item['department_alias'], $item['department_name'], $item['department_id'])}}">{{$item->department_name}}</a></li>
+								<li><a title="{{$item['department_name']}}" @if($item['department_link'] != '') target="_blank" href="{{stripslashes(trim($item['department_link']))}}" @else href="{{FunctionLib::buildLinkCategoryDepartment($item['department_alias'], $item['department_name'], $item['department_id'])}}" @endif>{{$item->department_name}}</a></li>
 								@endif
 							@endforeach
 						</ul>
@@ -95,4 +95,7 @@
 			@endif
 		@endforeach
 	@endif
+	<div class="item-box">
+		<a href="http://info.flagcounter.com/n0wO"><img src="http://s09.flagcounter.com/count/n0wO/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+	</div>
 </div>

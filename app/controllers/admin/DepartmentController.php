@@ -104,6 +104,7 @@ class DepartmentController extends BaseAdminController
         $dataSave['department_order'] = (int)Request::get('department_order', 1);
         $dataSave['department_type'] = Request::get('department_type', '');
         $dataSave['department_layouts'] = Request::get('department_layouts', '');
+        $dataSave['department_link'] = addslashes(Request::get('department_link', ''));
 
         $file = Input::file('image');
         if($file){

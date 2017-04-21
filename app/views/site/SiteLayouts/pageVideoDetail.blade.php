@@ -1,6 +1,6 @@
 <div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
 	<h2 class="title-path"><a href="{{URL::route('site.pageVideo')}}" title="Video">Video</a></h2>
-	<h1 class="title-view">{{$item->video_name}}</h1>
+	<h1 class="title-view">{{stripslashes($item->video_name)}}</h1>
 	<div class="list-library-ext">
 		@if(isset($item) && sizeof($item) > 0)
 			<div class="page-list-library">
@@ -31,7 +31,7 @@
                                 echo $embed;
                                 ?>
 							</div>
-							<div class="titleL">{{$item->video_name}}</div>
+							<div class="titleL">{{stripslashes($item->video_name)}}</div>
 						</a>
 					</div>
 				@endforeach

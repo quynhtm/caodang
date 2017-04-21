@@ -13,7 +13,7 @@
                                 echo $embed;
                                 ?>
 							</div>
-							<div class="titleL">{{$item->video_name}}</div>
+							<div class="titleL">{{stripslashes($item->video_name)}}</div>
 						</a>
 					</div>
 				@endforeach

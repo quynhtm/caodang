@@ -164,7 +164,8 @@ h1, h2, h3, h4, h5, h6{
     background: url(../img/line-menu.png) no-repeat right 2px;
     float: left;
 }
-.menu li a:hover {
+.menu li a:hover,
+.menu li:hover a {
     background: #707070!important;
 }
 .menu-sub {
@@ -1050,7 +1051,7 @@ table {
     width: 100%!important;
 }
 table th, table td{
-    border: 1px solid #fbfbfb;
+    border: 1px solid #eee;
     padding: 5px;
 	vertical-align: top;
 }

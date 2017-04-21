@@ -79,7 +79,13 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="clearfix"></div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Liên kết thay thế</label>
+                            <input type="text" placeholder="Liên kết thay thế" id="department_link" name="department_link"  class="form-control input-sm" value="@if(isset($data['department_link'])){{stripslashes(trim($data['department_link']))}}@endif">
+                        </div>
+                    </div>
                     <div class="clearfix"></div>
                     <div class="col-sm-10">
                         <div class="form-group">
