@@ -99,6 +99,24 @@ class ArrayPermission{
         'video_create' => array('name_permit'=>'Tạo video','group_permit'=>'Quyền video'),
         'video_edit' => array('name_permit'=>'Sửa video','group_permit'=>'Quyền video'),
         'video_delete' => array('name_permit'=>'Xóa video','group_permit'=>'Quyền video'),
+
+        'attackLink_full' => array('name_permit'=>'Full liên kết','group_permit'=>'Quyền liên kết'),
+        'attackLink_view' => array('name_permit'=>'View liên kết','group_permit'=>'Quyền liên kết'),
+        'attackLink_delete' => array('name_permit'=>'Xóa liên kết','group_permit'=>'Quyền liên kết'),
+        'attackLink_create' => array('name_permit'=>'Tạo liên kết','group_permit'=>'Quyền liên kết'),
+        'attackLink_edit' => array('name_permit'=>'Sửa liên kết','group_permit'=>'Quyền liên kết'),
+
+        'excel_full' => array('name_permit'=>'Full excel','group_permit'=>'Quyền excel'),
+        'excel_view' => array('name_permit'=>'View excel','group_permit'=>'Quyền excel'),
+        'excel_delete' => array('name_permit'=>'Xóa excel','group_permit'=>'Quyền excel'),
+        'excel_create' => array('name_permit'=>'Tạo excel','group_permit'=>'Quyền excel'),
+        'excel_edit' => array('name_permit'=>'Sửa excel','group_permit'=>'Quyền excel'),
+
+        'contract_full' => array('name_permit'=>'Full liên hệ','group_permit'=>'Quyền liên hệ'),
+        'contract_view' => array('name_permit'=>'Xem liên hệ','group_permit'=>'Quyền liên hệ'),
+        'contract_delete' => array('name_permit'=>'Xóa liên hệ','group_permit'=>'Quyền liên hệ'),
+        'contract_create' => array('name_permit'=>'Tạo liên hệ','group_permit'=>'Quyền liên hệ'),
+        'contract_edit' => array('name_permit'=>'Sửa liên hệ','group_permit'=>'Quyền liên hệ'),
     );
 
 }
