@@ -11,7 +11,7 @@ class Category extends Eloquent
 
     //cac truong trong DB
     protected $fillable = array('category_id','category_name', 'category_depart_id','category_parent_id',
-        'category_show_top', 'category_show_left', 'category_show_right', 'category_show_center','category_image',
+        'category_show_top', 'category_show_left', 'category_show_right', 'category_show_center','category_image','category_level',
         'category_status', 'category_order', 'category_date_creater', 'category_user_id_creater', 'category_user_name_creater',
         'category_date_update', 'category_user_id_update', 'category_user_name_update', 'category_link');
 
@@ -26,6 +26,16 @@ class Category extends Eloquent
         return $category;
     }
 
+    public static function getLevelParentId($id){
+        $level = 0;
+        if($id > 0){
+            $category = Category::getByID($id);
+            if(!empty($category)){
+                $level = isset($category->category_level) ? $category->category_level + 1 : 0;
+            }
+        }
+        return $level;
+    }
     public static function getOptionAllCategory() {
         $data = array();
         $category = Category::where('category_id','>',0)->orderBy('category_id','asc')->get();
@@ -229,6 +239,7 @@ class Category extends Eloquent
                         'category_name'=>$itm->category_name,
                         'category_depart_id'=>$itm->category_depart_id,
                         'category_parent_id'=>$itm->category_parent_id,
+                        'category_level'=>$itm->category_level,
                         'category_show_top'=>$itm->category_show_top,
                         'category_show_left'=>$itm->category_show_left,
                         'category_show_right'=>$itm->category_show_right,
@@ -264,6 +275,7 @@ class Category extends Eloquent
                     'category_id'=>$value->category_id,
                     'category_depart_id'=>$value->category_depart_id,
                     'category_parent_id'=>$value->category_parent_id,
+                    'category_level'=>$value->category_level,
                     'category_show_top'=>$value->category_show_top,
                     'category_show_left'=>$value->category_show_left,
                     'category_show_right'=>$value->category_show_right,
@@ -295,17 +307,34 @@ class Category extends Eloquent
         }
         return $aryData;
     }
+
     public static function showSubCategory($cat_id,$cat_name, $max, $aryDataInput, &$aryData) {
         if($cat_id <= $max) {
             foreach ($aryDataInput as $chk => $chval) {
                 if($chval['category_parent_id'] == $cat_id) {
-                    $chval['padding_left'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                    $chval['padding_left'] = ($chval['category_level'] == 1)?'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
                     $chval['category_parent_name'] = $cat_name;
                     $aryData[] = $chval;
                     self::showSubCategory($chval['category_id'],$chval['category_name'], $max, $aryDataInput, $aryData);
                 }
             }
         }
+    }
+
+    public static function buildOptionCategoryNew($category_depart_id = 0){
+        if($category_depart_id > -1){
+            $search['category_depart_id'] = $category_depart_id;
+            $dataSearch = Category::searchByCondition($search, 500, 0,$total);
+            if(!empty($dataSearch)){
+                $arrCategory = array();
+                $arrCategoryAll = Category::getTreeCategory($dataSearch);
+                foreach($arrCategoryAll as $k =>$cat){
+                    $arrCategory[$cat['category_id']] = $cat['padding_left'].$cat['category_name'];
+                }
+                return $arrCategory;
+            }
+        }
+        return array();
     }
 
     //Make List Category

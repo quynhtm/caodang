@@ -96,11 +96,15 @@ class CategoryController extends BaseAdminController
         $data = array();
         if($id > 0) {
             $data = Category::find($id);
+            //FunctionLib::debug($data);
         }
 
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($data['category_status'])? $data['category_status'] : -1);
-        $optionCategoryParent = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$this->arrCategoryParent, isset($data['category_parent_id'])? $data['category_parent_id'] : -1);
-        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn khoa-trung tâm (Trang chủ) ---')+$this->arrCategoryDepart, isset($data['category_depart_id'])? $data['category_depart_id'] : 0);
+        $category_depart_id = isset($data['category_depart_id'])? $data['category_depart_id'] : 0;
+        $category = Category::buildOptionCategoryNew($category_depart_id);
+        //FunctionLib::debug($category);
+        $optionCategoryParent = FunctionLib::getOption(array(0=>'--- Chọn danh mục cha ---')+$category, isset($data['category_parent_id'])? $data['category_parent_id'] : -1);
+        $optionCategoryDepart = FunctionLib::getOption(array(0=>'--- Chọn khoa-trung tâm (Trang chủ) ---')+$this->arrCategoryDepart, $category_depart_id);
         $this->layout->content = View::make('admin.Category.add')
             ->with('id', $id)
             ->with('data', $data)
@@ -153,11 +157,17 @@ class CategoryController extends BaseAdminController
         }
 
         if($this->valid($dataSave) && empty($this->error)) {
+            $category_level = Category::getLevelParentId($dataSave['category_parent_id']);
+            $dataSave['category_level'] = ($category_level <=2) ? $category_level : 2;
             if($id > 0) {
+                if($dataSave['category_parent_id'] == $id){
+                    return Redirect::route('admin.category_list',array('category_depart_id'=>$dataSave['category_depart_id']));
+                }
                 //cap nhat
                 $dataSave['category_date_update'] = time();
                 $dataSave['category_user_id_update'] = $this->user['user_id'];
                 $dataSave['category_user_name_update'] = $this->user['user_name'];
+                //FunctionLib::debug($dataSave);
                 if(Category::updateData($id, $dataSave)) {
                     return Redirect::route('admin.category_list',array('category_depart_id'=>$dataSave['category_depart_id']));
                 }
@@ -272,7 +282,8 @@ class CategoryController extends BaseAdminController
         $data = array('isIntOk' => 0,'msg' => 'Không lấy được thông tin danh mục');
         $category_depart_id = (int)Request::get('category_depart_id', -1);
         if ($category_depart_id > -1) {
-            $category = Category::getCategoryByDepartId($category_depart_id);
+            //$category = Category::getCategoryByDepartId($category_depart_id);
+            $category = Category::buildOptionCategoryNew($category_depart_id);
             if(!empty($category)){
                 $str_option = '<option value="">---Chọn danh mục---</option>';
                 foreach($category as $dis_id =>$dis_name){
