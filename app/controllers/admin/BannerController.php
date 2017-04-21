@@ -177,7 +177,7 @@ class BannerController extends BaseAdminController
         $data['banner_parent_id'] = (int)Request::get('banner_parent_id', 0);
         $data['banner_is_rel'] = (int)Request::get('banner_is_rel', 0);
         $data['banner_type'] = (int)Request::get('banner_type',0);
-        $data['banner_page'] = (int)Request::get('banner_page',0);
+        $data['banner_page'] = (int)Request::get('banner_page', -1);
         $data['banner_category_id'] = (int)Request::get('banner_category_id',0);
         $data['banner_is_run_time'] = (int)Request::get('banner_is_run_time');
         $data['banner_start_time'] = Request::get('banner_start_time');
