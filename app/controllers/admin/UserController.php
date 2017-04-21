@@ -73,6 +73,8 @@ class UserController extends BaseAdminController
         }
         //khoa cần phân quyền
         $arrDepart = Department::getDepart();
+        $arrDepart[0] = 'Trang chủ';
+        //FunctionLib::debug($arrDepart);
         $arrUserGroupDepart = isset($data['user_group_depart'])? explode(',',$data['user_group_depart']): array();
 
         //nhóm quyền

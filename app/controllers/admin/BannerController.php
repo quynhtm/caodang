@@ -91,7 +91,7 @@ class BannerController extends BaseAdminController
         $search['banner_position'] = (int)Request::get('banner_position',0);
         $search['banner_parent_id'] = (int)Request::get('banner_parent_id',0);
         if(!$this->is_root){
-            $search['string_banner_page'] = $this->user_group_depart.',0';
+            $search['string_banner_page'] = $this->user_group_depart;
         }
         //$search['field_get'] = 'category_id,news_title,news_status';//cac truong can lay
 
