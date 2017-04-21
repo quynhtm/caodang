@@ -27,11 +27,17 @@ class UploadExcelController extends BaseAdminController
      ** **********************************************************************************************************
      */
     public function getInputExcelVanbang(){
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
         $sheet = (int)Request::get('sheet',0);
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcelVanbang')
             ->with('sheet', $sheet);
     }
     public function postInputExcelVanbang(){
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
         $rowsExcel = array();
         $sheet = (int)Request::get('sheet',0);
         if(Input::hasFile('seo_key_file')){
@@ -196,10 +202,16 @@ class UploadExcelController extends BaseAdminController
      ** **********************************************************************************************************
      */
     public function getInputExcelNangkhieu(){
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
         $sheet = (int)Request::get('sheet',0);
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcelNangkhieu')->with('sheet', $sheet);
     }
     public function postInputExcelNangkhieu(){
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
         $rowsExcel = array();
         $sheet = (int)Request::get('sheet',0);
         if(Input::hasFile('seo_key_file')){
@@ -353,10 +365,16 @@ class UploadExcelController extends BaseAdminController
      ** **********************************************************************************************************
      */
     public function getInputExcelTuyensinh(){
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
         $sheet = (int)Request::get('sheet',0);
         $this->layout->content = View::make('admin.UploadExcel.UploadInputExcelTuyensinh')->with('sheet', $sheet);
     }
     public function postInputExcelTuyensinh(){
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
         $rowsExcel = array();
         $sheet = (int)Request::get('sheet',0);
         if(Input::hasFile('seo_key_file')){

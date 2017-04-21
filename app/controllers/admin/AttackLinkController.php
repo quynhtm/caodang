@@ -7,11 +7,11 @@
 */
 
 class AttackLinkController extends BaseAdminController{
-	private $permission_view = 'infor_view';
-	private $permission_full = 'infor_full';
-	private $permission_delete = 'infor_delete';
-	private $permission_create = 'infor_create';
-	private $permission_edit = 'infor_edit';
+	private $permission_view = 'attackLink_view';
+	private $permission_full = 'attackLink_full';
+	private $permission_delete = 'attackLink_delete';
+	private $permission_create = 'attackLink_create';
+	private $permission_edit = 'attackLink_edit';
 	
 	private $arrStatus = array(-1 => 'Chọn trạng thái', CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
 	private $arrType = array(-1 => 'Chọn loại liên kết',
