@@ -1051,7 +1051,7 @@ table {
     width: 100%!important;
 }
 table th, table td{
-    border: 1px solid #eee;
+    border: 1px solid #bbb;
     padding: 5px;
 	vertical-align: top;
 }
