@@ -44,7 +44,7 @@
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		<h3 class="heading-news left">
-			<a href="" title="Bản tin">Bản tin</a>
+			<a href="javascript:void(0)" title="Bản tin">Bản tin</a>
 		</h3>
 		<div class="home-news-list home-news-list-center">
 			<div class="line-center">
