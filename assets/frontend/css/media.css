@@ -170,4 +170,7 @@
     .bg-menu.act .line-text-close{
         display: inline-block;
     }
+    .menu-three{
+        display: none!important;
+    }
 }
