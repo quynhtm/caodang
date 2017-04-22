@@ -45,13 +45,37 @@
 								@if($cat['category_depart_id'] == $departmentId)
 									<?php $i++; ?>
 									<li><a class="aline @if(isset($catid) && $catid == $cat['category_id']) act @endif" @if($cat['category_link'] != '')href="{{$cat['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($cat['category_id'], $cat['category_name'])}}" @endif title="{{$cat['category_name']}}">{{$cat['category_name']}}</a>
+                                        <?php $s = 0; ?>
+										@foreach($menuCategoriessAll as $sub)
+											@if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show && $sub['category_depart_id'] == $departmentId)
+												<?php $s++; ?>
+											@endif
+										@endforeach
+										@if($s > 0)
 										<ul class="menu-sub">
 											@foreach($menuCategoriessAll as $sub)
 												@if($sub['category_parent_id'] == $cat['category_id'] && $sub['category_show_top'] == CGlobal::status_show && $sub['category_depart_id'] == $departmentId)
-													<li><a @if($sub['category_link'] != '')href="{{$sub['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($sub['category_id'], $sub['category_name'])}}" @endif title="{{$sub['category_name']}}">{{$sub['category_name']}}</a></li>
+													<li><a @if($sub['category_link'] != '')href="{{$sub['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($sub['category_id'], $sub['category_name'])}}" @endif title="{{$sub['category_name']}}">{{$sub['category_name']}}</a>
+														<?php $t = 0; ?>
+														@foreach($menuCategoriessAll as $three)
+															@if($three['category_parent_id'] == $sub['category_id'] && $three['category_show_top'] == CGlobal::status_show && $three['category_depart_id'] == $departmentId)
+                                                                <?php $t++; ?>
+															@endif
+														@endforeach
+														@if($t > 0)
+														<ul class="menu-three">
+															@foreach($menuCategoriessAll as $three)
+																@if($three['category_parent_id'] == $sub['category_id'] && $three['category_show_top'] == CGlobal::status_show && $three['category_depart_id'] == $departmentId)
+																<li><a @if($three['category_link'] != '')href="{{$three['category_link']}}" target="_blank" @else href="{{FunctionLib::buildLinkCategory($three['category_id'], $three['category_name'])}}" @endif title="{{$three['category_name']}}">{{$three['category_name']}}</a></li>
+																@endif
+															@endforeach
+														</ul>
+														@endif
+													</li>
 												@endif
 											@endforeach
 										</ul>
+										@endif
 									</li>
 								@endif
 							@endif
