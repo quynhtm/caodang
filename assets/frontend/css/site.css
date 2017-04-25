@@ -1195,3 +1195,12 @@ table th, table td{
     text-indent: -9999em;
     cursor: pointer;
 }
+.a-more {
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+    margin-top: 15px;
+}
+.a-more a:hover{
+    text-decoration: underline;
+}

@@ -174,6 +174,11 @@
 				@endif
 				@endforeach
 			@endif
+				@if(isset($data_hdsv['cat']['category_id']))
+				<div class="a-more">
+					<i class="fa fa-angle-double-right"></i> <a @if(isset($data_hdsv['cat']['category_id']) && $data_hdsv['cat']['category_id'] > 0) href="{{FunctionLib::buildLinkCategory($data_hdsv['cat']['category_id'], $data_hdsv['cat']['category_name'])}}" @endif title="{{$data_hdsv['cat']['category_name']}}">Xem thêm</a>
+				</div>
+				@endif
 		</div>
 	</div>
 	@endif
