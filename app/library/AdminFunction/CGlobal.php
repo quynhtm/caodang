@@ -210,7 +210,7 @@ class CGlobal{
     const LINK_FOLLOW = 1;
    
     //Duy bo sung
-    const emailAdmin = 'nguyenduypt86@gmail.com';
+    const emailAdmin = 'admin@cdsptw.edu.vn';
     
     public static $arrIconSpecals = array(
     	'\r\n', '☎', '👉', '✈', '🍬', '🏃', '🏻', '😁','🍬', '🏃🏻', '💃🏽', '✅', '😜', '🌳', '🌴', '🌲', '🌱',

@@ -216,6 +216,13 @@ class SiteHomeController extends BaseSiteController{
                     );
                     $query = Contact::addData($dataInput);
                     if($query > 0){
+                        //Send mail to admin
+                        $emails = [CGlobal::emailAdmin];
+                        Mail::send('emails.sendMailToAdmin', array('data'=>$dataInput), function($message) use ($emails){
+                            $message->to($emails, 'user_contact')
+                                ->subject('Gửi liên hệ từ website '.CGlobal::web_name.' '.date('d/m/Y h:i',  time()));
+                        });
+
                         $messages = FunctionLib::messages('messages', 'Cảm ơn bạn đã gửi thông tin liên hệ. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!');
                         return Redirect::route('site.pageContact');
                     }
