@@ -16,6 +16,7 @@
 					@endforeach
 				@endif
 			@endif
+			<!--
 			<div class="language">
 				<a class="vi class=" href="?lang=vi"></a>
 				<a class="en class=" href="?lang=en"></a>
@@ -23,6 +24,8 @@
 					<i class="fa fa-th-list"></i>
 				</div>
 			</div>
+			-->
+			<a href="http://cdsptw.edu.vn" target="_blank" style="font-size:18px; position: absolute;right: 0;bottom: 5px;background: #dc7458;color: #fff;padding: 2px 10px;display: inline-block;">Phiên bản cũ</a>
 	    </div>
 		<div class="bg-menu">
 			<div class="line-text-close">
