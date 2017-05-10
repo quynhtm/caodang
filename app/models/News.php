@@ -231,6 +231,9 @@ class News extends Eloquent
                     $query->where('news_category_id', $dataSearch['news_category_id']);
                 }
             }
+            if (isset($dataSearch['string_category_id']) && $dataSearch['string_category_id'] != '') {
+                $query->whereIn('news_category_id', explode(',',$dataSearch['string_category_id']));
+            }
             $total = $query->count();
             $query->orderBy('news_id', 'desc');
             //get field can lay du lieu

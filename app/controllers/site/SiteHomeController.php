@@ -98,7 +98,7 @@ class SiteHomeController extends BaseSiteController{
                 $arrCats[0] = $caid;
                 Category::makeListCatId($caid, 0, $arrCats);
                 if(!empty($arrCats)){
-                    $search['news_category_id'] = $arrCats;
+                    $search['string_category_id'] = join(',',$arrCats);
                 }
             }else{
                 $search['news_category_id'] = (int)$caid;
