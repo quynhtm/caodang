@@ -63,6 +63,7 @@ class SiteHomeController extends BaseSiteController{
             'category_id'=>0,
             'category_name'=>'',
         );
+		
         $arrItem = array();
         $meta_title = $meta_keywords = $meta_description = '';
         $meta_img = '';
@@ -72,7 +73,8 @@ class SiteHomeController extends BaseSiteController{
         if($caid > 0){
             //GetCat
             $arrCat = Category::getByID($caid);
-            if(sizeof($arrCat) > 0){
+            
+			if(sizeof($arrCat) > 0){
                 $department_id = $arrCat->category_depart_id;
                 if($department_id > 0){
                     $itemDepart = Department::getById($department_id);
