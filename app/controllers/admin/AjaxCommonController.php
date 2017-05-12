@@ -343,7 +343,7 @@ class AjaxCommonController extends BaseSiteController
             case 1://img news
             	$inforNews = News::getNewByID($id_hiden);
             	if(sizeof($inforNews) >0){
-            		$arrImg = unserialize($inforNews->news_image_other);
+            		$arrImg = ($inforNews->news_image_other != '') ? unserialize($inforNews->news_image_other) : array();
             		foreach($arrImg as $k=>$val){
             			$url_thumb = ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $id_hiden, $val, CGlobal::sizeImage_100);
             			$url_thumb_content = ThumbImg::getImageThumb(CGlobal::FOLDER_NEWS, $id_hiden, $val, CGlobal::sizeImage_600);
