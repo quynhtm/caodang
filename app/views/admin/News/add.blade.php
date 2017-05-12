@@ -171,7 +171,23 @@
                         <textarea class="form-control input-sm" rows="8" name="news_desc_sort">@if(isset($data['news_desc_sort'])){{$data['news_desc_sort']}}@endif</textarea>
                     </div>
                 </div>
-
+                <div class="clearfix"></div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Files upload</label>
+                        <div class="controls">
+                            <a href="javascript:;"class="btn btn-primary link-button" onclick="Admin.uploadDocumentAdvanced(10);">Upload Files</a>
+                            <div id="sys_show_file">
+                                @if(isset($data['news_files']) && $data['news_files'] !='')
+                                    <?php $arrfiles = ($data['news_files'] != '') ? unserialize($data['news_files']) : array(); ?>
+                                    @foreach($arrfiles as $_key=>$file)
+                                        <div class="item-file item_{{$_key}}"><a target="_blank" href="{{Config::get('config.WEB_ROOT').'uploads/'.CGlobal::FOLDER_NEWS.'/'.$id.'/'.$file}}">{{$file}}</a><span data="{{$file}}" class="remove_file" onclick="Admin.deleteDocumentUpload({{$id}}, {{$_key}}, '{{$file}}',10)">X</span></div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -246,6 +262,33 @@
     </div>
 </div>
 <!-- chen anh vào noi dung-->
+<!--Popup Upload File-->
+<div class="modal fade" id="sys_PopupUploadDocumentOtherPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Files upload</h4>
+            </div>
+            <div class="modal-body">
+                <form name="uploadImage" method="post" action="#" enctype="multipart/form-data">
+                    <div class="form_group">
+                        <div id="sys_show_button_upload_file">
+                            <div id="sys_mulitplefileuploaderFile" class="btn btn-primary">Upload file</div>
+                        </div>
+                        <div id="status_file"></div>
+
+                        <div class="clearfix"></div>
+                        <div class="clearfix" style='margin: 5px 10px; width:100%;'>
+                            <div id="div_image_file"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Popup Upload File-->
 <script>
     CKEDITOR.replace('news_content', {height:800});
     /*CKEDITOR.replace(

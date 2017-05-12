@@ -11,7 +11,7 @@ class News extends Eloquent
 
     //cac truong trong DB
     protected $fillable = array('news_id','news_title', 'news_desc_sort','news_depart_id',
-        'news_content', 'news_image', 'news_image_other','news_create','news_order','news_common_page','news_show_cate_id',
+        'news_content', 'news_image', 'news_image_other', 'news_files', 'news_create','news_order','news_common_page','news_show_cate_id',
         'news_type', 'news_category_id','news_category_name', 'news_status');
 
     public static function getNewByID($id) {
