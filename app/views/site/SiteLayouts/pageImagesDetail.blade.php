@@ -1,4 +1,4 @@
-<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle w43">
 	<h2 class="title-path"><a href="{{URL::route('site.pageLibrary')}}" title="Thư viện ảnh">Thư viện ảnh</a></h2>
 	<h1 class="title-view">{{stripslashes($item->image_title)}}</h1>
 	<div class="list-library-ext">
@@ -7,7 +7,7 @@
 				@if(isset($item) && sizeof($item) > 0)
                     <?php $image_image_other = unserialize($item->image_image_other); ?>
 						@foreach($image_image_other as $k=>$img)
-							<div class="col-lg-6 col-sm-6 item-library-detail">
+							<div class="col-lg-6 col-sm-6 item-library-detail w48">
 								<a title="{{$item->image_title}}" href="{{ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $img, CGlobal::sizeImage_1000)}}">
 									<div class="thumbLDetail">
 										<img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $item['image_id'], $img, CGlobal::sizeImage_1000)}}" />
@@ -30,7 +30,7 @@
 		@if(isset($newsSame) && sizeof($newsSame) > 0)
 			<div class="row page-list-same">
 				@foreach($newsSame as $k=>$aitem)
-					<div class="col-lg-6 col-sm-6 item-video">
+					<div class="col-lg-6 col-sm-6 item-video w48">
 						<a title="{{$aitem->image_title}}" href="{{FunctionLib::buildLinkDetailLibrary($aitem->image_title, $aitem->image_id)}}">
 							<div class="thumbL">
 								<img src="{{ThumbImg::getImageThumb(CGlobal::FOLDER_LIBRARY_IMAGE, $aitem['image_id'], $aitem['image_image'], CGlobal::sizeImage_500)}}" />

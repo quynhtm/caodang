@@ -25,12 +25,9 @@
 				</div>
 			</div>
 			-->
-			<a href="http://cdsptw.edu.vn" target="_blank" style="font-size:18px; position: absolute;right: 0;bottom: 5px;background: #dc7458;color: #fff;padding: 2px 10px;display: inline-block;">Phiên bản cũ</a>
+			<a href="http://cdsptw.edu.vn" target="_blank" style="font-size:18px; position: absolute;right: 0;bottom: 0px;background: #dc7458;color: #fff;padding: 2px 10px;display: inline-block;">Phiên bản cũ</a>
 	    </div>
 		<div class="bg-menu">
-			<div class="line-text-close">
-				<span class="icon-close">Close Menu</span>
-			</div>
 			<ul class="menu">
 				@if($departmentId > 0)
 					<li><a class="aline" href="{{URL::route('site.home')}}"><i class="fa fa-home icon-home"></i></a></li>

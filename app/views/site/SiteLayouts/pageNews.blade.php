@@ -1,4 +1,4 @@
-<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle w43">
 	<h1 class="title-path"><a href="{{FunctionLib::buildLinkCategory($arrCat->category_id, $arrCat->category_name)}}" title="{{$arrCat->category_name}}">{{$arrCat->category_name}}</a></h1>
 	<div class="list-library">
 		@if(isset($arrItem) && sizeof($arrItem) > 0)

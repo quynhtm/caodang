@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-3 col-sm-12 col-left">
+<div class="col-lg-3 col-md-3 col-sm-12 col-left w25">
 	@if(!empty($menuCategoriessAll))
 		@foreach($menuCategoriessAll as $cat)
 			@if($cat['category_show_left'] == CGlobal::status_show)

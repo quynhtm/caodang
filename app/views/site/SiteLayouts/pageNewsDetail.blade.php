@@ -1,4 +1,4 @@
-<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle w43">
 	<h2 class="title-path"><a href="{{FunctionLib::buildLinkCategory($item->news_category_id, $item->news_category_name)}}" title="{{$item->news_category_name}}">{{$item->news_category_name}}</a></h2>
 	<h1 class="title-view">{{stripslashes($item->news_title)}}</h1>
 	<div class="list-library-ext">

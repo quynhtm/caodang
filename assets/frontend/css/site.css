@@ -49,7 +49,9 @@ h1, h2, h3, h4, h5, h6{
 	margin:0;
 	font-size: medium;
 }
-
+p {
+    margin-bottom: 10px;
+}
 /*Pagging*/
 .show-box-paging {
     clear: both;
@@ -119,7 +121,8 @@ h1, h2, h3, h4, h5, h6{
 }
 /*Header*/
 .container {
-    width: 1200px;
+    width: 1170px;
+    margin: 0 auto;
 }
 .head-banner {
     background:#f8f8f8;
@@ -128,6 +131,10 @@ h1, h2, h3, h4, h5, h6{
 }
 .flash {
     position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 125px;
+    overflow: hidden;
 }
 .flash .banner-img{
     z-index: 2;
@@ -156,7 +163,6 @@ h1, h2, h3, h4, h5, h6{
     padding-left: 18px;
     padding-right: 18px;
     font-weight: bold;
-    width: 100%;
     font-size: 13px;
     display: block;
 }
@@ -193,7 +199,6 @@ h1, h2, h3, h4, h5, h6{
     font-weight: normal;
     font-size: 14px;
     background: #7d7d7d;
-    width: 100%;
 }
 .menu li:hover .menu-sub li:hover a{
     background: #505050!important;
@@ -401,7 +406,7 @@ h1, h2, h3, h4, h5, h6{
 .box-brand {
     float: left;
     width: 268px;
-    margin-right: 17px;
+    margin-right: 15px;
     margin-bottom: 15px;
     height: 225px;
     position: relative;
@@ -431,7 +436,9 @@ h1, h2, h3, h4, h5, h6{
     color: #222;
     font-size: 14px;
 }
-.box-brand-last{margin-right:0}
+.box-brand-last{
+    margin-right: -2%;
+}
 .box-brand:hover span.mask{background:rgba(53,109,170,.5);z-index:1}
 .home-gallery-video {
     margin: 0 20px;
@@ -1203,4 +1210,76 @@ table th, table td{
 }
 .a-more a:hover{
     text-decoration: underline;
+}
+.w25{
+    width: 25%;
+    display: inline-block;
+    float: left;
+    padding: 0 1%;
+}
+.w43{
+    width: 43.5%;
+    display: inline-block;
+    float: left;
+    padding: 0 1%;
+}
+.w44{
+    width: 44%;
+    display: inline-block;
+    float: left;
+    padding: 0 1%;
+}
+.w48{
+    width: 48%;
+    display: inline-block;
+    float: left;
+    padding: 0 1%;
+}
+.wrapp-partner-footer {
+    width: 85%;
+}
+.contact .control-label {
+    width: 100%;
+    clear: both;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.contact input[type="text"]{
+    width: 85%;
+}
+.contact textarea{
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.contact .txtInputCaptchar {
+    width: 25% !important;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border: none;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+}
+.btn-primary:hover{
+    background-color: #1B70B7;
 }

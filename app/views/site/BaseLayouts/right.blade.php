@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-3 col-sm-12 col-right">
+<div class="col-lg-3 col-md-3 col-sm-12 col-right w25">
 	@if(sizeof($arrType) > 0)
 	<div class="item-box">
 		<div class="donvi-khoa-trungtam">

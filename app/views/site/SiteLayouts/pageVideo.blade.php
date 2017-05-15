@@ -1,10 +1,10 @@
-<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle">
+<div class="col-lg-6 col-md-6 col-sm-12 contact col-middle w43">
 	<h1 class="title-path"><a href="{{URL::route('site.pageVideo')}}" title="Video">Video</a></h1>
 	<div class="list-library">
 		@if(isset($arrItem) && sizeof($arrItem) > 0)
 			<div class="row page-list-library">
 				@foreach($arrItem as $k=>$item)
-					<div class="col-lg-6 col-sm-6 item-video">
+					<div class="col-lg-6 col-sm-6 item-video w48">
 						<a title="{{$item->video_name}}" href="{{FunctionLib::buildLinkDetailVideo($item->video_name, $item->video_id)}}">
 							<div>
                                 <?php

@@ -1,5 +1,5 @@
 <div class="line bd2 mb">
-	<div class="col-lg-3 col-md-3 col-sm-12">
+	<div class="col-lg-3 col-md-3 col-sm-12 w25">
 		<h3 class="heading-news">
 			<a href="{{URL::route('site.pageEvent')}}" title="Lịch sự kiện">Lịch sự kiện</a>
 		</h3>
@@ -42,7 +42,7 @@
 			@endif
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-12">
+	<div class="col-lg-6 col-md-6 col-sm-12 w44">
 		<h3 class="heading-news left">
 			<a href="javascript:void(0)" title="Bản tin">Bản tin</a>
 		</h3>
@@ -130,7 +130,7 @@
 		</div>
 	</div>
 	@if(sizeof($data_hdsv) > 0)
-	<div class="col-lg-3 col-md-3 col-sm-12">
+	<div class="col-lg-3 col-md-3 col-sm-12 w25">
 		@if(isset($data_hdsv['cat']))
 		<h3 class="heading-news">
 			<a @if(isset($data_hdsv['cat']['category_id']) && $data_hdsv['cat']['category_id'] > 0) href="{{FunctionLib::buildLinkCategory($data_hdsv['cat']['category_id'], $data_hdsv['cat']['category_name'])}}" @endif title="{{$data_hdsv['cat']['category_name']}}">{{$data_hdsv['cat']['category_name']}}</a>
