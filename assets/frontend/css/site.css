@@ -590,7 +590,7 @@ p {
     padding: 5px 0px;
 }
 .list ul li {
-    background: url(../img/icon-arrow.png) no-repeat left center;
+    background: url(../img/icon-arrow.png) no-repeat 0px 5px;
     line-height: 25px;
     padding-left: 20px;
     font-size: 14px;
