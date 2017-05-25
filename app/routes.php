@@ -114,18 +114,23 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::get('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@getInputExcelVanbang'));
     Route::post('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@postInputExcelVanbang'));
     Route::post('upload/deleteVanbang', array('as' => 'admin.deleteVanbang','uses' => 'UploadExcelController@deleteVanbang'));//ajax
+    Route::post('deleteMultiVanbang', array('as' => 'admin.deleteMultiVanbang','uses' => 'UploadExcelController@deleteMultiVanbang'));//ajax
 
     //quan ly Excel Nang khieu
     Route::get('viewNangkhieu',array('as'=>'admin.viewNangkhieu','uses'=>'UploadExcelController@viewNangkhieu'));
     Route::get('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@getInputExcelNangkhieu'));
     Route::post('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@postInputExcelNangkhieu'));
     Route::post('upload/deleteNangkhieu', array('as' => 'admin.deleteNangkhieu','uses' => 'UploadExcelController@deleteNangkhieu'));//ajax
+    Route::post('deleteMultiNangkhieu', array('as' => 'admin.deleteMultiNangkhieu','uses' => 'UploadExcelController@deleteMultiNangkhieu'));//ajax
+
 
     //quan ly Excel Tuyển sinh
     Route::get('viewTuyensinh',array('as'=>'admin.viewTuyensinh','uses'=>'UploadExcelController@viewTuyensinh'));
     Route::get('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@getInputExcelTuyensinh'));
     Route::post('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@postInputExcelTuyensinh'));
     Route::post('upload/deleteTuyensinh', array('as' => 'admin.deleteTuyensinh','uses' => 'UploadExcelController@deleteTuyensinh'));//ajax
+    Route::post('deleteMultiTuyensinh', array('as' => 'admin.deleteMultiTuyensinh','uses' => 'UploadExcelController@deleteMultiTuyensinh'));//ajax
+
 
     ///*Quản lý tab*/
     Route::get('tab/view',array('as' => 'admin.tabView','uses' => 'TabDepartController@viewTab'));

@@ -80,6 +80,12 @@ var Admin = {
         	 url_ajax = 'deleteMultiCustomerEmail';
         }else if(type == 6){
         	 url_ajax = 'deleteMultiProviderEmail';
+        }else if(type == 8){ //xoa van bang
+            url_ajax = 'deleteMultiVanbang';
+        }else if(type == 9){ //xoa nang khieu
+            url_ajax = 'deleteMultiNangkhieu';
+        }else if(type == 10){ //xoa tuyen sinh
+            url_ajax = 'deleteMultiTuyensinh';
         }
         if(url_ajax != ''){
             if(confirm('Bạn có muốn thực hiện thao tác này?')) {

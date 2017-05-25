@@ -196,6 +196,26 @@ class UploadExcelController extends BaseAdminController
         return Response::json($data);
     }
 
+    //ajax xoa nhieu
+    public function deleteMultiVanbang(){
+        $data = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($data);
+        }
+        $dataId = Request::get('dataId',array());
+        $arrData['isIntOk'] = 0;
+        if(empty($dataId)) {
+            return Response::json($data);
+        }
+        if(sizeof($dataId) > 0){
+            foreach($dataId as $k =>$id){
+                if ($id > 0 && ExcelVanbang::deleteData($id)) {
+                    $data['isIntOk'] = 1;
+                }
+            }
+        }
+        return Response::json($data);
+    }
     /**
      * ***********************************************************************************************************
      * Thông tin của điểm thi năng khiếu
@@ -356,6 +376,26 @@ class UploadExcelController extends BaseAdminController
         $id = (int)Request::get('id', 0);
         if ($id > 0 && ExcelNangkhieu::deleteData($id)) {
             $data['isIntOk'] = 1;
+        }
+        return Response::json($data);
+    }
+    //ajax xoa nhieu
+    public function deleteMultiNangkhieu(){
+        $data = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($data);
+        }
+        $dataId = Request::get('dataId',array());
+        $arrData['isIntOk'] = 0;
+        if(empty($dataId)) {
+            return Response::json($data);
+        }
+        if(sizeof($dataId) > 0){
+            foreach($dataId as $k =>$id){
+                if ($id > 0 && ExcelNangkhieu::deleteData($id)) {
+                    $data['isIntOk'] = 1;
+                }
+            }
         }
         return Response::json($data);
     }
@@ -546,6 +586,26 @@ class UploadExcelController extends BaseAdminController
         $id = (int)Request::get('id', 0);
         if ($id > 0 && ExcelTuyensinh::deleteData($id)) {
             $data['isIntOk'] = 1;
+        }
+        return Response::json($data);
+    }
+    //ajax xoa nhieu
+    public function deleteMultiTuyensinh(){
+        $data = array('isIntOk' => 0);
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
+            return Response::json($data);
+        }
+        $dataId = Request::get('dataId',array());
+        $arrData['isIntOk'] = 0;
+        if(empty($dataId)) {
+            return Response::json($data);
+        }
+        if(sizeof($dataId) > 0){
+            foreach($dataId as $k =>$id){
+                if ($id > 0 && ExcelTuyensinh::deleteData($id)) {
+                    $data['isIntOk'] = 1;
+                }
+            }
         }
         return Response::json($data);
     }

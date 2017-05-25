@@ -27,7 +27,8 @@
                     </div>
                     <div class="panel-footer text-right">
                         @if($is_root || $permission_full ==1 || $permission_create == 1)
-                        <span class="">
+                            <a class="btn btn-warning btn-sm" href="javascript:void(0);" onclick="Admin.removeAllItems(10);"><i class="fa fa-trash"></i> Xóa nhiều </a>
+                            <span class="">
                             <a class="btn btn-danger btn-sm" href="{{URL::route('admin.uploadExcelTuyensinh')}}">
                                 <i class="ace-icon fa fa-plus-circle"></i>
                                 Upload excel
