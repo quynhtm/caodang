@@ -3,19 +3,19 @@
 	<div class="content-box-check">
 		<div class="input-ext" id="boxTraCuuXetTuyenSinh">
 			{{Form::open(array('method' => 'POST', 'id'=>'formTraCuu', 'class'=>'formTraCuu', 'name'=>'formTraCuu'))}}
-			<div class="col-lg-2 col-md-2 col-sm-12">
+			<div class="col-lg-2 col-md-2 col-sm-12 ext-items">
 				<div class="form-group">
 					<label class="control-label">Số CMND</label>
 					<input id="ipCMND" name="ipCMND" class="form-control" type="text" placeholder="- Số CMND -">
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12">
+			<div class="col-lg-2 col-md-2 col-sm-12 ext-items">
 				<div class="form-group">
 					<label class="control-label">Họ và tên</label>
 					<input id="ipHoVaTen" name="ipHoVaTen" class="form-control" type="text" placeholder="- Họ và tên -">
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12">
+			<div class="col-lg-2 col-md-2 col-sm-12 ext-items">
 				<div class="form-group">
 					<label class="control-label">Trình độ</label>
 					<select id="ipTrinhDo" name="ipTrinhDo" class="form-control">
@@ -26,7 +26,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12">
+			<div class="col-lg-2 col-md-2 col-sm-12 ext-items">
 				<div class="form-group">
 					<label class="control-label">&nbsp;</label>
 					<span id="submitTraCuuXetTuyenSinh" class="btn btn-primary btn-ext">Tra cứu</span>

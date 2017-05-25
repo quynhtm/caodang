@@ -1087,12 +1087,14 @@ table th, table td{
     margin: 5px;
 }
 .title-box-check{
-    padding: 10px;
+    padding: 10px 0;
     display: inline-block;
     width: 100%;
     color: #707070;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
+	text-indent: 10px;
+	text-transform: uppercase;
     background: #F2F2F2;
     background-image: -webkit-linear-gradient(top, #f8f8f8 0, #ececec 100%);
     background-image: -o-linear-gradient(top, #f8f8f8 0, #ececec 100%);
@@ -1107,20 +1109,46 @@ table th, table td{
     min-height: 300px;
 }
 .input-ext{
-    margin: 0 -15px;
     position: relative;
 }
 .line-equal{
     width: 100%;
     display: inline-block;
     padding: 10px 0px;
+	margin-top: 15px;
 }
 .input-ext label{
     width: 100%;
     display: inline-block;
+	font-size: 15px;
+	margin-bottom: 5px;
 }
-.input-ext input{
+.input-ext input {
     border-radius: 0;
+    border: 1px solid #ddd;
+    padding: 8px;
+    margin-top: 10px;
+    width: 90%;
+    border-radius: 2px;
+    font-style: italic;
+	margin-top: 3px;
+	font-size: 15px;
+}
+.input-ext select {
+    border-radius: 0;
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    margin-top: 10px;
+    width: 90%;
+    border-radius: 2px;
+    font-style: italic;
+	margin-top: 3px;
+	font-size: 15px;
+}
+.ext-items {
+    width: 30%;
+    display: inline-block;
+    float: left;
 }
 .title-equal{
     color: #222;
@@ -1143,7 +1171,6 @@ table th, table td{
     display: inline-block;
     width: 100%;
     padding: 8px 0px;
-    margin: 0 -15px;
 }
 .line-equal-item label .normal{
     font-weight: normal;
@@ -1278,8 +1305,22 @@ table th, table td{
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-
+	padding: 7px 20px;
+	position: relative;
+	top: 2px;
 }
 .btn-primary:hover{
     background-color: #1B70B7;
+}
+table{
+	 border-collapse: collapse;
+}
+th, td{
+	font-size:15px;
+}
+.ext-items{
+	width:20%;
+}
+.control-label {
+    font-size: 15px;
 }
