@@ -167,8 +167,7 @@ class UploadExcelController extends BaseAdminController
         $search['vanbang_hoten'] = trim(Request::get('vanbang_hoten',''));
         $search['vanbang_machungchi'] = trim(Request::get('vanbang_machungchi',''));
         $dataSearch = ExcelVanbang::searchByCondition($search, $limit, $offset,$total);
-        $paging = '';
-        //FunctionLib::debug($dataSearch);
+        $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
         $this->layout->content = View::make('admin.UploadExcel.viewVanbang')
             ->with('paging', $paging)
@@ -351,8 +350,7 @@ class UploadExcelController extends BaseAdminController
         $search['nangkhieu_hoten'] = trim(Request::get('nangkhieu_hoten',''));
         $search['nangkhieu_sobaodanh'] = trim(Request::get('nangkhieu_sobaodanh',''));
         $dataSearch = ExcelNangkhieu::searchByCondition($search, $limit, $offset,$total);
-        $paging = '';
-        //FunctionLib::debug($dataSearch);
+        $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
         $this->layout->content = View::make('admin.UploadExcel.viewNangkhieu')
             ->with('paging', $paging)
@@ -561,8 +559,7 @@ class UploadExcelController extends BaseAdminController
         $search['tuyensinh_hoten'] = trim(Request::get('tuyensinh_hoten',''));
         $search['tuyensinh_sobaodanh'] = trim(Request::get('tuyensinh_sobaodanh',''));
         $dataSearch = ExcelTuyensinh::searchByCondition($search, $limit, $offset,$total);
-        $paging = '';
-        //FunctionLib::debug($dataSearch);
+        $paging = $total > 0 ? Pagging::getNewPager(3, $pageNo, $total, $limit, $search) : '';
 
         $this->layout->content = View::make('admin.UploadExcel.viewTuyensinh')
             ->with('paging', $paging)
