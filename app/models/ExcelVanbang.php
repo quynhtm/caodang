@@ -44,6 +44,16 @@ class ExcelVanbang extends Eloquent
         }
     }
 
+    public static function getNewByID($id) {
+        $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_VANBANG_ID.$id) : array();
+        if (sizeof($new) == 0) {
+            $new = ExcelVanbang::where('vanbang_id', $id)->first();
+            if($new && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_VANBANG_ID.$id, $new, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $new;
+    }
     /**
      * @desc: Tao Data.
      * @param $data
@@ -126,8 +136,7 @@ class ExcelVanbang extends Eloquent
 
     public static function removeCache($id = 0){
         if($id > 0){
-            //Cache::forget(Memcache::CACHE_ALL_TAB);
-            //Cache::forget(Memcache::CACHE_ALL_TAB_LINK);
+            Cache::forget(Memcache::CACHE_VANBANG_ID.$id);
         }
     }
 

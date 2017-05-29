@@ -194,8 +194,6 @@ class UploadExcelController extends BaseAdminController
         }
         return Response::json($data);
     }
-
-    //ajax xoa nhieu
     public function deleteMultiVanbang(){
         $data = array('isIntOk' => 0);
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
@@ -214,6 +212,81 @@ class UploadExcelController extends BaseAdminController
             }
         }
         return Response::json($data);
+    }
+    public function getVanbang($id=0) {
+
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
+        $data = array();
+        if($id > 0) {
+            $data = ExcelVanbang::getNewByID($id);
+        }
+        $this->layout->content = View::make('admin.UploadExcel.addVanbang')
+            ->with('id', $id)
+            ->with('data', $data);
+    }
+    public function postVanbang($id=0) {
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
+        $dataSave['vanbang_hoten'] = addslashes(Request::get('vanbang_hoten'));
+        $dataSave['vanbang_ngaysinh'] = addslashes(Request::get('vanbang_ngaysinh'));
+        $dataSave['vanbang_noisinh'] = addslashes(Request::get('vanbang_noisinh'));
+        $dataSave['vanbang_gioitinh'] = addslashes(Request::get('vanbang_gioitinh'));
+        $dataSave['vanbang_dantoc'] = addslashes(Request::get('vanbang_dantoc'));
+        $dataSave['vanbang_nganhdaotao'] = addslashes(Request::get('vanbang_nganhdaotao'));
+        $dataSave['vanbang_namtotnghiep'] = addslashes(Request::get('vanbang_namtotnghiep'));
+        $dataSave['vanbang_xeploai'] = addslashes(Request::get('vanbang_xeploai'));
+        $dataSave['vanbang_machungchi'] = addslashes(Request::get('vanbang_machungchi'));
+        $dataSave['vanbang_chungchiso'] = addslashes(Request::get('vanbang_chungchiso'));
+        $dataSave['vanbang_khoahoc'] = addslashes(Request::get('vanbang_khoahoc'));
+        $dataSave['vanbang_trinhdo'] = addslashes(Request::get('vanbang_trinhdo'));
+        $dataSave['vanbang_htdaotao'] = addslashes(Request::get('vanbang_htdaotao'));
+        $dataSave['vanbang_sototnghiep'] = addslashes(Request::get('vanbang_sototnghiep'));
+        $dataSave['vanbang_ngaytotnghiep'] = addslashes(Request::get('vanbang_ngaytotnghiep'));
+        $id_hiden = (int)Request::get('id_hiden', 0);
+
+        if($this->validVanBang($dataSave) && empty($this->error)) {
+            $id = ($id == 0) ? $id_hiden : $id;
+            if($dataSave['vanbang_machungchi'] != ''){
+                $dataSave['vanbang_machungchi_search'] = str_replace(' ', '', $dataSave['vanbang_machungchi']);
+            }
+            if($id > 0) {
+                //cap nhat
+                $dataSave['vanbang_capnhat'] = time();
+                $dataSave['vanbang_nguoicapnhat'] = isset($this->user['user_id']) ? $this->user['user_id'] : 0;
+
+                if(ExcelVanbang::updateData($id, $dataSave)) {
+                    return Redirect::route('admin.viewVanbang');
+                }
+            } else {
+                //them moi
+                $dataSave['vanbang_ngaytao'] = time();
+                $dataSave['vanbang_nguoitao'] = isset($this->user['user_id']) ? $this->user['user_id'] : 0;
+
+                if(ExcelVanbang::addData($dataSave)) {
+                    return Redirect::route('admin.viewVanbang');
+                }
+            }
+        }
+
+        $this->layout->content =  View::make('admin.UploadExcel.addVanbang')
+            ->with('id', $id)
+            ->with('data', $dataSave)
+            ->with('error', $this->error);
+    }
+    private function validVanBang($data=array()) {
+        if(!empty($data)) {
+            if(isset($data['vanbang_hoten']) && $data['vanbang_hoten'] == '') {
+                $this->error[] = 'Họ và tên không được trống';
+            }
+            if(isset($data['vanbang_machungchi']) && $data['vanbang_machungchi'] == '') {
+                $this->error[] = 'Số hiệu văn bằng, chứng chỉ không được trống';
+            }
+            return true;
+        }
+        return false;
     }
     /**
      * ***********************************************************************************************************
@@ -377,7 +450,6 @@ class UploadExcelController extends BaseAdminController
         }
         return Response::json($data);
     }
-    //ajax xoa nhieu
     public function deleteMultiNangkhieu(){
         $data = array('isIntOk' => 0);
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
@@ -396,6 +468,79 @@ class UploadExcelController extends BaseAdminController
             }
         }
         return Response::json($data);
+    }
+    public function getNangkhieu($id=0) {
+
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
+        $data = array();
+        if($id > 0) {
+            $data = ExcelNangkhieu::getNewByID($id);
+        }
+
+        $this->layout->content = View::make('admin.UploadExcel.addNangkhieu')
+            ->with('id', $id)
+            ->with('data', $data);
+    }
+    public function postNangkhieu($id=0) {
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
+        $dataSave['nangkhieu_sobaodanh'] = addslashes(Request::get('nangkhieu_sobaodanh'));
+        $dataSave['nangkhieu_hoten'] = addslashes(Request::get('nangkhieu_hoten'));
+        $dataSave['nangkhieu_ngaysinh'] = addslashes(Request::get('nangkhieu_ngaysinh'));
+        $dataSave['nangkhieu_cmt'] = addslashes(Request::get('nangkhieu_cmt'));
+        $dataSave['nangkhieu_sophach'] = addslashes(Request::get('nangkhieu_sophach'));
+        $dataSave['nangkhieu_monthi_mot'] = addslashes(Request::get('nangkhieu_monthi_mot'));
+        $dataSave['nangkhieu_monthi_hai'] = addslashes(Request::get('nangkhieu_monthi_hai'));
+        $dataSave['nangkhieu_monthi_ba'] = addslashes(Request::get('nangkhieu_monthi_ba'));
+        $dataSave['nangkhieu_monthi_bon'] = addslashes(Request::get('nangkhieu_monthi_bon'));
+        $dataSave['nangkhieu_monthi_nam'] = addslashes(Request::get('nangkhieu_monthi_nam'));
+        $dataSave['nangkhieu_monthi_sau'] = addslashes(Request::get('nangkhieu_monthi_sau'));
+        $dataSave['nangkhieu_ngaythi'] = addslashes(Request::get('nangkhieu_ngaythi'));
+        $id_hiden = (int)Request::get('id_hiden', 0);
+
+        if($this->validNangkhieu($dataSave) && empty($this->error)) {
+            $id = ($id == 0) ? $id_hiden : $id;
+            if($dataSave['nangkhieu_sobaodanh'] != ''){
+                $dataSave['nangkhieu_sobaodanh_search'] = str_replace(' ', '', $dataSave['nangkhieu_sobaodanh']);
+            }
+            if($id > 0) {
+                //cap nhat
+                $dataSave['nangkhieu_ngaycapnhat'] = time();
+                $dataSave['nangkhieu_nguoicapnhat'] = isset($this->user['user_id']) ? $this->user['user_id'] : 0;
+
+                if(ExcelNangkhieu::updateData($id, $dataSave)) {
+                    return Redirect::route('admin.viewNangkhieu');
+                }
+            } else {
+                //them moi
+                $dataSave['nangkhieu_ngaytao'] = time();
+                $dataSave['nangkhieu_nguoitao'] = isset($this->user['user_id']) ? $this->user['user_id'] : 0;
+
+                if(ExcelNangkhieu::addData($dataSave)) {
+                    return Redirect::route('admin.viewNangkhieu');
+                }
+            }
+        }
+
+        $this->layout->content =  View::make('admin.UploadExcel.addNangkhieu')
+            ->with('id', $id)
+            ->with('data', $dataSave)
+            ->with('error', $this->error);
+    }
+    private function validNangkhieu($data=array()) {
+        if(!empty($data)) {
+            if(isset($data['nangkhieu_cmt']) && $data['nangkhieu_cmt'] == '') {
+                $this->error[] = 'CMT không được trống';
+            }
+            if(isset($data['nangkhieu_sobaodanh']) && $data['nangkhieu_sobaodanh'] == '') {
+                $this->error[] = 'Số BD không được trống';
+            }
+            return true;
+        }
+        return false;
     }
     /**
      * ***********************************************************************************************************
@@ -586,7 +731,6 @@ class UploadExcelController extends BaseAdminController
         }
         return Response::json($data);
     }
-    //ajax xoa nhieu
     public function deleteMultiTuyensinh(){
         $data = array('isIntOk' => 0);
         if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_delete,$this->permission)){
@@ -605,5 +749,91 @@ class UploadExcelController extends BaseAdminController
             }
         }
         return Response::json($data);
+    }
+    public function getTuyensinh($id=0) {
+
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
+        $data = array();
+        if($id > 0) {
+            $data = ExcelTuyensinh::getNewByID($id);
+        }
+
+        $this->layout->content = View::make('admin.UploadExcel.addTuyensinh')
+            ->with('id', $id)
+            ->with('data', $data);
+    }
+    public function postTuyensinh($id=0) {
+        if(!$this->is_root && !in_array($this->permission_full,$this->permission) && !in_array($this->permission_edit,$this->permission) && !in_array($this->permission_create,$this->permission)){
+            return Redirect::route('admin.dashboard',array('error'=>1));
+        }
+        $dataSave['tuyensinh_sohoso'] = addslashes(Request::get('tuyensinh_sohoso'));
+        $dataSave['tuyensinh_sobaodanh'] = addslashes(Request::get('tuyensinh_sobaodanh'));
+        $dataSave['tuyensinh_hoten'] = addslashes(Request::get('tuyensinh_hoten'));
+        $dataSave['tuyensinh_ngaysinh'] = addslashes(Request::get('tuyensinh_ngaysinh'));
+        $dataSave['tuyensinh_cmt'] = addslashes(Request::get('tuyensinh_cmt'));
+        $dataSave['tuyensinh_khuvuc_uutien'] = addslashes(Request::get('tuyensinh_khuvuc_uutien'));
+        $dataSave['tuyensinh_diem_uutien'] = addslashes(Request::get('tuyensinh_diem_uutien'));
+        $dataSave['tuyensinh_tinhthanh'] = addslashes(Request::get('tuyensinh_tinhthanh'));
+        $dataSave['tuyensinh_quanhuyen'] = addslashes(Request::get('tuyensinh_quanhuyen'));
+        $dataSave['tuyensinh_monthi_mot'] = addslashes(Request::get('tuyensinh_monthi_mot'));
+        $dataSave['tuyensinh_diem_monthimot'] = addslashes(Request::get('tuyensinh_diem_monthimot'));
+        $dataSave['tuyensinh_monthi_hai'] = addslashes(Request::get('tuyensinh_monthi_hai'));
+        $dataSave['tuyensinh_diem_monthihai'] = addslashes(Request::get('tuyensinh_diem_monthihai'));
+        $dataSave['tuyensinh_monthi_ba'] = addslashes(Request::get('tuyensinh_monthi_ba'));
+        $dataSave['tuyensinh_diem_monthiba'] = addslashes(Request::get('tuyensinh_diem_monthiba'));
+        $dataSave['tuyensinh_diemlech'] = addslashes(Request::get('tuyensinh_diemlech'));
+        $dataSave['tuyensinh_tongdiemchua_uutien'] = addslashes(Request::get('tuyensinh_tongdiemchua_uutien'));
+        $dataSave['tuyensinh_diem_uutien_quydoi'] = addslashes(Request::get('tuyensinh_diem_uutien_quydoi'));
+        $dataSave['tuyensinh_tongdiemco_uutien'] = addslashes(Request::get('tuyensinh_tongdiemco_uutien'));
+        $dataSave['tuyensinh_nganhtrungtuyen'] = addslashes(Request::get('tuyensinh_nganhtrungtuyen'));
+        $dataSave['tuyensinh_dotxettuyen'] = addslashes(Request::get('tuyensinh_dotxettuyen'));
+        $dataSave['tuyensinh_trinhdo'] = addslashes(Request::get('tuyensinh_trinhdo'));
+        $dataSave['tuyensinh_hinhthucxettuyen'] = addslashes(Request::get('tuyensinh_hinhthucxettuyen'));
+
+
+        $id_hiden = (int)Request::get('id_hiden', 0);
+
+        if($this->validNangkhieu($dataSave) && empty($this->error)) {
+            $id = ($id == 0) ? $id_hiden : $id;
+            if($dataSave['tuyensinh_sobaodanh'] != ''){
+                $dataSave['tuyensinh_sobaodanh_search'] = str_replace(' ', '', $dataSave['tuyensinh_sobaodanh']);
+            }
+            if($id > 0) {
+                //cap nhat
+                $dataSave['tuyensinh_ngaycapnhat'] = time();
+                $dataSave['tuyensinh_nguoicapnhat'] = isset($this->user['user_id']) ? $this->user['user_id'] : 0;
+
+                if(ExcelTuyensinh::updateData($id, $dataSave)) {
+                    return Redirect::route('admin.viewTuyensinh');
+                }
+            } else {
+                //them moi
+                $dataSave['tuyensinh_ngaytao'] = time();
+                $dataSave['tuyensinh_nguoitao'] = isset($this->user['user_id']) ? $this->user['user_id'] : 0;
+
+                if(ExcelTuyensinh::addData($dataSave)) {
+                    return Redirect::route('admin.viewTuyensinh');
+                }
+            }
+        }
+
+        $this->layout->content =  View::make('admin.UploadExcel.viewTuyensinh')
+            ->with('id', $id)
+            ->with('data', $dataSave)
+            ->with('error', $this->error);
+    }
+    private function validTuyensinh($data=array()) {
+        if(!empty($data)) {
+            if(isset($data['nangkhieu_cmt']) && $data['nangkhieu_cmt'] == '') {
+                $this->error[] = 'CMT không được trống';
+            }
+            if(isset($data['nangkhieu_sobaodanh']) && $data['nangkhieu_sobaodanh'] == '') {
+                $this->error[] = 'Số BD không được trống';
+            }
+            return true;
+        }
+        return false;
     }
 }

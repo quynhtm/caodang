@@ -27,6 +27,12 @@
                     </div>
                     <div class="panel-footer text-right">
                         @if($is_root || $permission_full ==1 || $permission_create == 1)
+                            <span class="">
+                                <a class="btn btn-danger btn-sm" href="{{URL::route('admin.editNangkhieu')}}">
+                                    <i class="ace-icon fa fa-plus-circle"></i>
+                                    Thêm mới
+                                </a>
+                            </span>
                             <a class="btn btn-warning btn-sm" href="javascript:void(0);" onclick="Admin.removeAllItems(9);"><i class="fa fa-trash"></i> Xóa nhiều </a>
                             <span class="">
                             <a class="btn btn-danger btn-sm" href="{{URL::route('admin.uploadExcelNangkhieu')}}">
@@ -86,6 +92,7 @@
 
                                 <td class="text-center text-middle">
                                     @if($is_root || $permission_full ==1|| $permission_edit ==1  )
+                                        <a href="{{URL::route('admin.editNangkhieu',array('id' => $item['nangkhieu_id']))}}" title="Sửa item"><i class="fa fa-edit fa-2x"></i></a>
                                         <a href="javascript:void(0);" onclick="Admin.deleteItem({{$item['nangkhieu_id']}},18)" title="Xóa Item"><i class="fa fa-trash fa-2x"></i></a>
                                     @endif
                                 </td>

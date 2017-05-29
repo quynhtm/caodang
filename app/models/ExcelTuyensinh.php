@@ -46,7 +46,16 @@ class ExcelTuyensinh extends Eloquent
             throw new PDOException();
         }
     }
-
+    public static function getNewByID($id) {
+        $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_TUYENSINH_ID.$id) : array();
+        if (sizeof($new) == 0) {
+            $new = ExcelTuyensinh::where('tuyensinh_id', $id)->first();
+            if($new && Memcache::CACHE_ON){
+                Cache::put(Memcache::CACHE_TUYENSINH_ID.$id, $new, Memcache::CACHE_TIME_TO_LIVE_ONE_MONTH);
+            }
+        }
+        return $new;
+    }
     /**
      * @desc: Tao Data.
      * @param $data
@@ -129,8 +138,7 @@ class ExcelTuyensinh extends Eloquent
 
     public static function removeCache($id = 0){
         if($id > 0){
-            //Cache::forget(Memcache::CACHE_ALL_TAB);
-            //Cache::forget(Memcache::CACHE_ALL_TAB_LINK);
+            Cache::forget(Memcache::CACHE_TUYENSINH_ID.$id);
         }
     }
     public static function searchSiteByCondition($dataSearch = array(), $limit =0){

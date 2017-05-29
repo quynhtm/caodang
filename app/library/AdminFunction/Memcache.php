@@ -81,4 +81,11 @@ class Memcache{
     //quan huyen
     const CACHE_DISTRICT_ID = 'cache_district_id_';
     const CACHE_DISTRICT_WITH_PROVINCE_ID = 'cache_district_with_province_id_';
+
+    //Van bang
+    const CACHE_VANBANG_ID    = 'cache_vanbang_id_';
+    //Tuyen sinh
+    const CACHE_TUYENSINH_ID    = 'cache_tuyensinh_id_';
+    //Nang khieu
+    const CACHE_NANGKHIEU_ID    = 'cache_nangkhieu_id_';
 }

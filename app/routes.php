@@ -115,6 +115,8 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('upload/uploadExcelVanbang',array('as'=>'admin.uploadExcelVanbang','uses'=>'UploadExcelController@postInputExcelVanbang'));
     Route::post('upload/deleteVanbang', array('as' => 'admin.deleteVanbang','uses' => 'UploadExcelController@deleteVanbang'));//ajax
     Route::post('deleteMultiVanbang', array('as' => 'admin.deleteMultiVanbang','uses' => 'UploadExcelController@deleteMultiVanbang'));//ajax
+    Route::get('vanbang/editVanbang/{id?}', array('as' => 'admin.editVanbang','uses' => 'UploadExcelController@getVanbang'))->where('id', '[0-9]+');
+    Route::post('vanbang/editVanbang/{id?}', array('as' => 'admin.editVanbang','uses' => 'UploadExcelController@postVanbang'))->where('id', '[0-9]+');
 
     //quan ly Excel Nang khieu
     Route::get('viewNangkhieu',array('as'=>'admin.viewNangkhieu','uses'=>'UploadExcelController@viewNangkhieu'));
@@ -122,6 +124,8 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('upload/uploadExcelNangkhieu',array('as'=>'admin.uploadExcelNangkhieu','uses'=>'UploadExcelController@postInputExcelNangkhieu'));
     Route::post('upload/deleteNangkhieu', array('as' => 'admin.deleteNangkhieu','uses' => 'UploadExcelController@deleteNangkhieu'));//ajax
     Route::post('deleteMultiNangkhieu', array('as' => 'admin.deleteMultiNangkhieu','uses' => 'UploadExcelController@deleteMultiNangkhieu'));//ajax
+    Route::get('nangkhieu/editNangkhieu/{id?}', array('as' => 'admin.editNangkhieu','uses' => 'UploadExcelController@getNangkhieu'))->where('id', '[0-9]+');
+    Route::post('nangkhieu/editNangkhieu/{id?}', array('as' => 'admin.editNangkhieu','uses' => 'UploadExcelController@postNangkhieu'))->where('id', '[0-9]+');
 
 
     //quan ly Excel Tuyển sinh
@@ -130,6 +134,8 @@ Route::group(array('prefix' => 'admin', 'before' => ''), function()
     Route::post('upload/uploadExcelTuyensinh',array('as'=>'admin.uploadExcelTuyensinh','uses'=>'UploadExcelController@postInputExcelTuyensinh'));
     Route::post('upload/deleteTuyensinh', array('as' => 'admin.deleteTuyensinh','uses' => 'UploadExcelController@deleteTuyensinh'));//ajax
     Route::post('deleteMultiTuyensinh', array('as' => 'admin.deleteMultiTuyensinh','uses' => 'UploadExcelController@deleteMultiTuyensinh'));//ajax
+    Route::get('tuyensinh/editTuyensinh/{id?}', array('as' => 'admin.editTuyensinh','uses' => 'UploadExcelController@getTuyensinh'))->where('id', '[0-9]+');
+    Route::post('tuyensinh/editTuyensinh/{id?}', array('as' => 'admin.editTuyensinh','uses' => 'UploadExcelController@postTuyensinh'))->where('id', '[0-9]+');
 
 
     ///*Quản lý tab*/
