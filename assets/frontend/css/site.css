@@ -717,7 +717,7 @@ p {
     font-size: 14px;
     line-height: 22px;
     text-align: justify;
-    width: 100%;
+    width: 100%!important;
     margin-top: 10px;
     padding-bottom: 5px;
 }
