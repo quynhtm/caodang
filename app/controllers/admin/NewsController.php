@@ -13,6 +13,7 @@ class NewsController extends BaseAdminController
     private $permission_edit = 'news_edit';
     private $arrStatus = array(CGlobal::status_hide => 'Ẩn', CGlobal::status_show => 'Hiện');
     private $arrCommonPage = array(CGlobal::status_hide => 'Tin tức riêng', CGlobal::status_show => 'Tin tức chung');
+    private $arrGhim = array(CGlobal::status_hide => 'không', CGlobal::status_show => 'Có');
     private $error = array();
     private $arrCategoryNew = array();
     private $arrTypeNew = array();
@@ -56,6 +57,7 @@ class NewsController extends BaseAdminController
 
         $search['news_title'] = addslashes(Request::get('news_title',''));
         $search['news_status'] = (int)Request::get('news_status',-1);
+        $search['news_ghim'] = (int)Request::get('news_ghim',-1);
         if(!$this->is_root){
             $search['string_depart_id'] = $this->user_group_depart;
         }
@@ -66,6 +68,7 @@ class NewsController extends BaseAdminController
 
         //FunctionLib::debug($dataSearch);
         $optionStatus = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrStatus, $search['news_status']);
+        $optionGhim = FunctionLib::getOption(array(-1=>'----Chọn trạng thái----')+$this->arrGhim, isset($search['news_ghim'])? $search['news_ghim'] : CGlobal::status_hide);
         $this->layout->content = View::make('admin.News.view')
             ->with('paging', $paging)
             ->with('stt', ($pageNo-1)*$limit)
@@ -77,6 +80,7 @@ class NewsController extends BaseAdminController
             ->with('arrDepart', $this->arrDepart)
             ->with('arrTypeNew', $this->arrTypeNew)
             ->with('arrCategoryNew', $this->arrCategoryNew)
+            ->with('optionGhim', $optionGhim)
 
             ->with('is_root', $this->is_root)//dùng common
             ->with('permission_full', in_array($this->permission_full, $this->permission) ? 1 : 0)//dùng common
@@ -120,6 +124,7 @@ class NewsController extends BaseAdminController
         $arrCategory = !empty($arrCategory)? $arrCategory :array(0=>'----Chọn danh mục tin----');
         $optionCategory = FunctionLib::getOption($arrCategory, isset($data['news_category_id'])? $data['news_category_id'] : CGlobal::status_hide);
         $optionCategoryShow = FunctionLib::getOption($arrCategory, isset($data['news_show_cate_id'])? $data['news_show_cate_id'] : CGlobal::status_hide);
+        $optionGhim = FunctionLib::getOption($this->arrGhim, isset($data['news_ghim'])? $data['news_ghim'] : CGlobal::status_hide);
 
         $this->layout->content = View::make('admin.News.add')
             ->with('id', $id)
@@ -133,6 +138,7 @@ class NewsController extends BaseAdminController
             ->with('optionTypeNew', $optionTypeNew)
             ->with('optionCategory', $optionCategory)
             ->with('optionCategoryShow', $optionCategoryShow)
+            ->with('optionGhim', $optionGhim)
             ->with('arrStatus', $this->arrStatus);
     }
     public function postNews($id=0) {
@@ -150,7 +156,7 @@ class NewsController extends BaseAdminController
         $dataSave['news_depart_id'] = (int)Request::get('news_depart_id', CGlobal::status_hide);
         $dataSave['news_category_id'] = (int)Request::get('news_category_id', CGlobal::status_hide);
         $id_hiden = (int)Request::get('id_hiden', 0);
-		
+        $dataSave['news_ghim'] = (int)Request::get('news_ghim', CGlobal::status_hide);
         //ảnh chính
         $image_primary = addslashes(Request::get('image_primary'));
         //ảnh khác
@@ -190,6 +196,7 @@ class NewsController extends BaseAdminController
         $optionStatus = FunctionLib::getOption($this->arrStatus, isset($dataSave['category_status'])? $dataSave['category_status'] : -1);
         $optionCommonPage = FunctionLib::getOption($this->arrCommonPage, isset($dataSave['news_common_page'])? $dataSave['news_common_page'] : CGlobal::status_hide);
         $optionTypeNew = FunctionLib::getOption($this->arrTypeNew, isset($dataSave['news_type'])? $dataSave['news_type'] : CGlobal::NEW_TYPE_TIN_TUC);
+        $optionGhim = FunctionLib::getOption($this->arrGhim, isset($dataSave['news_ghim'])? $dataSave['news_ghim'] : CGlobal::status_hide);
         $this->layout->content =  View::make('admin.News.add')
             ->with('id', $id)
             ->with('data', $dataSave)
@@ -197,6 +204,7 @@ class NewsController extends BaseAdminController
             ->with('optionDepart', $optionDepart)
             ->with('optionTypeNew', $optionTypeNew)
             ->with('optionCommonPage', $optionCommonPage)
+            ->with('optionGhim', $optionGhim)
             ->with('error', $this->error)
             ->with('arrStatus', $this->arrStatus);
     }

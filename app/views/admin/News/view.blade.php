@@ -21,6 +21,12 @@
                             <input type="text" class="form-control input-sm" id="news_title" name="news_title" placeholder="Tiêu đề tin tức" @if(isset($search['news_title']) && $search['news_title'] != '')value="{{$search['news_title']}}"@endif>
                         </div>
                         <div class="form-group col-lg-3">
+                            <label for="category_status">Ghim bài</label>
+                            <select name="news_ghim" id="news_ghim" class="form-control input-sm">
+                                {{$optionGhim}}
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-3">
                             <label for="category_status">Trạng thái</label>
                             <select name="news_status" id="news_status" class="form-control input-sm">
                                 {{$optionStatus}}
@@ -53,6 +59,7 @@
                             <th width="435">Tên bài viết</th>
                             <th width="18%">Danh mục tin</th>
                             <th width="18%">Thuộc khoa - trung tâm</th>
+                            <th width="8%">Ghim bài</th>
                             <th width="8%" class="text-center">Trạng thái</th>
                             <th width="10%" class="text-center">Thao tác</th>
                         </tr>
@@ -74,6 +81,13 @@
                                     @if(isset($arrTypeNew[$item['news_type']]))<br/><i class="red">{{ $arrTypeNew[$item['news_type']] }}</i>@endif
                                 </td>
                                 <td>@if(isset($arrDepart[$item['news_depart_id']])){{ $arrDepart[$item['news_depart_id']] }}@else --- @endif</td>
+                                <td class="text-center">
+                                    @if($item['news_ghim'] == 1)
+                                        <a href="javascript:void(0)"><i class="fa fa-check fa-2x"></i></a>
+                                    @else
+                                        <i class="fa fa-close fa-2x"></i>
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     @if($item['news_status'] == 1)
                                         <a href="javascript:void(0);" onclick="Admin.updateStatusItem({{$item['news_id']}},{{$item['news_status']}},5)"title="Hiện"><i class="fa fa-check fa-2x"></i></a>

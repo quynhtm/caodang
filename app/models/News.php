@@ -12,7 +12,7 @@ class News extends Eloquent
     //cac truong trong DB
     protected $fillable = array('news_id','news_title', 'news_desc_sort','news_depart_id',
         'news_content', 'news_image', 'news_image_other', 'news_files', 'news_create','news_order','news_common_page','news_show_cate_id',
-        'news_type', 'news_category_id','news_category_name', 'news_status');
+        'news_type', 'news_category_id','news_category_name', 'news_status', 'news_ghim');
 
     public static function getNewByID($id) {
         $new = (Memcache::CACHE_ON)? Cache::get(Memcache::CACHE_NEW_ID.$id) : array();
@@ -43,8 +43,11 @@ class News extends Eloquent
             if (isset($dataSearch['not_news_id']) && $dataSearch['not_news_id'] > 0) {
                 $query->where('news_id','<>', $dataSearch['not_news_id']);
             }
+            if (isset($dataSearch['news_ghim']) && $dataSearch['news_ghim'] != -1) {
+                $query->where('news_ghim', $dataSearch['news_ghim']);
+            }
             $total = $query->count();
-            $query->orderBy('news_id', 'desc');
+            $query->orderBy('news_ghim', 'desc')->orderBy('news_id', 'desc');
 
             //get field can lay du lieu
             $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
@@ -182,7 +185,7 @@ class News extends Eloquent
 	    		$query = News::where('news_id','<>', $id);
 	    		$query->where('news_category_id', $catid);
 	    		$query->where('news_status', CGlobal::status_show);
-	    		$query->orderBy('news_id', 'desc');
+	    		$query->orderBy('news_ghim', 'desc')->orderBy('news_id', 'desc');
 	    
 	    		$fields = (isset($dataField['field_get']) && trim($dataField['field_get']) != '') ? explode(',',trim($dataField['field_get'])): array();
 	    		if(!empty($fields)){
@@ -215,7 +218,7 @@ class News extends Eloquent
             */
             $query->whereIn('news_category_id', $arrCat);
             $query->where('news_status', CGlobal::status_show);
-            $query->orderBy('news_id', 'desc');
+            $query->orderBy('news_ghim', 'desc')->orderBy('news_id', 'desc');
             $result = $query->take($limit)->get();
         }
         return $result;
@@ -235,7 +238,7 @@ class News extends Eloquent
                 $query->whereIn('news_category_id', explode(',',$dataSearch['string_category_id']));
             }
             $total = $query->count();
-            $query->orderBy('news_id', 'desc');
+            $query->orderBy('news_ghim', 'desc')->orderBy('news_id', 'desc');
             //get field can lay du lieu
             $fields = (isset($dataSearch['field_get']) && trim($dataSearch['field_get']) != '') ? explode(',',trim($dataSearch['field_get'])): array();
             if(!empty($fields)){

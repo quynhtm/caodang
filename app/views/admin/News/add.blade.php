@@ -93,6 +93,17 @@
                     <div class="clearfix"></div>
                     <div class="col-sm-6">
                         <div class="form-group">
+                            <label for="name" class="control-label">Ghim bài</label>
+                            <div class="form-group">
+                                <select class="form-control input-sm" name="news_ghim">
+                                    {{$optionGhim}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <label for="name" class="control-label">Thứ tự hiển thị</label>
                             <input type="text" id="news_order" name="news_order"  class="form-control input-sm" value="@if(isset($data['news_order'])){{$data['news_order']}}@endif">
                         </div>
