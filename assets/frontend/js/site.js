@@ -230,12 +230,13 @@ SITE={
                                 var jsonData = jQuery.parseJSON(data);
                                 var str = '';
                                 str += '<table class="tblNangKhieu">';
-                                str += '<tr class="head"><td>Họ và tên</td><td>Ngày sinh</td><td>Số CMND</td><td>Khu vực</td><td>Đối tượng</td><td>Hình thức xét tuyển</td><td>Tổng điểm có ƯT</td><td>Ngành trúng tuyển</td><td>Đợt xét tuyển</td></tr>';
+                                str += '<tr class="head"><td width="14%">Họ và tên</td><td class="text-center">Ngày sinh</td><td class="text-center">Số CMND</td><td class="text-center">Khu vực</td><td class="text-center">Đối tượng</td><td class="text-center">Hình thức xét tuyển</td><td class="text-center">Tổng điểm có ƯT</td><td class="text-center">Ngành trúng tuyển</td><td class="text-center">Đợt xét tuyển</td></tr>';
                                 for (var i = 0; i < jsonData.length; i++) {
-                                    str += '<tr><td>'+jsonData[i].tuyensinh_hoten+'</td><td>'+ jsonData[i].tuyensinh_ngaysinh +'</td><td>'+ jsonData[i].tuyensinh_cmt +'</td><td>'+ jsonData[i].tuyensinh_khuvuc_uutien +'</td><td>'+ jsonData[i].tuyensinh_diem_uutien +'</td><td>'+ jsonData[i].tuyensinh_hinhthucxettuyen +'</td><td>'+ jsonData[i].tuyensinh_tongdiemco_uutien +'</td><td>'+ jsonData[i].tuyensinh_nganhtrungtuyen +'</td><td>' + jsonData[i].tuyensinh_dotxettuyen + '</td></tr>';
+                                    str += '<tr><td width="14%">'+jsonData[i].tuyensinh_hoten+'</td><td class="text-center">'+ jsonData[i].tuyensinh_ngaysinh +'</td><td class="text-center">'+ jsonData[i].tuyensinh_cmt +'</td><td class="text-center">'+ jsonData[i].tuyensinh_khuvuc_uutien +'</td><td class="text-center">'+ jsonData[i].tuyensinh_diem_uutien +'</td><td class="text-center">'+ jsonData[i].tuyensinh_hinhthucxettuyen +'</td><td class="text-center">'+ jsonData[i].tuyensinh_tongdiemco_uutien +'</td><td class="text-center">'+ jsonData[i].tuyensinh_nganhtrungtuyen +'</td><td class="text-center">' + jsonData[i].tuyensinh_dotxettuyen + '</td></tr>';
                                 }
                                 str += '</table>';
                                 $('.box-list-equal').append(str);
+                                $('.line-thongbao').show();
                             }
                         }
                     });

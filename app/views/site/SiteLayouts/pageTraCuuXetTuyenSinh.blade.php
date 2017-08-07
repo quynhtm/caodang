@@ -40,6 +40,9 @@
 			<div class="box-list-equal">
 				<div class="inputInfo">Nhập số CMND, họ và tên và trình độ.</div>
 			</div>
+			<div class="line-thongbao" style="display: none">
+                {{$strThongBao}}
+			</div>
 		</div>
 	</div>
 </div>

@@ -310,7 +310,7 @@
 .skitter .prev_button,
 .skitter .play_pause_button {
     display: block;
-    background: url("../images/skitter/sprite-default.png") no-repeat;
+    background: url("sprite-default.png") no-repeat;
     background-size: 84px auto
 }
 .skitter .next_button {

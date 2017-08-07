@@ -144,8 +144,14 @@ class TraCuuController extends BaseSiteController{
         }
         FunctionLib::SEO($meta_img, $meta_title, $meta_keywords, $meta_description);
 
+        $strThongBao = '';
+        $arrThongBao = Info::getItemByKeyword('SITE_BAO_CHUNG_XET_TUYEN_SINH');
+        if(sizeof($arrThongBao) > 0){
+            $strThongBao = stripslashes($arrThongBao->info_content);
+        }
+
         $this->header();
-        $this->layout->content = View::make('site.SiteLayouts.pageTraCuuXetTuyenSinh');
+        $this->layout->content = View::make('site.SiteLayouts.pageTraCuuXetTuyenSinh')->with('strThongBao', $strThongBao);
         $this->eduBottom();
         $this->sliderPartnerBottom();
         $this->footer();
