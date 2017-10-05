@@ -68,7 +68,7 @@ return array(
         'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'caodang',
+			'database'  => 'project_cdsptw',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
