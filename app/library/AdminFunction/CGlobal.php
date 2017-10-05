@@ -211,7 +211,8 @@ class CGlobal{
    
     //Duy bo sung
     const emailAdmin = 'admin@cdsptw.edu.vn';
-    
+    //const emailAdmin = 'nguyenduypt86@gmail.com';
+	
     public static $arrIconSpecals = array(
     	'\r\n', '☎', '👉', '✈', '🍬', '🏃', '🏻', '😁','🍬', '🏃🏻', '💃🏽', '✅', '😜', '🌳', '🌴', '🌲', '🌱',
     	'🌻', '🐮', '🐃', '🐎', '🐎', '🐓', '🐔', '🐗', '💥'
